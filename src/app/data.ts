@@ -52,3 +52,30 @@ export const menuLinks = [
     title: 'Food and Alcohol',
   },
 ];
+
+export const pageLinks = [
+  {
+    to: '/about',
+    title: 'About',
+  },
+  {
+    to: '/contacts',
+    title: 'Contacts',
+  },
+  {
+    to: '/careers',
+    title: 'Careers',
+  },
+  {
+    to: '/shipment-and-payment',
+    title: 'Shipment and Payment',
+  },
+  {
+    to: '/partnership',
+    title: 'Become a Partner',
+  },
+  {
+    to: '/legal',
+    title: 'Legal Information',
+  },
+];

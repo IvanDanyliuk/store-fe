@@ -1,17 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
-import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faFacebookF, 
+  faInstagram, 
+  faTelegram, 
+  faTwitter 
+} from '@fortawesome/free-brands-svg-icons';
+import { slide as Menu } from 'react-burger-menu';
 import tw from 'twin.macro';
 import styles from './styles';
-import { menuLinks } from '../../data';
+import { menuLinks, pageLinks } from '../../data';
+import { useMediaQuery } from 'react-responsive';
+import { SCREENS } from '../../services/screens';
+import SearchField from '../inputs/SearchField';
+import Divider from '../ui/Divider';
+import Copyright from '../ui/Copyright';
 
 
-const Container = styled.div`
-  ${tw`
-    
-  `}
-`;
 
 const Navigation = styled(Menu)`
   ${tw`
@@ -34,12 +41,34 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(Link)`
-  
+  ${tw`
+    text-gray-700
+    hover:text-gray-800
+    transition
+    ease-in-out
+  `}
+`;
+
+const SocialMediaLinks = styled.div`
+  ${tw`
+    w-full
+    flex
+    justify-around
+  `}
+`;
+
+const SocialMediaLink = styled.a`
+  ${tw`
+    text-xl
+  `}
 `;
 
 const NavMenu: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
+
   return (
     <Navigation styles={styles} >
+      {isMobile && <SearchField />}
       <NavList>
         {menuLinks.map(link => (
           <NavItem key={link.title}>
@@ -48,7 +77,34 @@ const NavMenu: React.FC = () => {
             </NavLink>
           </NavItem>
         ))}
+        <Divider direction='horizontal' length={100} mTop={25} mBottom={25} />
+        <SocialMediaLinks>
+          <SocialMediaLink href='#'>
+            <FontAwesomeIcon icon={faFacebookF} />
+          </SocialMediaLink>
+          <SocialMediaLink href='#'>
+            <FontAwesomeIcon icon={faInstagram} />
+          </SocialMediaLink>
+          <SocialMediaLink href='#'>
+            <FontAwesomeIcon icon={faTwitter} />
+          </SocialMediaLink>
+          <SocialMediaLink href='#'>
+            <FontAwesomeIcon icon={faTelegram} />
+          </SocialMediaLink>
+        </SocialMediaLinks>
+        <Divider direction='horizontal' length={100} mTop={25} mBottom={15} />
       </NavList>
+      <NavList>
+        {pageLinks.map(link => (
+          <NavItem key={link.title}>
+            <NavLink to={link.to}>
+              {link.title}
+            </NavLink>
+          </NavItem>
+        ))}
+      </NavList>
+      <Divider direction='horizontal' length={100} mTop={25} mBottom={15} />
+      <Copyright />
     </Navigation>
   );
 };

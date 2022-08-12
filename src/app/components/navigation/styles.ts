@@ -12,6 +12,8 @@ export default {
     background: '#a90000',
   },
   bmCrossButton: {
+    position: 'absolute',
+    right: '20px',
     height: '24px',
     width: '24px',
   },
@@ -29,13 +31,9 @@ export default {
     padding: '2.5em 1.5em 0',
     fontSize: '1em',
     fontWeight: '600',
-    boxSizing: 'border-box',
   },
   bmMorphShape: {
     fill: '#373a47',
-  },
-  bmItemList: {
-    color: '#000000',
   },
   bmItem: {
     display: 'inline-block',

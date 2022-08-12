@@ -9,7 +9,7 @@ interface ILayout {
   children: ReactNode;
 }
 
-const Container = styled.header`
+const Container = styled.main`
   ${tw`
     min-w-full
     flex
@@ -21,9 +21,9 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>
-        {children}
-      </Container>
+        <Container>
+          {children}
+        </Container>
       <Footer />
     </>
   );

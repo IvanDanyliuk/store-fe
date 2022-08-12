@@ -7,7 +7,12 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const SearchForm = styled.form`
   ${tw`
-    w-96
+    mt-2
+    mb-2
+    md:mt-0
+    md:mb-0
+    w-full
+    md:w-96
     flex
   `}
 `;
