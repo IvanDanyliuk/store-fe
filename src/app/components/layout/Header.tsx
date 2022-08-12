@@ -8,6 +8,7 @@ import SearchField from '../inputs/SearchField';
 import NavMenu from '../navigation/NavMenu';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
+import Logo from '../ui/Logo';
 
 
 const Container = styled.header`
@@ -40,15 +41,6 @@ const MenuContainer = styled.div`
     h-full
     flex
     items-center
-  `}
-`;
-
-const Logo = styled(Link)`
-  ${tw`
-    text-xl
-    text-white
-    font-bold
-    tracking-wider
   `}
 `;
 
@@ -92,7 +84,7 @@ const Header: React.FC = () => {
       <Content>
         <MenuContainer>
           <NavMenu />
-          <Logo to='/'>eStore</Logo>
+          <Logo />
         </MenuContainer>
         {!isMobile && <SearchField />}
         <UserActions>

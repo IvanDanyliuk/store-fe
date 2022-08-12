@@ -79,3 +79,88 @@ export const pageLinks = [
     title: 'Legal Information',
   },
 ];
+
+export const footerLinks = {
+  estore: [
+    {
+      to: '/about',
+      title: 'About',
+    },
+    {
+      to: '/contacts',
+      title: 'Contacts',
+    },
+    {
+      to: '/careers',
+      title: 'Careers',
+    },
+    {
+      to: '/partnership',
+      title: 'Become a Partner',
+    },
+    {
+      to: '/trade-in',
+      title: 'Trade-In',
+    },
+    {
+      to: '/legal-info',
+      title: 'Legal Information',
+    },
+    {
+      to: '/network',
+      title: 'Network',
+    },
+  ],
+  forCustomers: [
+    {
+      to: '/shipment-and-payment',
+      title: 'Shipment and Payment',
+    },
+    {
+      to: '/return-order',
+      title: 'Return the Order',
+    },
+    {
+      to: '/manuals',
+      title: 'Manuals',
+    },
+    {
+      to: '/promotions',
+      title: 'Sales and Promotions',
+    },
+    {
+      to: '/credit',
+      title: 'Credit',
+    },
+    {
+      to: '/popular',
+      title: 'Popular Products',
+    },
+  ],
+  shops: [
+    {
+      to: '/shops/ukraine',
+      title: 'Ukraine',
+    },
+    {
+      to: '/shops/poland',
+      title: 'Poland',
+    },
+    {
+      to: '/shops/germany',
+      title: 'Germany',
+    },
+    {
+      to: '/shops/lithuania',
+      title: 'Lithuania',
+    },
+    {
+      to: '/shops/latvia',
+      title: 'Latvia',
+    },
+    {
+      to: '/shops/estonia',
+      title: 'Estonia',
+    },
+  ],
+};
