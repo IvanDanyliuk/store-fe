@@ -6,7 +6,6 @@ export default {
     height: '20px',
   },
   bmBurgerBars: {
-    
     background: '#ffffff',
   },
   bmBurgerBarsHover: {
@@ -17,26 +16,26 @@ export default {
     width: '24px',
   },
   bmCross: {
-    background: '#bdc3c7',
+    background: '#3fc5ff',
   },
   bmMenuWrap: {
     position: 'fixed',
-    width: '30vw',
     height: '100%',
     top: '0px',
     left: '0px',
   },
   bmMenu: {
-    background: '#373a47',
+    background: '#f1cc49',
     padding: '2.5em 1.5em 0',
-    fontSize: '1.15em',
+    fontSize: '1em',
+    fontWeight: '600',
+    boxSizing: 'border-box',
   },
   bmMorphShape: {
     fill: '#373a47',
   },
   bmItemList: {
-    color: '#b8b7ad',
-    padding: '0.8em',
+    color: '#000000',
   },
   bmItem: {
     display: 'inline-block',

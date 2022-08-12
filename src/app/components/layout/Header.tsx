@@ -1,7 +1,10 @@
+import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import SearchField from '../inputs/SearchField';
 import NavMenu from '../navigation/NavMenu';
 
 
@@ -17,6 +20,7 @@ const Container = styled.header`
 const Content = styled.div`
   ${tw`
     container
+    w-full
     h-20
     flex
     justify-between
@@ -27,7 +31,6 @@ const Content = styled.div`
 const MenuContainer = styled.div`
   ${tw`
     relative
-    w-full
     h-full
     flex
     items-center
@@ -43,6 +46,37 @@ const Logo = styled(Link)`
   `}
 `;
 
+const UserActions = styled.div`
+  font-size: 20px;
+  ${tw`
+    relative
+    flex
+  `}
+`;
+
+const ProfileBtn = styled(Link)`
+  ${tw`
+    p-3
+    mr-10
+    text-gray-700
+    hover:text-white
+    transition
+    ease-in
+    delay-100
+  `}
+`;
+
+const CartBtn = styled(Link)`
+  ${tw`
+    p-3
+    text-gray-700
+    hover:text-white
+    transition
+    ease-in
+    delay-100
+  `}
+`;
+
 const Header: React.FC = () => {
   return (
     <Container>
@@ -51,6 +85,15 @@ const Header: React.FC = () => {
           <NavMenu />
           <Logo to='/'>eStore</Logo>
         </MenuContainer>
+        <SearchField />
+        <UserActions>
+          <ProfileBtn to='/profile/personal-info'>
+            <FontAwesomeIcon icon={faUser} />
+          </ProfileBtn>
+          <CartBtn to='/cart'>
+            <FontAwesomeIcon icon={faCartShopping} />
+          </CartBtn>
+        </UserActions>
       </Content>
     </Container>
   );
