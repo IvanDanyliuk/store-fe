@@ -11,18 +11,20 @@ interface ILayout {
 
 const Container = styled.div`
   ${tw`
+    w-full
+    min-h-screen
     flex
     flex-col
-    min-h-screen
+    items-center
+    bg-white
   `}
 `;
 
 const Content = styled.main`
   flex: 1;
   ${tw`
-    min-w-full
+    container
     flex
-    justify-center
   `}
 `;
 
