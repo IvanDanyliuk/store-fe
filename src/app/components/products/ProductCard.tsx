@@ -1,9 +1,10 @@
-import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { v4 as uuid } from 'uuid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { IProductCardProps } from '../../../types/types';
 
 
@@ -34,13 +35,9 @@ const Image = styled.img`
   `}
 `;
 
-const ProductLink = styled(Link)`
+const ProductLink = styled(Link)``;
 
-`;
-
-const InfoSection = styled.div`
-
-`;
+const InfoSection = styled.div``;
 
 const Promotions = styled.div`
   ${tw`
@@ -87,6 +84,7 @@ const HeartIcon = styled.button`
   color: #1fcdd6;
   transition: ease-in-out .3s;
   z-index: 100;
+
   &:hover {
     color: #f6c430;
   }
@@ -129,21 +127,27 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       <InfoSection>
         <ProductLink to={`/products/${product._id}`}>
           <Promotions>
-            {product.promotion.map((item, i) => (
-              <PromotionChip key={`${item}_${i}`}>{item}</PromotionChip>
+            {product.promotion.map(item => (
+              <PromotionChip key={uuid()}>
+                {item}
+              </PromotionChip>
             ))}
           </Promotions>
-          <Title>{product.title}</Title>
+          <Title>
+            {product.title}
+          </Title>
           <Rating>
             {Array(product.rating).fill('').map(star => (
-              <RatingIcon>
+              <RatingIcon key={uuid()}>
                 <FontAwesomeIcon icon={faStar} />
               </RatingIcon>
             ))}
           </Rating>
           <Price>
             <Currency>$</Currency>
-            <Amount>{product.price}</Amount>
+            <Amount>
+              {product.price}
+            </Amount>
           </Price>
         </ProductLink>
       </InfoSection>
