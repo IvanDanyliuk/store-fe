@@ -8,8 +8,11 @@ import ProductCard from './ProductCard';
 const Container = styled.ul`
   ${tw`
     flex
-    flex-wrap
-    gap-8
+    flex-col
+    md:flex-row
+    md:flex-wrap
+    gap-3
+    md:gap-8
   `}
 `;
 

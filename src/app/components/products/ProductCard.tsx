@@ -12,7 +12,7 @@ const Card = styled.div`
   ${tw`
     relative
     p-3
-    w-1/6
+    md:w-1/6
     border
     border-solid
     border-gray-300
