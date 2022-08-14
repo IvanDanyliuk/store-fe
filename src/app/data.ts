@@ -167,6 +167,17 @@ export const footerLinks = {
 
 export const products = [
   {
+    _id: 'anfbsdfnbdgsgfdahgdfaj',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -212,6 +223,17 @@ export const products = [
     ]
   },
   {
+    _id: 'anfbsdfnbdgjdfskjdfhklsjdj',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -257,6 +279,17 @@ export const products = [
     ]
   },
   {
+    _id: 'ajsdhasfkadjasghkfhdsjkf',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -302,6 +335,17 @@ export const products = [
     ]
   },
   {
+    _id: 'asdhagsdagsjkdghahs',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -347,6 +391,17 @@ export const products = [
     ]
   },
   {
+    _id: 'hasdhlakjdhkadkasjddfgdfg',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -392,6 +447,17 @@ export const products = [
     ]
   },
   {
+    _id: 'asdhaskdhasjghdajsasduhaldh',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -437,6 +503,17 @@ export const products = [
     ]
   },
   {
+    _id: 'oiqieurwerhlahldsasdkj',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -482,6 +559,17 @@ export const products = [
     ]
   },
   {
+    _id: 'akjsdbjaksdhkjaslashasdhjl',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -527,6 +615,17 @@ export const products = [
     ]
   },
   {
+    _id: 'ndbfksjdfhksjdhfjsdhfsdfjh',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -572,6 +671,17 @@ export const products = [
     ]
   },
   {
+    _id: 'aushdakljhdjkashlkdjalksd',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -617,6 +727,17 @@ export const products = [
     ]
   },
   {
+    _id: 'ahsdkahsdkagsjdhahksgdha',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',
@@ -662,6 +783,17 @@ export const products = [
     ]
   },
   {
+    _id: 'asudgaksgdkaskdagksdg',
+    category: {
+      main: {
+        title: 'Cellphones, TV, and Electronics',
+        url: 'cellphones',
+      },
+      subCategory: {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+    },
     title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
     price: '1199',
     color: '#49A2DA',

@@ -1,15 +1,21 @@
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { IProductProps } from '../../../types/types';
+import { IProductCardProps } from '../../../types/types';
 
 
 const Card = styled.div`
   ${tw`
     relative
+    p-3
     w-1/6
+    border
+    border-solid
+    border-gray-300
+    rounded-md
   `}
 `;
 
@@ -26,6 +32,10 @@ const Image = styled.img`
   ${tw`
     h-56
   `}
+`;
+
+const ProductLink = styled(Link)`
+
 `;
 
 const InfoSection = styled.div`
@@ -56,12 +66,18 @@ const PromotionChip = styled.div`
 
 const Title = styled.div`
   ${tw`
-    text-lg
+    pt-2
+    pb-2
+    text-base
     font-medium
   `}
 `;
 
-const Rating = styled.div``;
+const Rating = styled.div`
+  ${tw`
+    pb-2
+  `}
+`;
 
 const RatingIcon = styled.span`
   color: #f0ab44;
@@ -101,7 +117,7 @@ const Amount = styled.span`
   `}
 `;
 
-const Product: React.FC<IProductProps> = ({ product }) => {
+const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   return (
     <Card>
       <HeartIcon>
@@ -111,26 +127,28 @@ const Product: React.FC<IProductProps> = ({ product }) => {
         <Image src={product.image} alt={product.title} />
       </ImageSection>
       <InfoSection>
-        <Promotions>
-          {product.promotion.map((item, i) => (
-            <PromotionChip key={`${item}_${i}`}>{item}</PromotionChip>
-          ))}
-        </Promotions>
-        <Title>{product.title}</Title>
-        <Rating>
-          {Array(product.rating).fill('').map(star => (
-            <RatingIcon>
-              <FontAwesomeIcon icon={faStar} />
-            </RatingIcon>
-          ))}
-        </Rating>
-        <Price>
-          <Currency>$</Currency>
-          <Amount>{product.price}</Amount>
-        </Price>
+        <ProductLink to={`/products/${product._id}`}>
+          <Promotions>
+            {product.promotion.map((item, i) => (
+              <PromotionChip key={`${item}_${i}`}>{item}</PromotionChip>
+            ))}
+          </Promotions>
+          <Title>{product.title}</Title>
+          <Rating>
+            {Array(product.rating).fill('').map(star => (
+              <RatingIcon>
+                <FontAwesomeIcon icon={faStar} />
+              </RatingIcon>
+            ))}
+          </Rating>
+          <Price>
+            <Currency>$</Currency>
+            <Amount>{product.price}</Amount>
+          </Price>
+        </ProductLink>
       </InfoSection>
     </Card>
   );
 };
 
-export default Product;
+export default ProductCard;

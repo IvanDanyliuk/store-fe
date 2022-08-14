@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { products } from '../../data';
-import Product from './Product';
+import ProductCard from './ProductCard';
 
 
 const Container = styled.ul`
-border: 1px solid red;
   ${tw`
     flex
     flex-wrap
@@ -18,7 +17,7 @@ const ProductList: React.FC = () => {
   return (
     <Container>
       {products.map(product => (
-        <Product key={product.title} product={product} />
+        <ProductCard key={product._id} product={product} />
       ))}
     </Container>
   );

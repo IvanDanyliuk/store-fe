@@ -22,7 +22,20 @@ export interface IReview {
   date: string;
 }
 
+export interface IProductCategory {
+  main: {
+    title: string;
+    url: string;
+  };
+  subCategory: {
+    title: string;
+    url: string;
+  };
+}
+
 export interface IProduct {
+  _id: string;
+  category: IProductCategory;
   title: string;
   price: string;
   color: string;
@@ -35,7 +48,7 @@ export interface IProduct {
   reviews: IReview[];
 }
 
-export interface IProductProps {
+export interface IProductCardProps {
   product: IProduct;
 }
 
