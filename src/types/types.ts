@@ -48,6 +48,10 @@ export interface IProduct {
   reviews: IReview[];
 }
 
+export interface IProductListProps {
+  category?: string;
+}
+
 export interface IProductCardProps {
   product: IProduct;
 }

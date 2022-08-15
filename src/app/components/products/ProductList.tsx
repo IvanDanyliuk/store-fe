@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { IProductListProps } from '../../../types/types';
 import { products } from '../../data';
 import ProductCard from './ProductCard';
 
@@ -16,12 +17,20 @@ const Container = styled.ul`
   `}
 `;
 
-const ProductList: React.FC = () => {
+const ProductList: React.FC<IProductListProps> = ({ category }) => {
   return (
     <Container>
-      {products.map(product => (
-        <ProductCard key={product._id} product={product} />
-      ))}
+      {category ? 
+        products
+          .filter(product => product.category.main.url === category)
+          .map(product => (
+            <ProductCard key={product._id} product={product} />
+          )) : 
+        products
+          .map(product => (
+            <ProductCard key={product._id} product={product} />
+          )
+      )}
     </Container>
   );
 };

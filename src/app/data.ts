@@ -1,54 +1,65 @@
+
+
+
 export const menuLinks = [
   {
     to: '/products/laptops',
+    iconUrl: '',
     title: 'Laptops and PC',
   },
   {
     to: '/products/phones',
+    iconUrl: '',
     title: 'Cellphones, TV, and Electronics',
   },
   {
-    to: '/products/gamers',
-    title: 'For Gamers',
-  },
-  {
     to: '/products/household_appliances',
+    iconUrl: '',
     title: 'Household Appliances',
   },
   {
     to: '/products/household_goods',
+    iconUrl: '',
     title: 'Household Goods',
   },
   {
     to: '/products/tools_and_auto',
+    iconUrl: '',
     title: 'Tools and Autogoods',
   },
   {
     to: '/products/blumbing_repair',
+    iconUrl: '',
     title: 'Blumbing and Repair',
   },
   {
     to: '/products/sports_hobbies',
+    iconUrl: '',
     title: 'Sport and Hobbies',
   },
   {
     to: '/products/children',
+    iconUrl: '',
     title: 'Goods For Children',
   },
   {
     to: '/products/clothes',
+    iconUrl: '',
     title: 'Clothes, Footwear, and Accessories',
   },
   {
     to: '/products/office',
+    iconUrl: '',
     title: 'Office, School, and Books',
   },
   {
     to: '/products/health',
+    iconUrl: '',
     title: 'Health and Beauty',
   },
   {
     to: '/products/food',
+    iconUrl: '',
     title: 'Food and Alcohol',
   },
 ];
@@ -164,6 +175,357 @@ export const footerLinks = {
     },
   ],
 };
+
+export const categories = [
+  {
+    main: {
+      title: 'Cellphones, TV, and Electronics',
+      url: 'cellphones',
+    },
+    subCategoies: [
+      {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+      {
+        title: 'TV',
+        url: 'tv'
+      },
+      {
+        title: 'Tablets',
+        url: 'tablets'
+      },
+      {
+        title: 'Cables and Adapters',
+        url: 'cables-and-adapters'
+      },
+      {
+        title: 'Headphones and Accessories',
+        url: 'headphones'
+      },
+      {
+        title: 'Audio',
+        url: 'audio'
+      },
+      {
+        title: 'Cameras',
+        url: 'camers'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Laptops and PC',
+      url: 'laptops-and-pc',
+    },
+    subCategoies: [
+      {
+        title: 'Laptops',
+        url: 'laptops'
+      },
+      {
+        title: 'PC',
+        url: 'pc'
+      },
+      {
+        title: 'Monitors',
+        url: 'monitors'
+      },
+      {
+        title: 'For Gamers',
+        url: 'gaming'
+      },
+      {
+        title: 'Office devices',
+        url: 'office-devices'
+      },
+      {
+        title: 'Keyboards and Mouses',
+        url: 'keyboards'
+      },
+      {
+        title: 'Network Equipment',
+        url: 'network-equipment'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Cellphones, TV, and Electronics',
+      url: 'cellphones',
+    },
+    subCategoies: [
+      {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+      {
+        title: 'TV',
+        url: 'tv'
+      },
+      {
+        title: 'Tablets',
+        url: 'tablets'
+      },
+      {
+        title: 'Cables and Adapters',
+        url: 'cables-and-adapters'
+      },
+      {
+        title: 'Headphones and Accessories',
+        url: 'headphones'
+      },
+      {
+        title: 'Audio',
+        url: 'audio'
+      },
+      {
+        title: 'Cameras',
+        url: 'camers'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Household Appliances',
+      url: 'household-appliances',
+    },
+    subCategoies: [
+      {
+        title: 'Fridges',
+        url: 'fridges'
+      },
+      {
+        title: 'Washing Machines',
+        url: 'washing-machines'
+      },
+      {
+        title: 'Dishwashes',
+        url: 'dishwashes'
+      },
+      {
+        title: 'Cookers',
+        url: 'cookers'
+      },
+      {
+        title: 'Microwave Ovens',
+        url: 'micro-ovens'
+      },
+      {
+        title: 'Coffee Machines',
+        url: 'coffee-machines'
+      },
+      {
+        title: 'Vacuum Cleaners',
+        url: 'vacuum-cleaners'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Household Goods',
+      url: 'household-goods',
+    },
+    subCategoies: [
+      {
+        title: 'Textile',
+        url: 'textile'
+      },
+      {
+        title: 'Furniture',
+        url: 'furniture'
+      },
+      {
+        title: 'Dishes',
+        url: 'dishes'
+      },
+      {
+        title: 'Home Decoration',
+        url: 'home-decoration'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Tools and Auto Goods',
+      url: 'cellphones',
+    },
+    subCategoies: [
+      {
+        title: 'Cellphones',
+        url: 'cellphones'
+      },
+      {
+        title: 'TV',
+        url: 'tv'
+      },
+      {
+        title: 'Tablets',
+        url: 'tablets'
+      },
+      {
+        title: 'Cables and Adapters',
+        url: 'cables-and-adapters'
+      },
+      {
+        title: 'Headphones and Accessories',
+        url: 'headphones'
+      },
+      {
+        title: 'Audio',
+        url: 'audio'
+      },
+      {
+        title: 'Cameras',
+        url: 'camers'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Blumbing and Repair',
+      url: 'blumbing-and-repair',
+    },
+    subCategoies: [
+      {
+        title: 'Ceramics',
+        url: 'ceramics'
+      },
+      {
+        title: 'Bathroom Furniture',
+        url: 'barthroom-furniture'
+      },
+      {
+        title: 'Mixers',
+        url: 'mixers'
+      },
+      {
+        title: 'Installation Systems',
+        url: 'installation-systems'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Sport and Hobbies',
+      url: 'sport-and-hobbies',
+    },
+    subCategoies: [
+      {
+        title: 'Bikes and Accessories',
+        url: 'bikes'
+      },
+      {
+        title: 'Electric Vehicles',
+        url: 'electric-vehicles'
+      },
+      {
+        title: 'Simulators',
+        url: 'simulators'
+      },
+      {
+        title: 'Water Sports',
+        url: 'water-sports'
+      },
+      {
+        title: 'Active Rest',
+        url: 'active-rest'
+      },
+      {
+        title: 'Drones',
+        url: 'drones'
+      },
+      {
+        title: 'Travel Bags and Suitcases',
+        url: 'suitcases'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Clothes, Footwear, and Accessories',
+      url: 'wear',
+    },
+    subCategoies: [
+      {
+        title: 'Men',
+        url: 'men'
+      },
+      {
+        title: 'Women',
+        url: 'women'
+      },
+      {
+        title: 'Children',
+        url: 'children'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Health and Beauty',
+      url: 'health-and-beauty',
+    },
+    subCategoies: [
+      {
+        title: 'Dermatocosmetics',
+        url: 'dermatocosmetics'
+      },
+      {
+        title: 'Perfume',
+        url: 'perfume'
+      },
+      {
+        title: 'Make Up',
+        url: 'makeup'
+      },
+      {
+        title: 'Hair Care',
+        url: 'haircare'
+      },
+    ],
+  },
+  {
+    main: {
+      title: 'Food and Alcohol',
+      url: 'food-and-alcohol',
+    },
+    subCategoies: [
+      {
+        title: 'Wines',
+        url: 'wines'
+      },
+      {
+        title: 'Confectionary',
+        url: 'confectionary'
+      },
+      {
+        title: 'Make Up',
+        url: 'makeup'
+      },
+      {
+        title: 'Hot Drinks',
+        url: 'hot-drinks'
+      },
+      {
+        title: 'Cold Drinks',
+        url: 'cold-drinks'
+      },
+      {
+        title: 'Proper Nutrition',
+        url: 'proper-nutrition'
+      },
+      {
+        title: 'Snacks',
+        url: 'snacks'
+      },
+      {
+        title: 'Baby Food',
+        url: 'baby-food'
+      },
+    ],
+  },
+];
 
 export const products = [
   {
