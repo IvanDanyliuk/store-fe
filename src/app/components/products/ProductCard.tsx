@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
@@ -8,7 +8,7 @@ import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { IProductCardProps } from '../../../types/types';
 
 
-const Card = styled.div`
+const Card = styled.li`
   ${tw`
     relative
     p-3
@@ -116,6 +116,8 @@ const Amount = styled.span`
 `;
 
 const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
+  const { category } = useParams();
+  
   return (
     <Card>
       <HeartIcon>
@@ -125,7 +127,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
         <Image src={product.image} alt={product.title} />
       </ImageSection>
       <InfoSection>
-        <ProductLink to={`/products/${product._id}`}>
+        <ProductLink to={`/products/${category}/${product._id}`}>
           <Promotions>
             {product.promotion.map(item => (
               <PromotionChip key={uuid()}>

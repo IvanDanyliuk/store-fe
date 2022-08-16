@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { products } from '../data';
 import tw from 'twin.macro';
@@ -364,18 +364,17 @@ const ReactionsNum = styled.span`
 
 
 const Product: React.FC = () => {
-  const location = useLocation();
-  const id = location.pathname.split('/')[2];
+  const { id } = useParams()
   const productData = products.find(product => product._id === id);
 
   return (
     <ProductBody>
       <Breadcrumbs>
-        <BreadCrumb to={`/${productData!.category.main.url}`}>
+        <BreadCrumb to={`/categories/${productData!.category.main.url}`}>
           {productData!.category.main.title}
         </BreadCrumb>
         <BreadcrumbDivider>/</BreadcrumbDivider>
-        <BreadCrumb to={`/${productData!.category.subCategory.url}`}>
+        <BreadCrumb to={`/products/${productData!.category.subCategory.url}`}>
           {productData!.category.subCategory.title}
         </BreadCrumb>
       </Breadcrumbs>

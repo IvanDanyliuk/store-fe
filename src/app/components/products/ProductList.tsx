@@ -22,7 +22,7 @@ const ProductList: React.FC<IProductListProps> = ({ category }) => {
     <Container>
       {category ? 
         products
-          .filter(product => product.category.main.url === category)
+          .filter(product => product.category.subCategory.url === category)
           .map(product => (
             <ProductCard key={product._id} product={product} />
           )) : 

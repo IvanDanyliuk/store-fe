@@ -431,7 +431,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -487,22 +487,22 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
-        title: 'Cellphones',
-        url: 'cellphones'
+        title: 'TV',
+        url: 'tv'
       },
     },
-    title: 'Apple IPhone 13 Pro Max 256Gb Sierra Blue',
-    price: '1199',
-    color: '#49A2DA',
+    title: 'Samsung QLED QE50Q60A',
+    price: '879',
+    color: '#ffffff',
     rating: 5,
-    image: 'https://content1.rozetka.com.ua/goods/images/big/221208453.jpg',
+    image: 'https://content.rozetka.com.ua/goods/images/big/275435628.jpg',
     promotion: ['-10%', 'Top'],
     isInStock: true,
-    shortInfo: 'Screen (6.1”, OLED (Super Retina XDR), 2532x1170) / Apple A15 Bionic / main camera: 12Mp + 12Mp + 12Mp, front camera: 12Mp / storage: 128Gb / 3G / LTE / 5G / GPS / Nano-SIM / iOS 15',
-    description: 'iPhone 13 Pro takes a huge leap forward, bringing incredible speed to everything you do and dramatic new photo and video capabilities — all in two great sizes. Privacy is built in. iPhone helps put you in control of your personal information. For example, when you\'re browsing, Safari intelligently helps block trackers from profiling you and shows you which ones have been blocked in your Privacy Report. And the list goes on. Everything just works. Our hardware and software work together seamlessly. Want to pair new AirPods with your iPhone? It\'s a simple one‑tap setup. See a phone number in a photo? Live Text lets you tap it to make the call. You can also copy text, send an email, or look up directions right from the photo.',
+    shortInfo: 'Diagonal 55" (3840x2160) / SmartTV / Made in Slovakia / Tizen Platform / HDR / Sound Capacity 20Wt',
+    description: 'HANDPICKED BY AMAZON: They did the research so you don’t have to. RANGE OF CONTRAST: Discover the deep blacks and pure whites of 4K UHD with Direct Full Array precise in-screen LEDs SOUND YOU CAN FOLLOW: Object Tracking Sound gives you realistic 3D audio that moves with the action on screen 4K UPSCALING: Whatever you watch, the Quantum Processor 4K transforms it to 4K with machine learning-based AI A BILLION BRILLIANT COLORS: Enjoy vivid, lifelike color, regardless of brightness from 100% Color Volume with Quantum Dot A FULL COLOR SPECTRUM: Every detail pops from the wide range of cinematic color on your Smart TV with Quantum HDR 12X SMART TV POWERED BY TIZEN: Access your favorite apps, streaming services and smart home devices right from your TV SMART TV WITH MULTIPLE VOICE ASSISTANTS: This TV comes with your favorite voice assistants built-in and ready to help. Choose from Bixby, Amazon Alexa or Google Assistant',
     reviews: [
       {
         user: {
@@ -515,7 +515,7 @@ export const products = [
           avatarUrl: 'https://images0.persgroep.net/rcs/TsQxXQilRP4tP-zJDE8Z-IhmbBQ/diocontent/16912262/_crop/153/150/2566/1450/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8',
           orders: [],
         },
-        comment: 'That new IPhone 13 Pro Max is amazing! I\'m so excited about that. Really cool thing. Higly recommend.',
+        comment: 'That new Samsung QLED is amazing! I\'m so excited about that. Really cool thing. Higly recommend.',
         likes: 3,
         dislikes: 1,
         date: 'Aug 13, 2022',
@@ -531,7 +531,7 @@ export const products = [
           avatarUrl: 'https://images0.persgroep.net/rcs/TsQxXQilRP4tP-zJDE8Z-IhmbBQ/diocontent/16912262/_crop/153/150/2566/1450/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8',
           orders: [],
         },
-        comment: 'That new IPhone 13 Pro Max is amazing! I\'m so excited about that. Really cool thing. Higly recommend.',
+        comment: 'That new Samsung QLED is amazing! I\'m so excited about that. Really cool thing. Higly recommend.',
         likes: 3,
         dislikes: 1,
         date: 'Aug 13, 2022',
@@ -543,7 +543,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -599,7 +599,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -655,7 +655,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -711,7 +711,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -767,7 +767,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -823,7 +823,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -879,7 +879,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -935,7 +935,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -991,7 +991,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
@@ -1047,7 +1047,7 @@ export const products = [
     category: {
       main: {
         title: 'Cellphones, TV, and Electronics',
-        url: 'cellphones',
+        url: 'cellphones-tv-electronics',
       },
       subCategory: {
         title: 'Cellphones',
