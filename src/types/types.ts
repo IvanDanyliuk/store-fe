@@ -56,3 +56,6 @@ export interface IProductCardProps {
   product: IProduct;
 }
 
+export interface ISubCategoriesProps {
+  category?: string;
+}

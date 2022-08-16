@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import CategoriesList from '../components/categories/CategoriesList';
-import SubCategoriesList from '../components/categories/SubCategoriesList';
 
 
 const Container = styled.div`
@@ -27,7 +26,7 @@ const Categories: React.FC = () => {
     <Container>
       {
         category ? (
-          <SubCategoriesList />
+          <CategoriesList category={category} />
         ) : (
           <CategoriesList />
         )

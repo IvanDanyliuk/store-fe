@@ -1,69 +1,3 @@
-
-
-
-export const menuLinks = [
-  {
-    to: '/products/laptops',
-    iconUrl: '',
-    title: 'Laptops and PC',
-  },
-  {
-    to: '/products/phones',
-    iconUrl: '',
-    title: 'Cellphones, TV, and Electronics',
-  },
-  {
-    to: '/products/household_appliances',
-    iconUrl: '',
-    title: 'Household Appliances',
-  },
-  {
-    to: '/products/household_goods',
-    iconUrl: '',
-    title: 'Household Goods',
-  },
-  {
-    to: '/products/tools_and_auto',
-    iconUrl: '',
-    title: 'Tools and Autogoods',
-  },
-  {
-    to: '/products/blumbing_repair',
-    iconUrl: '',
-    title: 'Blumbing and Repair',
-  },
-  {
-    to: '/products/sports_hobbies',
-    iconUrl: '',
-    title: 'Sport and Hobbies',
-  },
-  {
-    to: '/products/children',
-    iconUrl: '',
-    title: 'Goods For Children',
-  },
-  {
-    to: '/products/clothes',
-    iconUrl: '',
-    title: 'Clothes, Footwear, and Accessories',
-  },
-  {
-    to: '/products/office',
-    iconUrl: '',
-    title: 'Office, School, and Books',
-  },
-  {
-    to: '/products/health',
-    iconUrl: '',
-    title: 'Health and Beauty',
-  },
-  {
-    to: '/products/food',
-    iconUrl: '',
-    title: 'Food and Alcohol',
-  },
-];
-
 export const pageLinks = [
   {
     to: '/about',
@@ -180,7 +114,7 @@ export const categories = [
   {
     main: {
       title: 'Cellphones, TV, and Electronics',
-      url: 'cellphones',
+      url: 'cellphones-tv-electronics',
     },
     subCategoies: [
       {
@@ -246,42 +180,6 @@ export const categories = [
       {
         title: 'Network Equipment',
         url: 'network-equipment'
-      },
-    ],
-  },
-  {
-    main: {
-      title: 'Cellphones, TV, and Electronics',
-      url: 'cellphones',
-    },
-    subCategoies: [
-      {
-        title: 'Cellphones',
-        url: 'cellphones'
-      },
-      {
-        title: 'TV',
-        url: 'tv'
-      },
-      {
-        title: 'Tablets',
-        url: 'tablets'
-      },
-      {
-        title: 'Cables and Adapters',
-        url: 'cables-and-adapters'
-      },
-      {
-        title: 'Headphones and Accessories',
-        url: 'headphones'
-      },
-      {
-        title: 'Audio',
-        url: 'audio'
-      },
-      {
-        title: 'Cameras',
-        url: 'camers'
       },
     ],
   },

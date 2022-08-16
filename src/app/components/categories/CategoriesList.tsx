@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { ISubCategoriesProps } from '../../../types/types';
 import { categories } from '../../data';
 
 
@@ -45,11 +46,20 @@ const Title = styled.h4`
 `;
 
 
-const CategoriesList: React.FC = () => {
+const CategoriesList: React.FC<ISubCategoriesProps> = ({ category }) => {
   return (
     <List>
       {
-        categories.map(category => (
+        category ? categories
+        .find(item => item.main.url === category)
+        ?.subCategoies.map(item => (
+          <CategoryItem key={uuid()}>
+            <CategoryLink to={`/products/${item.url}`}>
+              <Image src={''} alt={item.title} />
+              <Title>{item.title}</Title>
+            </CategoryLink>
+          </CategoryItem>
+        )) : categories.map(category => (
           <CategoryItem key={uuid()}>
             <CategoryLink to={`/categories/${category.main.url}`}>
               <Image src={''} alt={category.main.title} />

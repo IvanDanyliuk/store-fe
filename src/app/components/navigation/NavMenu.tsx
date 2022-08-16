@@ -10,14 +10,14 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { slide as Menu } from 'react-burger-menu';
 import tw from 'twin.macro';
+import { v4 as uuid } from 'uuid';
 import styles from './styles';
-import { menuLinks, pageLinks } from '../../data';
+import { categories, pageLinks } from '../../data';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import SearchField from '../inputs/SearchField';
 import Divider from '../ui/Divider';
 import Copyright from '../ui/Copyright';
-
 
 
 const Navigation = styled(Menu)`
@@ -70,10 +70,10 @@ const NavMenu: React.FC = () => {
     <Navigation styles={styles} >
       {isMobile && <SearchField />}
       <NavList>
-        {menuLinks.map(link => (
-          <NavItem key={link.title}>
-            <NavLink to={link.to}>
-              {link.title}
+        {categories.map(link => (
+          <NavItem key={uuid()}>
+            <NavLink to={`/categories/${link.main.url}`}>
+              {link.main.title}
             </NavLink>
           </NavItem>
         ))}
