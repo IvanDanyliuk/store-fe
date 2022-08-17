@@ -6,6 +6,7 @@ import { products } from '../data';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import AddCommentForm from '../components/modals/AddCommentForm';
 
 
 interface IColor {
@@ -244,19 +245,6 @@ const ReviewTopSection = styled.div`
   `}
 `;
 
-const CommentBtn = styled.button`
-  ${tw`
-    pt-1
-    pb-1
-    pl-4
-    pr-4
-    rounded
-    text-sm
-    font-bold
-    bg-gray-300
-  `}
-`;
-
 const ReviewList = styled.ul`
   ${tw`
     pl-3
@@ -330,8 +318,10 @@ const LikeBtn = styled.button`
   background: rgb(43, 212, 161);
   ${tw`
     mr-2
-    w-14
-    h-6
+    w-16
+    h-8
+    md:w-14
+    md:h-6
     flex
     justify-center
     items-center
@@ -344,8 +334,10 @@ const LikeBtn = styled.button`
 const DislikeBtn = styled.button`
   background: rgb(237, 96, 96);
   ${tw`
-    w-14
-    h-6
+    w-16
+    h-8
+    md:w-14
+    md:h-6
     flex
     justify-center
     items-center
@@ -442,7 +434,7 @@ const Product: React.FC = () => {
         <AdditionalSection>
           <ReviewTopSection>
             <InfoTitle>Reviews:</InfoTitle>
-            <CommentBtn>Comment</CommentBtn>
+            <AddCommentForm />
           </ReviewTopSection>
           <ReviewList>
             {productData!.reviews.map(review => (
