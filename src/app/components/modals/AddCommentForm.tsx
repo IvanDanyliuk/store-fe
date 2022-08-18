@@ -2,10 +2,11 @@ import React, { SyntheticEvent, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
+import StarRating from 'react-star-rate';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 Modal.setAppElement('#root');
@@ -59,6 +60,13 @@ const CommentForm = styled.form`
   `}
 `;
 
+const Rating = styled.fieldset`
+  ${tw`
+    mb-6
+    flex
+  `}
+`;
+
 const Inputs = styled.fieldset``;
 
 const InputLabel = styled.label`
@@ -91,9 +99,11 @@ const SubmitBtn = styled.button`
   `}
 `;
 
+
 const AddCommentForm: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
+  const [rating, setRating] = useState(0);
 
   const [commentData, setCommentData] = useState({
     advantages: '',
@@ -116,7 +126,7 @@ const AddCommentForm: React.FC = () => {
     e.preventDefault();
 
     if(commentData.comment) {
-      console.log(commentData);
+      console.log({ ...commentData, rating});
     }
 
     setIsOpen(false);
@@ -124,7 +134,8 @@ const AddCommentForm: React.FC = () => {
       advantages: '',
       disadvantages: '',
       comment: '',
-    })
+    });
+    setRating(0);
   };
 
   const styles = {
@@ -158,6 +169,12 @@ const AddCommentForm: React.FC = () => {
           </CloseBtn>
         </FormHeader>
         <CommentForm onSubmit={handleCommentDataSubmit}>
+          <Rating>
+            <StarRating
+              value={rating}
+              onChange={(rating: any) => setRating(rating)}
+            />
+          </Rating>
           <Inputs>
             <InputLabel>Adantages</InputLabel>
             <Input 
