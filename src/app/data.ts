@@ -450,9 +450,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -466,9 +468,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -506,9 +510,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -522,9 +528,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -562,9 +570,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -578,9 +588,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -618,9 +630,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -634,9 +648,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -674,9 +690,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -690,9 +708,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -730,9 +750,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -746,9 +768,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -786,9 +810,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -802,9 +828,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -842,9 +870,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -858,9 +888,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -898,9 +930,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -914,9 +948,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -954,9 +990,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -970,9 +1008,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -1010,9 +1050,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -1026,9 +1068,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -1066,9 +1110,11 @@ export const products = [
     reviews: [
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',
@@ -1082,9 +1128,11 @@ export const products = [
       },
       {
         user: {
+          _id: 'sdasdasdasdasdasdasd',
           firstName: 'Jack',
           lastName: 'Sparrow',
           email: 'j.sparrow@gmail.com',
+          password: '123456',
           phone: '+380443821628',
           city: 'Kyiv',
           language: 'ua',

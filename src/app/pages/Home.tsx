@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import '../../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
-import { Carousel } from 'react-responsive-carousel';
-
+import { Carousel } from 'react-responsive-carousel'; 
 import slide1 from '../assets/img/slider/slide_1.png';
 import slide2 from '../assets/img/slider/slide_2.png';
 import slide3 from '../assets/img/slider/slide_3.png';
