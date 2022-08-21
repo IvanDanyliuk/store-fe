@@ -54,6 +54,7 @@ export interface IProductData {
 }
 
 export interface IProductListProps {
+  products: IProduct[];
   category?: string;
 }
 

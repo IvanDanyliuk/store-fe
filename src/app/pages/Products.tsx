@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { v4 as uuid } from 'uuid';
-import ProductCard from '../components/products/ProductCard';
 import ProductList from '../components/products/ProductList';
-import { products } from '../data';
+import { getProducts } from '../features/product/asyncActions';
+import { selectProducts } from '../features/product/selectors';
+import { AppDispatch } from '../features/store';
 
 
 const Container = styled.div`
@@ -19,9 +20,16 @@ const Container = styled.div`
 const Products: React.FC = () => {
   const { pathname } = useLocation();
   const category = pathname.split('/')[2];
+
+  const dispatch = useDispatch<AppDispatch>();
+  const products = useSelector(selectProducts);
+
+  useEffect(() => {
+    dispatch(getProducts()); 
+  }, []);
   return (
     <Container>
-      <ProductList category={category} />
+      <ProductList products={products} category={category} />
     </Container>
   );
 };

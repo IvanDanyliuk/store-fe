@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import '../../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
@@ -10,6 +10,10 @@ import background from '../assets/img/liquid-cheese.svg'
 import ProductList from '../components/products/ProductList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../features/store';
+import { getProducts } from '../features/product/asyncActions';
+import { selectProducts } from '../features/product/selectors';
 
 
 const Content = styled.div`
@@ -112,6 +116,13 @@ const SubmitBtn = styled.button`
 
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const products = useSelector(selectProducts);
+
+  useEffect(() => {
+    dispatch(getProducts()); 
+  }, []);
+
   return (
     <Content>
       <Carousel axis='horizontal' autoPlay showArrows infiniteLoop showThumbs={false}>
@@ -127,7 +138,7 @@ const Home: React.FC = () => {
       </Carousel>
       <PageSection>
         <PageTitle>Popular Products</PageTitle>
-        <ProductList />
+        <ProductList products={products} />
       </PageSection>
       <PageSection>
         <SubscriptionContainer>
