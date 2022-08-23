@@ -1,23 +1,25 @@
-import { faHeart, faPenToSquare, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faComment, faCommentDollar, faListCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { faHeart, faPenToSquare, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faCommentDollar, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getFormattedTitle } from '../helpers/helpers';
 
 
 const Container = styled.div`
   ${tw`
     w-full
-    flex
+    md:flex
   `}
 `;
 
 const PageNavigation = styled.div`
   ${tw`
     p-3
-    w-1/6
+    w-full
+    md:w-1/6
   `}
 `;
 
@@ -57,24 +59,34 @@ const UserName = styled.div`
 
 const NavLinks = styled.ul`
   ${tw`
-  
+    w-full
+    flex
+    md:flex-col
   `}
 `;
 
 const NavItem = styled.li`
-  background: rgb(229, 250, 255);
-  &:hover {
-    background: rgb(151, 236, 255);
-  }
   ${tw`
+    w-full
     mb-1
     rounded-sm
     transition
     ease-in
+    text-center
+    md:text-left
   `}
 `;
 
-const NavLink = styled(Link)``;
+const Link = styled(NavLink)`
+  display: block;
+  background: rgb(229, 250, 255);
+  &:hover {
+    background: rgb(151, 236, 255);
+  }
+  &.active {
+    background: rgb(151, 236, 255);
+  }
+`;
 
 const LinkTitle = styled.div`
   ${tw`
@@ -88,6 +100,8 @@ const LinkTitle = styled.div`
 const LinkText = styled.span`
   ${tw`
     ml-2
+    hidden
+    md:inline
     font-semibold
   `}
 `;
@@ -101,7 +115,8 @@ const PageContent = styled.div`
 
 const PageTitle = styled.h3`
   ${tw`
-  
+    text-2xl
+    font-semibold
   `}
 `;
 
@@ -112,8 +127,12 @@ const Content = styled.div`
 `;
 
 
-const Settings = () => {
+const Settings: React.FC = () => {
+  const { pathname } = useLocation();
+  const title = getFormattedTitle(pathname, 2);
+
   const isAdmin = true;
+
   return (
     <Container>
       <PageNavigation>
@@ -125,53 +144,53 @@ const Settings = () => {
         </UserData>
         <NavLinks>
           <NavItem>
-            <NavLink to='orders'>
+            <Link to='orders'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faListCheck} />
                 <LinkText>My Orders</LinkText>
               </LinkTitle>
-            </NavLink>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink to='wish-list'>
+            <Link to='wish-list'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faHeart} />
                 <LinkText>My Wish List</LinkText>
               </LinkTitle>
-            </NavLink>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink to='reviews'>
+            <Link to='reviews'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faCommentDollar} />
                 <LinkText>My Reviews</LinkText>
               </LinkTitle>
-            </NavLink>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink to='profile'>
+            <Link to='profile'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faUser} />
                 <LinkText>Profile</LinkText>
               </LinkTitle>
-            </NavLink>
+            </Link>
           </NavItem>
           {
             isAdmin && (
               <NavItem>
-                <NavLink to='editor'>
+                <Link to='editor'>
                   <LinkTitle>
                     <FontAwesomeIcon icon={faPenToSquare} />
                     <LinkText>Editor</LinkText>
                   </LinkTitle>
-                </NavLink>
+                </Link>
               </NavItem>
             )
           }
         </NavLinks>
       </PageNavigation>
       <PageContent>
-        <PageTitle>Title</PageTitle>
+        <PageTitle>{title}</PageTitle>
         <Content>
           <Outlet />
         </Content>

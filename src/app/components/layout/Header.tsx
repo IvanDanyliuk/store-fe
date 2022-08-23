@@ -88,7 +88,7 @@ const Header: React.FC = () => {
         </MenuContainer>
         {!isMobile && <SearchField />}
         <UserActions>
-          <ProfileBtn to='/profile/personal-info'>
+          <ProfileBtn to='/settings/orders'>
             <FontAwesomeIcon icon={faUser} />
           </ProfileBtn>
           <CartBtn to='/cart'>
