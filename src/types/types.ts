@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { IUser } from "../app/features/user/types";
 
 export interface IOrder {
@@ -64,4 +65,34 @@ export interface IProductCardProps {
 
 export interface ISubCategoriesProps {
   category?: string;
+}
+
+export enum ButtonColor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Success = 'success',
+  Danger = 'danger',
+}
+
+export interface IButtonProps {
+  onClick: () => void;
+  color: ButtonColor;
+  children: ReactNode | string;
+}
+
+export enum TableTypes {
+  Products = 'products',
+  Categories = 'categories'
+}
+
+export interface ITableProps {
+  tableType: TableTypes;
+  data: any;
+}
+
+export interface IPaginationProps {
+  range: any;
+  slice: any;
+  setPage: any;
+  page: any;
 }
