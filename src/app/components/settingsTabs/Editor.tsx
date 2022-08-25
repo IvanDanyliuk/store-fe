@@ -12,14 +12,11 @@ import Button from '../ui/Button';
 import { categories } from '../../data';
 
 
-const Container = styled.div`
-  ${tw`
-  
-  `}
-`;
-
 const Section = styled.section`
   ${tw`
+    relative
+    w-full
+    mt-6
     mb-6
   `}
 `;
@@ -34,7 +31,8 @@ const SectionHeader = styled.div`
 
 const SubTitle = styled.h6`
   ${tw`
-  
+    text-lg
+    font-semibold
   `}
 `;
 
@@ -48,7 +46,7 @@ const Editor = () => {
   }, [dispatch]);
 
   return (
-    <Container>
+    <>
       <Section>
         <SectionHeader>
           <SubTitle>Products</SubTitle>
@@ -73,7 +71,7 @@ const Editor = () => {
         </SectionHeader>
         <Table tableType={TableTypes.Categories} data={categories} />
       </Section>
-    </Container>
+    </>
   );
 };
 

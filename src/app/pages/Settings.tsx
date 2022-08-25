@@ -109,7 +109,8 @@ const LinkText = styled.span`
 const PageContent = styled.div`
   ${tw`
     p-3
-    w-5/6
+    w-full
+    md:w-5/6
   `}
 `;
 
