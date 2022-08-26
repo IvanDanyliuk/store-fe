@@ -16,21 +16,15 @@ const Container = styled.ul`
   `}
 `;
 
-const ProductList: React.FC<IProductListProps> = ({ products, category }) => {
+const ProductList: React.FC<IProductListProps> = ({ products }) => {
   
   return (
     <Container>
-      {category ? 
-        products
-          .filter((product: any) => product.category.subCategory.url === category)
-          .map((product: any) => (
-            <ProductCard key={product._id} product={product} />
-          )) : 
-        products
-          .map((product: any) => (
-            <ProductCard key={product._id} product={product} />
-          )
-      )}
+      {
+        products.map((product: any) => (
+          <ProductCard key={product._id} product={product} />
+        ))
+      }
     </Container>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import ProductList from '../components/products/ProductList';
 import { getProducts } from '../features/product/asyncActions';
-import { selectProducts } from '../features/product/selectors';
+import { selectProducts, selectProductStatus } from '../features/product/selectors';
 import { AppDispatch } from '../features/store';
 
 
@@ -18,18 +18,30 @@ const Container = styled.div`
 `;
 
 const Products: React.FC = () => {
-  const { pathname } = useLocation();
-  const category = pathname.split('/')[2];
+  // const { pathname } = useLocation();
+  // const category = pathname.split('/')[2];
+
+  const { category } = useParams();
 
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
+  const status = useSelector(selectProductStatus);
 
   useEffect(() => {
     dispatch(getProducts(category)); 
-  }, []);
+  }, [dispatch, category]);
+
+  if(status === 'loading') {
+    return (
+      <div>Loading...</div>
+    )
+  }
+
+  console.log(category, products)
+
   return (
     <Container>
-      <ProductList products={products} category={category} />
+      <ProductList products={products} />
     </Container>
   );
 };
