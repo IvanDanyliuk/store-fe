@@ -365,15 +365,13 @@ const Product: React.FC = () => {
   const status = useSelector(selectProductStatus);
 
   useEffect(() => {
-    
     dispatch(getProduct(id!));
-    
   }, [dispatch, id]);
   
   if(status === 'loading') {
     return (
       <div>Loading...</div>
-    )
+    );
   }
 
   return (

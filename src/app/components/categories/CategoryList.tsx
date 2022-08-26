@@ -46,7 +46,7 @@ const Title = styled.h4`
 `;
 
 
-const CategoriesList: React.FC<ISubCategoriesProps> = ({ category }) => {
+const CategoryList: React.FC<ISubCategoriesProps> = ({ category }) => {
   return (
     <List>
       {
@@ -72,4 +72,4 @@ const CategoriesList: React.FC<ISubCategoriesProps> = ({ category }) => {
   );
 };
 
-export default CategoriesList
+export default CategoryList;

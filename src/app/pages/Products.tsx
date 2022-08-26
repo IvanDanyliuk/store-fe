@@ -18,9 +18,6 @@ const Container = styled.div`
 `;
 
 const Products: React.FC = () => {
-  // const { pathname } = useLocation();
-  // const category = pathname.split('/')[2];
-
   const { category } = useParams();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -34,10 +31,8 @@ const Products: React.FC = () => {
   if(status === 'loading') {
     return (
       <div>Loading...</div>
-    )
+    );
   }
-
-  console.log(category, products)
 
   return (
     <Container>

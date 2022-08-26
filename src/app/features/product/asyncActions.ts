@@ -8,7 +8,6 @@ export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (category: string | undefined, { rejectWithValue }) => {
     try {
-      console.log('Async Action', category)
       const { data } = category ? await api.getProducts(category) : await api.getProducts();
       return data;
     } catch (error) {

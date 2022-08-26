@@ -2,19 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import CategoriesList from '../components/categories/CategoriesList';
+import CategoryList from '../components/categories/CategoryList';
 
 
 const Container = styled.div`
   ${tw`
     w-full
     p-3
-  `}
-`;
-
-const CategoryList = styled.ul`
-  ${tw`
-  
   `}
 `;
 
@@ -25,9 +19,9 @@ const Categories: React.FC = () => {
     <Container>
       {
         category ? (
-          <CategoriesList category={category} />
+          <CategoryList category={category} />
         ) : (
-          <CategoriesList />
+          <CategoryList />
         )
       }
     </Container>
