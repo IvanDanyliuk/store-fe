@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getProducts, createProduct, updateProduct, deleteProduct } from './asyncActions';
+import { getProducts, getProduct, createProduct, updateProduct, deleteProduct } from './asyncActions';
 import { IProductState } from './types';
 
 
 const initialState: IProductState = {
+  product: null,
   products: [],
   status: 'idle',
   error: null,
@@ -25,6 +26,17 @@ const productsSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getProducts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(getProduct.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getProduct.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.product = action.payload;
+      })
+      .addCase(getProduct.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

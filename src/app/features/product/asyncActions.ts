@@ -6,9 +6,22 @@ import { IProductToUpdate } from './types';
 
 export const getProducts = createAsyncThunk(
   'products/getProducts',
-  async (_: void, { rejectWithValue }) => {
+  async (category: string | undefined, { rejectWithValue }) => {
     try {
-      const { data } = await api.getProducts();
+      console.log(category)
+      const { data } = category ? await api.getProducts(category) : await api.getProducts();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getProduct = createAsyncThunk(
+  'products/getProduct',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await api.getProduct(id);
       return data;
     } catch (error) {
       return rejectWithValue(error);

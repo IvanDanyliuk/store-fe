@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { products } from '../data';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import AddCommentForm from '../components/modals/AddCommentForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../features/store';
+import { selectProduct, selectProductStatus } from '../features/product/selectors';
+import { getProduct } from '../features/product/asyncActions';
 
 
 interface IColor {
-  color: string;
+  color: string | undefined;
 }
 
 const ProductBody = styled.div`
@@ -356,49 +359,63 @@ const ReactionsNum = styled.span`
 
 
 const Product: React.FC = () => {
-  const { id } = useParams()
-  const productData = products.find(product => product._id === id);
+  const { id } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
+  const product = useSelector(selectProduct);
+  const status = useSelector(selectProductStatus);
+
+  useEffect(() => {
+    
+    dispatch(getProduct(id!));
+    
+  }, [dispatch, id]);
+  
+  if(status === 'loading') {
+    return (
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <ProductBody>
       <Breadcrumbs>
-        <BreadCrumb to={`/categories/${productData!.category.main.url}`}>
-          {productData!.category.main.title}
+        <BreadCrumb to={`/categories/${product?.category.main.url}`}>
+          {product?.category.main.title}
         </BreadCrumb>
         <BreadcrumbDivider>/</BreadcrumbDivider>
-        <BreadCrumb to={`/products/${productData!.category.subCategory.url}`}>
-          {productData!.category.subCategory.title}
+        <BreadCrumb to={`/products/${product?.category.subCategory.url}`}>
+          {product?.category.subCategory.title}
         </BreadCrumb>
       </Breadcrumbs>
       <Title>
-        {productData?.title}
+        {product?.title}
       </Title>
       <Info>
         <Gallery>
-          <Image src={productData?.image} alt={productData?.title} />
+          <Image src={product?.image} alt={product?.title} />
         </Gallery>
         <GeneralInfo>
           <TopSection>
             <Stock>In Stock</Stock>
             <Rating>
               {
-                Array(productData?.rating)
+                Array(product?.rating)
                   .fill('')
                   .map(item => <FontAwesomeIcon key={uuid()} icon={faStar} />)
               }
             </Rating>
           </TopSection>
           <ShortInfo>
-            {productData?.shortInfo}
+            {product?.shortInfo}
           </ShortInfo>
           <ColorSection>
             <InfoTitle>Color:</InfoTitle>
-            <Color color={productData!.color}></Color>
+            <Color color={product?.color}></Color>
           </ColorSection>
           <SellingSection>
             <Price>
               <Currency>$</Currency>
-              <Amount>{productData!.price}</Amount>
+              <Amount>{product?.price}</Amount>
             </Price>
             <ActionBtns>
               <BuyBtn>Buy</BuyBtn>
@@ -429,7 +446,7 @@ const Product: React.FC = () => {
       </Info>
       <AdditionalInfo>
         <AdditionalSection>
-          {productData?.description}
+          {product?.description}
         </AdditionalSection>
         <AdditionalSection>
           <ReviewTopSection>
@@ -437,7 +454,7 @@ const Product: React.FC = () => {
             <AddCommentForm />
           </ReviewTopSection>
           <ReviewList>
-            {productData!.reviews.map(review => (
+            {product?.reviews.map(review => (
               <ReviewBody key={uuid()}>
                 <ReviewHeader>
                   <UserInfo>

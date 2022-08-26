@@ -25,7 +25,7 @@ const Products: React.FC = () => {
   const products = useSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(getProducts()); 
+    dispatch(getProducts(category)); 
   }, []);
   return (
     <Container>
