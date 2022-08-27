@@ -6,7 +6,7 @@ import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import useTable from '../../hooks/useTable';
-import { ButtonColor, IProduct, IProductCategory, ITableProps, TableTypes } from '../../../types/types';
+import { ButtonColor, ButtonType, IProduct, IProductCategory, ITableProps, TableTypes } from '../../../types/types';
 import Pagination from './Pagination';
 
 
@@ -173,12 +173,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data }) => {
                   <TableCell name='productActions'>
                     <Button 
                       color={ButtonColor.Success} 
+                      type={ButtonType.Button}
                       onClick={handleProductEdit}
                     >
                       Edit
                     </Button>
                     <Button 
                       color={ButtonColor.Danger} 
+                      type={ButtonType.Button}
                       onClick={handleProductDelete}
                     >
                       Delete
@@ -192,12 +194,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data }) => {
                   <TableCell name='categoryActions'>
                     <Button 
                       color={ButtonColor.Success} 
+                      type={ButtonType.Button}
                       onClick={handleCategoryEdit}
                     >
                       Edit
                     </Button>
                     <Button 
                       color={ButtonColor.Danger} 
+                      type={ButtonType.Button}
                       onClick={handleCategoryDelete}
                     >
                       Delete

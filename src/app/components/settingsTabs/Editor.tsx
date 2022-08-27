@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { ButtonColor, TableTypes } from '../../../types/types';
+import { ButtonColor, ButtonType, TableTypes } from '../../../types/types';
 import { getProducts } from '../../features/product/asyncActions';
 import { selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
@@ -10,6 +10,7 @@ import Table from '../table/Table';
 import Button from '../ui/Button';
 
 import { categories } from '../../data';
+import CreateCategoryForm from '../modals/CreateCategoryForm';
 
 
 const Section = styled.section`
@@ -52,6 +53,7 @@ const Editor = () => {
           <SubTitle>Products</SubTitle>
           <Button 
             color={ButtonColor.Success} 
+            type={ButtonType.Button}
             onClick={() => console.log('Hi!')}
           >
             Add new
@@ -62,12 +64,7 @@ const Editor = () => {
       <Section>
         <SectionHeader>
           <SubTitle>Categories</SubTitle>
-          <Button 
-            color={ButtonColor.Success} 
-            onClick={() => console.log('Hi!')}
-          >
-            Add new
-          </Button>
+          <CreateCategoryForm />
         </SectionHeader>
         <Table tableType={TableTypes.Categories} data={categories} />
       </Section>

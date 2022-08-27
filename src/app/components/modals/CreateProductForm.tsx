@@ -1,12 +1,14 @@
 import React, { SyntheticEvent, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
 import StarRating from 'react-star-rate';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { categories } from '../../data';
 
 
 Modal.setAppElement('#root');
@@ -91,6 +93,12 @@ const TextArea = styled.textarea`
 `;
 
 const Select = styled.select`
+  ${tw`
+  
+  `}
+`;
+
+const Option = styled.option`
   ${tw`
   
   `}
@@ -185,6 +193,16 @@ const CreateProductForm: React.FC = () => {
         </FormHeader>
         <ProductForm onSubmit={handleProductDataSubmit}>
           <Inputs>
+            <InputLabel>Category</InputLabel>
+            <Select>
+              {
+                categories.map(category => (
+                  <Option key={uuid()} value={category.main.url}>
+                    {category.main.title}
+                  </Option>
+                ))
+              }
+            </Select>
             <InputLabel>Name</InputLabel>
             <Input 
               name='name' 

@@ -74,9 +74,16 @@ export enum ButtonColor {
   Danger = 'danger',
 }
 
+export enum ButtonType {
+  Submit = 'submit',
+  Button = 'button',
+  Reset = 'reset',
+}
+
 export interface IButtonProps {
-  onClick: () => void;
+  onClick: (arg?: any) => void;
   color: ButtonColor;
+  type: ButtonType;
   children: ReactNode | string;
 }
 
