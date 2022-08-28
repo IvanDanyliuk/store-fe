@@ -8,9 +8,9 @@ import { selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
 import Button from '../ui/Button';
-
-import { categories } from '../../data';
 import CreateCategoryForm from '../modals/CreateCategoryForm';
+import { selectCategories } from '../../features/category/selectors';
+import { getCategories } from '../../features/category/asyncActions';
 
 
 const Section = styled.section`
@@ -38,12 +38,14 @@ const SubTitle = styled.h6`
 `;
 
 
-const Editor = () => {
+const Editor: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
+  const categories = useSelector(selectCategories);
 
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getCategories());
   }, [dispatch]);
 
   return (

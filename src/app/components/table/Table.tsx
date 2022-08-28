@@ -6,7 +6,9 @@ import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import useTable from '../../hooks/useTable';
-import { ButtonColor, ButtonType, IProduct, IProductCategory, ITableProps, TableTypes } from '../../../types/types';
+import { ButtonColor, ButtonType, ITableProps, TableTypes } from '../../../types/types';
+import { IProduct } from '../../features/product/types';
+import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
 
 

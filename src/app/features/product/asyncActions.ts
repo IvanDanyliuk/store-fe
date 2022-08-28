@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductData } from '../../../types/types';
+import { IProductData } from './types';
 import * as api from '../../api/api';
 import { IProductToUpdate } from './types';
 

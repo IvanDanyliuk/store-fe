@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
@@ -10,6 +10,10 @@ import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { setCategoryUrl } from '../../helpers/helpers';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../features/store';
+import { selectCategories } from '../../features/category/selectors';
+import { createCategory, getCategories } from '../../features/category/asyncActions';
 
 
 Modal.setAppElement('#root');
@@ -116,6 +120,9 @@ const SubmitBtn = styled.button`
 
 
 const CreateCategoryForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  
+
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
 
@@ -172,6 +179,11 @@ const CreateCategoryForm: React.FC = () => {
   const handleCategoryDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
+    dispatch(createCategory({
+      main: mainCategory,
+      subCategories,
+    }));
+
     console.log({
       main: mainCategory,
       subCategories,
@@ -182,6 +194,7 @@ const CreateCategoryForm: React.FC = () => {
       title: '',
       url: '',
     });
+    setSubCategories([]);
   };
 
   const styles = {
@@ -199,6 +212,10 @@ const CreateCategoryForm: React.FC = () => {
       background: 'rgba(141, 141, 141, .6',
     }
   };
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   return (
     <>
