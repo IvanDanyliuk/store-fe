@@ -122,7 +122,6 @@ const SubmitBtn = styled.button`
 const CreateCategoryForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   
-
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
 
@@ -141,7 +140,6 @@ const CreateCategoryForm: React.FC = () => {
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
-
 
   const handleMainCategoryChange = (e: any) => {
     setMainCategory({
@@ -184,11 +182,6 @@ const CreateCategoryForm: React.FC = () => {
       subCategories,
     }));
 
-    console.log({
-      main: mainCategory,
-      subCategories,
-    })
-
     setIsOpen(false);
     setMainCategory({
       title: '',
@@ -212,10 +205,6 @@ const CreateCategoryForm: React.FC = () => {
       background: 'rgba(141, 141, 141, .6',
     }
   };
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
 
   return (
     <>

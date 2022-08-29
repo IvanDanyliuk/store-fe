@@ -60,6 +60,8 @@ export enum TableTypes {
 export interface ITableProps {
   tableType: TableTypes;
   data: any;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export interface IPaginationProps {

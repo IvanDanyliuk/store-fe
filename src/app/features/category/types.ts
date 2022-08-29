@@ -1,4 +1,5 @@
 export interface IProductCategory {
+  _id: string;
   main: {
     title: string;
     url: string;

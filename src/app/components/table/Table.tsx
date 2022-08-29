@@ -105,26 +105,10 @@ const Message = styled.p`
 `;
 
 
-const Table: React.FC<ITableProps> = ({ tableType, data }) => {
+const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const { slice, range } = useTable(data, page, rowsPerPage);
-
-  const handleProductEdit = () => {
-
-  };
-
-  const handleProductDelete = () => {
-
-  };
-
-  const handleCategoryEdit = () => {
-
-  };
-
-  const handleCategoryDelete = () => {
-
-  };
 
   const emptyRows = page > 1 ? Math.max(0, page) * rowsPerPage - data.length : 0;
 
@@ -176,14 +160,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data }) => {
                     <Button 
                       color={ButtonColor.Success} 
                       type={ButtonType.Button}
-                      onClick={handleProductEdit}
+                      onClick={() => onEdit(product._id)}
                     >
                       Edit
                     </Button>
                     <Button 
                       color={ButtonColor.Danger} 
                       type={ButtonType.Button}
-                      onClick={handleProductDelete}
+                      onClick={() => onDelete(product._id)}
                     >
                       Delete
                     </Button>
@@ -197,14 +181,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data }) => {
                     <Button 
                       color={ButtonColor.Success} 
                       type={ButtonType.Button}
-                      onClick={handleCategoryEdit}
+                      onClick={() => onEdit(category._id)}
                     >
                       Edit
                     </Button>
                     <Button 
                       color={ButtonColor.Danger} 
                       type={ButtonType.Button}
-                      onClick={handleCategoryDelete}
+                      onClick={() => onDelete(category._id)}
                     >
                       Delete
                     </Button>

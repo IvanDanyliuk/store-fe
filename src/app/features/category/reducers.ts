@@ -44,19 +44,23 @@ const categoriesSlice = createSlice({
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.categories = state.categories.map(category => category);
+        state.categories = state.categories.map(category => ({ _id: category._id, ...action.payload }));
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })
-      // .addCase(deleteCategory.pending, (state, action) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(deleteCategory.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-
-      // })
+      .addCase(deleteCategory.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteCategory.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.categories = state.categories.filter(category => category._id !== action.meta.arg);
+      })
+      .addCase(deleteCategory.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
   }
 });
 
