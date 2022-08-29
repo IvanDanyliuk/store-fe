@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,12 +12,16 @@ import { slide as Menu } from 'react-burger-menu';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import styles from './styles';
-import { categories, pageLinks } from '../../data';
+import { pageLinks } from '../../data';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import SearchField from '../inputs/SearchField';
 import Divider from '../ui/Divider';
 import Copyright from '../ui/Copyright';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../features/store';
+import { selectCategories } from '../../features/category/selectors';
+import { getCategories } from '../../features/category/asyncActions';
 
 
 const Navigation = styled(Menu)`
@@ -64,7 +68,13 @@ const SocialMediaLink = styled.a`
 `;
 
 const NavMenu: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const categories = useSelector(selectCategories);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   return (
     <Navigation styles={styles} >

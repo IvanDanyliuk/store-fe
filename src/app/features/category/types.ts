@@ -3,10 +3,10 @@ export interface IProductCategory {
     title: string;
     url: string;
   };
-  subCategory: {
+  subCategories: {
     title: string;
     url: string;
-  };
+  }[];
 }
 
 export interface ICategoryState {

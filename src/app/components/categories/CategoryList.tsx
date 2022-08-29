@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { ISubCategoriesProps } from '../../../types/types';
-import { categories } from '../../data';
+import { getCategories } from '../../features/category/asyncActions';
+import { selectCategories } from '../../features/category/selectors';
+import { AppDispatch } from '../../features/store';
 
 
 const List = styled.ul`
@@ -47,12 +50,19 @@ const Title = styled.h4`
 
 
 const CategoryList: React.FC<ISubCategoriesProps> = ({ category }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const categories = useSelector(selectCategories);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
   return (
     <List>
       {
         category ? categories
         .find(item => item.main.url === category)
-        ?.subCategoies.map(item => (
+        ?.subCategories.map(item => (
           <CategoryItem key={uuid()}>
             <CategoryLink to={`/products/${item.url}`}>
               <Image src={''} alt={item.title} />

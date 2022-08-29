@@ -1,9 +1,17 @@
 import { IReview } from "../../../types/types";
-import { IProductCategory } from "../category/types";
 
 export interface IProduct {
   _id: string;
-  category: IProductCategory;
+  category: {
+    main: {
+      title: string;
+      url: string;
+    };
+    subCategory: {
+      title: string;
+      url: string;
+    };
+  };
   title: string;
   price: string;
   color: string;
@@ -17,7 +25,16 @@ export interface IProduct {
 }
 
 export interface IProductData {
-  category: IProductCategory;
+  category: {
+    main: {
+      title: string;
+      url: string;
+    };
+    subCategory: {
+      title: string;
+      url: string;
+    };
+  };
   title: string;
   price: string;
   color: string;
