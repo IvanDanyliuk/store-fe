@@ -1,5 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
@@ -10,11 +11,9 @@ import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { setCategoryUrl } from '../../helpers/helpers';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
-import { selectCategories, selectCategory } from '../../features/category/selectors';
-import { createCategory, getCategories, updateCategory } from '../../features/category/asyncActions';
-import { IProductCategory } from '../../features/category/types';
+import { selectCategory } from '../../features/category/selectors';
+import { createCategory, updateCategory } from '../../features/category/asyncActions';
 import { clearCategory } from '../../features/category/reducers';
 
 
@@ -175,15 +174,20 @@ const CreateCategoryForm: React.FC = () => {
     setSubCategories(
       subCategories.filter((item: any) => item.title !== title)
     )
-  }
+  };
 
   const handleCategoryDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    
     if(dataToUpdate) {
       console.log('Edit');
-      dispatch(updateCategory({ id: dataToUpdate._id, updatedCategory: { main: mainCategory, subCategories } }));
+      dispatch(updateCategory({ 
+        id: dataToUpdate._id, 
+        updatedCategory: { 
+          main: mainCategory, 
+          subCategories, 
+        }, 
+      }));
       dispatch(clearCategory());
     } else {
       dispatch(createCategory({
