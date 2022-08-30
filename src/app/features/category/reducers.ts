@@ -5,6 +5,7 @@ import { ICategoryState } from './types';
 
 const initialState: ICategoryState = {
   status: 'idle',
+  category: null,
   categories: [],
   error: null,
 };
@@ -13,7 +14,12 @@ const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-
+    getCategory: (state, action) => {
+      state.category = state.categories.find(item => item._id === action.payload);
+    },
+    clearCategory: (state) => {
+      state.category = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -64,6 +70,6 @@ const categoriesSlice = createSlice({
   }
 });
 
-// export const {  } = categoriesSlice.actions;
+export const { getCategory, clearCategory } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

@@ -12,6 +12,7 @@ export interface IProductCategory {
 
 export interface ICategoryState {
   status: string;
+  category: IProductCategory | null | undefined;
   categories: IProductCategory[];
   error: null | string;
 }

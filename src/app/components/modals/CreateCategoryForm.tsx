@@ -12,8 +12,10 @@ import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
-import { selectCategories } from '../../features/category/selectors';
-import { createCategory, getCategories } from '../../features/category/asyncActions';
+import { selectCategories, selectCategory } from '../../features/category/selectors';
+import { createCategory, getCategories, updateCategory } from '../../features/category/asyncActions';
+import { IProductCategory } from '../../features/category/types';
+import { clearCategory } from '../../features/category/reducers';
 
 
 Modal.setAppElement('#root');
@@ -121,6 +123,7 @@ const SubmitBtn = styled.button`
 
 const CreateCategoryForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const dataToUpdate = useSelector(selectCategory);
   
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
@@ -177,17 +180,24 @@ const CreateCategoryForm: React.FC = () => {
   const handleCategoryDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    dispatch(createCategory({
-      main: mainCategory,
-      subCategories,
-    }));
+    
+    if(dataToUpdate) {
+      console.log('Edit');
+      dispatch(updateCategory({ id: dataToUpdate._id, updatedCategory: { main: mainCategory, subCategories } }));
+      dispatch(clearCategory());
+    } else {
+      dispatch(createCategory({
+        main: mainCategory,
+        subCategories,
+      }));
+    }
 
-    setIsOpen(false);
     setMainCategory({
       title: '',
       url: '',
     });
     setSubCategories([]);
+    setIsOpen(false);
   };
 
   const styles = {
@@ -205,6 +215,17 @@ const CreateCategoryForm: React.FC = () => {
       background: 'rgba(141, 141, 141, .6',
     }
   };
+
+  useEffect(() => {
+    if(dataToUpdate) {
+      setIsOpen(!isOpen);
+      setMainCategory({
+        title: dataToUpdate.main.title,
+        url: dataToUpdate.main.url,
+      });
+      setSubCategories(dataToUpdate.subCategories);
+    }
+  }, [dataToUpdate]);
 
   return (
     <>
