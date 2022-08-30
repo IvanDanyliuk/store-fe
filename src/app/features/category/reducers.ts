@@ -50,7 +50,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.categories = state.categories.map(category => ({ _id: category._id, ...action.payload }));
+        state.categories = state.categories.map(category => category._id !== action.payload._id ? category : { _id: category._id, ...action.payload });
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.status = 'failed';
