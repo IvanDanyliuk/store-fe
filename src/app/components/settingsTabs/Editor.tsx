@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -9,8 +9,9 @@ import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
 import Button from '../ui/Button';
 import CreateCategoryForm from '../modals/CreateCategoryForm';
-import { selectCategories } from '../../features/category/selectors';
+import { selectCategories, selectCategory } from '../../features/category/selectors';
 import { getCategories, deleteCategory } from '../../features/category/asyncActions';
+import { getCategory } from '../../features/category/reducers';
 
 
 const Section = styled.section`
@@ -43,6 +44,7 @@ const Editor: React.FC = () => {
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
 
+
   const handleProductEdit = (id: string) => {
     console.log(`Product with id: ${id} has been edited.`);
   };
@@ -52,7 +54,7 @@ const Editor: React.FC = () => {
   };
 
   const handleCategoryEdit = (id: string) => {
-    console.log(`Category with id: ${id} has been edited.`);
+    dispatch(getCategory(id));
   };
 
   const handleCategoryDelete = (id: string) => {
@@ -77,14 +79,24 @@ const Editor: React.FC = () => {
             Add new
           </Button>
         </SectionHeader>
-        <Table tableType={TableTypes.Products} data={products} onEdit={handleProductEdit} onDelete={handleProductDelete} />
+        <Table 
+          tableType={TableTypes.Products} 
+          data={products} 
+          onEdit={handleProductEdit} 
+          onDelete={handleProductDelete} 
+        />
       </Section>
       <Section>
         <SectionHeader>
           <SubTitle>Categories</SubTitle>
           <CreateCategoryForm />
         </SectionHeader>
-        <Table tableType={TableTypes.Categories} data={categories} onEdit={handleCategoryEdit} onDelete={handleCategoryDelete} />
+        <Table 
+          tableType={TableTypes.Categories} 
+          data={categories} 
+          onEdit={handleCategoryEdit} 
+          onDelete={handleCategoryDelete} 
+        />
       </Section>
     </>
   );
