@@ -62,6 +62,17 @@ const productsSlice = createSlice({
         state.status = 'failed';
         state.error = 'error';
       })
+      .addCase(deleteProduct.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.products = state.products.filter(product => product._id !== action.meta.arg);
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
   },
 });
 

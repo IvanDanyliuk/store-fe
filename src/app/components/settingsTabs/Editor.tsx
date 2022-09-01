@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -12,6 +12,7 @@ import CreateCategoryForm from '../modals/CreateCategoryForm';
 import { selectCategories, selectCategory } from '../../features/category/selectors';
 import { getCategories, deleteCategory } from '../../features/category/asyncActions';
 import { getCategory } from '../../features/category/reducers';
+import CreateProductForm from '../modals/CreateProductForm';
 
 
 const Section = styled.section`
@@ -71,13 +72,7 @@ const Editor: React.FC = () => {
       <Section>
         <SectionHeader>
           <SubTitle>Products</SubTitle>
-          <Button 
-            color={ButtonColor.Success} 
-            type={ButtonType.Button}
-            onClick={() => console.log('Hi!')}
-          >
-            Add new
-          </Button>
+          <CreateProductForm />
         </SectionHeader>
         <Table 
           tableType={TableTypes.Products} 
