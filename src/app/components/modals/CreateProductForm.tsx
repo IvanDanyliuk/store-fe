@@ -14,7 +14,8 @@ import { selectCategories } from '../../features/category/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
-import { createProduct } from '../../features/product/asyncActions';
+import { createProduct, updateProduct } from '../../features/product/asyncActions';
+import { selectProduct } from '../../features/product/selectors';
 
 
 Modal.setAppElement('#root');
@@ -126,11 +127,7 @@ const DeletePromotionBtn = styled.button`
   `}
 `;
 
-const PromotionMessage = styled.p`
-  ${tw`
-  
-  `}
-`;
+const PromotionMessage = styled.p``;
 
 const InputLabel = styled.label`
   ${tw`
@@ -171,11 +168,7 @@ const Select = styled.select`
   `}
 `;
 
-const Option = styled.option`
-  ${tw`
-  
-  `}
-`;
+const Option = styled.option``;
 
 const SubmitBtn = styled.button`
   background: rgb(43, 212, 161);
@@ -193,6 +186,7 @@ const SubmitBtn = styled.button`
 const CreateProductForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const categories = useSelector(selectCategories);
+  const dataToUpdate = useSelector(selectProduct);
 
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
@@ -266,7 +260,7 @@ const CreateProductForm: React.FC = () => {
         });
       }
     );
-  }
+  };
 
   const handleProductDataChange = (e: any) => {
     setProductData({
@@ -330,8 +324,18 @@ const CreateProductForm: React.FC = () => {
   const handleProductDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    if(productData.title && productData.price) {
-      dispatch(createProduct({...productData, promotion: promotions}));
+    if(dataToUpdate) {
+      dispatch(updateProduct({
+        id: dataToUpdate._id,
+        updatedProduct: {
+          _id: dataToUpdate._id,
+          ...productData,
+        },
+      }));
+    } else {
+      if(productData.title && productData.price) {
+        dispatch(createProduct({...productData, promotion: promotions}));
+      }
     }
 
     setIsOpen(false);
@@ -404,6 +408,13 @@ const CreateProductForm: React.FC = () => {
       });
     }
   }, [categories]);
+
+  useEffect(() => {
+    if(dataToUpdate) {
+      setIsOpen(!isOpen);
+      setProductData(dataToUpdate)
+    }
+  }, [dataToUpdate]);
 
   return (
     <>

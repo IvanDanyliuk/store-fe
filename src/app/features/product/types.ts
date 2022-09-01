@@ -17,11 +17,11 @@ export interface IProduct {
   color: string;
   rating: number;
   image: string;
-  promotion: string[];
+  promotion: string[] | any;
   isInStock: boolean;
   shortInfo: string;
   description: string;
-  reviews: IReview[];
+  reviews: IReview[] | any;
 }
 
 export interface IProductData {
@@ -40,16 +40,16 @@ export interface IProductData {
   color: string;
   rating: number;
   image: string;
-  promotion: string[];
+  promotion: string[] | any;
   isInStock: boolean;
   shortInfo: string;
   description: string;
-  reviews: IReview[];
+  reviews: IReview[] | any;
 }
 
 export interface IProductState {
   status: string;
-  product: IProduct | null,
+  product: IProduct | null | undefined,
   products: IProduct[];
   error: null | string;
 }

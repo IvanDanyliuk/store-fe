@@ -14,7 +14,12 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-
+    setProductToUpdate: (state, action) => {
+      state.product = state.products.find(item => item._id === action.payload);
+    },
+    clearProduct: (state) => {
+      state.product = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -76,6 +81,6 @@ const productsSlice = createSlice({
   },
 });
 
-// export const {  } = productsSlice.actions;
+export const { setProductToUpdate, clearProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;

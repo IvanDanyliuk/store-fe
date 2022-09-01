@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { selectProduct, selectProductStatus } from '../features/product/selectors';
 import { getProduct } from '../features/product/asyncActions';
+import { clearProduct } from '../features/product/reducers';
 
 
 interface IColor {
@@ -364,8 +365,10 @@ const Product: React.FC = () => {
   const product = useSelector(selectProduct);
   const status = useSelector(selectProductStatus);
 
+  
   useEffect(() => {
     dispatch(getProduct(id!));
+    return () => { dispatch(clearProduct()) };
   }, [dispatch, id]);
   
   if(status === 'loading') {
@@ -452,7 +455,7 @@ const Product: React.FC = () => {
             <AddCommentForm />
           </ReviewTopSection>
           <ReviewList>
-            {product?.reviews.map(review => (
+            {product?.reviews.map((review: any) => (
               <ReviewBody key={uuid()}>
                 <ReviewHeader>
                   <UserInfo>

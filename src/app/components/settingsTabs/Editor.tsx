@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { ButtonColor, ButtonType, TableTypes } from '../../../types/types';
+import { TableTypes } from '../../../types/types';
 import { getProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
-import Button from '../ui/Button';
 import CreateCategoryForm from '../modals/CreateCategoryForm';
-import { selectCategories, selectCategory } from '../../features/category/selectors';
+import { selectCategories } from '../../features/category/selectors';
 import { getCategories, deleteCategory } from '../../features/category/asyncActions';
-import { getCategory } from '../../features/category/reducers';
+import { clearCategory, getCategory } from '../../features/category/reducers';
 import CreateProductForm from '../modals/CreateProductForm';
+import {clearProduct, setProductToUpdate } from '../../features/product/reducers';
 
 
 const Section = styled.section`
@@ -47,7 +47,7 @@ const Editor: React.FC = () => {
 
 
   const handleProductEdit = (id: string) => {
-    console.log(`Product with id: ${id} has been edited.`);
+    dispatch(setProductToUpdate(id));
   };
 
   const handleProductDelete = (id: string) => {
@@ -65,6 +65,10 @@ const Editor: React.FC = () => {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
+    return () => { 
+      dispatch(clearProduct());
+      dispatch(clearCategory());
+    };
   }, [dispatch]);
 
   return (

@@ -129,7 +129,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       <InfoSection>
         <ProductLink to={`/products/${category}/${product._id}`}>
           <Promotions>
-            {product.promotion.map(item => (
+            {product.promotion.map((item: any) => (
               <PromotionChip key={uuid()}>
                 {item}
               </PromotionChip>

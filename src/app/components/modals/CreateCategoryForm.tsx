@@ -180,7 +180,6 @@ const CreateCategoryForm: React.FC = () => {
     e.preventDefault();
 
     if(dataToUpdate) {
-      console.log('Edit');
       dispatch(updateCategory({ 
         id: dataToUpdate._id, 
         updatedCategory: { 
