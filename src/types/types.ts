@@ -46,7 +46,7 @@ export enum ButtonType {
 }
 
 export interface IButtonProps {
-  onClick: (arg?: any) => void;
+  onClick?: (arg?: any) => void;
   color: ButtonColor;
   type: ButtonType;
   children: ReactNode | string;

@@ -7,6 +7,7 @@ import Profile from './app/components/settingsTabs/Profile';
 import Reviews from './app/components/settingsTabs/Reviews';
 import WishList from './app/components/settingsTabs/WishList';
 import About from './app/pages/About';
+import Auth from './app/pages/Auth';
 import Categories from './app/pages/Categories';
 import Home from './app/pages/Home';
 import Product from './app/pages/Product';
@@ -26,6 +27,7 @@ const App: React.FC = () => {
               <Route path='/products/:category/:id' element={<Product />} />
               <Route path='/categories' element={<Categories />} />
               <Route path='/categories/:category' element={<Categories />} />
+              <Route path='/auth' element={<Auth />} />
               <Route path='/settings' element={<Settings />}>
                 <Route index element={<Orders />} />
                 <Route path='orders' element={<Orders />} />
