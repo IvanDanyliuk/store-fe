@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import tw from 'twin.macro';
+import { storage } from '../../firebase';
 import { ButtonColor, ButtonType } from '../../types/types';
 import Button from '../components/ui/Button';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../features/store';
+import { signin, signup } from '../features/user/asyncActions';
 
 
 const Container = styled.div`
@@ -83,7 +88,10 @@ const ChangeModeBtn = styled.button`
 `;
 
 const Auth: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [isSignUp, setIsSignUp] = useState(false);
+  const [progressPercent, setProgressPercent] = useState(0);
 
   const [userData, setUserData] = useState({
     firstName: '',
@@ -107,13 +115,50 @@ const Auth: React.FC = () => {
     });
   };
 
+  const handleImageUpload = (e: any) => {
+    e.preventDefault();
+
+    const file = e.target?.files[0];
+    if(!file) return;
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadData = uploadBytesResumable(storageRef, file);
+
+    uploadData.on('state_changed', 
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgressPercent(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadData.snapshot.ref).then((downloadUrl) => {
+          setUserData({
+            ...userData,
+            avatarUrl: downloadUrl
+          });
+        })
+      }
+    );
+  };
+
+  const handleSignIn = () => {
+    if(userData.email && userData.password) {
+      dispatch(signin({ email: userData.email, password: userData.password }));
+    }
+  };
+
+  const handleSignUp = () => {
+    dispatch(signup(userData));
+  }
+
   return (
     <Container>
       <AuthContainer>
         <Title>
           {isSignUp ? 'Sign In' : 'Sign Up'}
         </Title>
-        <AuthForm>
+        <AuthForm onSubmit={isSignUp ? handleSignUp : handleSignIn}>
           {
             !isSignUp && (
               <>
@@ -141,6 +186,7 @@ const Auth: React.FC = () => {
             <Input 
               name='email' 
               value={userData.email} 
+              type='password'
               onChange={handleUserDataChange} 
             />
           </Fieldset>
@@ -184,7 +230,7 @@ const Auth: React.FC = () => {
                   <Input 
                     name='avatarImg' 
                     type='file'
-                    onChange={handleUserDataChange} 
+                    onChange={handleImageUpload} 
                   />
                 </Fieldset>
               </>

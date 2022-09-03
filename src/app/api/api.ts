@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IPasswordToUpdate } from '../features/user/types';
 
 
 const API = axios.create({ baseURL: 'http://localhost:5000' });
@@ -21,6 +22,7 @@ export const createCategory = (category: any) => API.post('/categories', { param
 export const updateCategory = (updatedCategory: any) => API.patch('/categories', { params: { updatedCategory } });
 export const deleteCategory = (id: any) => API.delete('/categories', { params: { id } });
 
-export const signin = (userData: any) => API.post('/user/signin', userData);
-export const signup = (userData: any) => API.post('/user/signup', userData);
-export const updateUser = (id: any, updatedUser: any) => API.patch('/user', { id, updatedUser });
+export const signin = (userData: any) => API.post('/user/signin', { params: { userData } });
+export const signup = (userData: any) => API.post('/user/signup', { params: { userData } });
+export const updateUser = (userData: any) => API.patch('/user', { params: { userData } });
+export const updatePassword = (passwordData: IPasswordToUpdate) => API.patch('/user/update-password', { params: { passwordData } });

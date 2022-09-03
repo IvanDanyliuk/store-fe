@@ -14,7 +14,6 @@ export interface IUser {
   phone: string;
   password: string;
   city: string;
-  language: string;
   avatarUrl: string;
   orders: IOrder[];
 }
