@@ -1,13 +1,13 @@
 import { IOrder } from "../../../types/types";
 
 export interface IUserState {
-  user: IUser;
+  user: IUser | null;
   status: string;
   error: null | string;
 }
 
 export interface IUser {
-  _id: string;
+  _id?: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -16,6 +16,7 @@ export interface IUser {
   city: string;
   avatarUrl: string;
   orders: IOrder[];
+  isAdmin: boolean;
 }
 
 export interface IUserToUpdate {

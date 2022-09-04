@@ -8,6 +8,7 @@ import Button from '../components/ui/Button';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { signin, signup } from '../features/user/asyncActions';
+import { useNavigate } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -89,6 +90,7 @@ const ChangeModeBtn = styled.button`
 
 const Auth: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [progressPercent, setProgressPercent] = useState(0);
@@ -102,6 +104,8 @@ const Auth: React.FC = () => {
     phone: '',
     city: '',
     avatarUrl: '',
+    orders: [],
+    isAdmin: false,
   });
 
   const handleModeChange = () => {
@@ -142,15 +146,43 @@ const Auth: React.FC = () => {
     );
   };
 
-  const handleSignIn = () => {
-    if(userData.email && userData.password) {
-      dispatch(signin({ email: userData.email, password: userData.password }));
-    }
+  const clearForm = () => {
+    setUserData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      phone: '',
+      city: '',
+      avatarUrl: '',
+      orders: [],
+      isAdmin: false,
+    });
   };
 
-  const handleSignUp = () => {
-    dispatch(signup(userData));
-  }
+  const handleFormSubmit = async (e: any) => {
+    e.preventDefault();
+    if(isSignUp) {
+      if(userData.email && userData.password) {
+        try {
+          await dispatch(signin({ email: userData.email, password: userData.password }));
+          clearForm();
+          navigate('/');
+        } catch (error) {
+          console.log('Something went wrong...');
+        }
+      }
+    } else {
+      try {
+        await dispatch(signup(userData));
+        clearForm();
+        navigate('/');
+      } catch (error) {
+        console.log('Something went wrong...');
+      }
+    }
+  };
 
   return (
     <Container>
@@ -158,7 +190,7 @@ const Auth: React.FC = () => {
         <Title>
           {isSignUp ? 'Sign In' : 'Sign Up'}
         </Title>
-        <AuthForm onSubmit={isSignUp ? handleSignUp : handleSignIn}>
+        <AuthForm onSubmit={handleFormSubmit}>
           {
             !isSignUp && (
               <>
@@ -186,7 +218,7 @@ const Auth: React.FC = () => {
             <Input 
               name='email' 
               value={userData.email} 
-              type='password'
+              
               onChange={handleUserDataChange} 
             />
           </Fieldset>
@@ -194,6 +226,7 @@ const Auth: React.FC = () => {
             <Label>Password</Label>
             <Input 
               name='password' 
+              type='password'
               value={userData.password} 
               onChange={handleUserDataChange} 
             />
@@ -205,6 +238,7 @@ const Auth: React.FC = () => {
                   <Label>Confirm Password</Label>
                   <Input 
                     name='confirmPassword' 
+                    type='password'
                     value={userData.confirmPassword} 
                     onChange={handleUserDataChange} 
                   />
