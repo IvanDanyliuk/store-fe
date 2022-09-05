@@ -92,7 +92,7 @@ const Auth: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
 
   const [userData, setUserData] = useState({
@@ -109,7 +109,7 @@ const Auth: React.FC = () => {
   });
 
   const handleModeChange = () => {
-    setIsSignUp(!isSignUp);
+    setIsSignIn(!isSignIn);
   };
 
   const handleUserDataChange = (e: any) => {
@@ -163,7 +163,7 @@ const Auth: React.FC = () => {
 
   const handleFormSubmit = async (e: any) => {
     e.preventDefault();
-    if(isSignUp) {
+    if(isSignIn) {
       if(userData.email && userData.password) {
         try {
           await dispatch(signin({ email: userData.email, password: userData.password }));
@@ -188,11 +188,11 @@ const Auth: React.FC = () => {
     <Container>
       <AuthContainer>
         <Title>
-          {isSignUp ? 'Sign In' : 'Sign Up'}
+          {isSignIn ? 'Sign In' : 'Sign Up'}
         </Title>
         <AuthForm onSubmit={handleFormSubmit}>
           {
-            !isSignUp && (
+            !isSignIn && (
               <>
                 <Fieldset>
                   <Label>First Name</Label>
@@ -232,7 +232,7 @@ const Auth: React.FC = () => {
             />
           </Fieldset>
           {
-            !isSignUp && (
+            !isSignIn && (
               <>
                 <Fieldset>
                   <Label>Confirm Password</Label>
@@ -272,10 +272,10 @@ const Auth: React.FC = () => {
           }
           <Actions>
             <Button type={ButtonType.Submit} color={ButtonColor.Success}>
-              {!isSignUp ? 'Sign Up' : 'Sign In'}
+              {!isSignIn ? 'Sign Up' : 'Sign In'}
             </Button>
             <ChangeModeBtn type='button' onClick={handleModeChange}>
-              {!isSignUp ? 'Already have an account? Sign In' : 'Don\'t have an account? Sign Up'}
+              {!isSignIn ? 'Already have an account? Sign In' : 'Don\'t have an account? Sign Up'}
             </ChangeModeBtn>
           </Actions>
         </AuthForm>

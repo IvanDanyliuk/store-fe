@@ -13,6 +13,8 @@ import { getCategories, deleteCategory } from '../../features/category/asyncActi
 import { clearCategory, getCategory } from '../../features/category/reducers';
 import CreateProductForm from '../modals/CreateProductForm';
 import {clearProduct, setProductToUpdate } from '../../features/product/reducers';
+import { selectUser } from '../../features/user/selectors';
+import { useNavigate } from 'react-router-dom';
 
 
 const Section = styled.section`
@@ -41,10 +43,15 @@ const SubTitle = styled.h6`
 
 
 const Editor: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
+  const user = useSelector(selectUser);
 
+  if(!user!.isAdmin) {
+    navigate('/settings/orders');
+  }
 
   const handleProductEdit = (id: string) => {
     dispatch(setProductToUpdate(id));

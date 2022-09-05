@@ -6,6 +6,8 @@ import { faHeart, faPenToSquare, faUser } from '@fortawesome/free-regular-svg-ic
 import { faCommentDollar, faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getFormattedTitle } from '../helpers/helpers';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/user/selectors';
 
 
 const Container = styled.div`
@@ -132,6 +134,7 @@ const Settings: React.FC = () => {
   const { pathname } = useLocation();
   const title = getFormattedTitle(pathname, 2);
 
+  const user = useSelector(selectUser);
   const isAdmin = true;
 
   return (
@@ -177,7 +180,7 @@ const Settings: React.FC = () => {
             </Link>
           </NavItem>
           {
-            isAdmin && (
+            user!.isAdmin && (
               <NavItem>
                 <Link to='editor'>
                   <LinkTitle>

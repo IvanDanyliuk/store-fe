@@ -9,7 +9,7 @@ export const signin = createAsyncThunk(
     try {
       const { data } = await api.signin(userData);
       localStorage.setItem('profile', JSON.stringify(data));
-      localStorage.setItem('lang', JSON.stringify(data.result.language));
+      console.log('Signin action')
       return data;
     } catch (error) {
       return rejectWithValue(error);
