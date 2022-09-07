@@ -47,3 +47,8 @@ export const setCategoryUrl = (title: string) => {
 export const getSubCategoryList = (categories: any, mainCategoryTitle: any) => {
   return categories.find((category: any) => category.main.title === mainCategoryTitle);
 };
+
+export const formatObjectKey = (key: string) => {
+  const splittedKey = key.replace(/([a-z])([A-Z])/g, '$1 $2');
+  return splittedKey[0].toUpperCase() + splittedKey.slice(1);
+};

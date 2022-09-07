@@ -123,28 +123,22 @@ const PageTitle = styled.h3`
   `}
 `;
 
-const Content = styled.div`
-  ${tw`
-  
-  `}
-`;
+const Content = styled.div``;
 
 
 const Settings: React.FC = () => {
   const { pathname } = useLocation();
   const title = getFormattedTitle(pathname, 2);
-
   const user = useSelector(selectUser);
-  const isAdmin = true;
 
   return (
     <Container>
       <PageNavigation>
         <UserData>
           <AvatarContainer>
-            <Avatar src={'https://images.indianexpress.com/2022/06/pirates-of-the-caribbean-johnny-depp-1200.jpg'} alt='' />
+            <Avatar src={user?.avatarUrl} alt='user_photo' />
           </AvatarContainer>
-          <UserName>Jack Sparrow</UserName>
+          <UserName>{`${user?.firstName} ${user?.lastName}`}</UserName>
         </UserData>
         <NavLinks>
           <NavItem>
@@ -180,7 +174,7 @@ const Settings: React.FC = () => {
             </Link>
           </NavItem>
           {
-            user!.isAdmin && (
+            user!.isAdmin! && (
               <NavItem>
                 <Link to='editor'>
                   <LinkTitle>
