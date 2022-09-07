@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { stat } from 'fs';
-import { signin, signup, updatePassword, updateUser } from './asyncActions';
+import { deleteUser, signin, signup, updatePassword, updateUser } from './asyncActions';
 import { IUserState } from './types';
 
 
@@ -54,6 +54,17 @@ const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(updateUser.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(deleteUser.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = null;
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

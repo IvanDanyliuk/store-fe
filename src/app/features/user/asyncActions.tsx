@@ -53,3 +53,14 @@ export const updatePassword = createAsyncThunk(
     }
   }
 );
+
+export const deleteUser = createAsyncThunk(
+  'user/deleteUser',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      await api.deleteUser(id);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

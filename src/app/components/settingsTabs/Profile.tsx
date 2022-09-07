@@ -6,6 +6,7 @@ import {v4 as uuid} from 'uuid';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { selectUser } from '../../features/user/selectors';
 import { formatObjectKey } from '../../helpers/helpers';
+import DeleteUserModal from '../modals/DeleteUserModal';
 import EditUserDataModal from '../modals/EditUserDataModal';
 import Button from '../ui/Button';
 
@@ -115,6 +116,7 @@ const Profile: React.FC = () => {
           </UserData>
           <Actions>
             <EditUserDataModal />
+            <DeleteUserModal />
           </Actions>
         </Content>
       </SubSection>

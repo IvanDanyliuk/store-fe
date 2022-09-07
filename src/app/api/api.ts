@@ -26,3 +26,4 @@ export const signin = (userData: any) => API.post('/user/signin', { params: { us
 export const signup = (userData: any) => API.post('/user/signup', { params: { userData } });
 export const updateUser = (userData: any) => API.patch('/user', { params: { userData } });
 export const updatePassword = (passwordData: IPasswordToUpdate) => API.patch('/user/update-password', { params: { passwordData } });
+export const deleteUser = (id: any) => API.delete('/user', { params: { id } });
