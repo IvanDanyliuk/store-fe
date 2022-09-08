@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import {v4 as uuid} from 'uuid';
-import { ButtonColor, ButtonType } from '../../../types/types';
 import { selectUser } from '../../features/user/selectors';
 import { formatObjectKey } from '../../helpers/helpers';
+import { SCREENS } from '../../services/screens';
 import DeleteUserModal from '../modals/DeleteUserModal';
 import EditUserDataModal from '../modals/EditUserDataModal';
-import Button from '../ui/Button';
 
 
 const Section = styled.section`
@@ -35,49 +34,86 @@ const SubSection = styled.div`
 
 const Content = styled.div`
   ${tw`
-  
+    flex
+    flex-col
+    md:flex-row
+    items-center
   `}
 `;
 
 const PhotoContainer = styled.div`
+
   ${tw`
-  
+    relative
+    mt-3
+    md:mr-12
+    w-36
+    h-36
+    md:w-56
+    md:h-56
+    overflow-hidden
+    rounded-full
   `}
 `;
 
 const UserPhoto = styled.img`
   ${tw`
-  
+    inline
+    w-auto
+    h-full
   `}
 `;
 
 const UserData = styled.ul`
   ${tw`
-  
+    mt-3
+    w-full
+    md:w-auto
   `}
 `;
 
 const DataItem = styled.li`
   ${tw`
-  
+    mb-3
+    w-full
+    md:w-96
+    flex
   `}
 `;
 
 const DataTitle = styled.span`
   ${tw`
-  
+    block
+    w-2/6
+    md:w-1/2
+    text-gray-500
+    font-semibold
   `}
 `;
 
 const Data = styled.span`
   ${tw`
-  
+    block
+    w-4/6
+    md:w-1/2
+    text-lg
+    font-semibold
   `}
 `;
 
 const Actions = styled.div`
+  button {
+    margin-right: 20px;
+    @media (max-width: ${SCREENS.md}) {
+      margin: 0;
+      width: 47%;
+    }
+  }
   ${tw`
-  
+    mt-6
+    flex
+    justify-between
+    md:justify-start
   `}
 `;
 
@@ -91,7 +127,7 @@ const Profile: React.FC = () => {
         <SubTitle>User Data</SubTitle>
         <Content>
           <PhotoContainer>
-            <UserPhoto src={user?.avatarUrl} alt='user_photo' />
+            <UserPhoto src={user!.avatarUrl} alt='user_photo' />
           </PhotoContainer>
           <UserData>
             {Object
@@ -114,11 +150,11 @@ const Profile: React.FC = () => {
                 )
               )}
           </UserData>
-          <Actions>
-            <EditUserDataModal />
-            <DeleteUserModal />
-          </Actions>
         </Content>
+        <Actions>
+          <EditUserDataModal />
+          <DeleteUserModal />
+        </Actions>
       </SubSection>
     </Section>
   );
