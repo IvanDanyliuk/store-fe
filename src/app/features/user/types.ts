@@ -31,7 +31,7 @@ export interface IAuthData {
 
 export interface IPasswordToUpdate {
   id: string;
-  curPassword: string;
+  currentPassword: string;
   newPassword: string;
 };
 

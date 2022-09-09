@@ -57,6 +57,17 @@ const userSlice = createSlice({
         state.status = 'failed';
         state.error = 'error';
       })
+      .addCase(updatePassword.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(updatePassword.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+      })
+      .addCase(updatePassword.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
       .addCase(deleteUser.pending, (state, action) => {
         state.status = 'loading';
       })

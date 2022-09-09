@@ -8,6 +8,7 @@ import { formatObjectKey } from '../../helpers/helpers';
 import { SCREENS } from '../../services/screens';
 import DeleteUserModal from '../modals/DeleteUserModal';
 import EditUserDataModal from '../modals/EditUserDataModal';
+import UpdatePasswordModal from '../modals/UpdatePasswordModal';
 
 
 const Section = styled.section`
@@ -153,6 +154,7 @@ const Profile: React.FC = () => {
         </Content>
         <Actions>
           <EditUserDataModal />
+          <UpdatePasswordModal />
           <DeleteUserModal />
         </Actions>
       </SubSection>
