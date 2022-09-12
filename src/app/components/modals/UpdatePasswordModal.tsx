@@ -8,8 +8,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
-import { updatePassword, updateUser } from '../../features/user/asyncActions';
-import { selectUser } from '../../features/user/selectors';
+import { updatePassword } from '../../features/user/asyncActions';
+import { selectUser, selectUserStatus } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 
@@ -68,9 +68,20 @@ const Input = styled.input`
   `}
 `;
 
+const ErrorMessage = styled.p`
+  ${tw`
+    mt-3
+    mb-3
+    text-center
+    text-red-500
+    font-semibold
+  `}
+`;
+
 const UpdatePasswordModal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
+  const status = useSelector(selectUserStatus);
   const token = localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile') || '').token;
 
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
@@ -113,7 +124,6 @@ const UpdatePasswordModal: React.FC = () => {
         newPassword: passwordData.newPassword
       }));
     }
-    clear();
   };
 
   const styles = {
@@ -140,6 +150,12 @@ const UpdatePasswordModal: React.FC = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if(status === 'succeeded') {
+      clear();
+    }
+  }, [status]);
 
   return (
     <>
@@ -182,6 +198,11 @@ const UpdatePasswordModal: React.FC = () => {
             value={passwordData.confNewPassword} 
             onChange={handleDataChange} 
           />
+          {
+            status === 'failed' && (
+              <ErrorMessage>Wrong credentials! Make sure data you entered is correct.</ErrorMessage>
+            )
+          }
           <Button 
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
