@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../../firebase';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
-import { updatePassword } from '../../features/user/asyncActions';
-import { selectError, selectUser, selectUserStatus } from '../../features/user/selectors';
+import { selectUser } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { clearError } from '../../features/user/reducers';
+import { updateUser } from '../../features/user/asyncActions';
 
 
 Modal.setAppElement('#root');
@@ -22,13 +23,6 @@ const FormHeader = styled.div`
     mb-4
     flex
     justify-center
-  `}
-`;
-
-const FormTitle = styled.h6`
-  ${tw`
-    text-xl
-    font-bold
   `}
 `;
 
@@ -69,63 +63,53 @@ const Input = styled.input`
   `}
 `;
 
-const ErrorMessage = styled.p`
-  ${tw`
-    mt-3
-    mb-3
-    text-center
-    text-red-500
-  `}
-`;
-
-const UpdatePasswordModal: React.FC = () => {
+const UpdateAvatarModal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
-  const status = useSelector(selectUserStatus);
-  const error = useSelector(selectError);
+  const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
+
   const token = localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile') || '').token;
 
-  const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
-
-  const [passwordData, setPasswordData] = useState({
-    userId: '',
-    curPassword: '',
-    newPassword: '',
-    confNewPassword: '',
-  });
-
-  const clear = () => {
-    setPasswordData({
-      userId: user!._id!,
-      curPassword: '',
-      newPassword: '',
-      confNewPassword: '',
-    });
-    setIsOpen(false);
-  };
+  const [progressPercent, setProgressPercent] = useState(0);
+  const [file, setFile] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState('');
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleDataChange = (e: any) => {
-    setPasswordData({
-      ...passwordData,
-      [e.target.name]: e.target.value,
-    });
+  const handleImageChange = (e: any) => {
+    setFile(e.target.files[0]);
+  };
+
+  const uploadImage = (file: any) => {
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadData = uploadBytesResumable(storageRef, file);
+
+    uploadData.on('state_changed', 
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgressPercent(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadData.snapshot.ref).then((downloadUrl) => {
+          setAvatarUrl(downloadUrl);
+        });
+      }
+    );
   };
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    if(passwordData.newPassword === passwordData.confNewPassword) {
-      dispatch(updatePassword({
-        id: passwordData.userId,
-        currentPassword: passwordData.curPassword,
-        newPassword: passwordData.newPassword
-      }));
+    if(file) {
+      uploadImage(file);
+      setFile(null);
+      setIsOpen(false);
     }
-    clear();
   };
 
   const styles = {
@@ -145,22 +129,24 @@ const UpdatePasswordModal: React.FC = () => {
   };
 
   useEffect(() => {
-    if(user) {
-      setPasswordData({
-        ...passwordData,
-        userId: user._id!
-      });
+    if(avatarUrl) {
+      dispatch(updateUser({
+        id: user!._id!,
+        userData: { ...user!, avatarUrl }
+      }));
+      localStorage.setItem('profile', JSON.stringify({ token, result: { ...user!, avatarUrl } }));
     }
-  }, []);
+    setAvatarUrl('');
+  }, [avatarUrl]);
 
   return (
     <>
       <Button 
         type={ButtonType.Button} 
-        color={ButtonColor.Secondary} 
+        color={ButtonColor.Success} 
         onClick={handleOpenModal}
       >
-        Change password
+        Update photo
       </Button>
       <Modal
         isOpen={isOpen}
@@ -168,37 +154,12 @@ const UpdatePasswordModal: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <CloseBtn onClick={clear}>
+          <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
         <Form onSubmit={handleFormSubmit}>
-          <Label>Current Password</Label>
-          <Input 
-            name='curPassword' 
-            type='password'
-            value={passwordData.curPassword} 
-            onChange={handleDataChange} 
-          />
-          <Label>New Password</Label>
-          <Input 
-            name='newPassword' 
-            type='password'
-            value={passwordData.newPassword} 
-            onChange={handleDataChange} 
-          />
-          <Label>Confirm New Password</Label>
-          <Input 
-            name='confNewPassword' 
-            type='password'
-            value={passwordData.confNewPassword} 
-            onChange={handleDataChange} 
-          />
-          {
-            error === 'error' && (
-              <ErrorMessage>Wrong credentials! Make sure data you entered is correct.</ErrorMessage>
-            )
-          }
+          <Input type='file' onChange={handleImageChange} />
           <Button 
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
@@ -211,4 +172,4 @@ const UpdatePasswordModal: React.FC = () => {
   )
 }
 
-export default UpdatePasswordModal
+export default UpdateAvatarModal;

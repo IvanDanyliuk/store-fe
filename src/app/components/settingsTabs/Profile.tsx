@@ -8,6 +8,7 @@ import { formatObjectKey } from '../../helpers/helpers';
 import { SCREENS } from '../../services/screens';
 import DeleteUserModal from '../modals/DeleteUserModal';
 import EditUserDataModal from '../modals/EditUserDataModal';
+import UpdateAvatarModal from '../modals/UpdateAvatarModal';
 import UpdatePasswordModal from '../modals/UpdatePasswordModal';
 
 
@@ -155,6 +156,7 @@ const Profile: React.FC = () => {
         <Actions>
           <EditUserDataModal />
           <UpdatePasswordModal />
+          <UpdateAvatarModal />
           <DeleteUserModal />
         </Actions>
       </SubSection>
