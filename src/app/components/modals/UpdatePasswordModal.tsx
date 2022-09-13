@@ -25,13 +25,6 @@ const FormHeader = styled.div`
   `}
 `;
 
-const FormTitle = styled.h6`
-  ${tw`
-    text-xl
-    font-bold
-  `}
-`;
-
 const CloseBtn = styled.button`
   ${tw`
     absolute
