@@ -106,6 +106,9 @@ const UpdatePasswordModal: React.FC = () => {
   };
 
   const handleOpenModal = () => {
+    if(isOpen && error === 'error') {
+      dispatch(clearError());
+    }
     setIsOpen(!isOpen);
   };
 
@@ -125,7 +128,6 @@ const UpdatePasswordModal: React.FC = () => {
         newPassword: passwordData.newPassword
       }));
     }
-    clear();
   };
 
   const styles = {
@@ -152,6 +154,12 @@ const UpdatePasswordModal: React.FC = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if(error !== 'error') {
+      clear();
+    }
+  }, [error]);
 
   return (
     <>

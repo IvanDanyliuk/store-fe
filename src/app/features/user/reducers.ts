@@ -22,6 +22,7 @@ const userSlice = createSlice({
       localStorage.clear();
     },
     clearError: (state) => {
+      state.status = 'succeeded';
       state.error = null;
     },
   },
