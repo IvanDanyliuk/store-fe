@@ -81,9 +81,7 @@ const ErrorMessage = styled.p`
 const UpdatePasswordModal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
-  const status = useSelector(selectUserStatus);
   const error = useSelector(selectError);
-  const token = localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile') || '').token;
 
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
@@ -216,7 +214,7 @@ const UpdatePasswordModal: React.FC = () => {
         </Form>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default UpdatePasswordModal
+export default UpdatePasswordModal;
