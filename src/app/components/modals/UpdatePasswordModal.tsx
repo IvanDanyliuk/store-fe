@@ -9,7 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
 import { updatePassword } from '../../features/user/asyncActions';
-import { selectError, selectUser, selectUserStatus } from '../../features/user/selectors';
+import { selectError, selectUser } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { clearError } from '../../features/user/reducers';
