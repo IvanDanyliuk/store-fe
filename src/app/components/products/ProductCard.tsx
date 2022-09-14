@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
-import { IProductCardProps } from '../../../types/types';
+import { faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { ButtonColor, ButtonType, IProductCardProps } from '../../../types/types';
+import Button from '../ui/Button';
+import { IProduct } from '../../features/product/types';
 
 
 const Card = styled.li`
@@ -115,8 +117,20 @@ const Amount = styled.span`
   `}
 `;
 
+const CardFooter = styled.div`
+  ${tw`
+    w-full
+    flex
+    justify-between
+  `}
+`;
+
 const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const { category } = useParams();
+
+  const buyProduct = (product: IProduct) => {
+    console.log(product);
+  };
   
   return (
     <Card>
@@ -145,12 +159,17 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
               </RatingIcon>
             ))}
           </Rating>
-          <Price>
-            <Currency>$</Currency>
-            <Amount>
-              {product.price}
-            </Amount>
-          </Price>
+          <CardFooter>
+            <Price>
+              <Currency>$</Currency>
+              <Amount>
+                {product.price}
+              </Amount>
+            </Price>
+            <Button type={ButtonType.Button} color={ButtonColor.Success} onClick={buyProduct}>
+              <FontAwesomeIcon icon={faCartShopping} />
+            </Button>
+          </CardFooter>
         </ProductLink>
       </InfoSection>
     </Card>

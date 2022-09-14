@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { stat } from 'fs';
 import { deleteUser, signin, signup, updatePassword, updateUser } from './asyncActions';
 import { IUserState } from './types';
 
 
-//@ts-ignore
-const user = JSON.parse(localStorage.getItem('profile'));
+const user = JSON.parse(localStorage.getItem('profile')!);
 
 const initialState: IUserState = {
   status: 'idle',

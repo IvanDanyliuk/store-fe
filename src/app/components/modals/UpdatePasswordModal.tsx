@@ -71,14 +71,15 @@ const ErrorMessage = styled.p`
   `}
 `;
 
+
 const UpdatePasswordModal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const error = useSelector(selectError);
 
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
-  const [isOpen, setIsOpen] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
   const [passwordData, setPasswordData] = useState({
     userId: '',
     curPassword: '',
@@ -195,7 +196,9 @@ const UpdatePasswordModal: React.FC = () => {
           />
           {
             error === 'error' && (
-              <ErrorMessage>Wrong credentials! Make sure data you entered is correct.</ErrorMessage>
+              <ErrorMessage>
+                Wrong credentials! Make sure data you entered is correct.
+              </ErrorMessage>
             )
           }
           <Button 

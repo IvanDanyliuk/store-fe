@@ -10,6 +10,7 @@ import About from './app/pages/About';
 import Auth from './app/pages/Auth';
 import Categories from './app/pages/Categories';
 import Home from './app/pages/Home';
+import Order from './app/pages/Order';
 import Product from './app/pages/Product';
 import Products from './app/pages/Products';
 import Settings from './app/pages/Settings';
@@ -36,6 +37,7 @@ const App: React.FC = () => {
                 <Route path='profile' element={<Profile />} />
                 <Route path='editor' element={<Editor />} />
               </Route>
+              <Route path='/order' element={<Order />} />
               <Route path='/about' element={<About />} />
             </Routes>
           </Layout>

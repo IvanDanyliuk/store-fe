@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../features/user/selectors';
 import { AppDispatch } from '../../features/store';
 import { logout } from '../../features/user/reducers';
+import Cart from '../modals/Cart';
 
 
 const Container = styled.header`
@@ -61,17 +62,6 @@ const ProfileBtn = styled(Link)`
   ${tw`
     p-3
     mr-5
-    text-gray-700
-    hover:text-white
-    transition
-    ease-in
-    delay-100
-  `}
-`;
-
-const CartBtn = styled(Link)`
-  ${tw`
-    p-3
     text-gray-700
     hover:text-white
     transition
@@ -140,9 +130,7 @@ const Header: React.FC = () => {
               </LoginBtn>
             )
           }
-          <CartBtn to='/cart'>
-            <FontAwesomeIcon icon={faCartShopping} />
-          </CartBtn>
+          <Cart />
         </UserActions>
       </Content>
     </Container>
