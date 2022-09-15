@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
@@ -12,6 +12,9 @@ import { selectUser } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { useNavigate } from 'react-router-dom';
+import RoundedButton from '../ui/RoundedButton';
+import { selectCartData } from '../../features/cart/selectors';
+import { removeFromCart } from '../../features/cart/reducers';
 
 
 Modal.setAppElement('#root');
@@ -72,12 +75,16 @@ const ShoppingList = styled.ul`
 
 const ShoppingListItem = styled.li`
   ${tw`
+    pt-2
+    pb-2
     flex
+    justify-between
+    hover:bg-gray-100
   `}
 `;
 
 const ItemInfo = styled.div`
-  width: 70%;
+  max-width: 75%;
   ${tw`
     flex
     items-center
@@ -85,17 +92,29 @@ const ItemInfo = styled.div`
 `;
 
 const ItemActions = styled.div`
-  width: 30%;
   ${tw`
+    mr-2
     flex
     items-center
   `}
 `;
 
-const ProductImg = styled.img`
+const ImgContainer = styled.div`
   ${tw`
     mr-3
+    w-36
     h-16
+    flex
+    justify-center
+  `}
+`;
+
+const ProductImg = styled.img`
+  
+  ${tw`
+    h-full
+    object-cover
+    object-center
   `}
 `;
 
@@ -113,13 +132,17 @@ const ProductPrice = styled.span`
 
 const ProductNumber = styled.div`
   ${tw`
-  
+    mr-8
+    w-20
+    flex
+    justify-between
+    items-center
   `}
 `;
 
 const SetNumberBtn = styled.button`
   ${tw`
-  
+    text-2xl
   `}
 `;
 
@@ -144,6 +167,7 @@ const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+  const cart = useSelector(selectCartData);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -161,6 +185,18 @@ const Cart: React.FC = () => {
     setIsOpen(false);
   };
 
+  const increaseProductQuantity = (id: string) => {
+    
+  };
+
+  const decreaseProductQuantity = (id: string) => {
+    
+  };
+
+  const hadnleDeleteFromCart = (id: string) => {
+    dispatch(removeFromCart(id));
+  };
+
   const styles = {
     content: {
       width: isMobile ? '90%' : '900px',
@@ -172,9 +208,11 @@ const Cart: React.FC = () => {
       marginRight: '-50%',
       background: 'rgb(255, 255, 255',
       transform: 'translate(-50%, -50%)',
+      
     },
     overlay: {
       background: 'rgba(141, 141, 141, .6',
+      zIndex: '500',
     }
   };
 
@@ -196,20 +234,33 @@ const Cart: React.FC = () => {
             </CloseBtn>
           </CartHeader>
           <ShoppingList>
-            <ShoppingListItem>
-              <ItemInfo>
-                <ProductImg src='https://content1.rozetka.com.ua/goods/images/big/133898276.jpg' alt='product' />
-                <ProductTitle>Монітор 34" Samsung Curved C34H890</ProductTitle>
-                <ProductPrice>499</ProductPrice>
-              </ItemInfo>
-              <ItemActions>
-                <ProductNumber>
-                  <SetNumberBtn>-</SetNumberBtn>
-                  <Number>1</Number>
-                  <SetNumberBtn>+</SetNumberBtn>
-                </ProductNumber>
-              </ItemActions>
-            </ShoppingListItem>
+            {
+              cart.map(item => (
+                <ShoppingListItem key={item.id}>
+                  <ItemInfo>
+                    <ImgContainer>
+                      <ProductImg src={item.product.image} alt={item.product.title} />
+                    </ImgContainer>
+                    <ProductTitle>{item.product.title}</ProductTitle>
+                    <ProductPrice>{item.product.price}</ProductPrice>
+                  </ItemInfo>
+                  <ItemActions>
+                    <ProductNumber>
+                      <SetNumberBtn>-</SetNumberBtn>
+                      <Number>{item.quantity}</Number>
+                      <SetNumberBtn>+</SetNumberBtn>
+                    </ProductNumber>
+                    <RoundedButton 
+                      type={ButtonType.Button} 
+                      color={ButtonColor.Danger} 
+                      onClick={() => hadnleDeleteFromCart(item.id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </RoundedButton>
+                  </ItemActions>
+                </ShoppingListItem>
+              ))
+            }
           </ShoppingList>
           <CartFooter>
             <Button 

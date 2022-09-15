@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IProduct } from '../product/types';
-import { ICart } from './types';
+import { ICart, ICartItem } from './types';
 
 
 const cart = JSON.parse(localStorage.getItem('cart')!);
@@ -21,7 +21,15 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.status = 'succeeded';
-      state.cart = cart.filter((product: IProduct) =>product._id !== action.payload)
+      state.cart = state.cart.filter((item: ICartItem) => item.id !== action.payload)
+    },
+    increaseQuantity: (state, action) => {
+      state.status = 'succeeded';
+      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item);
+    }, 
+    decreaseQuantity: (state, action) => {
+      state.status = 'succeeded';
+      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: item.quantity - 1 } : item);
     },
     clearCart: (state) => {
       state.status = 'succeeded';

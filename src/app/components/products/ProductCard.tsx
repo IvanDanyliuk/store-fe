@@ -6,8 +6,12 @@ import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ButtonColor, ButtonType, IProductCardProps } from '../../../types/types';
-import Button from '../ui/Button';
+import RoundedButton from '../ui/RoundedButton';
 import { IProduct } from '../../features/product/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../features/store';
+import { addToCart } from '../../features/cart/reducers';
+import { selectCartData } from '../../features/cart/selectors';
 
 
 const Card = styled.li`
@@ -85,7 +89,7 @@ const RatingIcon = styled.span`
 const HeartIcon = styled.button`
   color: #1fcdd6;
   transition: ease-in-out .3s;
-  z-index: 100;
+  z-index: 10;
 
   &:hover {
     color: #f6c430;
@@ -125,11 +129,32 @@ const CardFooter = styled.div`
   `}
 `;
 
-const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
-  const { category } = useParams();
+const BtnContainer = styled.div`
+  ${tw`
+    absolute
+    right-3
+    bottom-3
+  `}
+`;
 
-  const buyProduct = (product: IProduct) => {
-    console.log(product);
+const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { category } = useParams();
+  const cart = useSelector(selectCartData);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: product._id,
+      quantity: 1,
+      product
+    }));
+    localStorage.setItem(
+      'cart', 
+      JSON.stringify([
+        ...cart, 
+        { id: product._id, quantity: 1, product }
+      ])
+    );
   };
   
   return (
@@ -137,40 +162,42 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       <HeartIcon>
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
-      <ImageSection>
-        <Image src={product.image} alt={product.title} />
-      </ImageSection>
+      <ProductLink to={`/products/${category}/${product._id}`}>
+        <ImageSection>
+          <Image src={product.image} alt={product.title} />
+        </ImageSection>
+      </ProductLink>
       <InfoSection>
-        <ProductLink to={`/products/${category}/${product._id}`}>
-          <Promotions>
-            {product.promotion.map((item: any) => (
-              <PromotionChip key={uuid()}>
-                {item}
-              </PromotionChip>
-            ))}
-          </Promotions>
-          <Title>
-            {product.title}
-          </Title>
-          <Rating>
-            {Array(product.rating).fill('').map(star => (
-              <RatingIcon key={uuid()}>
-                <FontAwesomeIcon icon={faStar} />
-              </RatingIcon>
-            ))}
-          </Rating>
-          <CardFooter>
-            <Price>
-              <Currency>$</Currency>
-              <Amount>
-                {product.price}
-              </Amount>
-            </Price>
-            <Button type={ButtonType.Button} color={ButtonColor.Success} onClick={buyProduct}>
+        <Promotions>
+          {product.promotion.map((item: any) => (
+            <PromotionChip key={uuid()}>
+              {item}
+            </PromotionChip>
+          ))}
+        </Promotions>
+        <Title>
+          {product.title}
+        </Title>
+        <Rating>
+          {Array(product.rating).fill('').map(star => (
+            <RatingIcon key={uuid()}>
+              <FontAwesomeIcon icon={faStar} />
+            </RatingIcon>
+          ))}
+        </Rating>
+        <CardFooter>
+          <Price>
+            <Currency>$</Currency>
+            <Amount>
+              {product.price}
+            </Amount>
+          </Price>
+          <BtnContainer>
+            <RoundedButton type={ButtonType.Button} color={ButtonColor.Success} onClick={handleAddToCart}>
               <FontAwesomeIcon icon={faCartShopping} />
-            </Button>
-          </CardFooter>
-        </ProductLink>
+            </RoundedButton>
+          </BtnContainer>
+        </CardFooter>
       </InfoSection>
     </Card>
   );
