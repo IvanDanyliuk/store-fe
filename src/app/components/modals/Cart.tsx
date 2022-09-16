@@ -97,7 +97,8 @@ const ItemActions = styled.div`
     w-full
     md:w-1/4
     flex
-    justify-around
+    justify-between
+    md:justify-around
     items-center
   `}
 `;
