@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
@@ -8,13 +9,12 @@ import { faCartShopping, faTrash, faXmark } from '@fortawesome/free-solid-svg-ic
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
-import { selectUser } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { useNavigate } from 'react-router-dom';
 import RoundedButton from '../ui/RoundedButton';
 import { selectCartData } from '../../features/cart/selectors';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../features/cart/reducers';
+import { ICartItem } from '../../features/cart/types';
 
 
 Modal.setAppElement('#root');
@@ -64,11 +64,8 @@ const CloseBtn = styled.button`
 `;
 
 const ShoppingList = styled.ul`
-  min-height: 84%;
   flex: 1;
   ${tw`
-    mb-2
-    
     overflow-y-scroll
   `}
 `;
@@ -78,14 +75,17 @@ const ShoppingListItem = styled.li`
     pt-2
     pb-2
     flex
+    flex-col
+    md:flex-row
     justify-between
     hover:bg-gray-100
   `}
 `;
 
 const ItemInfo = styled.div`
-  max-width: 75%;
   ${tw`
+    w-full
+    md:w-3/4
     flex
     items-center
   `}
@@ -94,7 +94,10 @@ const ItemInfo = styled.div`
 const ItemActions = styled.div`
   ${tw`
     mr-2
+    w-full
+    md:w-1/4
     flex
+    justify-around
     items-center
   `}
 `;
@@ -102,37 +105,41 @@ const ItemActions = styled.div`
 const ImgContainer = styled.div`
   ${tw`
     mr-3
-    w-36
+    w-2/6
+    md:w-36
     h-16
     flex
     justify-center
+    items-center
   `}
 `;
 
 const ProductImg = styled.img`
-  
+  max-height: 100%;
   ${tw`
-    h-full
-    object-cover
-    object-center
+    inline-block
   `}
 `;
 
 const ProductTitle = styled.span`
   ${tw`
-  
+    w-4/6
+    text-sm
+    md:text-base
   `}
 `;
 
 const ProductPrice = styled.span`
   ${tw`
-  
+    w-1/6
+    text-lg
+    text-center
+    font-semibold
   `}
 `;
 
 const ProductNumber = styled.div`
   ${tw`
-    mr-8
     w-20
     flex
     justify-between
@@ -142,7 +149,9 @@ const ProductNumber = styled.div`
 
 const SetNumberBtn = styled.button`
   ${tw`
-    text-2xl
+    p-2
+    text-4xl
+    md:text-2xl
   `}
 `;
 
@@ -156,7 +165,48 @@ const CartFooter = styled.div`
   ${tw`
     mt-3
     w-full
-    h-6
+    h-24
+  `}
+`;
+
+const TotalAmount = styled.div`
+  ${tw`
+    pt-4
+    pb-4
+    flex
+    justify-center
+    items-end
+    text-xl
+  `}
+`;
+
+const AmountTitle = styled.p`
+  ${tw`
+    mr-3
+  `}
+`;
+
+const AmountValue = styled.p`
+  ${tw`
+    font-semibold
+  `}
+`;
+
+const Currency = styled.span`
+  ${tw`
+    mr-1
+  `}
+`;
+
+const Sum = styled.span`
+  ${tw`
+    text-2xl
+  `}
+`;
+
+const FooterActions = styled.div`
+  ${tw`
+    w-full
     flex
     justify-between
     items-center
@@ -166,13 +216,13 @@ const CartFooter = styled.div`
 const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const user = useSelector(selectUser);
-  const cart = useSelector(selectCartData);
+  const cart: ICartItem[] = useSelector(selectCartData);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
+
+  const totalOrderAmount = cart.reduce((acc: number, cur: ICartItem) => acc + (+cur.product.price * cur.quantity), 0);
 
   const [isOpen, setIsOpen] = useState(false);
   
-
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
@@ -208,13 +258,16 @@ const Cart: React.FC = () => {
       marginRight: '-50%',
       background: 'rgb(255, 255, 255',
       transform: 'translate(-50%, -50%)',
-      
     },
     overlay: {
       background: 'rgba(141, 141, 141, .6',
       zIndex: '500',
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <>
@@ -263,20 +316,29 @@ const Cart: React.FC = () => {
             }
           </ShoppingList>
           <CartFooter>
-            <Button 
-              type={ButtonType.Button} 
-              color={ButtonColor.Secondary} 
-              onClick={handleOpenModal}
-            >
-              Continue shopping
-            </Button>
-            <Button 
-              type={ButtonType.Button} 
-              color={ButtonColor.Success} 
-              onClick={makeOrder}
-            >
-              Order
-            </Button>
+            <TotalAmount>
+              <AmountTitle>Total Order:</AmountTitle>
+              <AmountValue>
+                <Currency>$</Currency>
+                <Sum>{totalOrderAmount}</Sum>
+              </AmountValue>
+            </TotalAmount>
+            <FooterActions>
+              <Button 
+                type={ButtonType.Button} 
+                color={ButtonColor.Secondary} 
+                onClick={handleOpenModal}
+              >
+                Continue shopping
+              </Button>
+              <Button 
+                type={ButtonType.Button} 
+                color={ButtonColor.Success} 
+                onClick={makeOrder}
+              >
+                Order
+              </Button>
+            </FooterActions>
           </CartFooter>
         </Container>
       </Modal>
