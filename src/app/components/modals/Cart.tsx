@@ -29,12 +29,28 @@ const Container = styled.div`
 
 const CartBtn = styled.button`
   ${tw`
-    p-3
+    relative
+    p-2
     text-gray-700
     hover:text-white
     transition
     ease-in
     delay-100
+  `}
+`;
+
+const CartSize = styled.span`
+  background: #f0ab44;
+  ${tw`
+    absolute
+    top-0
+    right-0
+    w-5
+    h-5
+    rounded-xl
+    text-sm
+    text-black
+    font-semibold
   `}
 `;
 
@@ -273,6 +289,7 @@ const Cart: React.FC = () => {
   return (
     <>
       <CartBtn onClick={handleOpenModal}>
+        <CartSize>{cart.length}</CartSize>
         <FontAwesomeIcon icon={faCartShopping} />
       </CartBtn>
       <Modal
@@ -344,7 +361,7 @@ const Cart: React.FC = () => {
         </Container>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default Cart;
