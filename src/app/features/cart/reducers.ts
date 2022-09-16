@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IProduct } from '../product/types';
+import { limitDecreasing, limitIncreasing } from '../../helpers/helpers';
 import { ICart, ICartItem } from './types';
 
 
@@ -25,11 +25,11 @@ const cartSlice = createSlice({
     },
     increaseQuantity: (state, action) => {
       state.status = 'succeeded';
-      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item);
+      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: limitIncreasing(item.quantity) } : item);
     }, 
     decreaseQuantity: (state, action) => {
       state.status = 'succeeded';
-      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: item.quantity - 1 } : item);
+      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: limitDecreasing(item.quantity) } : item);
     },
     clearCart: (state) => {
       state.status = 'succeeded';
@@ -38,6 +38,6 @@ const cartSlice = createSlice({
   }
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

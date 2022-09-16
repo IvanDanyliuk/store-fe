@@ -52,3 +52,17 @@ export const formatObjectKey = (key: string) => {
   const splittedKey = key.replace(/([a-z])([A-Z])/g, '$1 $2');
   return splittedKey[0].toUpperCase() + splittedKey.slice(1);
 };
+
+export const limitIncreasing = (num: number) => {
+  if(num < 100) {
+    return num + 1;
+  }
+  return num;
+};
+
+export const limitDecreasing = (num: number) => {
+  if(num === 1) {
+    return num;
+  }
+  return num - 1;
+};

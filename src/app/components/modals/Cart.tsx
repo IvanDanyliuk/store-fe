@@ -14,7 +14,7 @@ import { ButtonColor, ButtonType } from '../../../types/types';
 import { useNavigate } from 'react-router-dom';
 import RoundedButton from '../ui/RoundedButton';
 import { selectCartData } from '../../features/cart/selectors';
-import { removeFromCart } from '../../features/cart/reducers';
+import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../features/cart/reducers';
 
 
 Modal.setAppElement('#root');
@@ -186,11 +186,11 @@ const Cart: React.FC = () => {
   };
 
   const increaseProductQuantity = (id: string) => {
-    
+    dispatch(increaseQuantity(id));
   };
 
   const decreaseProductQuantity = (id: string) => {
-    
+    dispatch(decreaseQuantity(id));
   };
 
   const hadnleDeleteFromCart = (id: string) => {
@@ -246,9 +246,9 @@ const Cart: React.FC = () => {
                   </ItemInfo>
                   <ItemActions>
                     <ProductNumber>
-                      <SetNumberBtn>-</SetNumberBtn>
+                      <SetNumberBtn onClick={() => decreaseProductQuantity(item.id)}>-</SetNumberBtn>
                       <Number>{item.quantity}</Number>
-                      <SetNumberBtn>+</SetNumberBtn>
+                      <SetNumberBtn onClick={() => increaseProductQuantity(item.id)}>+</SetNumberBtn>
                     </ProductNumber>
                     <RoundedButton 
                       type={ButtonType.Button} 
