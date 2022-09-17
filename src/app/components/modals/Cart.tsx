@@ -230,6 +230,18 @@ const FooterActions = styled.div`
   `}
 `;
 
+const EmptyCartMessage = styled.li`
+  ${tw`
+    h-full
+    flex
+    justify-center
+    items-center
+    text-2xl
+    text-gray-500
+    font-semibold
+  `}
+`;
+
 const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -289,7 +301,11 @@ const Cart: React.FC = () => {
   return (
     <>
       <CartBtn onClick={handleOpenModal}>
-        <CartSize>{cart.length}</CartSize>
+        {
+          cart.length > 0 && (
+            <CartSize>{cart.length}</CartSize>
+          )
+        }
         <FontAwesomeIcon icon={faCartShopping} />
       </CartBtn>
       <Modal
@@ -306,7 +322,7 @@ const Cart: React.FC = () => {
           </CartHeader>
           <ShoppingList>
             {
-              cart.map(item => (
+              cart.length > 0 ? cart.map(item => (
                 <ShoppingListItem key={item.id}>
                   <ItemInfo>
                     <ImgContainer>
@@ -330,7 +346,11 @@ const Cart: React.FC = () => {
                     </RoundedButton>
                   </ItemActions>
                 </ShoppingListItem>
-              ))
+              )) : (
+                <EmptyCartMessage>
+                  Cart is empty...
+                </EmptyCartMessage>
+              )
             }
           </ShoppingList>
           <CartFooter>
