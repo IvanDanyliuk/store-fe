@@ -15,6 +15,10 @@ import CreateProductForm from '../modals/CreateProductForm';
 import {clearProduct, setProductToUpdate } from '../../features/product/reducers';
 import { selectUser } from '../../features/user/selectors';
 import { useNavigate } from 'react-router-dom';
+import { selectShippings } from '../../features/shipping/selectors';
+import { deleteShipping, getShippings } from '../../features/shipping/asyncActions';
+import CreateShippingForm from '../modals/CreateShippingForm';
+import { getShipping } from '../../features/shipping/reducers';
 
 
 const Section = styled.section`
@@ -47,6 +51,7 @@ const Editor: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
+  const shippings = useSelector(selectShippings);
   const user = useSelector(selectUser);
 
   if(!user!.isAdmin) {
@@ -69,9 +74,18 @@ const Editor: React.FC = () => {
     dispatch(deleteCategory(id));
   };
 
+  const handleShippingEdit = (id: string) => {
+    dispatch(getShipping(id));
+  };
+
+  const handleShippingDelete = (id: string) => {
+    dispatch(deleteShipping(id));
+  };
+
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
+    dispatch(getShippings());
     return () => { 
       dispatch(clearProduct());
       dispatch(clearCategory());
@@ -102,6 +116,18 @@ const Editor: React.FC = () => {
           data={categories} 
           onEdit={handleCategoryEdit} 
           onDelete={handleCategoryDelete} 
+        />
+      </Section>
+      <Section>
+        <SectionHeader>
+          <SubTitle>Shipping</SubTitle>
+          <CreateShippingForm />
+        </SectionHeader>
+        <Table 
+          tableType={TableTypes.Shipping} 
+          data={shippings} 
+          onEdit={handleShippingEdit} 
+          onDelete={handleShippingDelete} 
         />
       </Section>
     </>

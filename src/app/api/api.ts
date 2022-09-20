@@ -22,6 +22,11 @@ export const createCategory = (category: any) => API.post('/categories', { param
 export const updateCategory = (updatedCategory: any) => API.patch('/categories', { params: { updatedCategory } });
 export const deleteCategory = (id: any) => API.delete('/categories', { params: { id } });
 
+export const getShipping = () => API.get('/shipping');
+export const createShipping = (shipping: any) => API.post('/shipping', { params: { shipping } });
+export const updateShipping = (updatedShipping: any) => API.patch('/shipping', { params: { updatedShipping } });
+export const deleteShipping = (id: any) => API.delete('/shipping', { params: { id } });
+
 export const signin = (userData: any) => API.post('/user/signin', { params: { userData } });
 export const signup = (userData: any) => API.post('/user/signup', { params: { userData } });
 export const updateUser = (userData: any) => API.patch('/user', { params: { userData } });

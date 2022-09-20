@@ -10,6 +10,7 @@ import { ButtonColor, ButtonType, ITableProps, TableTypes } from '../../../types
 import { IProduct } from '../../features/product/types';
 import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
+import { IShipping } from '../../features/shipping/types';
 
 
 interface ICellProps {
@@ -116,7 +117,7 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
     return (
       <WarningMessageBody>
         <Message>
-          There are no available {tableType === TableTypes.Products ? 'products' : 'categories'}
+          There are no available {tableType}
         </Message>
       </WarningMessageBody>
     )
@@ -136,10 +137,15 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                   <TableHeaderCell name='productImage'></TableHeaderCell>
                   <TableHeaderCell name='productActions'></TableHeaderCell>
                 </>
-              ) : (
+              ) : tableType === TableTypes.Categories ? (
                 <>
                   <TableHeaderCell name='categoryName'>Name</TableHeaderCell>
                   <TableHeaderCell name='categoryActions'></TableHeaderCell>
+                </>
+              ) : (
+                <>
+                  <TableHeaderCell name='shippingName'>Name</TableHeaderCell>
+                  <TableHeaderCell name='shippingActions'></TableHeaderCell>
                 </>
               )
             }
@@ -173,28 +179,50 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                     </Button>
                   </TableCell>
                 </TableRow>
-              )) : 
-              slice.map((category: IProductCategory) => 'main' in category && (
+              )) : tableType === TableTypes.Categories ? (
+                slice.map((category: IProductCategory) => 'main' in category && (
+                  <TableRow key={uuid()}>
+                    <TableCell name='categoryName'>{category.main.title}</TableCell>
+                    <TableCell name='categoryActions'>
+                      <Button 
+                        color={ButtonColor.Success} 
+                        type={ButtonType.Button}
+                        onClick={() => onEdit(category._id)}
+                      >
+                        Edit
+                      </Button>
+                      <Button 
+                        color={ButtonColor.Danger} 
+                        type={ButtonType.Button}
+                        onClick={() => onDelete(category._id)}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                )
+              )) : slice.map((shippingOption: IShipping) => 'company' in shippingOption && (
                 <TableRow key={uuid()}>
-                  <TableCell name='categoryName'>{category.main.title}</TableCell>
+                  <TableCell name='shippingName'>{shippingOption.company}</TableCell>
                   <TableCell name='categoryActions'>
                     <Button 
                       color={ButtonColor.Success} 
                       type={ButtonType.Button}
-                      onClick={() => onEdit(category._id)}
+                      onClick={() => onEdit(shippingOption._id!)}
                     >
                       Edit
                     </Button>
                     <Button 
                       color={ButtonColor.Danger} 
                       type={ButtonType.Button}
-                      onClick={() => onDelete(category._id)}
+                      onClick={() => onDelete(shippingOption._id!)}
                     >
                       Delete
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))
+              )
+            )
           }
           {
             emptyRows > 0 && (
