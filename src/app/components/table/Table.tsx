@@ -204,7 +204,7 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
               )) : slice.map((shippingOption: IShipping) => 'company' in shippingOption && (
                 <TableRow key={uuid()}>
                   <TableCell name='shippingName'>{shippingOption.company}</TableCell>
-                  <TableCell name='categoryActions'>
+                  <TableCell name='shippingActions'>
                     <Button 
                       color={ButtonColor.Success} 
                       type={ButtonType.Button}
