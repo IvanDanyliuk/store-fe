@@ -184,6 +184,11 @@ const CreateShippingForm: React.FC = () => {
       }));
     }
 
+    setShippingData({
+      company: '',
+      country: '',
+      price: 0,
+    });
     setCity('');
     setCities([]);
     setIsOpen(false);
