@@ -31,8 +31,8 @@ const Fieldset = styled.fieldset`
 
 const Label = styled.label`
   ${tw`
-    font-semibold
-    text-sm
+    font-medium
+    text-xs
     text-gray-500
   `}
 `;
@@ -40,8 +40,10 @@ const Label = styled.label`
 const Input = styled.input`
   ${tw`
     mb-2
-    p-1
+    p-2
     w-full
+    text-sm
+    font-semibold
     border
     rounded
   `}

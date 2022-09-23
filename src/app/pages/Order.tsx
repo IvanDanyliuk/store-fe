@@ -38,16 +38,16 @@ const OrderDetails = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-3
-    mb-3
-    text-lg
+    mt-6
+    mb-6
+    text-xl
     font-semibold
   `}
 `;
 
 const SubTitle = styled.h6`
   ${tw`
-    mb-2
+    mb-6
     flex
     items-center
     text-base
@@ -78,15 +78,25 @@ const SubTitleText = styled.span`
 
 const AcceptOrderSection = styled.div`
   ${tw`
+    relative
+    md:fixed
+    top-20
+    right-0
     p-6
+    w-1/4
+    bg-white
   `}
 `;
 
 const DetailsSection = styled.div`
+  max-height: 70vh;
   ${tw`
-    mb-6
+    mb-8
+    flex
+    flex-col
   `}
 `;
+
 
 const ShippingSelection = styled.div`
   ${tw`
@@ -105,7 +115,7 @@ const CompanyTitle = styled.span`
 
 const RadioContainer = styled.div`
   &[data-isChecked="true"] {
-    background: #ececec;
+    border: 1px solid rgb(63, 197, 255);
   } 
   ${tw`
     mb-3
@@ -123,7 +133,6 @@ const Radio = styled.input`
 const Select = styled.select`
   ${tw`
     mt-1
-    mb-3
     p-2
     w-full
     border
