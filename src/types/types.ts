@@ -15,10 +15,6 @@ export interface IReview {
   date: string;
 }
 
-
-
-
-
 export interface IProductListProps {
   products: IProduct[];
   category?: string;

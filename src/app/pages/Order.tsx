@@ -5,6 +5,7 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { ButtonColor, ButtonType } from '../../types/types';
 import OrderForm from '../components/order/OrderForm';
+import Payment from '../components/order/Payment';
 import ShoppingList from '../components/order/ShoppingList';
 import Button from '../components/ui/Button';
 import { selectCartData } from '../features/cart/selectors';
@@ -98,15 +99,15 @@ const DetailsSection = styled.div`
 `;
 
 
-const ShippingSelection = styled.div`
+const SelectionContainer = styled.div`
   ${tw`
   
   `}
 `;
 
-const Company = styled.div``;
+const RadioBody = styled.div``;
 
-const CompanyTitle = styled.span`
+const RadioTitle = styled.span`
   ${tw`
     text-base
     font-semibold
@@ -127,6 +128,48 @@ const RadioContainer = styled.div`
 const Radio = styled.input`
   ${tw`
     mr-2
+  `}
+`;
+
+const Card = styled.div`
+  ${tw`
+  
+  `}
+`;
+
+const CardNumber = styled.input`
+  ${tw`
+  
+  `}
+`;
+
+const CardPeriodContainer = styled.div`
+  ${tw`
+  
+  `}
+`;
+
+const CardPeriodDivider = styled.span`
+  ${tw`
+  
+  `}
+`;
+
+const CardPeriod = styled.input`
+  ${tw`
+  
+  `}
+`;
+
+const CardFooter = styled.div`
+  ${tw`
+  
+  `}
+`;
+
+const CardCvvCode = styled.input`
+  ${tw`
+  
   `}
 `;
 
@@ -207,6 +250,15 @@ const Order: React.FC = () => {
   const [currentShippingCity, setCurrentShippingCity] = useState('');
   const [shippingAmount, setShippingAmount] = useState(0);
 
+  const [currentPaymentMethod, setCurrentPaymentMethod] = useState('when-receiving');
+
+  const [cardData, setCardData] = useState({
+    number: '',
+    month: '',
+    year: '',
+    cvv: '',
+  });
+
   const [customer, setCustomer] = useState<ICustomer>({
     firstName: '',
     lastName: '',
@@ -235,11 +287,22 @@ const Order: React.FC = () => {
     });
   };
 
+  const handleCardDataChange = (e: any) => {
+    setCardData({
+      ...cardData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleCurrentShippingCompanyChange = (e: any) => {
     setCurrentShippingCompany(e.target.value);
     const currentCompany = shippings.find(item => item.company === e.target.value);
     setCurrentShippingCity(currentCompany?.cities[0]!);
     setShippingAmount(currentCompany?.price!);
+  };
+
+  const handleCurrentPaymentMethodChange = (e: any) => {
+    setCurrentPaymentMethod(e.target.value);
   };
 
   const handleCurrentShippingCityChange = (e: any) => {
@@ -293,14 +356,14 @@ const Order: React.FC = () => {
             <SubTitleNum>2</SubTitleNum>
             <SubTitleText>Shipping</SubTitleText>
           </SubTitle>
-          <ShippingSelection>
+          <SelectionContainer>
             {
               shippings.map(item => (
                 <RadioContainer 
                   key={uuid()} 
                   data-isChecked={currentShippingCompany === item.company}
                 >
-                  <Company>
+                  <RadioBody>
                     <Radio 
                       type='radio' 
                       name='shipping' 
@@ -308,10 +371,10 @@ const Order: React.FC = () => {
                       checked={currentShippingCompany === item.company} 
                       onChange={handleCurrentShippingCompanyChange}
                     />
-                    <CompanyTitle>
+                    <RadioTitle>
                       {item.company} {item.company === 'Self pickup' && '(only for Ukrainian customers)'}
-                    </CompanyTitle>
-                  </Company>
+                    </RadioTitle>
+                  </RadioBody>
                   <Select 
                     disabled={currentShippingCompany !== item.company}
                     value={currentShippingCity}
@@ -331,7 +394,7 @@ const Order: React.FC = () => {
                 </RadioContainer>
               ))
             }
-          </ShippingSelection>
+          </SelectionContainer>
         </DetailsSection>
         <DetailsSection>
           <SubTitle>
@@ -343,6 +406,39 @@ const Order: React.FC = () => {
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>4</SubTitleNum>
+            <SubTitleText>Payment Method</SubTitleText>
+          </SubTitle>
+          <SelectionContainer>
+            <RadioContainer data-isChecked={currentPaymentMethod === 'when-receiving'}>
+              <RadioBody>
+                <Radio 
+                  type='radio' 
+                  name='payment' 
+                  value='when-receiving' 
+                  checked={currentPaymentMethod === 'when-receiving'} 
+                  onChange={handleCurrentPaymentMethodChange}
+                />
+                <RadioTitle>Pay when receiving an order</RadioTitle>
+              </RadioBody>
+            </RadioContainer>
+            <RadioContainer data-isChecked={currentPaymentMethod === 'pay-now'}>
+              <RadioBody>
+                <Radio 
+                  type='radio' 
+                  name='payment' 
+                  value='pay-now' 
+                  checked={currentPaymentMethod === 'pay-now'} 
+                  onChange={handleCurrentPaymentMethodChange}
+                />
+                <RadioTitle>Pay now by card</RadioTitle>
+              </RadioBody>
+              <Payment />
+            </RadioContainer>
+          </SelectionContainer>
+        </DetailsSection>
+        <DetailsSection>
+          <SubTitle>
+            <SubTitleNum>5</SubTitleNum>
             <SubTitleText>Receiver's contact data</SubTitleText>
           </SubTitle>
           <OrderForm 

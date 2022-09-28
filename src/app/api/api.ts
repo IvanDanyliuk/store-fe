@@ -27,8 +27,16 @@ export const createShipping = (shipping: any) => API.post('/shipping', { params:
 export const updateShipping = (updatedShipping: any) => API.patch('/shipping', { params: { updatedShipping } });
 export const deleteShipping = (id: any) => API.delete('/shipping', { params: { id } });
 
+export const getOrders = () => API.get('/orders');
+export const getUserOrder = (email: any) => API.get('/orders', { params: { email } });
+export const createOrder = (order: any) => API.post('/orders', { params: { order } });
+export const updateOrder = (updatedOrder: any) => API.patch('/orders', { params: { updatedOrder } });
+export const payOrder = (paymentData: any) => API.post('/orders/payment', { params: { paymentData } });
+export const deleteOrder = (id: any) => API.delete('/orders', { params: { id } });
+
 export const signin = (userData: any) => API.post('/user/signin', { params: { userData } });
 export const signup = (userData: any) => API.post('/user/signup', { params: { userData } });
 export const updateUser = (userData: any) => API.patch('/user', { params: { userData } });
 export const updatePassword = (passwordData: IPasswordToUpdate) => API.patch('/user/update-password', { params: { passwordData } });
 export const deleteUser = (id: any) => API.delete('/user', { params: { id } });
+

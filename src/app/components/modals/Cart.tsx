@@ -213,7 +213,7 @@ const Cart: React.FC = () => {
                 color={ButtonColor.Success} 
                 onClick={makeOrder}
               >
-                Order
+                Checkout
               </Button>
             </FooterActions>
           </CartFooter>
