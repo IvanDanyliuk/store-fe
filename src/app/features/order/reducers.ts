@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getOrders, getUserOrders, createOrder, updateOrder, deleteOrder } from './asyncActions';
+import { getOrders, getUserOrders, createOrder, updateOrder, payOrder, deleteOrder } from './asyncActions';
 import { IOrderState } from './types';
 
 
 const initialState: IOrderState = {
   status: 'idle',
+  clientSecret: null,
   orders: [],
   error: null,
 };
@@ -12,7 +13,11 @@ const initialState: IOrderState = {
 const ordersSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {},
+  reducers: {
+    clearClientSecret: (state) => {
+      state.clientSecret = null;
+    }, 
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getOrders.pending, (state, action) => {
@@ -56,6 +61,17 @@ const ordersSlice = createSlice({
         state.orders = state.orders.map(order => order._id !== action.payload._id ? order : { _id: order._id, ...action.payload });
       })
       .addCase(updateOrder.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(payOrder.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(payOrder.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.clientSecret = action.payload;
+      })
+      .addCase(payOrder.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

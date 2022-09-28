@@ -51,6 +51,18 @@ export const updateOrder = createAsyncThunk(
   }
 );
 
+export const payOrder = createAsyncThunk(
+  'orders/payOrder',
+  async (paymentData: any, { rejectWithValue }) => {
+    try {
+      const { data } = await api.payOrder(paymentData);
+      return data;
+    } catch (error) {
+      
+    }
+  })
+)
+
 export const deleteOrder = createAsyncThunk(
   'orders/deleteOrder',
   async (id: string, { rejectWithValue }) => {
