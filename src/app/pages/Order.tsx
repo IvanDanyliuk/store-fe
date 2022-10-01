@@ -14,6 +14,7 @@ import { getShippings } from '../features/shipping/asyncActions';
 import { selectShippings, selectShippingStatus } from '../features/shipping/selectors';
 import { AppDispatch } from '../features/store';
 import { selectUser } from '../features/user/selectors';
+import { selectClientSecret } from '../features/order/selectors';
 
 
 interface ICustomer {
@@ -251,13 +252,7 @@ const Order: React.FC = () => {
   const [shippingAmount, setShippingAmount] = useState(0);
 
   const [currentPaymentMethod, setCurrentPaymentMethod] = useState('when-receiving');
-
-  const [cardData, setCardData] = useState({
-    number: '',
-    month: '',
-    year: '',
-    cvv: '',
-  });
+  const clientSecret = useSelector(selectClientSecret);
 
   const [customer, setCustomer] = useState<ICustomer>({
     firstName: '',
@@ -283,13 +278,6 @@ const Order: React.FC = () => {
   const handleReceiverDataChange = (e: any) => {
     setReceiver({
       ...receiver,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleCardDataChange = (e: any) => {
-    setCardData({
-      ...cardData,
       [e.target.name]: e.target.value,
     });
   };
@@ -474,7 +462,7 @@ const Order: React.FC = () => {
           color={ButtonColor.Success} 
           onClick={handleOrderPay}
         >
-          Pay
+          Submit Order
         </Button>
       </AcceptOrderSection>
     </Container>

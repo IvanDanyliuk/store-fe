@@ -5,6 +5,7 @@ import { IOrderState } from './types';
 
 const initialState: IOrderState = {
   status: 'idle',
+  paymentStatus: 'idle',
   clientSecret: null,
   orders: [],
   error: null,
@@ -65,14 +66,14 @@ const ordersSlice = createSlice({
         state.error = 'error';
       })
       .addCase(payOrder.pending, (state, action) => {
-        state.status = 'loading';
+        state.paymentStatus = 'loading';
       })
       .addCase(payOrder.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.paymentStatus = 'succeeded';
         state.clientSecret = action.payload;
       })
       .addCase(payOrder.rejected, (state, action) => {
-        state.status = 'failed';
+        state.paymentStatus = 'failed';
         state.error = 'error';
       })
       .addCase(deleteOrder.pending, (state, action) => {

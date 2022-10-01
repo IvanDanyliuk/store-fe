@@ -31,7 +31,7 @@ export const getOrders = () => API.get('/orders');
 export const getUserOrder = (email: any) => API.get('/orders', { params: { email } });
 export const createOrder = (order: any) => API.post('/orders', { params: { order } });
 export const updateOrder = (updatedOrder: any) => API.patch('/orders', { params: { updatedOrder } });
-export const payOrder = (paymentData: any) => API.post('/orders/payment', { params: { paymentData } });
+export const payOrder = (order: any) => API.post('/orders/payment', { params: { order } });
 export const deleteOrder = (id: any) => API.delete('/orders', { params: { id } });
 
 export const signin = (userData: any) => API.post('/user/signin', { params: { userData } });

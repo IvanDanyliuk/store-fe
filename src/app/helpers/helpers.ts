@@ -70,3 +70,15 @@ export const limitDecreasing = (num: number) => {
   }
   return num - 1;
 };
+
+export const formatCardNumber = (cardNumber: string) => {
+  const rawNumber = [...cardNumber.split(' ').join('')];
+  const formattedCardNumber: any = [];
+  rawNumber.forEach((char, i) => {
+    if(i % 4 === 0) {
+      formattedCardNumber.push(' ');
+    }
+    formattedCardNumber.push(char);
+  });
+  return formattedCardNumber.join('');
+};

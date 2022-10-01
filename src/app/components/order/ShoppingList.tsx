@@ -1,9 +1,10 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { v4 as uuid } from 'uuid';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../features/cart/reducers';
 import { ICartItem } from '../../features/cart/types';
@@ -146,7 +147,7 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
     <List>
       {
         cart.length > 0 ? cart.map(item => (
-          <ShoppingListItem key={item.id}>
+          <ShoppingListItem key={uuid()}>
             <ItemInfo>
               <ImgContainer>
                 <ProductImg src={item.product.image} alt={item.product.title} />

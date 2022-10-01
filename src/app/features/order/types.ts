@@ -4,6 +4,7 @@ import { IUser } from "../user/types";
 
 export interface IOrderState {
   status: string;
+  paymentStatus: string;
   clientSecret: any;
   orders: IOrder[];
   error: null | string;

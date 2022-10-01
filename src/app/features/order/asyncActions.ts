@@ -52,16 +52,16 @@ export const updateOrder = createAsyncThunk(
 );
 
 export const payOrder = createAsyncThunk(
-  'orders/payOrder',
-  async (paymentData: any, { rejectWithValue }) => {
+  'orders/createPaymentIntent',
+  async (order: any, { rejectWithValue }) => {
     try {
-      const { data } = await api.payOrder(paymentData);
+      const { data } = await api.payOrder(order);
       return data;
     } catch (error) {
-      
+      return rejectWithValue(error);
     }
-  })
-)
+  }
+);
 
 export const deleteOrder = createAsyncThunk(
   'orders/deleteOrder',
