@@ -18,6 +18,10 @@ const ordersSlice = createSlice({
     clearClientSecret: (state) => {
       state.clientSecret = null;
     }, 
+    clearOrder: (state) => {
+      state.status = 'idle';
+      state.orders = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -90,6 +94,6 @@ const ordersSlice = createSlice({
   }
 });
 
-// export const {  } = ordersSlice.actions;
+export const { clearOrder } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

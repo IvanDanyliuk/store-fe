@@ -14,7 +14,11 @@ import { getShippings } from '../features/shipping/asyncActions';
 import { selectShippings, selectShippingStatus } from '../features/shipping/selectors';
 import { AppDispatch } from '../features/store';
 import { selectUser } from '../features/user/selectors';
-import { selectClientSecret } from '../features/order/selectors';
+import { createOrder } from '../features/order/asyncActions';
+import { useNavigate } from 'react-router-dom';
+import { selectOrderStatus } from '../features/order/selectors';
+import { clearCart } from '../features/cart/reducers';
+import { clearOrder } from '../features/order/reducers';
 
 
 interface ICustomer {
@@ -99,7 +103,6 @@ const DetailsSection = styled.div`
   `}
 `;
 
-
 const SelectionContainer = styled.div`
   ${tw`
   
@@ -129,48 +132,6 @@ const RadioContainer = styled.div`
 const Radio = styled.input`
   ${tw`
     mr-2
-  `}
-`;
-
-const Card = styled.div`
-  ${tw`
-  
-  `}
-`;
-
-const CardNumber = styled.input`
-  ${tw`
-  
-  `}
-`;
-
-const CardPeriodContainer = styled.div`
-  ${tw`
-  
-  `}
-`;
-
-const CardPeriodDivider = styled.span`
-  ${tw`
-  
-  `}
-`;
-
-const CardPeriod = styled.input`
-  ${tw`
-  
-  `}
-`;
-
-const CardFooter = styled.div`
-  ${tw`
-  
-  `}
-`;
-
-const CardCvvCode = styled.input`
-  ${tw`
-  
   `}
 `;
 
@@ -240,10 +201,13 @@ const AcceptAmount = styled.span`
 
 const Order: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
   const user = useSelector(selectUser);
   const cart: ICartItem[] = useSelector(selectCartData);
   const shippings = useSelector(selectShippings);
   const shippingStatus = useSelector(selectShippingStatus);
+  const orderStatus = useSelector(selectOrderStatus);
 
   const totalAmount = cart.reduce((acc: number, cur: ICartItem) => acc + (+cur.product.price * cur.quantity), 0);
 
@@ -252,7 +216,6 @@ const Order: React.FC = () => {
   const [shippingAmount, setShippingAmount] = useState(0);
 
   const [currentPaymentMethod, setCurrentPaymentMethod] = useState('when-receiving');
-  const clientSecret = useSelector(selectClientSecret);
 
   const [customer, setCustomer] = useState<ICustomer>({
     firstName: '',
@@ -261,7 +224,7 @@ const Order: React.FC = () => {
     email: '',
   });
 
-  const [receiver, setReceiver] = useState<ICustomer>({
+  const [recepient, setRecepient] = useState<ICustomer>({
     firstName: '',
     lastName: '',
     phone: '',
@@ -276,8 +239,8 @@ const Order: React.FC = () => {
   };
 
   const handleReceiverDataChange = (e: any) => {
-    setReceiver({
-      ...receiver,
+    setRecepient({
+      ...recepient,
       [e.target.name]: e.target.value,
     });
   };
@@ -297,8 +260,18 @@ const Order: React.FC = () => {
     setCurrentShippingCity(e.target.value);
   };
 
-  const handleOrderPay = (e: any) => {
-    console.log('The order has been paid.');
+  const submitOrder = (e: any) => {
+    dispatch(createOrder({
+      products: cart.map(product => ({ product: product.product, quantity: product.quantity })),
+      customer,
+      recepient,
+      isPaid: false,
+      isShipped: false,
+      shippingCity: currentShippingCity,
+      shippingCompany: currentShippingCompany,
+      paymentMethod: currentPaymentMethod,
+      creditCardNumber: '',
+    }));
   };
 
   useEffect(() => {
@@ -308,7 +281,7 @@ const Order: React.FC = () => {
       phone: user?.phone,
       email: user?.email,
     });
-    setReceiver({
+    setRecepient({
       firstName: user?.firstName,
       lastName: user?.lastName,
       phone: user?.phone,
@@ -324,6 +297,18 @@ const Order: React.FC = () => {
       setShippingAmount(shippings[0].price);
     }
   }, [shippingStatus]);
+
+  useEffect(() => {
+    if(orderStatus === 'succeeded') {
+      navigate('/');
+      dispatch(clearCart());
+      dispatch(clearOrder());
+    }
+  }, [orderStatus]);
+
+  if(!cart || cart.length === 0) {
+    navigate('/');
+  }
 
   return (
     <Container>
@@ -430,7 +415,7 @@ const Order: React.FC = () => {
             <SubTitleText>Receiver's contact data</SubTitleText>
           </SubTitle>
           <OrderForm 
-            data={receiver} 
+            data={recepient} 
             onChange={handleReceiverDataChange} 
           />
         </DetailsSection>
@@ -460,7 +445,7 @@ const Order: React.FC = () => {
         <Button 
           type={ButtonType.Button} 
           color={ButtonColor.Success} 
-          onClick={handleOrderPay}
+          onClick={submitOrder}
         >
           Submit Order
         </Button>

@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IOrder } from '../../../types/types';
 import * as api from '../../api/api';
 
 
@@ -29,7 +28,7 @@ export const getUserOrders = createAsyncThunk(
 
 export const createOrder = createAsyncThunk(
   'orders/createOrder',
-  async (order: IOrder, { rejectWithValue }) => {
+  async (order: any, { rejectWithValue }) => {
     try {
       const { data } = await api.createOrder(order);
       return data;

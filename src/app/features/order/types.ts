@@ -11,7 +11,7 @@ export interface IOrderState {
 }
 
 export interface IOrder {
-  _id:string;
+  _id: string;
   products: IProduct[];
   user: IUser;
   isPaid: boolean;
