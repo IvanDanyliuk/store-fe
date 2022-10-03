@@ -12,15 +12,31 @@ export interface IOrderState {
 
 export interface IOrder {
   _id: string;
-  products: IProduct[];
-  user: IUser;
+  products: {
+    _id: string;
+    quantity: number;
+    product: IProduct;
+  }[];
+  amount: number;
+  customer: {
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+  };
+  recepient: {
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+  };
   isPaid: boolean;
   isShipped: boolean;
+  shippingCity: string;
+  shippingCompany: string;
   paymentMethod: string;
-  createdAt: {
-    type: Date;
-    default: Date;
-  };
+  creditCardNumber: string;
+  createdAt: string;
 }
 
 export interface IOrderToUpdate {

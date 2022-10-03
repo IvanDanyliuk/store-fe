@@ -27,8 +27,8 @@ export const createShipping = (shipping: any) => API.post('/shipping', { params:
 export const updateShipping = (updatedShipping: any) => API.patch('/shipping', { params: { updatedShipping } });
 export const deleteShipping = (id: any) => API.delete('/shipping', { params: { id } });
 
-export const getOrders = () => API.get('/orders');
-export const getUserOrder = (email: any) => API.get('/orders', { params: { email } });
+export const getOrders = () => API.get('/orders/admin');
+export const getUserOrder = (email: any) => API.get('/orders/user', { params: { email } });
 export const createOrder = (order: any) => API.post('/orders', { params: { order } });
 export const updateOrder = (updatedOrder: any) => API.patch('/orders', { params: { updatedOrder } });
 export const payOrder = (order: any) => API.post('/orders/payment', { params: { order } });

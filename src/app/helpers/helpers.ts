@@ -43,6 +43,21 @@ export const setCellWidth = (name: string, isMobile: boolean) => {
   }
 };
 
+export const setOrderCellWidth = (name: string, isMobile: boolean) => {
+  switch(name) {
+    case 'image':
+      return isMobile ? '70px' : '15%';
+    case 'title':
+      return isMobile ? '250px' : '45%';
+    case 'quantity':
+      return isMobile ? '70px' : '20%';
+    case 'price':
+      return isMobile ? '100px' : '20%';
+    default:
+      return '0%';
+  }
+};
+
 export const setCategoryUrl = (title: string) => {
   const splittedTitle = title.toLowerCase().split(' ').map(item => item.replace(/[^a-z0-9]/gi, ''));
   return splittedTitle.length > 1 ? splittedTitle.join('-') : splittedTitle[0];

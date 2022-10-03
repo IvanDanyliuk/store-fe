@@ -263,6 +263,7 @@ const Order: React.FC = () => {
   const submitOrder = (e: any) => {
     dispatch(createOrder({
       products: cart.map(product => ({ product: product.product, quantity: product.quantity })),
+      amount: totalAmount,
       customer,
       recepient,
       isPaid: false,

@@ -22,6 +22,7 @@
     "axios": "^0.27.2",
     "credit-card-type": "^9.1.0",
     "firebase": "^9.9.3",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.8",
     "react-dom": "^18.2.0",
