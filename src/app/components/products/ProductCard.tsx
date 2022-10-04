@@ -28,17 +28,17 @@ const Card = styled.li`
 
 const ImageSection = styled.div`
   ${tw`
-    relative
-    h-56
+    w-full
+    h-44
     flex
     justify-center
+    items-center
   `}
 `;
 
 const Image = styled.img`
-  ${tw`
-    h-56
-  `}
+  max-height: 100%;
+  max-width: 100%;
 `;
 
 const ProductLink = styled(Link)``;

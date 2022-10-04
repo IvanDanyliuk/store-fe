@@ -10,6 +10,7 @@ import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../featur
 import { ICartItem } from '../../features/cart/types';
 import { AppDispatch } from '../../features/store';
 import RoundedButton from '../ui/RoundedButton';
+import ProductListImage from '../ui/ProductListImage';
 
 
 interface IShoppingListProps {
@@ -54,25 +55,6 @@ const ItemActions = styled.div`
     justify-between
     md:justify-around
     items-center
-  `}
-`;
-
-const ImgContainer = styled.div`
-  ${tw`
-    mr-3
-    w-2/6
-    md:w-36
-    h-16
-    flex
-    justify-center
-    items-center
-  `}
-`;
-
-const ProductImg = styled.img`
-  max-height: 100%;
-  ${tw`
-    inline-block
   `}
 `;
 
@@ -149,9 +131,7 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
         cart.length > 0 ? cart.map(item => (
           <ShoppingListItem key={uuid()}>
             <ItemInfo>
-              <ImgContainer>
-                <ProductImg src={item.product.image} alt={item.product.title} />
-              </ImgContainer>
+              <ProductListImage url={item.product.image} altText={item.product.title} />
               <ProductTitle>{item.product.title}</ProductTitle>
               <ProductPrice>{item.product.price}</ProductPrice>
             </ItemInfo>

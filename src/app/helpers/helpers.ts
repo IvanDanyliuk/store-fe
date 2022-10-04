@@ -97,3 +97,7 @@ export const formatCardNumber = (cardNumber: string) => {
   });
   return formattedCardNumber.join('');
 };
+
+export const getOtherProductsQuantity = (renderedProducts: number, productsQuantity: number) => {
+  return productsQuantity > renderedProducts ? `+ ${productsQuantity - renderedProducts} more` : '';
+};

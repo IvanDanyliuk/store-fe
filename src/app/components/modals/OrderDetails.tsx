@@ -12,6 +12,7 @@ import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { setOrderCellWidth } from '../../helpers/helpers';
+import ProductListImage from '../ui/ProductListImage';
 
 
 Modal.setAppElement('#root');
@@ -129,25 +130,6 @@ const TableCell = styled.td<ICellProps>`
   `}
 `;
 
-const ImageContainer = styled.div`
-  ${tw`
-    mr-3
-    w-2/6
-    md:w-10
-    h-10
-    flex
-    justify-center
-    items-center
-  `}
-`;
-
-const Image = styled.img`
-  max-height: 100%;
-  ${tw`
-    inline-block
-  `}
-`;
-
 const Details = styled.div`
   ${tw`
     w-1/4
@@ -234,9 +216,10 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
                 {order.products.map(product => (
                   <Row key={uuid()}>
                     <TableCell name='image'>
-                      <ImageContainer>
-                        <Image src={product.product.image} alt={product.product.title} />
-                      </ImageContainer>
+                      <ProductListImage 
+                        url={product.product.image} 
+                        altText={product.product.title} 
+                      />
                     </TableCell>
                     <TableCell name='title'>
                       {product.product.title}

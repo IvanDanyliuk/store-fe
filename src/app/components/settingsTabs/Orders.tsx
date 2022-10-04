@@ -15,6 +15,12 @@ const Container = styled.div`
   `}
 `;
 
+const FilterSection = styled.div`
+  ${tw`
+  
+  `}
+`;
+
 
 const Orders = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,6 +38,9 @@ const Orders = () => {
 
   return (
     <Container>
+      {user?.isAdmin && (
+        <FilterSection>Filters will be here soon!</FilterSection>
+      )}
       <OrderList orders={orders} />
     </Container>
   );

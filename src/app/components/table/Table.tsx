@@ -11,6 +11,7 @@ import { IProduct } from '../../features/product/types';
 import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
 import { IShipping } from '../../features/shipping/types';
+import ProductListImage from '../ui/ProductListImage';
 
 
 interface ICellProps {
@@ -68,12 +69,6 @@ const TableHeaderCell = styled.th<ICellProps>`
     pt-3
     pb-3
     text-left
-  `}
-`;
-
-const ProductImage = styled.img`
-  ${tw`
-    w-12
   `}
 `;
 
@@ -160,7 +155,7 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                   <TableCell name='productPrice'>{product.price}</TableCell>
                   <TableCell name='productRating'>{product.rating}</TableCell>
                   <TableCell name='productImage'>
-                    <ProductImage src={product.image} alt={product.title} />
+                    <ProductListImage url={product.image} altText={product.title} />
                   </TableCell>
                   <TableCell name='productActions'>
                     <Button 
