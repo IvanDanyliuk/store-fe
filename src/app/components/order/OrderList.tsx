@@ -15,41 +15,39 @@ interface IOrderListProps {
 
 const List = styled.ul`
   ${tw`
-  
+    w-full
   `}
 `;
 
 const ListItem = styled.li`
   ${tw`
-    pt-2
-    pb-2
+    mb-4
+    md:mb-0
+    p-2
     w-full
     flex
-    items-center
+    flex-wrap
+    md:flex-row
+    box-border
     hover:bg-gray-100
-  `}
-`;
-
-const OrderInfo = styled.div`
-  ${tw`
-    relative
-    w-4/6
-    flex
-    items-center
   `}
 `;
 
 const Text = styled.div`
   ${tw`
-    mr-3
-    w-2/6
-    text-sm
+    mb-2
+    md:mb-0
+    w-1/2
+    md:w-3/12
+    text-xs
+    md:text-sm
   `}
 `;
 
 const ProductImages = styled.div`
   ${tw`
-    w-2/6
+    w-1/2
+    md:w-4/12
     flex
     items-center
   `}
@@ -63,7 +61,8 @@ const OtherProducts = styled.span`
 
 const Actions = styled.div`
   ${tw`
-    w-2/6
+    w-1/2
+    md:w-2/12
     flex
     justify-end
   `}
@@ -83,22 +82,20 @@ const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
     <List>
       {orders.length > 0 ? orders.map(order => (
         <ListItem key={uuid()}>
-          <OrderInfo>
-            <Text>{order._id}</Text>
-            <Text>{moment(order.createdAt).format('LLL')}</Text>
-            <ProductImages>
-              {order.products.slice(0, 3).map(product => (
-                <ProductListImage 
-                  key={uuid()} 
-                  url={product.product.image} 
-                  altText={product.product.title} 
-                />
-              ))}
-              <OtherProducts>
-                {getOtherProductsQuantity(3, order.products.length)}
-              </OtherProducts>
-            </ProductImages>
-          </OrderInfo>
+          <Text>{order._id}</Text>
+          <Text>{moment(order.createdAt).format('LLL')}</Text>
+          <ProductImages>
+            {order.products.slice(0, 3).map(product => (
+              <ProductListImage 
+                key={uuid()} 
+                url={product.product.image} 
+                altText={product.product.title} 
+              />
+            ))}
+            <OtherProducts>
+              {getOtherProductsQuantity(3, order.products.length)}
+            </OtherProducts>
+          </ProductImages>
           <Actions>
             <OrderDetails order={order} />
           </Actions>

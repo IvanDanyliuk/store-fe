@@ -4,13 +4,13 @@ import tw from 'twin.macro';
 import Modal from 'react-modal';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import Button from '../ui/Button';
+import RoundedButton from '../ui/RoundedButton';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { IOrder } from '../../features/order/types';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faList, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { setOrderCellWidth } from '../../helpers/helpers';
 import ProductListImage from '../ui/ProductListImage';
 
@@ -182,13 +182,13 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
 
   return (
     <>
-      <Button
+      <RoundedButton
         type={ButtonType.Button}
         color={ButtonColor.Secondary}
         onClick={handleOpenModal}
       >
-        Details
-      </Button>
+        <FontAwesomeIcon icon={faInfo} />
+      </RoundedButton>
       <Modal
         isOpen={isOpen}
         onRequestClose={handleOpenModal}
