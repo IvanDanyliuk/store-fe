@@ -51,7 +51,7 @@ const OrderInfo = styled.div`
 const Summary = styled.div`
   ${tw`
     pt-3
-    h-24
+    h-28
     flex
   `}
 `;
@@ -259,8 +259,18 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
             </Details>
             <Details>
               <DetailsTitle>Shipping</DetailsTitle>
-              <DetailsInfo>{order.shippingCompany}</DetailsInfo>
-              <DetailsInfo>{order.shippingCity}</DetailsInfo>
+              <DetailsInfo>
+                {order.shippingCompany}
+              </DetailsInfo>
+              <DetailsInfo>
+                {order.shippingCity}
+              </DetailsInfo>
+              <DetailsInfo>
+                {order.isShipped ? 'Shipped' : 'Not shipped'}
+              </DetailsInfo>
+              <DetailsInfo>
+                {order.isPaid ? 'Paid' : 'Not paid yet'}
+              </DetailsInfo>
             </Details>
             <Details>
               <DetailsTitle>Customer</DetailsTitle>
