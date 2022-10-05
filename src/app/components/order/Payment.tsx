@@ -16,7 +16,7 @@ import AcceptPaymentModal from '../modals/AcceptPaymentModal';
 
 const Container = styled.form`
   ${tw`
-
+    w-full
   `}
 `;
 
@@ -25,7 +25,8 @@ const Card = styled.div`
     mt-3
     mb-3
     p-8
-    w-96
+    w-full
+    md:w-96
     bg-gray-300
     rounded-md
   `}

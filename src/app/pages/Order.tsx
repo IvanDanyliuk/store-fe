@@ -33,12 +33,16 @@ const Container = styled.div`
   ${tw`
     w-full
     flex
+    flex-col
+    md:flex-row
   `}
 `;
 
 const OrderDetails = styled.div`
   ${tw`
-    w-3/4
+    p-3
+    w-full
+    md:w-3/4
   `}
 `;
 
@@ -86,10 +90,12 @@ const AcceptOrderSection = styled.div`
   ${tw`
     relative
     md:fixed
-    top-20
-    right-0
-    p-6
-    w-1/4
+    md:top-20
+    md:right-0
+    p-3
+    md:p-6
+    w-full
+    md:w-1/4
     bg-white
   `}
 `;
@@ -195,6 +201,17 @@ const AcceptAmount = styled.span`
     w-5/12
     text-lg
     font-semibold
+  `}
+`;
+
+const BtnContainer = styled.div`
+  ${tw`
+    p-3
+    md:p-0
+    w-full
+    flex
+    justify-center
+    md:justify-start
   `}
 `;
 
@@ -443,13 +460,15 @@ const Order: React.FC = () => {
           <AcceptSubTitleText>Amount to be paid</AcceptSubTitleText>
           <AcceptAmount>UAH {totalAmount + shippingAmount}</AcceptAmount>
         </AcceptTotalItem>
-        <Button 
-          type={ButtonType.Button} 
-          color={ButtonColor.Success} 
-          onClick={submitOrder}
-        >
-          Submit Order
-        </Button>
+        <BtnContainer>
+          <Button 
+            type={ButtonType.Button} 
+            color={ButtonColor.Success} 
+            onClick={submitOrder}
+          >
+            Submit Order
+          </Button>
+        </BtnContainer>
       </AcceptOrderSection>
     </Container>
   );
