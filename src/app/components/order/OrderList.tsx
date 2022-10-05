@@ -76,7 +76,6 @@ const Message = styled.div`
 
 
 const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
-  
 
   return (
     <List>

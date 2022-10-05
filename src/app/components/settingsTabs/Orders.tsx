@@ -22,19 +22,19 @@ const FilterSection = styled.div`
 `;
 
 
-const Orders = () => {
+const Orders: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const user = useSelector(selectUser);
   const orders = useSelector(selectOrders);
 
   useEffect(() => {
-    if(user?.isAdmin) {
+    if(user?.isAdmin!) {
       dispatch(getOrders());
     } else {
       dispatch(getUserOrders(user!.email!));
     }
-  }, [user]);
+  }, []);
 
   return (
     <Container>

@@ -85,7 +85,7 @@ const ordersSlice = createSlice({
       })
       .addCase(deleteOrder.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.orders = state.orders.filter(order => order._id !== action.payload);
+        state.orders = state.orders.filter(order => order._id !== action.meta.arg);
       })
       .addCase(deleteOrder.rejected, (state, action) =>{
         state.status = 'failed';

@@ -67,3 +67,22 @@ export interface IPaginationProps {
   setPage: any;
   page: any;
 }
+
+export enum OperationType {
+  Edit = 'edit',
+  Delete = 'delete'
+}
+
+ export enum DataCategory {
+  Category = 'category',
+  Product = 'product',
+  Order = 'order',
+  User = 'user',
+  Password = 'password',
+  UserImage = 'user image',
+}
+
+export enum MessageModalType {
+  PreModal = 'pre-modal',
+  PostModal = 'post-modal',
+}

@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import RoundedButton from '../ui/RoundedButton';
-import { ButtonColor, ButtonType } from '../../../types/types';
+import { ButtonColor, ButtonType, DataCategory, MessageModalType, OperationType } from '../../../types/types';
 import { IOrder } from '../../features/order/types';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo, faList, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { setOrderCellWidth } from '../../helpers/helpers';
 import ProductListImage from '../ui/ProductListImage';
+import Button from '../ui/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../features/store';
+import { deleteOrder, getOrders, getUserOrders } from '../../features/order/asyncActions';
+import { selectUser } from '../../features/user/selectors';
 
 
 Modal.setAppElement('#root');
@@ -37,6 +42,8 @@ const OrderHeader = styled.div`
   ${tw`
     h-16
     flex
+    flex-col
+    md:flex-row
     justify-between
     items-center
   `}
@@ -49,11 +56,36 @@ const OrderInfo = styled.div`
   `}
 `;
 
+const OrderFooter = styled.div`
+  ${tw`
+    relative
+    pt-3
+    w-full
+    flex
+    flex-col
+    md:flex-row
+  `}
+`;
+
 const Summary = styled.div`
   ${tw`
-    pt-3
-    h-28
+    mb-3
+    md:mb-0
+    w-full
+    md:w-5/6
     flex
+    flex-wrap
+  `}
+`;
+
+const Actions = styled.div`
+  ${tw`
+    w-full
+    md:w-1/6
+    h-full
+    flex
+    md:flex-col
+    justify-between
   `}
 `;
 
@@ -88,11 +120,7 @@ const TableHead = styled.thead`
   `}
 `;
 
-const TableBody = styled.tbody`
-  ${tw`
-  
-  `}
-`;
+const TableBody = styled.tbody``;
 
 const Row = styled.tr`
   ${tw`
@@ -132,7 +160,8 @@ const TableCell = styled.td<ICellProps>`
 
 const Details = styled.div`
   ${tw`
-    w-1/4
+    w-1/2
+    md:w-1/4
   `}
 `;
 
@@ -154,12 +183,22 @@ const DetailsInfo = styled.div`
 
 
 const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleOrderEdit = (e: any) => {
+
+  };
+
+  const handleOrderDelete = () => {
+    dispatch(deleteOrder(order._id));
+    setIsOpen(false);
   };
 
   const styles = {
@@ -235,51 +274,69 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
               </TableBody>
             </Table>
           </OrderInfo>
-          <Summary>
-            <Details>
-              <DetailsTitle>Total amount</DetailsTitle>
-              <DetailsInfo>UAH {order.amount}</DetailsInfo>
-            </Details>
-            <Details>
-              <DetailsTitle>Shipping</DetailsTitle>
-              <DetailsInfo>
-                {order.shippingCompany}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.shippingCity}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.isShipped ? 'Shipped' : 'Not shipped'}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.isPaid ? 'Paid' : 'Not paid yet'}
-              </DetailsInfo>
-            </Details>
-            <Details>
-              <DetailsTitle>Customer</DetailsTitle>
-              <DetailsInfo>
-                {`${order.customer.firstName} ${order.customer.lastName}`}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.customer.email}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.customer.phone}
-              </DetailsInfo>
-            </Details>
-            <Details>
-              <DetailsTitle>Recepient</DetailsTitle>
-              <DetailsInfo>
-                {`${order.recepient.firstName} ${order.recepient.lastName}`}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.recepient.email}
-              </DetailsInfo>
-              <DetailsInfo>
-                {order.recepient.phone}
-              </DetailsInfo>
-            </Details>
-          </Summary>
+          <OrderFooter>
+            <Summary>
+              <Details>
+                <DetailsTitle>Total amount</DetailsTitle>
+                <DetailsInfo>UAH {order.amount}</DetailsInfo>
+              </Details>
+              <Details>
+                <DetailsTitle>Shipping</DetailsTitle>
+                <DetailsInfo>
+                  {order.shippingCompany}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.shippingCity}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.isShipped ? 'Shipped' : 'Not shipped'}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.isPaid ? 'Paid' : 'Not paid yet'}
+                </DetailsInfo>
+              </Details>
+              <Details>
+                <DetailsTitle>Customer</DetailsTitle>
+                <DetailsInfo>
+                  {`${order.customer.firstName} ${order.customer.lastName}`}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.customer.email}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.customer.phone}
+                </DetailsInfo>
+              </Details>
+              <Details>
+                <DetailsTitle>Recepient</DetailsTitle>
+                <DetailsInfo>
+                  {`${order.recepient.firstName} ${order.recepient.lastName}`}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.recepient.email}
+                </DetailsInfo>
+                <DetailsInfo>
+                  {order.recepient.phone}
+                </DetailsInfo>
+              </Details>
+            </Summary>
+            <Actions>
+              <Button 
+                type={ButtonType.Button} 
+                color={ButtonColor.Secondary}
+                onClick={handleOrderEdit}
+              >
+                Edit
+              </Button>
+              <Button
+                type={ButtonType.Button}
+                color={ButtonColor.Danger}
+                onClick={handleOrderDelete}
+              >
+                Delete
+              </Button>
+            </Actions>
+          </OrderFooter>
         </Container>
       </Modal>
     </>
