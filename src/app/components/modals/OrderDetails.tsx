@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { deleteOrder, getOrders, getUserOrders } from '../../features/order/asyncActions';
 import { selectUser } from '../../features/user/selectors';
+import { useNavigate } from 'react-router-dom';
+import { setOrderToUpdate } from '../../features/order/reducers';
 
 
 Modal.setAppElement('#root');
@@ -184,6 +186,7 @@ const DetailsInfo = styled.div`
 
 const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -193,7 +196,8 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
   };
 
   const handleOrderEdit = (e: any) => {
-
+    dispatch(setOrderToUpdate(order));
+    navigate('/order');
   };
 
   const handleOrderDelete = () => {

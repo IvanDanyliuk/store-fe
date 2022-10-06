@@ -14,11 +14,12 @@ import { getShippings } from '../features/shipping/asyncActions';
 import { selectShippings, selectShippingStatus } from '../features/shipping/selectors';
 import { AppDispatch } from '../features/store';
 import { selectUser } from '../features/user/selectors';
-import { createOrder } from '../features/order/asyncActions';
+import { createOrder, updateOrder } from '../features/order/asyncActions';
 import { useNavigate } from 'react-router-dom';
-import { selectOrderStatus } from '../features/order/selectors';
+import { selectErrorStatus, selectOrder } from '../features/order/selectors';
 import { clearCart } from '../features/cart/reducers';
-import { clearOrder } from '../features/order/reducers';
+import { clearOrder, clearOrderToUpdate } from '../features/order/reducers';
+import { calculateOrderTotalAmount } from '../helpers/helpers';
 
 
 interface ICustomer {
@@ -220,13 +221,14 @@ const Order: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
+  const order = useSelector(selectOrder);
   const user = useSelector(selectUser);
   const cart: ICartItem[] = useSelector(selectCartData);
   const shippings = useSelector(selectShippings);
   const shippingStatus = useSelector(selectShippingStatus);
-  const orderStatus = useSelector(selectOrderStatus);
-
-  const totalAmount = cart.reduce((acc: number, cur: ICartItem) => acc + (+cur.product.price * cur.quantity), 0);
+  const errorStatus = useSelector(selectErrorStatus);
+  
+  const totalAmount = calculateOrderTotalAmount(order ? order.products : cart);
 
   const [currentShippingCompany, setCurrentShippingCompany] = useState('');
   const [currentShippingCity, setCurrentShippingCity] = useState('');
@@ -277,36 +279,81 @@ const Order: React.FC = () => {
     setCurrentShippingCity(e.target.value);
   };
 
-  const submitOrder = (e: any) => {
-    dispatch(createOrder({
-      products: cart.map(product => ({ product: product.product, quantity: product.quantity })),
-      amount: totalAmount,
-      customer,
-      recepient,
-      isPaid: false,
-      isShipped: false,
-      shippingCity: currentShippingCity,
-      shippingCompany: currentShippingCompany,
-      paymentMethod: currentPaymentMethod,
-      creditCardNumber: '',
-    }));
+  const submitOrder = async (e: any) => {
+    if(order) {
+      dispatch(updateOrder({
+        id: order._id,
+        updatedOrder: {
+          products: order.products,
+          amount: totalAmount,
+          customer,
+          recepient,
+          isPaid: false,
+          isShipped: false,
+          shippingCity: currentShippingCity,
+          shippingCompany: currentShippingCompany,
+          paymentMethod: currentPaymentMethod,
+          creditCardNumber: '',
+        }
+      }));
+    } else {
+      await dispatch(createOrder({
+        products: cart.map(product => ({ product: product.product, quantity: product.quantity })),
+        amount: totalAmount,
+        customer,
+        recepient,
+        isPaid: false,
+        isShipped: false,
+        shippingCity: currentShippingCity,
+        shippingCompany: currentShippingCompany,
+        paymentMethod: currentPaymentMethod,
+        creditCardNumber: '',
+      }));
+    }
+    if(!errorStatus) {
+      navigate('/');
+      dispatch(clearCart());
+      dispatch(clearOrder());
+    }
   };
 
   useEffect(() => {
-    setCustomer({
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      phone: user?.phone,
-      email: user?.email,
-    });
-    setRecepient({
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      phone: user?.phone,
-      email: user?.email,
-    });
     dispatch(getShippings());
+    if(order) {
+      setCustomer({
+        firstName: order.customer.firstName,
+        lastName: order.customer.lastName,
+        phone: order.customer.phone,
+        email: order.customer.email,
+      });
+      setRecepient({
+        firstName: order.recepient.firstName,
+        lastName: order.recepient.lastName,
+        phone: order.recepient.phone,
+        email: order.recepient.email,
+      });
+      setCurrentShippingCompany(order.shippingCompany);
+      setCurrentShippingCity(order.shippingCity);
+      setShippingAmount(order.amount);
+      setCurrentPaymentMethod(order.paymentMethod);
+    } else {
+      setCustomer({
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        phone: user?.phone,
+        email: user?.email,
+      });
+      setRecepient({
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        phone: user?.phone,
+        email: user?.email,
+      });
+    }
+    // return () => { order && dispatch(clearOrderToUpdate()) };
   }, []);
+
+  
 
   useEffect(() => {
     if(shippingStatus === 'succeeded') {
@@ -316,22 +363,10 @@ const Order: React.FC = () => {
     }
   }, [shippingStatus]);
 
-  useEffect(() => {
-    if(orderStatus === 'succeeded') {
-      navigate('/');
-      dispatch(clearCart());
-      dispatch(clearOrder());
-    }
-  }, [orderStatus]);
-
-  if(!cart || cart.length === 0) {
-    navigate('/');
-  }
-
   return (
     <Container>
       <OrderDetails>
-        <Title>Placing an Order</Title>
+        <Title>{order ? 'Update an Order' : 'Placing an Order'}</Title>
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>1</SubTitleNum>
@@ -392,7 +427,7 @@ const Order: React.FC = () => {
             <SubTitleNum>3</SubTitleNum>
             <SubTitleText>Order Details</SubTitleText>
           </SubTitle>
-          <ShoppingList cart={cart} />
+          <ShoppingList cart={order ? order.products : cart} />
         </DetailsSection>
         <DetailsSection>
           <SubTitle>

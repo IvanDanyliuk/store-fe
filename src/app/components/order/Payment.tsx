@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { useDispatch, useSelector } from 'react-redux';
-import { payOrder } from '../../features/order/asyncActions';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../features/store';
-import { selectClientSecret, selectPaymentStatus } from '../../features/order/selectors';
 import { formatCardNumber } from '../../helpers/helpers';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCcVisa } from '@fortawesome/free-brands-svg-icons';
 import PaymentSystemIcon from './PaymentSystemIcon';
 import AcceptPaymentModal from '../modals/AcceptPaymentModal';
 

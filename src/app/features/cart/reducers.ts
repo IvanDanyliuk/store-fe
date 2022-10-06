@@ -21,15 +21,15 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.status = 'succeeded';
-      state.cart = state.cart.filter((item: ICartItem) => item.id !== action.payload)
+      state.cart = state.cart.filter((item: ICartItem) => item._id !== action.payload)
     },
     increaseQuantity: (state, action) => {
       state.status = 'succeeded';
-      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: limitIncreasing(item.quantity) } : item);
+      state.cart = state.cart.map((item: ICartItem) => item._id === action.payload ? { ...item, quantity: limitIncreasing(item.quantity) } : item);
     }, 
     decreaseQuantity: (state, action) => {
       state.status = 'succeeded';
-      state.cart = state.cart.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: limitDecreasing(item.quantity) } : item);
+      state.cart = state.cart.map((item: ICartItem) => item._id === action.payload ? { ...item, quantity: limitDecreasing(item.quantity) } : item);
     },
     clearCart: (state) => {
       state.status = 'succeeded';

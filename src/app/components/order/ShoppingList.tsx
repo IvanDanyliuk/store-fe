@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
@@ -11,6 +11,8 @@ import { ICartItem } from '../../features/cart/types';
 import { AppDispatch } from '../../features/store';
 import RoundedButton from '../ui/RoundedButton';
 import ProductListImage from '../ui/ProductListImage';
+import { selectOrder } from '../../features/order/selectors';
+import { decreaseOrderProductQuantity, increaseOrderProductQuantity, removeProductFromOrder } from '../../features/order/reducers';
 
 
 interface IShoppingListProps {
@@ -112,17 +114,30 @@ const EmptyCartMessage = styled.li`
 
 const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const order = useSelector(selectOrder);
 
   const increaseProductQuantity = (id: string) => {
-    dispatch(increaseQuantity(id));
+    if(order) {
+      dispatch(increaseOrderProductQuantity(id));
+    } else {
+      dispatch(increaseQuantity(id));
+    }
   };
 
   const decreaseProductQuantity = (id: string) => {
-    dispatch(decreaseQuantity(id));
+    if(order) {
+      dispatch(decreaseOrderProductQuantity(id));
+    } else {
+      dispatch(decreaseQuantity(id));
+    }
   };
 
   const hadnleDeleteFromCart = (id: string) => {
-    dispatch(removeFromCart(id));
+    if(order) {
+      dispatch(removeProductFromOrder(id));
+    } else {
+      dispatch(removeFromCart(id));
+    }
   };
 
   return (
@@ -137,14 +152,14 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
             </ItemInfo>
             <ItemActions>
               <ProductNumber>
-                <SetNumberBtn onClick={() => decreaseProductQuantity(item.id)}>-</SetNumberBtn>
+                <SetNumberBtn onClick={() => decreaseProductQuantity(item._id)}>-</SetNumberBtn>
                 <Number>{item.quantity}</Number>
-                <SetNumberBtn onClick={() => increaseProductQuantity(item.id)}>+</SetNumberBtn>
+                <SetNumberBtn onClick={() => increaseProductQuantity(item._id)}>+</SetNumberBtn>
               </ProductNumber>
               <RoundedButton 
                 type={ButtonType.Button} 
                 color={ButtonColor.Danger} 
-                onClick={() => hadnleDeleteFromCart(item.id)}
+                onClick={() => hadnleDeleteFromCart(item._id)}
               >
                 <FontAwesomeIcon icon={faTrash} />
               </RoundedButton>

@@ -1,4 +1,4 @@
-import { DataCategory, OperationType } from "../../types/types";
+import { ICartItem } from "../features/cart/types";
 
 export const getFormattedTitle = (pathname: string, position: number) => {
   const title = pathname.split('/')[position];
@@ -99,6 +99,10 @@ export const formatCardNumber = (cardNumber: string) => {
   });
   return formattedCardNumber.join('');
 };
+
+export const calculateOrderTotalAmount = (cart: ICartItem[]) => {
+  return cart.reduce((acc: number, cur: ICartItem) => acc + (+cur.product.price * cur.quantity), 0);
+}
 
 export const getOtherProductsQuantity = (renderedProducts: number, productsQuantity: number) => {
   return productsQuantity > renderedProducts ? `+ ${productsQuantity - renderedProducts} more` : '';

@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { limitDecreasing, limitIncreasing } from '../../helpers/helpers';
+import { ICartItem } from '../cart/types';
 import { getOrders, getUserOrders, createOrder, updateOrder, payOrder, deleteOrder } from './asyncActions';
 import { IOrderState } from './types';
 
 
 const initialState: IOrderState = {
   status: 'idle',
-  paymentStatus: 'idle',
+  order: null,
   clientSecret: null,
   orders: [],
   error: null,
@@ -18,6 +20,21 @@ const ordersSlice = createSlice({
     clearClientSecret: (state) => {
       state.clientSecret = null;
     }, 
+    setOrderToUpdate: (state, action) => {
+      state.order = action.payload;
+    },
+    clearOrderToUpdate: (state) => {
+      state.order = null;
+    },
+    removeProductFromOrder: (state, action) => {
+      state.order = { ...state.order!, products: state.order!.products.filter(item => item._id !== action.payload) };
+    },
+    increaseOrderProductQuantity: (state, action) => {
+      state.order = { ...state.order!, products: state.order!.products.map((item: ICartItem) => item._id === action.payload ? { ...item, quantity: limitIncreasing(item.quantity) } : item) };
+    }, 
+    decreaseOrderProductQuantity: (state, action) => {
+      state.order = { ...state.order!, products: state.order!.products.map((item: ICartItem) => item._id === action.payload ? { ...item, quantity: limitDecreasing(item.quantity) } : item)};
+    },
     clearOrder: (state) => {
       state.status = 'idle';
       state.orders = [];
@@ -64,20 +81,10 @@ const ordersSlice = createSlice({
       .addCase(updateOrder.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.orders = state.orders.map(order => order._id !== action.payload._id ? order : { _id: order._id, ...action.payload });
+        state.order = null;
       })
       .addCase(updateOrder.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(payOrder.pending, (state, action) => {
-        state.paymentStatus = 'loading';
-      })
-      .addCase(payOrder.fulfilled, (state, action) => {
-        state.paymentStatus = 'succeeded';
-        state.clientSecret = action.payload;
-      })
-      .addCase(payOrder.rejected, (state, action) => {
-        state.paymentStatus = 'failed';
         state.error = 'error';
       })
       .addCase(deleteOrder.pending, (state, action) => {
@@ -94,6 +101,13 @@ const ordersSlice = createSlice({
   }
 });
 
-export const { clearOrder } = ordersSlice.actions;
+export const { 
+  clearOrder, 
+  setOrderToUpdate, 
+  clearOrderToUpdate, 
+  increaseOrderProductQuantity, 
+  decreaseOrderProductQuantity, 
+  removeProductFromOrder 
+} = ordersSlice.actions;
 
 export default ordersSlice.reducer;

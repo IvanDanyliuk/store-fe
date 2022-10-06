@@ -1,10 +1,11 @@
+import { ICartItem } from "../cart/types";
 import { IProduct } from "../product/types";
 import { IUser } from "../user/types";
 
 
 export interface IOrderState {
   status: string;
-  paymentStatus: string;
+  order: IOrder | null;
   clientSecret: any;
   orders: IOrder[];
   error: null | string;
@@ -12,11 +13,7 @@ export interface IOrderState {
 
 export interface IOrder {
   _id: string;
-  products: {
-    _id: string;
-    quantity: number;
-    product: IProduct;
-  }[];
+  products: ICartItem[];
   amount: number;
   customer: {
     firstName: string;
