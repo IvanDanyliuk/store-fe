@@ -12,9 +12,10 @@ import { setCategoryUrl } from '../../helpers/helpers';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
-import { selectCategory } from '../../features/category/selectors';
+import { selectCategory, selectCategoryError } from '../../features/category/selectors';
 import { createCategory, updateCategory } from '../../features/category/asyncActions';
 import { clearCategory } from '../../features/category/reducers';
+import { clearError } from '../../features/user/reducers';
 
 
 Modal.setAppElement('#root');
@@ -119,10 +120,20 @@ const SubmitBtn = styled.button`
   `}
 `;
 
+const ErrorMessage = styled.div`
+  ${tw`
+    pb-2
+    text-center
+    text-red-500
+    text-sm
+  `}
+`;
+
 
 const CreateCategoryForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectCategory);
+  const error = useSelector(selectCategoryError);
   
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
@@ -140,6 +151,9 @@ const CreateCategoryForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<any>([]);
 
   const handleOpenModal = () => {
+    if(isOpen && error) {
+      dispatch(clearError());
+    }
     setIsOpen(!isOpen);
   };
 
@@ -195,12 +209,14 @@ const CreateCategoryForm: React.FC = () => {
       }));
     }
 
-    setMainCategory({
-      title: '',
-      url: '',
-    });
-    setSubCategories([]);
-    setIsOpen(false);
+    if(error !== null) {
+      setMainCategory({
+        title: '',
+        url: '',
+      });
+      setSubCategories([]);
+      setIsOpen(false);
+    }
   };
 
   const styles = {
@@ -250,6 +266,9 @@ const CreateCategoryForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
+        {error && (
+          <ErrorMessage>{error}</ErrorMessage>
+        )}
         <CategoryForm onSubmit={handleCategoryDataSubmit}>
           <Inputs>
             <InputLabel>Main Category Name</InputLabel>

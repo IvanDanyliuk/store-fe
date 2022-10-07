@@ -19,6 +19,9 @@ const categoriesSlice = createSlice({
     },
     clearCategory: (state) => {
       state.category = null;
+    },
+    clearError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -43,7 +46,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(createCategory.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'Category must contain a title. Fill the form!';
       })
       .addCase(updateCategory.pending, (state, action) => {
         state.status = 'loading';
@@ -70,6 +73,6 @@ const categoriesSlice = createSlice({
   }
 });
 
-export const { getCategory, clearCategory } = categoriesSlice.actions;
+export const { getCategory, clearCategory, clearError } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

@@ -18,6 +18,9 @@ export const createCategory = createAsyncThunk(
   'categories/createCategory',
   async (newCategory: any, { rejectWithValue }) => {
     try {
+      if(!newCategory.main.title) {
+        throw new Error();
+      }
       const { data } = await api.createCategory(newCategory);
       return data;
     } catch (error) {
@@ -33,7 +36,7 @@ export const updateCategory = createAsyncThunk(
       const { data } = await api.updateCategory(categoryToUpdate);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue({message: 'Category has to have a title. Fill the form!'});
     }
   }
 );
