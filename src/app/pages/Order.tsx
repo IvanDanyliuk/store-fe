@@ -350,10 +350,8 @@ const Order: React.FC = () => {
         email: user?.email,
       });
     }
-    // return () => { order && dispatch(clearOrderToUpdate()) };
+    return () => { order && dispatch(clearOrderToUpdate()) };
   }, []);
-
-  
 
   useEffect(() => {
     if(shippingStatus === 'succeeded') {

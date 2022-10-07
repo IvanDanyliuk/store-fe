@@ -79,11 +79,7 @@ const SubscriptionText = styled.p`
   `}
 `;
 
-const SubscriptionForm = styled.form`
-  ${tw`
-  
-  `}
-`;
+const SubscriptionForm = styled.form``;
 
 const Input = styled.input`
   ${tw`
