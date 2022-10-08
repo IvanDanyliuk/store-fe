@@ -1,4 +1,5 @@
 import { ICartItem } from "../features/cart/types";
+import { IProductData } from "../features/product/types";
 
 export const getFormattedTitle = (pathname: string, position: number) => {
   const title = pathname.split('/')[position];
@@ -106,4 +107,17 @@ export const calculateOrderTotalAmount = (cart: ICartItem[]) => {
 
 export const getOtherProductsQuantity = (renderedProducts: number, productsQuantity: number) => {
   return productsQuantity > renderedProducts ? `+ ${productsQuantity - renderedProducts} more` : '';
+};
+
+export const checkNewProductData = (newProduct: IProductData) => {
+  switch(true) {
+    case !newProduct.title:
+    case !newProduct.price:
+    case !newProduct.color:
+    case !newProduct.shortInfo:
+    case !newProduct.description:
+      throw Error('Fill all the *required fields!');
+    default:
+      return;
+  }
 };

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IProductData } from './types';
 import * as api from '../../api/api';
 import { IProductToUpdate } from './types';
+import { checkNewProductData } from '../../helpers/helpers';
 
 
 export const getProducts = createAsyncThunk(
@@ -31,6 +32,7 @@ export const getProduct = createAsyncThunk(
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (newProduct: IProductData, { rejectWithValue }) => {
+    checkNewProductData(newProduct);
     try {
       const { data } = await api.createProduct(newProduct);
       return data;

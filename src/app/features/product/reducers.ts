@@ -19,6 +19,9 @@ const productsSlice = createSlice({
     },
     clearProduct: (state) => {
       state.product = null;
+    },
+    clearProductError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -54,7 +57,7 @@ const productsSlice = createSlice({
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = action.error.message!;
       })
       .addCase(updateProduct.pending, (state, action) => {
         state.status = 'loading';
@@ -81,6 +84,6 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setProductToUpdate, clearProduct } = productsSlice.actions;
+export const { setProductToUpdate, clearProduct, clearProductError } = productsSlice.actions;
 
 export default productsSlice.reducer;

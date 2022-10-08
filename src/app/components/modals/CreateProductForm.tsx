@@ -15,7 +15,8 @@ import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
 import { createProduct, updateProduct } from '../../features/product/asyncActions';
-import { selectProduct } from '../../features/product/selectors';
+import { selectProduct, selectProductError } from '../../features/product/selectors';
+import { clearProductError } from '../../features/product/reducers';
 
 
 Modal.setAppElement('#root');
@@ -182,11 +183,21 @@ const SubmitBtn = styled.button`
   `}
 `;
 
+const ErrorMessage = styled.div`
+  ${tw`
+    pb-2
+    text-center
+    text-red-500
+    text-sm
+  `}
+`;
+
 
 const CreateProductForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const categories = useSelector(selectCategories);
   const dataToUpdate = useSelector(selectProduct);
+  const error = useSelector(selectProductError);
 
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
@@ -233,6 +244,9 @@ const CreateProductForm: React.FC = () => {
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
+    if(isOpen && error) {
+      dispatch(clearProductError());
+    }
   };
 
   const handleUploadImage = (e: any) => {
@@ -333,36 +347,36 @@ const CreateProductForm: React.FC = () => {
         },
       }));
     } else {
-      if(productData.title && productData.price) {
-        dispatch(createProduct({...productData, promotion: promotions}));
-      }
+      dispatch(createProduct({...productData, promotion: promotions}));
     }
 
-    setIsOpen(false);
-    setCurrentCategory(categories[0]);
-    setPromotions([]);
-    setProductData({
-      category: {
-        main: {
-          title: categories[0].main.title,
-          url: categories[0].main.url,
+    if(error !== null) {
+      setCurrentCategory(categories[0]);
+      setPromotions([]);
+      setProductData({
+        category: {
+          main: {
+            title: categories[0].main.title,
+            url: categories[0].main.url,
+          },
+          subCategory: {
+            title: categories[0].subCategories[0].title,
+            url: categories[0].subCategories[0].url,
+          },
         },
-        subCategory: {
-          title: categories[0].subCategories[0].title,
-          url: categories[0].subCategories[0].url,
-        },
-      },
-      title: '',
-      price: '',
-      color: '',
-      rating: 0,
-      image: '',
-      promotion: [],
-      isInStock: true,
-      shortInfo: '',
-      description: '',
-      reviews: [],
-    });
+        title: '',
+        price: '',
+        color: '',
+        rating: 0,
+        image: '',
+        promotion: [],
+        isInStock: true,
+        shortInfo: '',
+        description: '',
+        reviews: [],
+      });
+      setIsOpen(false);
+    }
   };
 
   const styles = {
@@ -436,6 +450,9 @@ const CreateProductForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
+        {error && (
+          <ErrorMessage>{error}</ErrorMessage>
+        )}
         <ProductForm onSubmit={handleProductDataSubmit}>
           <Inputs>
             <FormItem>
@@ -475,7 +492,7 @@ const CreateProductForm: React.FC = () => {
               </Select>
             </FormItem>
             <FormItem>
-              <InputLabel>Name</InputLabel>
+              <InputLabel>Name*</InputLabel>
               <Input 
                 name='title' 
                 value={productData.title} 
@@ -483,7 +500,7 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Price</InputLabel>
+              <InputLabel>Price*</InputLabel>
               <Input 
                 name='price' 
                 value={productData.price} 
@@ -491,7 +508,7 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Color</InputLabel>
+              <InputLabel>Color*</InputLabel>
               <Input 
                 name='color' 
                 value={productData.color} 
@@ -531,7 +548,7 @@ const CreateProductForm: React.FC = () => {
               </Select>
             </FormItem>
             <FormItem>
-              <InputLabel>Short Information</InputLabel>
+              <InputLabel>Short Information*</InputLabel>
               <TextArea 
                 name='shortInfo'
                 value={productData.shortInfo} 
@@ -540,7 +557,7 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Description</InputLabel>
+              <InputLabel>Description*</InputLabel>
               <TextArea 
                 name='description'
                 value={productData.description} 
