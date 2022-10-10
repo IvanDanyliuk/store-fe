@@ -11,9 +11,12 @@ import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
-import { selectShipping } from '../../features/shipping/selectors';
+import { IShipping } from '../../features/shipping/types';
+import { selectShipping, selectShippingError } from '../../features/shipping/selectors';
 import { createShipping, updateShipping } from '../../features/shipping/asyncActions';
-import { clearShipping } from '../../features/shipping/reducers';
+import { clearShipping, clearShippingError } from '../../features/shipping/reducers';
+import { useForm } from 'react-hook-form';
+import Input from '../inputs/Input';
 
 
 Modal.setAppElement('#root');
@@ -64,15 +67,15 @@ const InputLabel = styled.label`
   `}
 `;
 
-const Input = styled.input`
-  ${tw`
-    p-2
-    w-full
-    border
-    rounded
-    mb-3
-  `}
-`;
+// const Input = styled.input`
+//   ${tw`
+//     p-2
+//     w-full
+//     border
+//     rounded
+//     mb-3
+//   `}
+// `;
 
 const CitiesList = styled.ul`
   ${tw`
@@ -118,25 +121,36 @@ const SubmitBtn = styled.button`
   `}
 `;
 
+const ErrorMessage = styled.div`
+  ${tw`
+    pb-2
+    text-center
+    text-red-500
+    text-sm
+  `}
+`;
+
 
 const CreateShippingForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectShipping);
+  const error = useSelector(selectShippingError);
   
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
 
-  const [shippingData, setShippingData] = useState({
+  const [shippingData, setShippingData] = useState<IShipping>({
     company: '',
     country: '',
     price: 0,
+    cities: [],
   });
-
   const [city, setCity] = useState('');
 
-  const [cities, setCities] = useState<any>([]);
-
   const handleOpenModal = () => {
+    if(isOpen && error) {
+      dispatch(clearShippingError());
+    }
     setIsOpen(!isOpen);
   };
 
@@ -154,43 +168,40 @@ const CreateShippingForm: React.FC = () => {
   const handleAddCity = (e: any) => {
     e.preventDefault();
     if(city) {
-      setCities([...cities, city]);
+      setShippingData({
+        ...shippingData,
+        cities: [...shippingData.cities, city]
+      });
     }
     setCity('');
   };
 
   const handleDeleteCity = (name: any) => {
-    setCities(
-      cities.filter((item: any) => item !== name)
-    );
+    setShippingData({
+      ...shippingData,
+      cities: shippingData.cities.filter((item: any) => item !== name)
+    });
   };
 
-  const handleShippingDataSubmit = (e: SyntheticEvent) => {
+  const submitShippingData = (e: SyntheticEvent) => {
     e.preventDefault();
 
     if(dataToUpdate) {
       dispatch(updateShipping({ 
         id: dataToUpdate._id, 
-        updatedShipping: { 
-          ...shippingData,
-          cities 
-        }, 
+        updatedShipping: shippingData, 
       }));
       dispatch(clearShipping());
     } else {
-      dispatch(createShipping({
-        ...shippingData,
-        cities
-      }));
+      dispatch(createShipping(shippingData));
     }
-
     setShippingData({
       company: '',
       country: '',
       price: 0,
+      cities: [],
     });
     setCity('');
-    setCities([]);
     setIsOpen(false);
   };
 
@@ -216,9 +227,9 @@ const CreateShippingForm: React.FC = () => {
       setShippingData({
         company: dataToUpdate.company,
         country: dataToUpdate.country,
-        price: dataToUpdate.price
+        price: dataToUpdate.price,
+        cities: dataToUpdate.cities
       });
-      setCities(dataToUpdate.cities);
     }
   }, [dataToUpdate]);
 
@@ -242,25 +253,29 @@ const CreateShippingForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
-        <CategoryForm onSubmit={handleShippingDataSubmit}>
+        {error && (
+          <ErrorMessage>{error}</ErrorMessage>
+        )}
+        <CategoryForm onSubmit={submitShippingData}>
           <Inputs>
-            <InputLabel>Company</InputLabel>
-            <Input
+            <Input 
               name='company'
+              label='Company'
               value={shippingData.company}
               onChange={handleShippingDataChange}
+              isRequired
             />
-            <InputLabel>Country</InputLabel>
-            <Input
+            <Input 
               name='country'
+              label='Country'
               value={shippingData.country}
               onChange={handleShippingDataChange}
             />
           </Inputs>
           <Inputs>
-            <InputLabel>City</InputLabel>
-            <Input
+            <Input 
               name='city'
+              label='City'
               value={city}
               onChange={handleCityChange}
             />
@@ -271,9 +286,9 @@ const CreateShippingForm: React.FC = () => {
             >
               New city
             </Button>
-            {cities.length > 0 && (
+            {shippingData.cities.length > 0 && (
               <CitiesList>
-              {cities.map((city: any) => (
+              {shippingData.cities.map((city: any) => (
                 <City key={uuid()}>
                   <CityName>{city}</CityName>
                   <DeleteBtn 
@@ -288,9 +303,10 @@ const CreateShippingForm: React.FC = () => {
             )}
           </Inputs>
           <Inputs>
-            <InputLabel>Price</InputLabel>
-            <Input
+            <Input 
               name='price'
+              type='number'
+              label='Price'
               value={shippingData.price}
               onChange={handleShippingDataChange}
             />

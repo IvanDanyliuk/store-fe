@@ -19,6 +19,12 @@ const shippingSlice = createSlice({
     },
     clearShipping: (state) => {
       state.shipping = null;
+    },
+    setShippingError: (state, action) => {
+      state.error = action.payload;
+    },
+    clearShippingError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -70,6 +76,6 @@ const shippingSlice = createSlice({
   }
 });
 
-export const { getShipping, clearShipping } = shippingSlice.actions;
+export const { getShipping, clearShipping, clearShippingError } = shippingSlice.actions;
 
 export default shippingSlice.reducer;

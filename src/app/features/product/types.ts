@@ -13,7 +13,7 @@ export interface IProduct {
     };
   };
   title: string;
-  price: string;
+  price: number;
   color: string;
   rating: number;
   image: string;
@@ -36,7 +36,7 @@ export interface IProductData {
     };
   };
   title: string;
-  price: string;
+  price: number;
   color: string;
   rating: number;
   image: string;

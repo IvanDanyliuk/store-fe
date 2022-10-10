@@ -1,5 +1,6 @@
 import { ICartItem } from "../features/cart/types";
 import { IProductData } from "../features/product/types";
+import { IShipping } from "../features/shipping/types";
 
 export const getFormattedTitle = (pathname: string, position: number) => {
   const title = pathname.split('/')[position];
@@ -111,11 +112,23 @@ export const getOtherProductsQuantity = (renderedProducts: number, productsQuant
 
 export const checkNewProductData = (newProduct: IProductData) => {
   switch(true) {
+    case typeof newProduct.price !== 'number':
+      throw Error('Price should be a number!');
     case !newProduct.title:
     case !newProduct.price:
     case !newProduct.color:
     case !newProduct.shortInfo:
     case !newProduct.description:
+      throw Error('Fill all the *required fields!');
+    default:
+      return;
+  }
+};
+
+export const checkNewShippingData = (newShipping: IShipping) => {
+  switch(true) {
+    case !newShipping.company:
+    case !newShipping.country:
       throw Error('Fill all the *required fields!');
     default:
       return;
