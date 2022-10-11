@@ -12,11 +12,11 @@ import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
 import { IShipping } from '../../features/shipping/types';
-import { selectShipping, selectShippingError } from '../../features/shipping/selectors';
+import { selectShipping } from '../../features/shipping/selectors';
 import { createShipping, updateShipping } from '../../features/shipping/asyncActions';
-import { clearShipping, clearShippingError } from '../../features/shipping/reducers';
-import { useForm } from 'react-hook-form';
+import { clearShipping } from '../../features/shipping/reducers';
 import Input from '../inputs/Input';
+import { isShippingDataValid } from '../../helpers/formValidation';
 
 
 Modal.setAppElement('#root');
@@ -58,24 +58,6 @@ const Inputs = styled.fieldset`
     w-full
   `}
 `;
-
-const InputLabel = styled.label`
-  ${tw`
-    mb-1
-    text-gray-500
-    font-semibold
-  `}
-`;
-
-// const Input = styled.input`
-//   ${tw`
-//     p-2
-//     w-full
-//     border
-//     rounded
-//     mb-3
-//   `}
-// `;
 
 const CitiesList = styled.ul`
   ${tw`
@@ -134,11 +116,10 @@ const ErrorMessage = styled.div`
 const CreateShippingForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectShipping);
-  const error = useSelector(selectShippingError);
-  
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
-  const [isOpen, setIsOpen] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState('');
   const [shippingData, setShippingData] = useState<IShipping>({
     company: '',
     country: '',
@@ -149,9 +130,13 @@ const CreateShippingForm: React.FC = () => {
 
   const handleOpenModal = () => {
     if(isOpen && error) {
-      dispatch(clearShippingError());
+      setError('');
     }
     setIsOpen(!isOpen);
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
   };
 
   const handleShippingDataChange = (e: any) => {
@@ -183,18 +168,7 @@ const CreateShippingForm: React.FC = () => {
     });
   };
 
-  const submitShippingData = (e: SyntheticEvent) => {
-    e.preventDefault();
-
-    if(dataToUpdate) {
-      dispatch(updateShipping({ 
-        id: dataToUpdate._id, 
-        updatedShipping: shippingData, 
-      }));
-      dispatch(clearShipping());
-    } else {
-      dispatch(createShipping(shippingData));
-    }
+  const setInitialData = () => {
     setShippingData({
       company: '',
       country: '',
@@ -203,6 +177,35 @@ const CreateShippingForm: React.FC = () => {
     });
     setCity('');
     setIsOpen(false);
+  };
+
+  const createNewShippingOption = () => {
+    const isDataValid = isShippingDataValid(shippingData, handleError);
+    if(isDataValid) {
+      dispatch(createShipping(shippingData));
+      setInitialData();
+    }
+  };
+
+  const updateShippingOption = () => {
+    const isDataValid = isShippingDataValid(shippingData, handleError);
+    if(isDataValid) {
+      dispatch(updateShipping({ 
+        id: dataToUpdate?._id, 
+        updatedShipping: shippingData, 
+      }));
+      dispatch(clearShipping());
+      setInitialData();
+    }
+  };
+
+  const submitShippingData = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if(dataToUpdate) {
+      updateShippingOption();
+    } else {
+      createNewShippingOption();
+    }
   };
 
   const styles = {
