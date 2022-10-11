@@ -32,7 +32,6 @@ export const getProduct = createAsyncThunk(
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (newProduct: IProductData, { rejectWithValue }) => {
-    checkNewProductData(newProduct);
     try {
       const { data } = await api.createProduct(newProduct);
       return data;

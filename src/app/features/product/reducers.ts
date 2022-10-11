@@ -57,7 +57,7 @@ const productsSlice = createSlice({
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message!;
+        state.error = 'error';
       })
       .addCase(updateProduct.pending, (state, action) => {
         state.status = 'loading';

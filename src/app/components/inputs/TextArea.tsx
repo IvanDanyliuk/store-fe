@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 
-interface IInput {
+interface ITextArea {
   name: string;
-  type?: string;
   label?: string;
-  value?: string | number;
+  value: string | number;
+  rows?: number;
   minLength?: number;
   maxLength?: number;
   onChange: (e: any) => void;
@@ -29,7 +29,7 @@ const Label = styled.label`
   `}
 `;
 
-const Field = styled.input`
+const Field = styled.textarea`
   ${tw`
     p-2
     w-full
@@ -47,12 +47,12 @@ const ErrorMessage = styled.div`
 `;
 
 
-const Input: React.FC<IInput> = (
+const TextArea: React.FC<ITextArea> = (
   { 
     name, 
-    type, 
     label, 
     value, 
+    rows,
     minLength,
     maxLength,
     onChange, 
@@ -72,9 +72,6 @@ const Input: React.FC<IInput> = (
       case typeof value === 'string' && value.length > maxLength!:
         setError(`Maximal length is ${maxLength} characters`);
         break;
-      case type === 'email' && typeof value === 'string' && /^[a-zA-Z]+[a-zA-Z0-9_.]+@[a-zA-Z.]+[a-zA-Z]$/.test(value):
-        setError('Invalid email!');
-        break;
       default:
         setError('');
         break;
@@ -90,14 +87,14 @@ const Input: React.FC<IInput> = (
       }
       <Field 
         name={name} 
-        type={type ? type : 'text'}
         value={value} 
+        rows={rows}
         onChange={onChange} 
-        onBlur={() => validateFieldValue(value!)} 
+        onBlur={() => validateFieldValue(value)} 
       />
       <ErrorMessage>{error}</ErrorMessage>
     </Container>
   );
 };
 
-export default Input;
+export default TextArea;
