@@ -87,6 +87,8 @@ const PromotionInputContainer = styled.div`
   ${tw`
     w-full
     flex
+    justify-between
+    items-center
   `}
 `;
 
@@ -363,7 +365,7 @@ const CreateProductForm: React.FC = () => {
       }));
       setInitialData();
     }
-  }
+  };
 
   const handleProductDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();

@@ -87,7 +87,7 @@ const TextArea: React.FC<ITextArea> = (
       }
       <Field 
         name={name} 
-        value={value} 
+        value={value}
         rows={rows}
         onChange={onChange} 
         onBlur={() => validateFieldValue(value)} 
