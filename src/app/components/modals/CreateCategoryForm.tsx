@@ -16,6 +16,7 @@ import { selectCategory } from '../../features/category/selectors';
 import { createCategory, updateCategory } from '../../features/category/asyncActions';
 import { clearCategory } from '../../features/category/reducers';
 import { isCategoryDataValid } from '../../helpers/formValidation';
+import FormErrorMessage from '../ui/FormErrorMessage';
 
 
 Modal.setAppElement('#root');
@@ -117,15 +118,6 @@ const SubmitBtn = styled.button`
     rounded
     text-white
     font-bold
-  `}
-`;
-
-const ErrorMessage = styled.div`
-  ${tw`
-    pb-2
-    text-center
-    text-red-500
-    text-sm
   `}
 `;
 
@@ -299,9 +291,7 @@ const CreateCategoryForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
-        {error && (
-          <ErrorMessage>{error}</ErrorMessage>
-        )}
+        <FormErrorMessage error={error} />
         <CategoryForm onSubmit={handleCategoryDataSubmit}>
           <Inputs>
             <InputLabel>Main Category Name</InputLabel>

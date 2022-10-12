@@ -21,6 +21,7 @@ import Input from '../inputs/Input';
 import Checkbox from '../inputs/Checkbox';
 import TextArea from '../inputs/TextArea';
 import { clearProduct } from '../../features/product/reducers';
+import FormErrorMessage from '../ui/FormErrorMessage';
 
 
 Modal.setAppElement('#root');
@@ -148,15 +149,6 @@ const Select = styled.select`
 
 const Option = styled.option``;
 
-const ErrorMessage = styled.div`
-  ${tw`
-    pb-2
-    text-center
-    text-red-500
-    text-sm
-  `}
-`;
-
 
 const CreateProductForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -191,7 +183,6 @@ const CreateProductForm: React.FC = () => {
   });
 
   const [currentCategory, setCurrentCategory] = useState({
-    // _id: '',
     main: {
       title: '',
       url: '',
@@ -443,9 +434,7 @@ const CreateProductForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
-        {error && (
-          <ErrorMessage>{error}</ErrorMessage>
-        )}
+        <FormErrorMessage error={error} />
         <ProductForm onSubmit={handleProductDataSubmit}>
           <Inputs>
             <FormItem>

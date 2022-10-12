@@ -17,6 +17,7 @@ import { createShipping, updateShipping } from '../../features/shipping/asyncAct
 import { clearShipping } from '../../features/shipping/reducers';
 import Input from '../inputs/Input';
 import { isShippingDataValid } from '../../helpers/formValidation';
+import FormErrorMessage from '../ui/FormErrorMessage';
 
 
 Modal.setAppElement('#root');
@@ -100,15 +101,6 @@ const SubmitBtn = styled.button`
     rounded
     text-white
     font-bold
-  `}
-`;
-
-const ErrorMessage = styled.div`
-  ${tw`
-    pb-2
-    text-center
-    text-red-500
-    text-sm
   `}
 `;
 
@@ -263,9 +255,7 @@ const CreateShippingForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
-        {error && (
-          <ErrorMessage>{error}</ErrorMessage>
-        )}
+        <FormErrorMessage error={error} />
         <CategoryForm onSubmit={submitShippingData}>
           <Inputs>
             <Input 
