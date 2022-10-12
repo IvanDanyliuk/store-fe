@@ -182,14 +182,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                       <Button 
                         color={ButtonColor.Success} 
                         type={ButtonType.Button}
-                        onClick={() => onEdit(category._id)}
+                        onClick={() => onEdit(category._id!)}
                       >
                         Edit
                       </Button>
                       <Button 
                         color={ButtonColor.Danger} 
                         type={ButtonType.Button}
-                        onClick={() => onDelete(category._id)}
+                        onClick={() => onDelete(category._id!)}
                       >
                         Delete
                       </Button>

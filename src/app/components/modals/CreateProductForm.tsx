@@ -20,6 +20,7 @@ import { isProductDataValid } from '../../helpers/formValidation';
 import Input from '../inputs/Input';
 import Checkbox from '../inputs/Checkbox';
 import TextArea from '../inputs/TextArea';
+import { clearProduct } from '../../features/product/reducers';
 
 
 Modal.setAppElement('#root');
@@ -147,18 +148,6 @@ const Select = styled.select`
 
 const Option = styled.option``;
 
-const SubmitBtn = styled.button`
-  background: rgb(43, 212, 161);
-  ${tw`
-    mt-3
-    p-2
-    w-1/2
-    rounded
-    text-white
-    font-bold
-  `}
-`;
-
 const ErrorMessage = styled.div`
   ${tw`
     pb-2
@@ -202,7 +191,7 @@ const CreateProductForm: React.FC = () => {
   });
 
   const [currentCategory, setCurrentCategory] = useState({
-    _id: '',
+    // _id: '',
     main: {
       title: '',
       url: '',
@@ -217,17 +206,6 @@ const CreateProductForm: React.FC = () => {
 
   const [newPromotion, setNewPromotion] = useState('');
   const [promotions, setPromotions] = useState<string[]>([]);
-
-  const handleOpenModal = () => {
-    if(isOpen && error) {
-      setError('');
-    }
-    setIsOpen(!isOpen);
-  };
-
-  const handleError = (error: string) => {
-    setError(error);
-  };
 
   const setInitialData = () => {
     setCurrentCategory(categories[0]);
@@ -255,7 +233,22 @@ const CreateProductForm: React.FC = () => {
       reviews: [],
     });
     setIsOpen(false);
-  }
+  };
+
+  const handleOpenModal = () => {
+    if(isOpen && error) {
+      setError('');
+    }
+    if(isOpen && dataToUpdate) {
+      dispatch(clearProduct());
+      setInitialData();
+    }
+    setIsOpen(!isOpen);
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
+  };
 
   const handleUploadImage = (e: any) => {
     e.preventDefault();
@@ -363,6 +356,7 @@ const CreateProductForm: React.FC = () => {
           ...productData,
         },
       }));
+      dispatch(clearProduct());
       setInitialData();
     }
   };
@@ -442,7 +436,9 @@ const CreateProductForm: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Create a new product</FormTitle>
+          <FormTitle>
+            {dataToUpdate ? 'Update the product' : 'Create a new product'}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
@@ -599,7 +595,12 @@ const CreateProductForm: React.FC = () => {
               </PromotionList>
             </PromotionContainer>
           </Inputs>
-          <SubmitBtn type='submit'>Submit</SubmitBtn>
+          <Button 
+            type={ButtonType.Submit} 
+            color={ButtonColor.Success}
+          >
+            Submit
+          </Button>
         </ProductForm>
       </Modal>
     </>

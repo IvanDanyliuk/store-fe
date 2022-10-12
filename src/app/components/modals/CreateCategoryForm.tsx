@@ -12,10 +12,10 @@ import { setCategoryUrl } from '../../helpers/helpers';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
-import { selectCategory, selectCategoryError } from '../../features/category/selectors';
+import { selectCategory } from '../../features/category/selectors';
 import { createCategory, updateCategory } from '../../features/category/asyncActions';
 import { clearCategory } from '../../features/category/reducers';
-import { clearError } from '../../features/user/reducers';
+import { isCategoryDataValid } from '../../helpers/formValidation';
 
 
 Modal.setAppElement('#root');
@@ -133,10 +133,10 @@ const ErrorMessage = styled.div`
 const CreateCategoryForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectCategory);
-  const error = useSelector(selectCategoryError);
   
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState('');
 
   const [mainCategory, setMainCategory] = useState({
     title: '',
@@ -150,11 +150,28 @@ const CreateCategoryForm: React.FC = () => {
 
   const [subCategories, setSubCategories] = useState<any>([]);
 
+  const setInitialData = () => {
+    setMainCategory({
+      title: '',
+      url: '',
+    });
+    setSubCategories([]);
+  };
+
   const handleOpenModal = () => {
     if(isOpen && error) {
-      dispatch(clearError());
+      setError('');
+      setInitialData();
+    }
+    if(isOpen && dataToUpdate) {
+      dispatch(clearCategory());
+      setInitialData();
     }
     setIsOpen(!isOpen);
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
   };
 
   const handleMainCategoryChange = (e: any) => {
@@ -187,35 +204,49 @@ const CreateCategoryForm: React.FC = () => {
   const handleDeleteSubCategory = (title: any) => {
     setSubCategories(
       subCategories.filter((item: any) => item.title !== title)
-    )
+    );
   };
 
-  const handleCategoryDataSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
+  const createNewCategory = () => {
+    const isDataValid = isCategoryDataValid({
+      main: mainCategory,
+      subCategories
+    }, handleError);
 
-    if(dataToUpdate) {
+    if(isDataValid) {
+      dispatch(createCategory({
+        main: mainCategory,
+        subCategories,
+      }));
+      handleOpenModal();
+    }
+  };
+
+  const updateExistingCategory = () => {
+    const isDataValid = isCategoryDataValid({
+      main: mainCategory,
+      subCategories
+    }, handleError);
+
+    if(isDataValid) {
       dispatch(updateCategory({ 
-        id: dataToUpdate._id, 
+        id: dataToUpdate?._id, 
         updatedCategory: { 
           main: mainCategory, 
           subCategories, 
         }, 
       }));
       dispatch(clearCategory());
-    } else {
-      dispatch(createCategory({
-        main: mainCategory,
-        subCategories,
-      }));
+      setInitialData();
     }
+  };
 
-    if(error !== null) {
-      setMainCategory({
-        title: '',
-        url: '',
-      });
-      setSubCategories([]);
-      setIsOpen(false);
+  const handleCategoryDataSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if(dataToUpdate) {
+      updateExistingCategory();
+    } else {
+      createNewCategory();
     }
   };
 
@@ -261,7 +292,9 @@ const CreateCategoryForm: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Create a new category</FormTitle>
+          <FormTitle>
+            {dataToUpdate ? 'Update the category' : 'Create a new category'}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>

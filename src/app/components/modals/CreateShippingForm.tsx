@@ -128,9 +128,23 @@ const CreateShippingForm: React.FC = () => {
   });
   const [city, setCity] = useState('');
 
+  const setInitialData = () => {
+    setShippingData({
+      company: '',
+      country: '',
+      price: 0,
+      cities: [],
+    });
+    setCity('');
+  };
+
   const handleOpenModal = () => {
     if(isOpen && error) {
       setError('');
+    }
+    if(isOpen && dataToUpdate) {
+      dispatch(clearShipping());
+      setInitialData();
     }
     setIsOpen(!isOpen);
   };
@@ -168,22 +182,12 @@ const CreateShippingForm: React.FC = () => {
     });
   };
 
-  const setInitialData = () => {
-    setShippingData({
-      company: '',
-      country: '',
-      price: 0,
-      cities: [],
-    });
-    setCity('');
-    setIsOpen(false);
-  };
-
   const createNewShippingOption = () => {
     const isDataValid = isShippingDataValid(shippingData, handleError);
     if(isDataValid) {
       dispatch(createShipping(shippingData));
       setInitialData();
+      handleOpenModal();
     }
   };
 
@@ -196,6 +200,7 @@ const CreateShippingForm: React.FC = () => {
       }));
       dispatch(clearShipping());
       setInitialData();
+      handleOpenModal();
     }
   };
 
@@ -251,7 +256,9 @@ const CreateShippingForm: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Create a new category</FormTitle>
+          <FormTitle>
+            {dataToUpdate ? 'Update the shipping' : 'Create a new shipping'}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>

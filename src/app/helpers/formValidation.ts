@@ -1,8 +1,11 @@
+import { IProductCategory } from "../features/category/types";
 import { IProductData } from "../features/product/types";
 import { IShipping } from "../features/shipping/types";
 
 
-export const isShippingDataValid = (data: IShipping, setError: (error: string) => void) => {
+type SetErrorType = (error: string) => void;
+
+export const isShippingDataValid = (data: IShipping, setError: SetErrorType) => {
   if(!data.company) {
     setError('Company field is required!');
     return false;
@@ -12,7 +15,7 @@ export const isShippingDataValid = (data: IShipping, setError: (error: string) =
   }
 };
 
-export const isProductDataValid = (data: IProductData, setError: (error: string) => void) => {
+export const isProductDataValid = (data: IProductData, setError: SetErrorType) => {
   switch(true) {
     case !data.title:
       setError('Name field is required!');
@@ -28,6 +31,20 @@ export const isProductDataValid = (data: IProductData, setError: (error: string)
       return false;
     case !data.description:
       setError('Description field is required!');
+      return false;
+    default:
+      setError('');
+      return true;
+  }
+};
+
+export const isCategoryDataValid = (data: IProductCategory, setError: SetErrorType) => {
+  switch(true) {
+    case !data.main.title:
+      setError('Main Category Name field is required!');
+      return false;
+    case data.subCategories.length === 0:
+      setError('Category should have at least one sub-category!');
       return false;
     default:
       setError('');
