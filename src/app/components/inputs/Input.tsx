@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { checkEmailFormat } from '../../helpers/formValidation';
 
 
 interface IInput {
@@ -72,7 +73,7 @@ const Input: React.FC<IInput> = (
       case typeof value === 'string' && value.length > maxLength!:
         setError(`Maximal length is ${maxLength} characters`);
         break;
-      case type === 'email' && typeof value === 'string' && /^[a-zA-Z]+[a-zA-Z0-9_.]+@[a-zA-Z.]+[a-zA-Z]$/.test(value):
+      case type == 'email' && typeof value == 'string' && !checkEmailFormat(value):
         setError('Invalid email!');
         break;
       default:
