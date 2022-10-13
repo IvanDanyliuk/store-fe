@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IProductData } from './types';
 import * as api from '../../api/api';
 import { IProductToUpdate } from './types';
+import { checkNewProductData } from '../../helpers/helpers';
 
 
 export const getProducts = createAsyncThunk(

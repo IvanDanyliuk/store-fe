@@ -9,6 +9,9 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { signin, signup } from '../features/user/asyncActions';
 import { useNavigate } from 'react-router-dom';
+import Input from '../components/inputs/Input';
+import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
+import FormErrorMessage from '../components/ui/FormErrorMessage';
 
 
 const Container = styled.div`
@@ -40,35 +43,7 @@ const Title = styled.h3`
   `}
 `;
 
-const AuthForm = styled.form`
-  ${tw`
-    
-  `}
-`;
-
-const Fieldset = styled.fieldset`
-  ${tw`
-
-  `}
-`;
-
-const Label = styled.label`
-  ${tw`
-    font-semibold
-    text-sm
-    text-gray-500
-  `}
-`;
-
-const Input = styled.input`
-  ${tw`
-    mb-2
-    p-1
-    w-full
-    border
-    rounded
-  `}
-`;
+const AuthForm = styled.form``;
 
 const Actions = styled.div`
   ${tw`
@@ -88,13 +63,14 @@ const ChangeModeBtn = styled.button`
   `}
 `;
 
+
 const Auth: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
-
+  const [error, setError] = useState('');
   const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
@@ -103,6 +79,7 @@ const Auth: React.FC = () => {
     confirmPassword: '',
     phone: '',
     city: '',
+    language: '',
     avatarUrl: '',
     orders: [],
     isAdmin: false,
@@ -110,6 +87,12 @@ const Auth: React.FC = () => {
 
   const handleModeChange = () => {
     setIsSignIn(!isSignIn);
+    clearForm();
+    setError('');
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
   };
 
   const handleUserDataChange = (e: any) => {
@@ -155,6 +138,7 @@ const Auth: React.FC = () => {
       confirmPassword: '',
       phone: '',
       city: '',
+      language: '',
       avatarUrl: '',
       orders: [],
       isAdmin: false,
@@ -164,22 +148,29 @@ const Auth: React.FC = () => {
   const handleFormSubmit = async (e: any) => {
     e.preventDefault();
     if(isSignIn) {
-      if(userData.email && userData.password) {
+      const isDataValid = isSigninDataValid(
+        { email: userData.email, password: userData.password }, 
+        handleError
+      );
+      if(isDataValid) {
         try {
           await dispatch(signin({ email: userData.email, password: userData.password }));
           clearForm();
           navigate('/');
         } catch (error) {
-          console.log('Something went wrong...');
+          setError('Something went wrong...');
         }
       }
     } else {
-      try {
-        await dispatch(signup(userData));
-        clearForm();
-        navigate('/');
-      } catch (error) {
-        console.log('Something went wrong...');
+      const isDataValid = isSignupDataValid(userData, handleError);
+      if(isDataValid) {
+        try {
+          await dispatch(signup(userData));
+          clearForm();
+          navigate('/');
+        } catch (error) {
+          console.log('Something went wrong...');
+        }
       }
     }
   };
@@ -190,83 +181,75 @@ const Auth: React.FC = () => {
         <Title>
           {isSignIn ? 'Sign In' : 'Sign Up'}
         </Title>
+        <FormErrorMessage error={error} />
         <AuthForm onSubmit={handleFormSubmit}>
           {
             !isSignIn && (
               <>
-                <Fieldset>
-                  <Label>First Name</Label>
-                  <Input 
-                    name='firstName' 
-                    value={userData.firstName} 
-                    onChange={handleUserDataChange} 
-                  />
-                </Fieldset>
-                <Fieldset>
-                  <Label>Last Name</Label>
-                  <Input 
-                    name='lastName' 
-                    value={userData.lastName} 
-                    onChange={handleUserDataChange} 
-                  />
-                </Fieldset>
+                <Input 
+                  name='firstName'
+                  label='First Name'
+                  value={userData.firstName}
+                  onChange={handleUserDataChange}
+                  isRequired
+                />
+                <Input 
+                  name='lastName'
+                  label='Last Name'
+                  value={userData.lastName}
+                  onChange={handleUserDataChange}
+                  isRequired
+                />
               </>
             )
           }
-          <Fieldset>
-            <Label>Email</Label>
-            <Input 
-              name='email' 
-              value={userData.email} 
-              
-              onChange={handleUserDataChange} 
-            />
-          </Fieldset>
-          <Fieldset>
-            <Label>Password</Label>
-            <Input 
-              name='password' 
-              type='password'
-              value={userData.password} 
-              onChange={handleUserDataChange} 
-            />
-          </Fieldset>
+          <Input 
+            name='email'
+            label='Email'
+            type='email'
+            value={userData.email}
+            onChange={handleUserDataChange}
+            isRequired
+          />
+          <Input 
+            name='password'
+            label='Password'
+            type='password'
+            value={userData.password}
+            onChange={handleUserDataChange}
+            isRequired
+          />
           {
             !isSignIn && (
               <>
-                <Fieldset>
-                  <Label>Confirm Password</Label>
-                  <Input 
-                    name='confirmPassword' 
-                    type='password'
-                    value={userData.confirmPassword} 
-                    onChange={handleUserDataChange} 
-                  />
-                </Fieldset>
-                <Fieldset>
-                  <Label>Phone</Label>
-                  <Input 
-                    name='phone' 
-                    value={userData.phone} 
-                    onChange={handleUserDataChange} 
-                  />
-                </Fieldset>
-                <Fieldset>
-                  <Label>City</Label>
-                  <Input 
-                    name='city' 
-                    value={userData.city} 
-                    onChange={handleUserDataChange} 
-                  />
-                </Fieldset>
-                <Fieldset>
-                  <Label>Profile Photo</Label>
-                  <Input 
-                    name='avatarImg' 
-                    type='file'
-                    onChange={handleImageUpload} 
-                  />
-                </Fieldset>
+                <Input 
+                  name='confirmPassword'
+                  label='Confirm Password'
+                  type='password'
+                  value={userData.confirmPassword}
+                  onChange={handleUserDataChange}
+                  isRequired
+                />
+                <Input 
+                  name='phone'
+                  label='Phone'
+                  value={userData.phone}
+                  onChange={handleUserDataChange}
+                  isRequired
+                />
+                <Input 
+                  name='city'
+                  label='City'
+                  value={userData.city}
+                  onChange={handleUserDataChange}
+                  isRequired
+                />
+                <Input 
+                  name='avatarImg'
+                  label='Profile Photo'
+                  type='file'
+                  onChange={handleImageUpload}
+                />
               </>
             )
           }
@@ -281,7 +264,7 @@ const Auth: React.FC = () => {
         </AuthForm>
       </AuthContainer>
     </Container>
-  )
-}
+  );
+};
 
-export default Auth
+export default Auth;

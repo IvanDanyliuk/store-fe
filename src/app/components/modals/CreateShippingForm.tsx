@@ -11,9 +11,13 @@ import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
+import { IShipping } from '../../features/shipping/types';
 import { selectShipping } from '../../features/shipping/selectors';
 import { createShipping, updateShipping } from '../../features/shipping/asyncActions';
 import { clearShipping } from '../../features/shipping/reducers';
+import Input from '../inputs/Input';
+import { isShippingDataValid } from '../../helpers/formValidation';
+import FormErrorMessage from '../ui/FormErrorMessage';
 
 
 Modal.setAppElement('#root');
@@ -53,24 +57,6 @@ const CategoryForm = styled.form`
 const Inputs = styled.fieldset`
   ${tw`
     w-full
-  `}
-`;
-
-const InputLabel = styled.label`
-  ${tw`
-    mb-1
-    text-gray-500
-    font-semibold
-  `}
-`;
-
-const Input = styled.input`
-  ${tw`
-    p-2
-    w-full
-    border
-    rounded
-    mb-3
   `}
 `;
 
@@ -122,22 +108,41 @@ const SubmitBtn = styled.button`
 const CreateShippingForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectShipping);
-  
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
-  const [isOpen, setIsOpen] = useState(false);
 
-  const [shippingData, setShippingData] = useState({
+  const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState('');
+  const [shippingData, setShippingData] = useState<IShipping>({
     company: '',
     country: '',
     price: 0,
+    cities: [],
   });
-
   const [city, setCity] = useState('');
 
-  const [cities, setCities] = useState<any>([]);
+  const setInitialData = () => {
+    setShippingData({
+      company: '',
+      country: '',
+      price: 0,
+      cities: [],
+    });
+    setCity('');
+  };
 
   const handleOpenModal = () => {
+    if(isOpen && error) {
+      setError('');
+    }
+    if(isOpen && dataToUpdate) {
+      dispatch(clearShipping());
+      setInitialData();
+    }
     setIsOpen(!isOpen);
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
   };
 
   const handleShippingDataChange = (e: any) => {
@@ -154,44 +159,50 @@ const CreateShippingForm: React.FC = () => {
   const handleAddCity = (e: any) => {
     e.preventDefault();
     if(city) {
-      setCities([...cities, city]);
+      setShippingData({
+        ...shippingData,
+        cities: [...shippingData.cities, city]
+      });
     }
     setCity('');
   };
 
   const handleDeleteCity = (name: any) => {
-    setCities(
-      cities.filter((item: any) => item !== name)
-    );
+    setShippingData({
+      ...shippingData,
+      cities: shippingData.cities.filter((item: any) => item !== name)
+    });
   };
 
-  const handleShippingDataSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
+  const createNewShippingOption = () => {
+    const isDataValid = isShippingDataValid(shippingData, handleError);
+    if(isDataValid) {
+      dispatch(createShipping(shippingData));
+      setInitialData();
+      handleOpenModal();
+    }
+  };
 
-    if(dataToUpdate) {
+  const updateShippingOption = () => {
+    const isDataValid = isShippingDataValid(shippingData, handleError);
+    if(isDataValid) {
       dispatch(updateShipping({ 
-        id: dataToUpdate._id, 
-        updatedShipping: { 
-          ...shippingData,
-          cities 
-        }, 
+        id: dataToUpdate?._id, 
+        updatedShipping: shippingData, 
       }));
       dispatch(clearShipping());
-    } else {
-      dispatch(createShipping({
-        ...shippingData,
-        cities
-      }));
+      setInitialData();
+      handleOpenModal();
     }
+  };
 
-    setShippingData({
-      company: '',
-      country: '',
-      price: 0,
-    });
-    setCity('');
-    setCities([]);
-    setIsOpen(false);
+  const submitShippingData = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if(dataToUpdate) {
+      updateShippingOption();
+    } else {
+      createNewShippingOption();
+    }
   };
 
   const styles = {
@@ -216,9 +227,9 @@ const CreateShippingForm: React.FC = () => {
       setShippingData({
         company: dataToUpdate.company,
         country: dataToUpdate.country,
-        price: dataToUpdate.price
+        price: dataToUpdate.price,
+        cities: dataToUpdate.cities
       });
-      setCities(dataToUpdate.cities);
     }
   }, [dataToUpdate]);
 
@@ -237,30 +248,34 @@ const CreateShippingForm: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Create a new category</FormTitle>
+          <FormTitle>
+            {dataToUpdate ? 'Update the shipping' : 'Create a new shipping'}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
-        <CategoryForm onSubmit={handleShippingDataSubmit}>
+        <FormErrorMessage error={error} />
+        <CategoryForm onSubmit={submitShippingData}>
           <Inputs>
-            <InputLabel>Company</InputLabel>
-            <Input
+            <Input 
               name='company'
+              label='Company'
               value={shippingData.company}
               onChange={handleShippingDataChange}
+              isRequired
             />
-            <InputLabel>Country</InputLabel>
-            <Input
+            <Input 
               name='country'
+              label='Country'
               value={shippingData.country}
               onChange={handleShippingDataChange}
             />
           </Inputs>
           <Inputs>
-            <InputLabel>City</InputLabel>
-            <Input
+            <Input 
               name='city'
+              label='City'
               value={city}
               onChange={handleCityChange}
             />
@@ -271,9 +286,9 @@ const CreateShippingForm: React.FC = () => {
             >
               New city
             </Button>
-            {cities.length > 0 && (
+            {shippingData.cities.length > 0 && (
               <CitiesList>
-              {cities.map((city: any) => (
+              {shippingData.cities.map((city: any) => (
                 <City key={uuid()}>
                   <CityName>{city}</CityName>
                   <DeleteBtn 
@@ -288,9 +303,10 @@ const CreateShippingForm: React.FC = () => {
             )}
           </Inputs>
           <Inputs>
-            <InputLabel>Price</InputLabel>
-            <Input
+            <Input 
               name='price'
+              type='number'
+              label='Price'
               value={shippingData.price}
               onChange={handleShippingDataChange}
             />

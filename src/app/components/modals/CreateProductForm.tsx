@@ -16,6 +16,12 @@ import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
 import { createProduct, updateProduct } from '../../features/product/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
+import { isProductDataValid } from '../../helpers/formValidation';
+import Input from '../inputs/Input';
+import Checkbox from '../inputs/Checkbox';
+import TextArea from '../inputs/TextArea';
+import { clearProduct } from '../../features/product/reducers';
+import FormErrorMessage from '../ui/FormErrorMessage';
 
 
 Modal.setAppElement('#root');
@@ -79,19 +85,12 @@ const PromotionContainer = styled.fieldset`
   `}
 `;
 
-const PromotionInput = styled.input`
-  ${tw`
-    mr-2
-    p-2
-    w-5/6
-    border
-    rounded
-  `}
-`;
-
 const PromotionInputContainer = styled.div`
   ${tw`
+    w-full
     flex
+    justify-between
+    items-center
   `}
 `;
 
@@ -137,26 +136,6 @@ const InputLabel = styled.label`
   `}
 `;
 
-const Input = styled.input`
-  ${tw`
-    p-2
-    w-full
-    border
-    rounded
-    mb-3
-  `}
-`;
-
-const TextArea = styled.textarea`
-  ${tw`
-    p-2
-    w-full
-    border
-    rounded
-    mb-3
-  `}
-`;
-
 const Select = styled.select`
   ${tw`
     mt-1
@@ -170,18 +149,6 @@ const Select = styled.select`
 
 const Option = styled.option``;
 
-const SubmitBtn = styled.button`
-  background: rgb(43, 212, 161);
-  ${tw`
-    mt-3
-    p-2
-    w-1/2
-    rounded
-    text-white
-    font-bold
-  `}
-`;
-
 
 const CreateProductForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -190,6 +157,7 @@ const CreateProductForm: React.FC = () => {
 
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState('');
 
   const [productData, setProductData] = useState({
     category: {
@@ -203,7 +171,7 @@ const CreateProductForm: React.FC = () => {
       },
     },
     title: '',
-    price: '',
+    price: 0,
     color: '',
     rating: 0,
     image: '',
@@ -215,7 +183,6 @@ const CreateProductForm: React.FC = () => {
   });
 
   const [currentCategory, setCurrentCategory] = useState({
-    _id: '',
     main: {
       title: '',
       url: '',
@@ -231,8 +198,47 @@ const CreateProductForm: React.FC = () => {
   const [newPromotion, setNewPromotion] = useState('');
   const [promotions, setPromotions] = useState<string[]>([]);
 
+  const setInitialData = () => {
+    setCurrentCategory(categories[0]);
+    setPromotions([]);
+    setProductData({
+      category: {
+        main: {
+          title: categories[0].main.title,
+          url: categories[0].main.url,
+        },
+        subCategory: {
+          title: categories[0].subCategories[0].title,
+          url: categories[0].subCategories[0].url,
+        },
+      },
+      title: '',
+      price: 0,
+      color: '',
+      rating: 0,
+      image: '',
+      promotion: [],
+      isInStock: true,
+      shortInfo: '',
+      description: '',
+      reviews: [],
+    });
+    setIsOpen(false);
+  };
+
   const handleOpenModal = () => {
+    if(isOpen && error) {
+      setError('');
+    }
+    if(isOpen && dataToUpdate) {
+      dispatch(clearProduct());
+      setInitialData();
+    }
     setIsOpen(!isOpen);
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
   };
 
   const handleUploadImage = (e: any) => {
@@ -321,48 +327,38 @@ const CreateProductForm: React.FC = () => {
     setPromotions(promotions.filter(item => item !== title));
   };
 
-  const handleProductDataSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
+  const createNewProduct = () => {
+    const isDataValid = isProductDataValid(productData, handleError);
+    console.log('Create a New Product', isDataValid)
+    if(isDataValid) {
+      console.log('New Product data', {...productData, promotion: promotions})
+      dispatch(createProduct({...productData, promotion: promotions}));
+      setInitialData();
+    }
+  };
 
-    if(dataToUpdate) {
+  const updateExistingProduct = () => {
+    const isDataValid = isProductDataValid(productData, handleError);
+    if(isDataValid) {
       dispatch(updateProduct({
-        id: dataToUpdate._id,
+        id: dataToUpdate?._id!,
         updatedProduct: {
-          _id: dataToUpdate._id,
+          _id: dataToUpdate?._id!,
           ...productData,
         },
       }));
-    } else {
-      if(productData.title && productData.price) {
-        dispatch(createProduct({...productData, promotion: promotions}));
-      }
+      dispatch(clearProduct());
+      setInitialData();
     }
+  };
 
-    setIsOpen(false);
-    setCurrentCategory(categories[0]);
-    setPromotions([]);
-    setProductData({
-      category: {
-        main: {
-          title: categories[0].main.title,
-          url: categories[0].main.url,
-        },
-        subCategory: {
-          title: categories[0].subCategories[0].title,
-          url: categories[0].subCategories[0].url,
-        },
-      },
-      title: '',
-      price: '',
-      color: '',
-      rating: 0,
-      image: '',
-      promotion: [],
-      isInStock: true,
-      shortInfo: '',
-      description: '',
-      reviews: [],
-    });
+  const handleProductDataSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if(dataToUpdate) {
+      updateExistingProduct();
+    } else {
+      createNewProduct();
+    }
   };
 
   const styles = {
@@ -396,7 +392,7 @@ const CreateProductForm: React.FC = () => {
           },
         },
         title: '',
-        price: '',
+        price: 0,
         color: '',
         rating: 0,
         image: '',
@@ -431,11 +427,14 @@ const CreateProductForm: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Create a new product</FormTitle>
+          <FormTitle>
+            {dataToUpdate ? 'Update the product' : 'Create a new product'}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
+        <FormErrorMessage error={error} />
         <ProductForm onSubmit={handleProductDataSubmit}>
           <Inputs>
             <FormItem>
@@ -475,44 +474,47 @@ const CreateProductForm: React.FC = () => {
               </Select>
             </FormItem>
             <FormItem>
-              <InputLabel>Name</InputLabel>
               <Input 
-                name='title' 
-                value={productData.title} 
-                onChange={handleProductDataChange} 
+                name='title'
+                label='Title'
+                value={productData.title}
+                onChange={handleProductDataChange}
+                isRequired
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Price</InputLabel>
               <Input 
-                name='price' 
-                value={productData.price} 
-                onChange={handleProductDataChange} 
+                name='price'
+                label='Price'
+                value={productData.price}
+                type='number'
+                onChange={handleProductDataChange}
+                isRequired
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Color</InputLabel>
               <Input 
-                name='color' 
-                value={productData.color} 
-                onChange={handleProductDataChange} 
+                name='color'
+                label='Color'
+                value={productData.color}
+                onChange={handleProductDataChange}
+                isRequired
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Image</InputLabel>
               <Input 
+                name='image'
+                label='Image'
                 type='file'
-                name='image' 
-                onChange={handleUploadImage} 
+                onChange={handleUploadImage}
               />
             </FormItem>
             <FormItem>
-              <InputLabel>In Stock</InputLabel>
-              <Input 
-                type='checkbox'
-                name='isInStock' 
+              <Checkbox 
+                name='isInStock'
+                label='In Stock'
                 checked={productData.isInStock}
-                onChange={handleStockChange} 
+                onChange={handleStockChange}
               />
             </FormItem>
             <FormItem>
@@ -531,31 +533,33 @@ const CreateProductForm: React.FC = () => {
               </Select>
             </FormItem>
             <FormItem>
-              <InputLabel>Short Information</InputLabel>
               <TextArea 
                 name='shortInfo'
-                value={productData.shortInfo} 
-                onChange={handleProductDataChange} 
+                label='Short Information'
+                value={productData.shortInfo}
+                onChange={handleProductDataChange}
                 rows={2}
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Description</InputLabel>
               <TextArea 
                 name='description'
-                value={productData.description} 
-                onChange={handleProductDataChange} 
+                label='Description'
+                value={productData.description}
+                onChange={handleProductDataChange}
                 rows={2}
               />
             </FormItem>
             <PromotionContainer>
-              <InputLabel>Promotion</InputLabel>
               <PromotionInputContainer>
-                <PromotionInput 
-                  name='promotion' 
-                  value={newPromotion} 
-                  onChange={handlePromotionsChange} 
-                />
+                <FormItem>
+                  <Input 
+                    name='promotion'
+                    label='Promotion'
+                    value={newPromotion}
+                    onChange={handlePromotionsChange}
+                  />
+                </FormItem>
                 <Button 
                   type={ButtonType.Button} 
                   color={ButtonColor.Secondary} 
@@ -580,7 +584,12 @@ const CreateProductForm: React.FC = () => {
               </PromotionList>
             </PromotionContainer>
           </Inputs>
-          <SubmitBtn type='submit'>Submit</SubmitBtn>
+          <Button 
+            type={ButtonType.Submit} 
+            color={ButtonColor.Success}
+          >
+            Submit
+          </Button>
         </ProductForm>
       </Modal>
     </>

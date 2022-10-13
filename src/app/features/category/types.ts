@@ -1,5 +1,7 @@
+import { SerializedError } from "@reduxjs/toolkit";
+
 export interface IProductCategory {
-  _id: string;
+  _id?: string;
   main: {
     title: string;
     url: string;

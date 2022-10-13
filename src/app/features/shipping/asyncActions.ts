@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IShipping } from './types';
 import * as api from '../../api/api';
+import { checkNewShippingData } from '../../helpers/helpers';
 
 export const getShippings = createAsyncThunk(
   'shipping/getShipping',
