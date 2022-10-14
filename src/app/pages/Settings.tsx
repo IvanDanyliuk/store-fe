@@ -123,7 +123,12 @@ const PageTitle = styled.h3`
   `}
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  min-height: 100%;
+  ${tw`
+    flex
+  `}
+`;
 
 
 const Settings: React.FC = () => {

@@ -21,6 +21,14 @@ import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
 
 
+const Container = styled.div`
+  ${tw`
+    w-full
+    flex
+    flex-col
+  `}
+`;
+
 const Section = styled.section`
   ${tw`
     relative
@@ -93,7 +101,7 @@ const Editor: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Container>
       <Section>
         <SectionHeader>
           <SubTitle>Products</SubTitle>
@@ -130,7 +138,7 @@ const Editor: React.FC = () => {
           onDelete={handleShippingDelete} 
         />
       </Section>
-    </>
+    </Container>
   );
 };
 

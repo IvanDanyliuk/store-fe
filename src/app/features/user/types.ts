@@ -1,4 +1,5 @@
 import { IOrder } from "../../../types/types";
+import { IProduct } from "../product/types";
 
 export interface IUserState {
   user: IUser | null;
@@ -16,6 +17,7 @@ export interface IUser {
   city: string;
   language: string;
   avatarUrl: string;
+  wishList: IProduct[];
   orders: IOrder[];
   isAdmin: boolean;
 }

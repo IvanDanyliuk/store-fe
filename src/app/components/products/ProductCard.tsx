@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { addToCart } from '../../features/cart/reducers';
 import { selectCartData } from '../../features/cart/selectors';
+import { selectUser } from '../../features/user/selectors';
+import { updateUser } from '../../features/user/asyncActions';
 
 
 const Card = styled.li`
@@ -87,7 +89,12 @@ const RatingIcon = styled.span`
 `;
 
 const HeartIcon = styled.button`
-  color: #1fcdd6;
+  &[data-isPicked='true'] {
+    color: #f6c430;
+  }
+  &[data-isPicked='false'] {
+    color: #1fcdd6;
+  }
   transition: ease-in-out .3s;
   z-index: 10;
 
@@ -137,10 +144,14 @@ const BtnContainer = styled.div`
   `}
 `;
 
+
 const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { category } = useParams();
   const cart = useSelector(selectCartData);
+  const user = useSelector(selectUser);
+  const token = localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile') || '').token;
+  const isProductInWishList = user?.wishList.some(item => item._id === product._id);
 
   const handleAddToCart = () => {
     dispatch(addToCart({
@@ -156,10 +167,50 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       ])
     );
   };
+
+  const handleAddToWishList = () => {
+    const isInWishList = user!.wishList!.some(item => item._id === product._id);
+    if(!isInWishList) {
+      dispatch(
+        updateUser({ 
+          id: user?._id!, 
+          userData: { 
+            ...user!, 
+            wishList: [ ...user?.wishList!, product ],
+          }, 
+        })
+      );
+      localStorage.setItem('profile', JSON.stringify({ 
+        token, 
+        result: { 
+          ...user!, 
+          wishList: [ ...user?.wishList!, product ],
+        } 
+      }));
+    } else {
+      const updatedWishList = user?.wishList.filter(item => item._id !== product._id);
+      dispatch(
+        updateUser({
+          id: user?._id!,
+          userData: {
+            ...user!,
+            wishList: updatedWishList!,
+          },
+        })
+      );
+      localStorage.setItem('profile', JSON.stringify({ 
+        token, 
+        result: { 
+          ...user!,
+          wishList: updatedWishList!,
+        } 
+      }));
+    }
+  };
   
   return (
     <Card>
-      <HeartIcon>
+      <HeartIcon data-isPicked={isProductInWishList} onClick={handleAddToWishList}>
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
       <ProductLink to={`/products/${category}/${product._id}`}>

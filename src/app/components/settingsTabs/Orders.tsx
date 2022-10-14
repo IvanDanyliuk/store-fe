@@ -11,7 +11,7 @@ import OrderList from '../order/OrderList';
 
 const Container = styled.div`
   ${tw`
-  
+    w-full
   `}
 `;
 
