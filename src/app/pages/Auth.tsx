@@ -81,6 +81,7 @@ const Auth: React.FC = () => {
     city: '',
     language: '',
     avatarUrl: '',
+    wishList: [],
     orders: [],
     isAdmin: false,
   });
@@ -140,6 +141,7 @@ const Auth: React.FC = () => {
       city: '',
       language: '',
       avatarUrl: '',
+      wishList: [],
       orders: [],
       isAdmin: false,
     });
