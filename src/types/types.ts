@@ -8,8 +8,17 @@ export interface IOrder {
 }
 
 export interface IReview {
-  user: IUser;
-  comment: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatarUrl: string;
+  };
+  comment: {
+    advantages: string;
+    disadvantages: string;
+    comment: string;
+  };
   likes: number;
   dislikes: number;
   date: string;

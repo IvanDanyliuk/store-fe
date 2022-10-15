@@ -311,6 +311,18 @@ const Comment = styled.p`
   `}
 `;
 
+const CommentSection = styled.div`
+  ${tw`
+  
+  `}
+`;
+
+const CommentTitle = styled.span`
+  ${tw`
+    font-semibold
+  `}
+`;
+
 const ReviewFooter = styled.div`
   ${tw`
     flex
@@ -469,7 +481,17 @@ const Product: React.FC = () => {
                   </PostDate>
                 </ReviewHeader>
                 <Comment>
-                  {review.comment}
+                  <CommentSection>
+                    <CommentTitle>Advantages: </CommentTitle>
+                    {review.comment.advantages}
+                  </CommentSection>
+                  <CommentSection>
+                    <CommentTitle>Disadvantages: </CommentTitle>
+                    {review.comment.disadvantages}
+                  </CommentSection>
+                  <CommentSection>
+                    {review.comment.comment}
+                  </CommentSection>
                 </Comment>
                 <ReviewFooter>
                   <LikeBtn>
