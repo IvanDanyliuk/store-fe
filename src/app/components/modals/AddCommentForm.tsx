@@ -6,7 +6,14 @@ import StarRating from 'react-star-rate';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { isCommentDataValid } from '../../helpers/formValidation';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../features/store';
+import FormErrorMessage from '../ui/FormErrorMessage';
+import { updateProduct } from '../../features/product/asyncActions';
+import { selectProduct } from '../../features/product/selectors';
+import { selectUser } from '../../features/user/selectors';
 
 
 Modal.setAppElement('#root');
@@ -101,18 +108,39 @@ const SubmitBtn = styled.button`
 
 
 const AddCommentForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const product = useSelector(selectProduct);
+  const user = useSelector(selectUser);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [error, setError] = useState('');
 
   const [commentData, setCommentData] = useState({
     advantages: '',
     disadvantages: '',
     comment: '',
+    rate: 0,
   });
 
+  const clearCommentForm = () => {
+    setCommentData({
+      advantages: '',
+      disadvantages: '',
+      comment: '',
+      rate: 0,
+    });
+  };
+
   const handleOpenModal = () => {
+    if(isOpen&& error) {
+      setError('');
+      clearCommentForm();
+    }
     setIsOpen(!isOpen);
+  };
+
+  const handleError = (error: string) => {
+    setError(error);
   };
 
   const handleCommentDataChange = (e: any) => {
@@ -124,18 +152,32 @@ const AddCommentForm: React.FC = () => {
 
   const handleCommentDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-
-    if(commentData.comment) {
-      console.log({ ...commentData, rating});
+    const isDataValid = isCommentDataValid(commentData, handleError);
+    if(isDataValid) {
+      dispatch(updateProduct({
+        id: product?._id!,
+        updatedProduct: { 
+          ...product!, 
+          reviews: [ 
+            ...product?.reviews, 
+            {
+              user: {
+                firstName: user?.firstName,
+                lastName: user?.lastName,
+                email: user?.email,
+                avatarUrl: user?.avatarUrl,
+              },
+              comment: commentData,
+              likes: 0,
+              dislikes: 0,
+              date: new Date()
+            }
+          ] 
+        }
+      }))
+      clearCommentForm();
+      setIsOpen(false);
     }
-
-    setIsOpen(false);
-    setCommentData({
-      advantages: '',
-      disadvantages: '',
-      comment: '',
-    });
-    setRating(0);
   };
 
   const styles = {
@@ -168,11 +210,12 @@ const AddCommentForm: React.FC = () => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
+        <FormErrorMessage error={error} />
         <CommentForm onSubmit={handleCommentDataSubmit}>
           <Rating>
             <StarRating
-              value={rating}
-              onChange={(rating: any) => setRating(rating)}
+              value={commentData.rate}
+              onChange={(rate: any) => setCommentData({ ...commentData, rate })}
             />
           </Rating>
           <Inputs>

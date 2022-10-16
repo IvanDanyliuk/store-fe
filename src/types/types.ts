@@ -1,10 +1,17 @@
 import { ReactNode } from "react";
 import { IProduct } from "../app/features/product/types";
-import { IUser } from "../app/features/user/types";
+
 
 export interface IOrder {
   product: IProduct;
   date: string;
+}
+
+export interface IComment {
+  advantages: string;
+  disadvantages: string;
+  comment: string;
+  rate: number;
 }
 
 export interface IReview {
@@ -14,11 +21,7 @@ export interface IReview {
     email: string;
     avatarUrl: string;
   };
-  comment: {
-    advantages: string;
-    disadvantages: string;
-    comment: string;
-  };
+  comment: IComment;
   likes: number;
   dislikes: number;
   date: string;

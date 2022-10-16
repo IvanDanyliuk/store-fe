@@ -22,6 +22,7 @@ import Checkbox from '../inputs/Checkbox';
 import TextArea from '../inputs/TextArea';
 import { clearProduct } from '../../features/product/reducers';
 import FormErrorMessage from '../ui/FormErrorMessage';
+import { IProductData } from '../../features/product/types';
 
 
 Modal.setAppElement('#root');
@@ -159,7 +160,7 @@ const CreateProductForm: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState('');
 
-  const [productData, setProductData] = useState({
+  const [productData, setProductData] = useState<IProductData>({
     category: {
       main: {
         title: '',
@@ -194,13 +195,10 @@ const CreateProductForm: React.FC = () => {
   });
 
   const [progressPercent, setProgressPercent] = useState(0);
-
   const [newPromotion, setNewPromotion] = useState('');
-  const [promotions, setPromotions] = useState<string[]>([]);
-
+  
   const setInitialData = () => {
     setCurrentCategory(categories[0]);
-    setPromotions([]);
     setProductData({
       category: {
         main: {
@@ -223,7 +221,6 @@ const CreateProductForm: React.FC = () => {
       description: '',
       reviews: [],
     });
-    setIsOpen(false);
   };
 
   const handleOpenModal = () => {
@@ -319,36 +316,41 @@ const CreateProductForm: React.FC = () => {
   };
 
   const handleAddPromotion = (e: any) => {
-    setPromotions([...promotions, newPromotion]);
+    setProductData({
+      ...productData,
+      promotion: [...productData.promotion, newPromotion],
+    })
     setNewPromotion('');
   };
 
   const handlePromotionDelete = (title: string) => {
-    setPromotions(promotions.filter(item => item !== title));
+    setProductData({
+      ...productData,
+      promotion: productData.promotion.filter((item: string) => item !== title)
+    })
   };
 
   const createNewProduct = () => {
     const isDataValid = isProductDataValid(productData, handleError);
-    console.log('Create a New Product', isDataValid)
     if(isDataValid) {
-      console.log('New Product data', {...productData, promotion: promotions})
-      dispatch(createProduct({...productData, promotion: promotions}));
+      dispatch(createProduct(productData));
       setInitialData();
+      setIsOpen(false);
     }
   };
 
-  const updateExistingProduct = () => {
+  const updateExistingProduct = async () => {
     const isDataValid = isProductDataValid(productData, handleError);
     if(isDataValid) {
-      dispatch(updateProduct({
+      await dispatch(updateProduct({
         id: dataToUpdate?._id!,
         updatedProduct: {
           _id: dataToUpdate?._id!,
           ...productData,
         },
       }));
-      dispatch(clearProduct());
       setInitialData();
+      dispatch(clearProduct());
     }
   };
 
@@ -408,7 +410,7 @@ const CreateProductForm: React.FC = () => {
   useEffect(() => {
     if(dataToUpdate) {
       setIsOpen(!isOpen);
-      setProductData(dataToUpdate)
+      setProductData(dataToUpdate);
     }
   }, [dataToUpdate]);
 
@@ -570,7 +572,7 @@ const CreateProductForm: React.FC = () => {
               </PromotionInputContainer>
               <PromotionList>
                 {
-                  promotions.length > 0 ? promotions.map(item => (
+                  productData.promotion.length > 0 ? productData.promotion.map((item: string) => (
                     <PromotionItem key={uuid()}>
                       <PromotionText>{item}</PromotionText>
                       <DeletePromotionBtn onClick={() => handlePromotionDelete(item)}>

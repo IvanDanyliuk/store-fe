@@ -376,12 +376,11 @@ const Product: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector(selectProduct);
   const status = useSelector(selectProductStatus);
-
   
   useEffect(() => {
     dispatch(getProduct(id!));
     return () => { dispatch(clearProduct()) };
-  }, [dispatch, id]);
+  }, [dispatch]);
   
   if(status === 'loading') {
     return (

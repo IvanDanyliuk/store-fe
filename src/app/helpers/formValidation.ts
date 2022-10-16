@@ -3,6 +3,7 @@ import { IAuthData } from './../features/user/types';
 import { IProductCategory } from "../features/category/types";
 import { IProductData } from "../features/product/types";
 import { IShipping } from "../features/shipping/types";
+import { IComment } from '../../types/types';
 
 
 type SetErrorType = (error: string) => void;
@@ -117,5 +118,15 @@ export const isSignupDataValid = (data: IUser, setError: SetErrorType) => {
     default:
       setError('');
       return true;
+  }
+};
+
+export const isCommentDataValid = (data: IComment, setError: SetErrorType) => {
+  if(!data.comment) {
+    setError('Comment field is required');
+    return false;
+  } else {
+    setError('');
+    return true;
   }
 };

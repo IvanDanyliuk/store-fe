@@ -64,6 +64,7 @@ const productsSlice = createSlice({
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
+        state.product = action.payload
         state.products = state.products.map(product => product._id === action.meta.arg.id ? { ...action.meta.arg.updatedProduct } : product);
       })
       .addCase(updateProduct.rejected, (state, action) => {
