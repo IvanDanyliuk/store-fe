@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IProductData } from './types';
 import * as api from '../../api/api';
 import { IProductToUpdate } from './types';
-import { checkNewProductData } from '../../helpers/helpers';
+import { IReview } from '../../../types/types';
 
 
 export const getProducts = createAsyncThunk(
@@ -41,6 +41,18 @@ export const createProduct = createAsyncThunk(
   }
 );
 
+export const createReview = createAsyncThunk(
+  'products/createReview',
+  async (review: IReview, { rejectWithValue }) => {
+    try {
+      const { data } = await api.createReview(review);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const updateProduct = createAsyncThunk(
   'products/updateProduct',
   async (productToUpdate: IProductToUpdate, { rejectWithValue }) => {
@@ -59,6 +71,17 @@ export const deleteProduct = createAsyncThunk(
     try {
       await api.deleteProduct(id); 
     } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteReview = createAsyncThunk(
+  'reviews/deleteReview',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      await api.deleteReview(id);
+    } catch (error: any) {
       return rejectWithValue(error);
     }
   }

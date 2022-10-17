@@ -15,16 +15,19 @@ export interface IComment {
 }
 
 export interface IReview {
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    avatarUrl: string;
-  };
-  comment: IComment;
+  _id?: string,
+  productId: string;
+  userFirstName: string;
+  userLastName: string;
+  userEmail: string;
+  userAvatarUrl: string;
+  advantages: string;
+  disadvantages: string;
+  comment: string;
+  rate: number;
   likes: number;
   dislikes: number;
-  date: string;
+  date: Date;
 }
 
 export interface IProductListProps {

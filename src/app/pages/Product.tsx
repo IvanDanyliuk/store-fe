@@ -4,13 +4,16 @@ import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faStar, faThumbsDown, faThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import AddCommentForm from '../components/modals/AddCommentForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { selectProduct, selectProductStatus } from '../features/product/selectors';
-import { getProduct } from '../features/product/asyncActions';
+import { deleteReview, getProduct } from '../features/product/asyncActions';
 import { clearProduct } from '../features/product/reducers';
+import { selectUser } from '../features/user/selectors';
+import RoundedButton from '../components/ui/RoundedButton';
+import { ButtonColor, ButtonType } from '../../types/types';
 
 
 interface IColor {
@@ -326,7 +329,14 @@ const CommentTitle = styled.span`
 const ReviewFooter = styled.div`
   ${tw`
     flex
-    justify-end
+    justify-between
+    items-center
+  `}
+`;
+
+const BtnGroup = styled.div`
+  ${tw`
+    flex
   `}
 `;
 
@@ -376,7 +386,12 @@ const Product: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector(selectProduct);
   const status = useSelector(selectProductStatus);
+  const user = useSelector(selectUser);
   
+  const handleReviewDelete = (id: string) => {
+    dispatch(deleteReview(id));
+  };
+
   useEffect(() => {
     dispatch(getProduct(id!));
     return () => { dispatch(clearProduct()) };
@@ -470,9 +485,9 @@ const Product: React.FC = () => {
               <ReviewBody key={uuid()}>
                 <ReviewHeader>
                   <UserInfo>
-                    <Avatar src={review.user.avatarUrl} />
+                    <Avatar src={review.userAvatarUrl} />
                     <UserName>
-                      {`${review.user.firstName} ${review.user.lastName}`}
+                      {`${review.userFirstName} ${review.userLastName}`}
                     </UserName>
                   </UserInfo>
                   <PostDate>
@@ -482,29 +497,53 @@ const Product: React.FC = () => {
                 <Comment>
                   <CommentSection>
                     <CommentTitle>Advantages: </CommentTitle>
-                    {review.comment.advantages}
+                    {review.advantages}
                   </CommentSection>
                   <CommentSection>
                     <CommentTitle>Disadvantages: </CommentTitle>
-                    {review.comment.disadvantages}
+                    {review.disadvantages}
                   </CommentSection>
                   <CommentSection>
-                    {review.comment.comment}
+                    {review.comment}
                   </CommentSection>
                 </Comment>
                 <ReviewFooter>
-                  <LikeBtn>
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                    <ReactionsNum>
-                      {review.likes}
-                    </ReactionsNum>
-                  </LikeBtn>
-                  <DislikeBtn>
-                    <FontAwesomeIcon icon={faThumbsDown} />
-                    <ReactionsNum>
-                      {review.dislikes}
-                    </ReactionsNum>
-                  </DislikeBtn>
+                  <BtnGroup>
+                    {
+                      user?.isAdmin && (
+                        <>
+                          <RoundedButton
+                            type={ButtonType.Button}
+                            color={ButtonColor.Danger}
+                            onClick={() => handleReviewDelete(review._id)}
+                          >
+                            <FontAwesomeIcon icon={faTrash}/>
+                          </RoundedButton>
+                          <RoundedButton
+                            type={ButtonType.Button}
+                            color={ButtonColor.Secondary}
+                            onClick={() => {}}
+                          >
+                            <FontAwesomeIcon icon={faPen} />
+                          </RoundedButton>
+                        </>
+                      )
+                    }
+                  </BtnGroup>
+                  <BtnGroup>
+                    <LikeBtn>
+                      <FontAwesomeIcon icon={faThumbsUp} />
+                      <ReactionsNum>
+                        {review.likes}
+                      </ReactionsNum>
+                    </LikeBtn>
+                    <DislikeBtn>
+                      <FontAwesomeIcon icon={faThumbsDown} />
+                      <ReactionsNum>
+                        {review.dislikes}
+                      </ReactionsNum>
+                    </DislikeBtn>
+                  </BtnGroup>
                 </ReviewFooter>
               </ReviewBody>
             ))}

@@ -11,7 +11,7 @@ import { isCommentDataValid } from '../../helpers/formValidation';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import FormErrorMessage from '../ui/FormErrorMessage';
-import { updateProduct } from '../../features/product/asyncActions';
+import { createReview } from '../../features/product/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
 import { selectUser } from '../../features/user/selectors';
 
@@ -154,26 +154,16 @@ const AddCommentForm: React.FC = () => {
     e.preventDefault();
     const isDataValid = isCommentDataValid(commentData, handleError);
     if(isDataValid) {
-      dispatch(updateProduct({
-        id: product?._id!,
-        updatedProduct: { 
-          ...product!, 
-          reviews: [ 
-            ...product?.reviews, 
-            {
-              user: {
-                firstName: user?.firstName,
-                lastName: user?.lastName,
-                email: user?.email,
-                avatarUrl: user?.avatarUrl,
-              },
-              comment: commentData,
-              likes: 0,
-              dislikes: 0,
-              date: new Date()
-            }
-          ] 
-        }
+      dispatch(createReview({
+        ...commentData,
+        productId: product?._id!,
+        userFirstName: user?.firstName!,
+        userLastName: user?.lastName!,
+        userEmail: user?.email!,
+        userAvatarUrl: user?.avatarUrl!,
+        likes: 0,
+        dislikes: 0,
+        date: new Date()
       }))
       clearCommentForm();
       setIsOpen(false);

@@ -17,6 +17,11 @@ export const createProduct = (product: any) => API.post('/products', { params: {
 export const updateProduct = (updatedProduct: any) => API.patch('/products', { params: { updatedProduct } });
 export const deleteProduct = (id: any) => API.delete('/products', { params: { id } });
 
+export const getUserReviews = (email: any) => API.get('/reviews', { params: { email } });
+export const createReview = (review: any) => API.post('/reviews', { params: { review } });
+export const updateReview = (updatedReview: any) => API.patch('/reviews', { params: { updatedReview } });
+export const deleteReview = (id: any) => API.delete('/reviews', { params: { id } });
+
 export const getCategories = () => API.get('/categories');
 export const createCategory = (category: any) => API.post('/categories', { params: { category } });
 export const updateCategory = (updatedCategory: any) => API.patch('/categories', { params: { updatedCategory } });
