@@ -64,3 +64,15 @@ export const deleteUser = createAsyncThunk(
     }
   }
 );
+
+export const getUserReviews = createAsyncThunk(
+  'user/getUserReviews',
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const { data } = await api.getUserReviews(email);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

@@ -17,6 +17,7 @@ export interface IComment {
 export interface IReview {
   _id?: string,
   productId: string;
+  productImageUrl: string;
   userFirstName: string;
   userLastName: string;
   userEmail: string;

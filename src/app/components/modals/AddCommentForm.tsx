@@ -157,6 +157,7 @@ const AddCommentForm: React.FC = () => {
       dispatch(createReview({
         ...commentData,
         productId: product?._id!,
+        productImageUrl: product?.image!,
         userFirstName: user?.firstName!,
         userLastName: user?.lastName!,
         userEmail: user?.email!,

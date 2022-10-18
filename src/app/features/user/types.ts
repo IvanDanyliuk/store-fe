@@ -1,8 +1,9 @@
-import { IOrder } from "../../../types/types";
+import { IOrder, IReview } from "../../../types/types";
 import { IProduct } from "../product/types";
 
 export interface IUserState {
   user: IUser | null;
+  reviews: IReview[];
   status: string;
   error: null | string;
 }
