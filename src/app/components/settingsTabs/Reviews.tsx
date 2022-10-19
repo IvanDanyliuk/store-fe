@@ -1,10 +1,10 @@
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { deleteReview } from '../../features/user/asyncActions';
 import { AppDispatch } from '../../features/store';
@@ -12,6 +12,7 @@ import { getUserReviews } from '../../features/user/asyncActions';
 import { selectReviews, selectUser } from '../../features/user/selectors';
 import ProductListImage from '../ui/ProductListImage';
 import RoundedButton from '../ui/RoundedButton';
+import EditReviewModal from '../modals/EditReviewModal';
 
 
 const Container = styled.div`
@@ -90,10 +91,6 @@ const Reviews: React.FC = () => {
     dispatch(deleteReview(id));
   };
 
-  const handleReviewEdit = (id: string) => {
-
-  };
-
   useEffect(() => {
     dispatch(getUserReviews(user?.email!));
   }, [dispatch]);
@@ -121,13 +118,7 @@ const Reviews: React.FC = () => {
                 </CommentData>
               </ReviewInfo>
               <ReviewActions>
-                <RoundedButton
-                  type={ButtonType.Button}
-                  color={ButtonColor.Secondary}
-                  onClick={() => handleReviewEdit(review._id!)}
-                >
-                  <FontAwesomeIcon icon={faPen} />
-                </RoundedButton>
+                <EditReviewModal review={review} />
                 <RoundedButton
                   type={ButtonType.Button}
                   color={ButtonColor.Danger}

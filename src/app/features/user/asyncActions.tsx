@@ -1,6 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api';
-import { IAuthData, IPasswordToUpdate, IUser, IUserToUpdate } from './types';
+import { 
+  IAuthData, 
+  IPasswordToUpdate, 
+  IUser, 
+  IUserToUpdate 
+} from './types';
 
 
 export const signin = createAsyncThunk(
@@ -77,8 +82,20 @@ export const getUserReviews = createAsyncThunk(
   }
 );
 
+export const updateReview = createAsyncThunk(
+  'user/updateReview',
+  async (reviewData: any, { rejectWithValue }) => {
+    try {
+      const { data } = await api.updateReview(reviewData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const deleteReview = createAsyncThunk(
-  'reviews/deleteReview',
+  'user/deleteReview',
   async (id: string, { rejectWithValue }) => {
     try {
       await api.deleteReview(id);

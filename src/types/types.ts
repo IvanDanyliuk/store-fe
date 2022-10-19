@@ -31,6 +31,11 @@ export interface IReview {
   date: Date;
 }
 
+export interface IReviewToUpdate {
+  id: string;
+  updatedReview: IReview;
+}
+
 export interface IProductListProps {
   products: IProduct[];
   category?: string;

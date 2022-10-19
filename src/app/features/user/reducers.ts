@@ -1,6 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IReview } from '../../../types/types';
-import { deleteUser, signin, signup, updatePassword, updateUser, getUserReviews, deleteReview } from './asyncActions';
+import { 
+  deleteUser, 
+  signin, 
+  signup, 
+  updatePassword, 
+  updateUser, 
+  getUserReviews, 
+  updateReview, 
+  deleteReview 
+} from './asyncActions';
 import { IUserState } from './types';
 
 
@@ -94,12 +103,18 @@ const userSlice = createSlice({
         state.status = 'failed';
         state.error = 'error';
       })
+      .addCase(updateReview.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(updateReview.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.reviews = state.reviews.map(review => review._id === action.meta.arg.id ? action.meta.arg.updatedReview : review)
+      })
       .addCase(deleteReview.pending, (state, action) => {
         state.status = 'loading';
       })
       .addCase(deleteReview.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // state.product = { ...state.product!, reviews: state.product?.reviews.filter((item: IReview) => item._id !== action.meta.arg) }
         state.reviews = state.reviews.filter((item: IReview) => item._id !== action.meta.arg)
       })
       .addCase(deleteReview.rejected, (state, action) => {
