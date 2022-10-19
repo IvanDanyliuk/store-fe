@@ -75,14 +75,3 @@ export const deleteProduct = createAsyncThunk(
     }
   }
 );
-
-export const deleteReview = createAsyncThunk(
-  'reviews/deleteReview',
-  async (id: string, { rejectWithValue }) => {
-    try {
-      await api.deleteReview(id);
-    } catch (error: any) {
-      return rejectWithValue(error);
-    }
-  }
-);

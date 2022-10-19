@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { deleteReview } from '../../features/product/asyncActions';
+import { deleteReview } from '../../features/user/asyncActions';
 import { AppDispatch } from '../../features/store';
 import { getUserReviews } from '../../features/user/asyncActions';
 import { selectReviews, selectUser } from '../../features/user/selectors';
@@ -28,8 +28,8 @@ const ReviewList = styled.ul`
 
 const ReviewItem = styled.li`
   ${tw`
-    pt-2
-    pb-2
+    pt-3
+    pb-3
     w-full
     flex
   `}
@@ -60,7 +60,7 @@ const CommentData = styled.div`
 
 const Text = styled.p`
   ${tw`
-  
+    text-sm
   `}
 `;
 

@@ -9,11 +9,12 @@ import AddCommentForm from '../components/modals/AddCommentForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { selectProduct, selectProductStatus } from '../features/product/selectors';
-import { deleteReview, getProduct } from '../features/product/asyncActions';
+import { getProduct } from '../features/product/asyncActions';
 import { clearProduct } from '../features/product/reducers';
 import { selectUser } from '../features/user/selectors';
 import RoundedButton from '../components/ui/RoundedButton';
 import { ButtonColor, ButtonType } from '../../types/types';
+import { deleteReview } from '../features/user/asyncActions';
 
 
 interface IColor {

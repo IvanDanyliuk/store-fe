@@ -6,10 +6,8 @@ import {
   createReview, 
   updateProduct, 
   deleteProduct, 
-  deleteReview
 } from './asyncActions';
 import { IProductState } from './types';
-import { IReview } from '../../../types/types';
 
 
 const initialState: IProductState = {
@@ -99,17 +97,6 @@ const productsSlice = createSlice({
         state.products = state.products.filter(product => product._id !== action.meta.arg);
       })
       .addCase(deleteProduct.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(deleteReview.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(deleteReview.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.product = { ...state.product!, reviews: state.product?.reviews.filter((item: IReview) => item._id !== action.meta.arg) }
-      })
-      .addCase(deleteReview.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })
