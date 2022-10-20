@@ -54,9 +54,13 @@ const ReviewActions = styled.div`
     w-full
     md:w-1/12
     flex
-    justify-between
+    justify-end
+    md:justify-between
     items-center
   `}
+  button {
+    margin-right: 10px;
+  }
 `;
 
 const CommentData = styled.div`
