@@ -28,25 +28,31 @@ const ReviewList = styled.ul`
 `;
 
 const ReviewItem = styled.li`
+  border-bottom: 1px solid #c1c1c1;
   ${tw`
     pt-3
     pb-3
     w-full
     flex
+    flex-col
+    md:flex-row
   `}
 `;
 
 const ReviewInfo = styled.div`
   ${tw`
-    w-11/12
+    w-full
+    md:w-11/12
     flex
+    justify-between
     items-center
   `}
 `;
 
 const ReviewActions = styled.div`
   ${tw`
-    w-1/12
+    w-full
+    md:w-1/12
     flex
     justify-between
     items-center
@@ -55,7 +61,10 @@ const ReviewActions = styled.div`
 
 const CommentData = styled.div`
   ${tw`
-    ml-3
+    ml-1
+    md:ml-3
+    w-11/12
+    md:w-full
   `}
 `;
 
@@ -102,7 +111,10 @@ const Reviews: React.FC = () => {
           reviews.length > 0 ? reviews.map(review => (
             <ReviewItem key={uuid()}>
               <ReviewInfo>
-                <ProductListImage url={review.productImageUrl} altText={review.productId} />
+                <ProductListImage 
+                  url={review.productImageUrl} 
+                  altText={review.productId} 
+                />
                 <CommentData>
                   <Text>
                     <TextTitle>Advantages: </TextTitle>
