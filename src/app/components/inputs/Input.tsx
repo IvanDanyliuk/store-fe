@@ -17,6 +17,7 @@ interface IInput {
 
 const Container = styled.div`
   ${tw`
+    w-full
     flex
     flex-col
   `}

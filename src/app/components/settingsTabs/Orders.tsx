@@ -21,8 +21,19 @@ const Container = styled.div`
 
 const FilterSection = styled.div`
   ${tw`
-  
+    relative
+    pt-5
+    pb-5
+    w-full
+    h-auto
+    flex
+    items-stretch
   `}
+  button {
+    margin-top: 28px;
+    margin-left: 10px;
+    margin-bottom: 4px;
+  }
 `;
 
 
@@ -65,6 +76,7 @@ const Orders: React.FC = () => {
         <FilterSection>
           <Input 
             name='searchValue'
+            label='Find an order by a consumer'
             value={searchValue}
             onChange={handleSearchValueChange}
           />
