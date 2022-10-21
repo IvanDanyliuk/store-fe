@@ -14,10 +14,12 @@ import { clearProduct } from '../features/product/reducers';
 import { selectUser } from '../features/user/selectors';
 import RoundedButton from '../components/ui/RoundedButton';
 import { ButtonColor, ButtonType } from '../../types/types';
-import { deleteReview } from '../features/user/asyncActions';
 import { addToCart } from '../features/cart/reducers';
 import { selectCartData } from '../features/cart/selectors';
 import Button from '../components/ui/Button';
+import { deleteReview, getProductReviews, updateReview } from '../features/reviews/asyncActions';
+import { selectReviews } from '../features/reviews/selectors';
+import { IReview } from '../features/reviews/types';
 
 
 interface IColor {
@@ -294,11 +296,7 @@ const Comment = styled.p`
   `}
 `;
 
-const CommentSection = styled.div`
-  ${tw`
-  
-  `}
-`;
+const CommentSection = styled.div``;
 
 const CommentTitle = styled.span`
   ${tw`
@@ -365,6 +363,7 @@ const Product: React.FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector(selectProduct);
+  const reviews = useSelector(selectReviews);
   const status = useSelector(selectProductStatus);
   const user = useSelector(selectUser);
   const cart = useSelector(selectCartData);
@@ -383,6 +382,72 @@ const Product: React.FC = () => {
       ])
     );
   };
+
+  const likeReview = (review: IReview) => {
+    const isLiked = review!.likes!.includes(user!.email);
+    const isDisliked = review!.dislikes!.includes(user!.email);
+    if(!isLiked && !isDisliked) {
+      dispatch(updateReview({
+        id: review._id,
+        updatedReview: {
+          ...review,
+          likes: [ ...review.likes, user?.email ],
+        },
+      }));
+    }
+    if(!isLiked && isDisliked) {
+      dispatch(updateReview({
+        id: review._id,
+        updatedReview: {
+          ...review,
+          likes: [ ...review.likes, user?.email ],
+          dislikes: review.dislikes.filter((item: string) => item !== user?.email),
+        },
+      }));
+    }
+    if(isLiked) {
+      dispatch(updateReview({
+        id: review._id,
+        updatedReview: {
+          ...review,
+          likes: [...review.likes.filter((item: string) => item !== user!.email)],
+        },
+      }));
+    }
+  };
+
+  const dislikeReview = (review: IReview) => {
+    const isLiked = review!.likes!.includes(user!.email);
+    const isDisliked = review!.dislikes!.includes(user!.email);
+    if(!isLiked && !isDisliked) {
+      dispatch(updateReview({
+        id: review._id,
+        updatedReview: {
+          ...review,
+          dislikes: [ ...review.dislikes, user?.email ],
+        },
+      }));
+    }
+    if(isLiked && !isDisliked) {
+      dispatch(updateReview({
+        id: review._id,
+        updatedReview: {
+          ...review,
+          likes: [...review.likes.filter((item: string) => item !== user!.email)],
+          dislikes: [ ...review.dislikes, user!.email ],
+        },
+      }));
+    }
+    if(isDisliked) {
+      dispatch(updateReview({
+        id: review._id,
+        updatedReview: {
+          ...review,
+          dislikes: review.dislikes.filter((item: string) => item !== user?.email),
+        },
+      }));
+    }
+  };
   
   const handleReviewDelete = (id: string) => {
     dispatch(deleteReview(id));
@@ -392,6 +457,12 @@ const Product: React.FC = () => {
     dispatch(getProduct(id!));
     return () => { dispatch(clearProduct()) };
   }, [dispatch]);
+
+  useEffect(() => {
+    if(product) {
+      dispatch(getProductReviews(product._id));
+    }
+  }, [product]);
   
   if(status === 'loading') {
     return (
@@ -488,7 +559,7 @@ const Product: React.FC = () => {
             <AddCommentForm />
           </ReviewTopSection>
           <ReviewList>
-            {product?.reviews.map((review: any) => (
+            {reviews.map((review: any) => (
               <ReviewBody key={uuid()}>
                 <ReviewHeader>
                   <UserInfo>
@@ -538,16 +609,16 @@ const Product: React.FC = () => {
                     }
                   </BtnGroup>
                   <BtnGroup>
-                    <LikeBtn>
+                    <LikeBtn onClick={() => likeReview(review)}>
                       <FontAwesomeIcon icon={faThumbsUp} />
                       <ReactionsNum>
-                        {review.likes}
+                        {review.likes.length}
                       </ReactionsNum>
                     </LikeBtn>
-                    <DislikeBtn>
+                    <DislikeBtn onClick={() => dislikeReview(review)}>
                       <FontAwesomeIcon icon={faThumbsDown} />
                       <ReactionsNum>
-                        {review.dislikes}
+                        {review.dislikes.length}
                       </ReactionsNum>
                     </DislikeBtn>
                   </BtnGroup>

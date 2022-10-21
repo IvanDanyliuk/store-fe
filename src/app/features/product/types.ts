@@ -1,5 +1,3 @@
-import { IReview } from "../../../types/types";
-
 export interface IProduct {
   _id: string;
   category: {
@@ -21,7 +19,6 @@ export interface IProduct {
   isInStock: boolean;
   shortInfo: string;
   description: string;
-  reviews: IReview[] | any;
 }
 
 export interface IProductData {
@@ -44,7 +41,6 @@ export interface IProductData {
   isInStock: boolean;
   shortInfo: string;
   description: string;
-  reviews: IReview[] | any;
 }
 
 export interface IProductState {

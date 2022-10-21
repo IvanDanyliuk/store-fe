@@ -6,13 +6,14 @@ import { v4 as uuid } from 'uuid';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { deleteReview } from '../../features/user/asyncActions';
+import { deleteReview } from '../../features/reviews/asyncActions';
 import { AppDispatch } from '../../features/store';
-import { getUserReviews } from '../../features/user/asyncActions';
-import { selectReviews, selectUser } from '../../features/user/selectors';
+import { getUserReviews } from '../../features/reviews/asyncActions';
+import { selectUser } from '../../features/user/selectors';
 import ProductListImage from '../ui/ProductListImage';
 import RoundedButton from '../ui/RoundedButton';
 import EditReviewModal from '../modals/EditReviewModal';
+import { selectReviews } from '../../features/reviews/selectors';
 
 
 const Container = styled.div`

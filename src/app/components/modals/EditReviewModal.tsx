@@ -12,9 +12,10 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import FormErrorMessage from '../ui/FormErrorMessage';
 import RoundedButton from '../ui/RoundedButton';
-import { ButtonColor, ButtonType, IReview } from '../../../types/types';
+import { ButtonColor, ButtonType } from '../../../types/types';
 import Button from '../ui/Button';
-import { updateReview } from '../../features/user/asyncActions';
+import { IReview } from '../../features/reviews/types';
+import { updateReview } from '../../features/reviews/asyncActions';
 
 
 interface IEditReviewModalProps {
@@ -79,18 +80,6 @@ const Input = styled.textarea`
     border
     rounded
     mb-3
-  `}
-`;
-
-const SubmitBtn = styled.button`
-  background: rgb(43, 212, 161);
-  ${tw`
-    mt-3
-    p-2
-    w-1/2
-    rounded
-    text-white
-    font-bold
   `}
 `;
 

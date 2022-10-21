@@ -14,28 +14,6 @@ export interface IComment {
   rate: number;
 }
 
-export interface IReview {
-  _id?: string,
-  productId: string;
-  productImageUrl: string;
-  userFirstName: string;
-  userLastName: string;
-  userEmail: string;
-  userAvatarUrl: string;
-  advantages: string;
-  disadvantages: string;
-  comment: string;
-  rate: number;
-  likes: number;
-  dislikes: number;
-  date: Date;
-}
-
-export interface IReviewToUpdate {
-  id: string;
-  updatedReview: IReview;
-}
-
 export interface IProductListProps {
   products: IProduct[];
   category?: string;

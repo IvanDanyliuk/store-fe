@@ -11,7 +11,7 @@ import { isCommentDataValid } from '../../helpers/formValidation';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import FormErrorMessage from '../ui/FormErrorMessage';
-import { createReview } from '../../features/product/asyncActions';
+import { createReview } from '../../features/reviews/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
 import { selectUser } from '../../features/user/selectors';
 
@@ -162,8 +162,8 @@ const AddCommentForm: React.FC = () => {
         userLastName: user?.lastName!,
         userEmail: user?.email!,
         userAvatarUrl: user?.avatarUrl!,
-        likes: 0,
-        dislikes: 0,
+        likes: [],
+        dislikes: [],
         date: new Date()
       }))
       clearCommentForm();

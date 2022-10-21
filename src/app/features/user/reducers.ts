@@ -1,14 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IReview } from '../../../types/types';
 import { 
   deleteUser, 
   signin, 
   signup, 
   updatePassword, 
-  updateUser, 
-  getUserReviews, 
-  updateReview, 
-  deleteReview 
+  updateUser
 } from './asyncActions';
 import { IUserState } from './types';
 
@@ -18,7 +14,6 @@ const user = JSON.parse(localStorage.getItem('profile')!);
 const initialState: IUserState = {
   status: 'idle',
   user: user ? user.result : null,
-  reviews: [],
   error: null,
 };
 
@@ -89,35 +84,6 @@ const userSlice = createSlice({
         state.user = null;
       })
       .addCase(deleteUser.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(getUserReviews.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(getUserReviews.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.reviews = action.payload;
-      })
-      .addCase(getUserReviews.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(updateReview.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(updateReview.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.reviews = state.reviews.map(review => review._id === action.meta.arg.id ? action.meta.arg.updatedReview : review)
-      })
-      .addCase(deleteReview.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(deleteReview.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.reviews = state.reviews.filter((item: IReview) => item._id !== action.meta.arg)
-      })
-      .addCase(deleteReview.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

@@ -180,7 +180,6 @@ const CreateProductForm: React.FC = () => {
     isInStock: true,
     shortInfo: '',
     description: '',
-    reviews: [],
   });
 
   const [currentCategory, setCurrentCategory] = useState({
@@ -219,7 +218,6 @@ const CreateProductForm: React.FC = () => {
       isInStock: true,
       shortInfo: '',
       description: '',
-      reviews: [],
     });
   };
 
@@ -402,7 +400,6 @@ const CreateProductForm: React.FC = () => {
         isInStock: true,
         shortInfo: '',
         description: '',
-        reviews: [],
       });
     }
   }, [categories]);

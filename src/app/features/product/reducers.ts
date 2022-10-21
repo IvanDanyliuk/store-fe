@@ -3,7 +3,6 @@ import {
   getProducts, 
   getProduct, 
   createProduct, 
-  createReview, 
   updateProduct, 
   deleteProduct, 
 } from './asyncActions';
@@ -63,17 +62,6 @@ const productsSlice = createSlice({
         state.products.push(action.payload);
       })
       .addCase(createProduct.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(createReview.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(createReview.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.product = { ...state.product!, reviews: [ ...state.product?.reviews!, action.payload ] };
-      })
-      .addCase(createReview.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

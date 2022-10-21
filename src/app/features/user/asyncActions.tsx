@@ -70,37 +70,3 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
-export const getUserReviews = createAsyncThunk(
-  'user/getUserReviews',
-  async (email: string, { rejectWithValue }) => {
-    try {
-      const { data } = await api.getUserReviews(email);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const updateReview = createAsyncThunk(
-  'user/updateReview',
-  async (reviewData: any, { rejectWithValue }) => {
-    try {
-      const { data } = await api.updateReview(reviewData);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const deleteReview = createAsyncThunk(
-  'user/deleteReview',
-  async (id: string, { rejectWithValue }) => {
-    try {
-      await api.deleteReview(id);
-    } catch (error: any) {
-      return rejectWithValue(error);
-    }
-  }
-);
