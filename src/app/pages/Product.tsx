@@ -15,6 +15,9 @@ import { selectUser } from '../features/user/selectors';
 import RoundedButton from '../components/ui/RoundedButton';
 import { ButtonColor, ButtonType } from '../../types/types';
 import { deleteReview } from '../features/user/asyncActions';
+import { addToCart } from '../features/cart/reducers';
+import { selectCartData } from '../features/cart/selectors';
+import Button from '../components/ui/Button';
 
 
 interface IColor {
@@ -196,33 +199,9 @@ const ActionBtns = styled.div`
     md:ml-10
     flex
   `}
-`;
-
-const BuyBtn = styled.button`
-  background: rgb(48, 213, 249);
-  ${tw`
-    mr-3
-    pt-2
-    pb-2
-    w-1/2
-    md:w-44
-    rounded-lg
-    text-white
-    font-bold
-  `}
-`;
-
-const CreditBuyBtn = styled.button`
-  background: rgb(37, 160, 187);
-  ${tw`
-    pt-2
-    pb-2
-    w-1/2
-    md:w-44
-    rounded-lg
-    text-white
-    font-bold
-  `}
+  button {
+    margin-right: 20px;
+  }
 `;
 
 const OrderInfo = styled.div`
@@ -388,6 +367,22 @@ const Product: React.FC = () => {
   const product = useSelector(selectProduct);
   const status = useSelector(selectProductStatus);
   const user = useSelector(selectUser);
+  const cart = useSelector(selectCartData);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: product?._id,
+      quantity: 1,
+      product
+    }));
+    localStorage.setItem(
+      'cart', 
+      JSON.stringify([
+        ...cart, 
+        { id: product?._id, quantity: 1, product }
+      ])
+    );
+  };
   
   const handleReviewDelete = (id: string) => {
     dispatch(deleteReview(id));
@@ -446,8 +441,19 @@ const Product: React.FC = () => {
               <Amount>{product?.price}</Amount>
             </Price>
             <ActionBtns>
-              <BuyBtn>Buy</BuyBtn>
-              <CreditBuyBtn>Buy on Credit</CreditBuyBtn>
+              <Button
+                type={ButtonType.Button}
+                color={ButtonColor.Primary}
+                onClick={handleAddToCart}
+              >
+                Buy
+              </Button>
+              <Button
+                type={ButtonType.Button}
+                color={ButtonColor.Secondary}
+              >
+                Buy on Credit
+              </Button>
             </ActionBtns>
           </SellingSection>
           <OrderInfo>
