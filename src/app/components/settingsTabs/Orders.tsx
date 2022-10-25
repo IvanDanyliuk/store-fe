@@ -51,9 +51,7 @@ const Orders: React.FC = () => {
   };
 
   const handleOrderFind = () => {
-    setFilteredOrders([
-      ...orders.filter(order => order.customer.lastName.includes(searchValue))
-    ]);
+    setFilteredOrders(orders.filter(order => order.customer.lastName === searchValue));
   };
 
   useEffect(() => {
