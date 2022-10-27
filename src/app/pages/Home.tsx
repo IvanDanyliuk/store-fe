@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../features/store';
-import { getProducts } from '../features/product/asyncActions';
+import { getProducts, getTopProducts } from '../features/product/asyncActions';
 import { selectProducts } from '../features/product/selectors';
 
 
@@ -116,7 +116,8 @@ const Home: React.FC = () => {
   const products = useSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(getProducts()); 
+    // dispatch(getProducts()); 
+    dispatch(getTopProducts());
   }, []);
 
   return (
