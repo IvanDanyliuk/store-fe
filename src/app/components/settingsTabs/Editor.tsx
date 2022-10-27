@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { TableTypes } from '../../../types/types';
-import { getProducts, deleteProduct } from '../../features/product/asyncActions';
+import { getAllProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
@@ -90,8 +90,14 @@ const Editor: React.FC = () => {
     dispatch(deleteShipping(id));
   };
 
+  //TEMPORARY REQUEST DATA
+  const page = 1;
+  const productsPerPage = 10;
+  //needs to add the logic of getting all amount of the available products or pages
+  //needs to add the logic of changing of the current page number
+
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getAllProducts({ page, productsPerPage }));
     dispatch(getCategories());
     dispatch(getShippings());
     return () => { 

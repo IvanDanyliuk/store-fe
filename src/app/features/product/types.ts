@@ -54,3 +54,9 @@ export interface IProductToUpdate {
   id: string;
   updatedProduct: IProduct;
 }
+
+export interface IProductRequestData {
+  page: number;
+  productsPerPage: number;
+  category?: string | undefined;
+}
