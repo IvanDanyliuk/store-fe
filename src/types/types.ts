@@ -60,6 +60,13 @@ export interface ITableProps {
   onDelete: (id: string) => void;
 }
 
+export interface IProductsTableProps {
+  products: IProduct[];
+  page: number;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
+}
+
 export interface IPaginationProps {
   range: any;
   slice: any;

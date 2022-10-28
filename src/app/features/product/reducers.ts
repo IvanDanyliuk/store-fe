@@ -14,7 +14,10 @@ import { IProductState } from './types';
 
 const initialState: IProductState = {
   product: null,
-  products: [],
+  products: {
+    data: [],
+    pages: 0,
+  },
   status: 'idle',
   error: null,
 };
@@ -24,7 +27,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     setProductToUpdate: (state, action) => {
-      state.product = state.products.find(item => item._id === action.payload);
+      state.product = state.products.data.find(item => item._id === action.payload);
     },
     clearProduct: (state) => {
       state.product = null;
@@ -84,7 +87,7 @@ const productsSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products.push(action.payload);
+        state.products.data.push(action.payload);
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.status = 'failed';
@@ -96,7 +99,7 @@ const productsSlice = createSlice({
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.product = action.payload
-        state.products = state.products.map(product => product._id === action.meta.arg.id ? { ...action.meta.arg.updatedProduct } : product);
+        state.products.data = state.products.data.map(product => product._id === action.meta.arg.id ? { ...action.meta.arg.updatedProduct } : product);
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.status = 'failed';
@@ -107,7 +110,7 @@ const productsSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products = state.products.filter(product => product._id !== action.meta.arg);
+        state.products.data = state.products.data.filter(product => product._id !== action.meta.arg);
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.status = 'failed';

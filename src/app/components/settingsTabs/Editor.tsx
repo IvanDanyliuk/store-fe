@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { TableTypes } from '../../../types/types';
 import { getAllProducts, deleteProduct } from '../../features/product/asyncActions';
-import { selectProducts } from '../../features/product/selectors';
+import { selectPagesCount, selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
 import CreateCategoryForm from '../modals/CreateCategoryForm';
@@ -19,6 +19,8 @@ import { selectShippings } from '../../features/shipping/selectors';
 import { deleteShipping, getShippings } from '../../features/shipping/asyncActions';
 import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
+import ProductsTable from '../table/ProductsTable';
+import ProductListPagination from '../products/ProductListPagination';
 
 
 const Container = styled.div`
@@ -58,6 +60,7 @@ const Editor: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
+  const pageCount = useSelector(selectPagesCount);
   const categories = useSelector(selectCategories);
   const shippings = useSelector(selectShippings);
   const user = useSelector(selectUser);
@@ -90,14 +93,14 @@ const Editor: React.FC = () => {
     dispatch(deleteShipping(id));
   };
 
-  //TEMPORARY REQUEST DATA
-  const page = 1;
+  const [page, setPage] = useState(1);
   const productsPerPage = 10;
-  //needs to add the logic of getting all amount of the available products or pages
-  //needs to add the logic of changing of the current page number
 
   useEffect(() => {
     dispatch(getAllProducts({ page, productsPerPage }));
+  }, [dispatch, page]);
+
+  useEffect(() => {
     dispatch(getCategories());
     dispatch(getShippings());
     return () => { 
@@ -113,11 +116,16 @@ const Editor: React.FC = () => {
           <SubTitle>Products</SubTitle>
           <CreateProductForm />
         </SectionHeader>
-        <Table 
-          tableType={TableTypes.Products} 
-          data={products} 
-          onEdit={handleProductEdit} 
-          onDelete={handleProductDelete} 
+        <ProductsTable 
+          products={products} 
+          page={page}
+          onEdit={handleProductEdit}
+          onDelete={handleProductDelete}
+        />
+        <ProductListPagination 
+          currentPage={page}
+          pageCount={pageCount}
+          setPage={setPage}
         />
       </Section>
       <Section>

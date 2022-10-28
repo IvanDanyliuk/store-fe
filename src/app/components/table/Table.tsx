@@ -7,11 +7,9 @@ import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import useTable from '../../hooks/useTable';
 import { ButtonColor, ButtonType, ITableProps, TableTypes } from '../../../types/types';
-import { IProduct } from '../../features/product/types';
 import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
 import { IShipping } from '../../features/shipping/types';
-import ProductListImage from '../ui/ProductListImage';
 
 
 interface ICellProps {
@@ -124,15 +122,7 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
         <TableHead>
           <TableRow>
             {
-              tableType === TableTypes.Products ? (
-                <>
-                  <TableHeaderCell name='productName'>Name</TableHeaderCell>
-                  <TableHeaderCell name='productPrice'>Price</TableHeaderCell>
-                  <TableHeaderCell name='productRating'>Rating</TableHeaderCell>
-                  <TableHeaderCell name='productImage'></TableHeaderCell>
-                  <TableHeaderCell name='productActions'></TableHeaderCell>
-                </>
-              ) : tableType === TableTypes.Categories ? (
+              tableType === TableTypes.Categories ? (
                 <>
                   <TableHeaderCell name='categoryName'>Name</TableHeaderCell>
                   <TableHeaderCell name='categoryActions'></TableHeaderCell>
@@ -148,33 +138,7 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
         </TableHead>
         <TableBody>
           {
-            tableType === TableTypes.Products ? 
-              slice.map((product: IProduct) => 'title' in product && (
-                <TableRow key={uuid()}>
-                  <TableCell name='productName'>{product.title}</TableCell>
-                  <TableCell name='productPrice'>{product.price}</TableCell>
-                  <TableCell name='productRating'>{product.rating}</TableCell>
-                  <TableCell name='productImage'>
-                    <ProductListImage url={product.image} altText={product.title} />
-                  </TableCell>
-                  <TableCell name='productActions'>
-                    <Button 
-                      color={ButtonColor.Success} 
-                      type={ButtonType.Button}
-                      onClick={() => onEdit(product._id)}
-                    >
-                      Edit
-                    </Button>
-                    <Button 
-                      color={ButtonColor.Danger} 
-                      type={ButtonType.Button}
-                      onClick={() => onDelete(product._id)}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              )) : tableType === TableTypes.Categories ? (
+            tableType === TableTypes.Categories ? (
                 slice.map((category: IProductCategory) => 'main' in category && (
                   <TableRow key={uuid()}>
                     <TableCell name='categoryName'>{category.main.title}</TableCell>

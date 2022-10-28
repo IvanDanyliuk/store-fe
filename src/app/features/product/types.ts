@@ -46,7 +46,10 @@ export interface IProductData {
 export interface IProductState {
   status: string;
   product: IProduct | null | undefined,
-  products: IProduct[];
+  products: {
+    data: IProduct[];
+    pages: number;
+  };
   error: null | string;
 }
 
