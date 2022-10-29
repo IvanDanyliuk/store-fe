@@ -11,6 +11,7 @@ export interface IProduct {
     };
   };
   title: string;
+  brand: string;
   price: number;
   color: string;
   rating: number;
@@ -33,6 +34,7 @@ export interface IProductData {
     };
   };
   title: string;
+  brand: string;
   price: number;
   color: string;
   rating: number;
@@ -46,11 +48,20 @@ export interface IProductData {
 export interface IProductState {
   status: string;
   product: IProduct | null | undefined,
-  products: IProduct[];
+  products: {
+    data: IProduct[];
+    pages: number;
+  };
   error: null | string;
 }
 
 export interface IProductToUpdate {
   id: string;
   updatedProduct: IProduct;
+}
+
+export interface IProductRequestData {
+  page: number;
+  productsPerPage: number;
+  category?: string | undefined;
 }

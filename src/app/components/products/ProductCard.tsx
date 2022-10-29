@@ -89,10 +89,10 @@ const RatingIcon = styled.span`
 `;
 
 const HeartIcon = styled.button`
-  &[data-isPicked='true'] {
+  &[data-ispicked='true'] {
     color: #f6c430;
   }
-  &[data-isPicked='false'] {
+  &[data-ispicked='false'] {
     color: #1fcdd6;
   }
   transition: ease-in-out .3s;
@@ -210,7 +210,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   
   return (
     <Card>
-      <HeartIcon data-isPicked={isProductInWishList} onClick={handleAddToWishList}>
+      <HeartIcon data-ispicked={isProductInWishList} onClick={handleAddToWishList}>
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
       <ProductLink to={`/products/${category}/${product._id}`}>

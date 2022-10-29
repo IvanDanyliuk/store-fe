@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { stat } from 'fs';
 import { 
-  getProducts, 
+  getAllProducts, 
+  getProductsByCategory, 
+  getTopProducts,
   getProduct, 
   createProduct, 
   updateProduct, 
@@ -11,7 +14,10 @@ import { IProductState } from './types';
 
 const initialState: IProductState = {
   product: null,
-  products: [],
+  products: {
+    data: [],
+    pages: 0,
+  },
   status: 'idle',
   error: null,
 };
@@ -21,7 +27,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     setProductToUpdate: (state, action) => {
-      state.product = state.products.find(item => item._id === action.payload);
+      state.product = state.products.data.find(item => item._id === action.payload);
     },
     clearProduct: (state) => {
       state.product = null;
@@ -32,14 +38,36 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, (state, action) => {
+      .addCase(getAllProducts.pending, (state, action) => {
         state.status = 'loading';
       })
-      .addCase(getProducts.fulfilled, (state, action) => {
+      .addCase(getAllProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.products = action.payload;
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(getAllProducts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(getProductsByCategory.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getProductsByCategory.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.products = action.payload;
+      })
+      .addCase(getProductsByCategory.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(getTopProducts.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getTopProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.products = action.payload;
+      })
+      .addCase(getTopProducts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })
@@ -59,7 +87,7 @@ const productsSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products.push(action.payload);
+        state.products.data.push(action.payload);
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.status = 'failed';
@@ -71,7 +99,7 @@ const productsSlice = createSlice({
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.product = action.payload
-        state.products = state.products.map(product => product._id === action.meta.arg.id ? { ...action.meta.arg.updatedProduct } : product);
+        state.products.data = state.products.data.map(product => product._id === action.meta.arg.id ? { ...action.meta.arg.updatedProduct } : product);
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.status = 'failed';
@@ -82,7 +110,7 @@ const productsSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products = state.products.filter(product => product._id !== action.meta.arg);
+        state.products.data = state.products.data.filter(product => product._id !== action.meta.arg);
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.status = 'failed';
