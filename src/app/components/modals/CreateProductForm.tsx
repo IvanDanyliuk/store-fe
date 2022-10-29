@@ -172,6 +172,7 @@ const CreateProductForm: React.FC = () => {
       },
     },
     title: '',
+    brand: '',
     price: 0,
     color: '',
     rating: 0,
@@ -210,6 +211,7 @@ const CreateProductForm: React.FC = () => {
         },
       },
       title: '',
+      brand: '',
       price: 0,
       color: '',
       rating: 0,
@@ -392,6 +394,7 @@ const CreateProductForm: React.FC = () => {
           },
         },
         title: '',
+        brand: '',
         price: 0,
         color: '',
         rating: 0,
@@ -509,11 +512,12 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
-              <Checkbox 
-                name='isInStock'
-                label='In Stock'
-                checked={productData.isInStock}
-                onChange={handleStockChange}
+              <Input 
+                name='brand'
+                label='Brand'
+                value={productData.brand}
+                onChange={handleProductDataChange}
+                isRequired
               />
             </FormItem>
             <FormItem>
@@ -549,7 +553,7 @@ const CreateProductForm: React.FC = () => {
                 rows={2}
               />
             </FormItem>
-            <PromotionContainer>
+            <FormItem>
               <PromotionInputContainer>
                 <FormItem>
                   <Input 
@@ -581,7 +585,15 @@ const CreateProductForm: React.FC = () => {
                   )
                 }
               </PromotionList>
-            </PromotionContainer>
+            </FormItem>
+            <FormItem>
+              <Checkbox 
+                name='isInStock'
+                label='In Stock'
+                checked={productData.isInStock}
+                onChange={handleStockChange}
+              />
+            </FormItem>
           </Inputs>
           <Button 
             type={ButtonType.Submit} 

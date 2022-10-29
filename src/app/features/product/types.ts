@@ -11,6 +11,7 @@ export interface IProduct {
     };
   };
   title: string;
+  brand: string;
   price: number;
   color: string;
   rating: number;
@@ -33,6 +34,7 @@ export interface IProductData {
     };
   };
   title: string;
+  brand: string;
   price: number;
   color: string;
   rating: number;
