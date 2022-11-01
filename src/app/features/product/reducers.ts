@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { stat } from 'fs';
-import { 
-  getAllProducts, 
-  getProductsByCategory, 
+import {  
+  getProducts, 
   getTopProducts,
   getProduct, 
   createProduct, 
@@ -38,25 +36,14 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAllProducts.pending, (state, action) => {
+      .addCase(getProducts.pending, (state, action) => {
         state.status = 'loading';
       })
-      .addCase(getAllProducts.fulfilled, (state, action) => {
+      .addCase(getProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.products = action.payload;
       })
-      .addCase(getAllProducts.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(getProductsByCategory.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(getProductsByCategory.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.products = action.payload;
-      })
-      .addCase(getProductsByCategory.rejected, (state, action) => {
+      .addCase(getProducts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

@@ -11,8 +11,7 @@ const API = axios.create({ baseURL: 'http://localhost:5000' });
 //   return req;
 // });
 
-export const getAllProducts = (page: number, productsPerPage: number) => API.get('/products/all', { params: { page, productsPerPage } });
-export const getProductsByCategory = (page: number, productsPerPage: number, category: string) => API.get('/products', { params: { page, productsPerPage, category } });
+export const getProducts = (page: number, productsPerPage: number, category?: string | undefined) => API.get('/products', { params: { page, productsPerPage, category } });
 export const getTopProducts = () => API.get('/products/top-rated');
 export const getProduct = (id: any) => API.get(`/products/${id}`);
 export const createProduct = (product: any) => API.post('/products', { params: { product } });

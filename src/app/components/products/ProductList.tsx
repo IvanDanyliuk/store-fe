@@ -17,7 +17,6 @@ const Container = styled.ul`
 `;
 
 const ProductList: React.FC<IProductListProps> = ({ products }) => {
-  
   return (
     <Container>
       {
