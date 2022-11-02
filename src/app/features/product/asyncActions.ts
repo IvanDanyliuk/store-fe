@@ -4,25 +4,12 @@ import * as api from '../../api/api';
 import { IProductToUpdate } from './types';
 
 
-export const getAllProducts = createAsyncThunk(
-  'products/getAllProducts',
+export const getProducts = createAsyncThunk(
+  'products/getProducts',
   async (productRequestData: IProductRequestData, { rejectWithValue }) => {
-    const { page, productsPerPage } = productRequestData;
+    const { page, productsPerPage, category, filterData } = productRequestData;
     try {
-      const { data } = await api.getAllProducts(page, productsPerPage);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const getProductsByCategory = createAsyncThunk(
-  'products/getProductsByCategory',
-  async (productRequestData: IProductRequestData, { rejectWithValue }) => {
-    const { page, productsPerPage, category } = productRequestData;
-    try {
-      const { data } = await api.getProductsByCategory(page, productsPerPage, category!);
+      const { data } = await api.getProducts(page, productsPerPage, category!, filterData!);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -47,6 +34,18 @@ export const getProduct = createAsyncThunk(
   async (id: string, { rejectWithValue }) => {
     try {
       const { data } = await api.getProduct(id);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getBrands = createAsyncThunk(
+  'products/getBrands',
+  async (category: any, { rejectWithValue }) => {
+    try {
+      const { data } = await api.getBrands(category);
       return data;
     } catch (error) {
       return rejectWithValue(error);

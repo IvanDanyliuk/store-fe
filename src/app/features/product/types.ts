@@ -52,6 +52,7 @@ export interface IProductState {
     data: IProduct[];
     pages: number;
   };
+  brands: string[];
   error: null | string;
 }
 
@@ -64,4 +65,9 @@ export interface IProductRequestData {
   page: number;
   productsPerPage: number;
   category?: string | undefined;
+  filterData?: {
+    brands: string[];
+    minPrice: number;
+    maxPrice: number;
+  }
 }

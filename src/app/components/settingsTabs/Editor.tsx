@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { TableTypes } from '../../../types/types';
-import { getAllProducts, deleteProduct } from '../../features/product/asyncActions';
+import { getProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectPagesCount, selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
@@ -97,7 +97,7 @@ const Editor: React.FC = () => {
   const productsPerPage = 10;
 
   useEffect(() => {
-    dispatch(getAllProducts({ page, productsPerPage }));
+    dispatch(getProducts({ page, productsPerPage }));
   }, [dispatch, page]);
 
   useEffect(() => {

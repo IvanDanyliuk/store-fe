@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { stat } from 'fs';
-import { 
-  getAllProducts, 
-  getProductsByCategory, 
+import {  
+  getProducts, 
   getTopProducts,
   getProduct, 
+  getBrands, 
   createProduct, 
   updateProduct, 
   deleteProduct, 
@@ -18,6 +17,7 @@ const initialState: IProductState = {
     data: [],
     pages: 0,
   },
+  brands: [],
   status: 'idle',
   error: null,
 };
@@ -38,25 +38,14 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAllProducts.pending, (state, action) => {
+      .addCase(getProducts.pending, (state, action) => {
         state.status = 'loading';
       })
-      .addCase(getAllProducts.fulfilled, (state, action) => {
+      .addCase(getProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.products = action.payload;
       })
-      .addCase(getAllProducts.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = 'error';
-      })
-      .addCase(getProductsByCategory.pending, (state, action) => {
-        state.status = 'loading';
-      })
-      .addCase(getProductsByCategory.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.products = action.payload;
-      })
-      .addCase(getProductsByCategory.rejected, (state, action) => {
+      .addCase(getProducts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })
@@ -79,6 +68,17 @@ const productsSlice = createSlice({
         state.product = action.payload;
       })
       .addCase(getProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(getBrands.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getBrands.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.brands = action.payload;
+      })
+      .addCase(getBrands.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

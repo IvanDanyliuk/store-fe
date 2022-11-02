@@ -16,14 +16,24 @@ const Container = styled.ul`
   `}
 `;
 
+const Message = styled.div`
+  ${tw`
+    w-full
+    text-center
+  `}
+`;
+
+
+
 const ProductList: React.FC<IProductListProps> = ({ products }) => {
-  
   return (
     <Container>
       {
-        products.map((product: any) => (
+        products.length > 0 ? products.map((product: any) => (
           <ProductCard key={product._id} product={product} />
-        ))
+        )) : (
+          <Message>Cannot find products for your request...</Message>
+        )
       }
     </Container>
   );
