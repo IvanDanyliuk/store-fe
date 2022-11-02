@@ -8,6 +8,10 @@ import { AppDispatch } from '../../features/store';
 import Button from '../ui/Button';
 
 
+interface IFiltersProps {
+  brands: string[];
+}
+
 const Container = styled.div`
   ${tw`
     pr-3

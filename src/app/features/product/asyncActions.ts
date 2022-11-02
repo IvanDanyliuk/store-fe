@@ -7,9 +7,9 @@ import { IProductToUpdate } from './types';
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (productRequestData: IProductRequestData, { rejectWithValue }) => {
-    const { page, productsPerPage, category } = productRequestData;
+    const { page, productsPerPage, category, filterData } = productRequestData;
     try {
-      const { data } = await api.getProducts(page, productsPerPage, category!);
+      const { data } = await api.getProducts(page, productsPerPage, category!, filterData!);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -34,6 +34,18 @@ export const getProduct = createAsyncThunk(
   async (id: string, { rejectWithValue }) => {
     try {
       const { data } = await api.getProduct(id);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getBrands = createAsyncThunk(
+  'products/getBrands',
+  async (category: any, { rejectWithValue }) => {
+    try {
+      const { data } = await api.getBrands(category);
       return data;
     } catch (error) {
       return rejectWithValue(error);

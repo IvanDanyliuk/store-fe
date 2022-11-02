@@ -11,9 +11,10 @@ const API = axios.create({ baseURL: 'http://localhost:5000' });
 //   return req;
 // });
 
-export const getProducts = (page: number, productsPerPage: number, category?: string | undefined) => API.get('/products', { params: { page, productsPerPage, category } });
+export const getProducts = (page: number, productsPerPage: number, category?: string | undefined, filterData?: any) => API.get('/products', { params: { page, productsPerPage, category, filterData } });
 export const getTopProducts = () => API.get('/products/top-rated');
 export const getProduct = (id: any) => API.get(`/products/${id}`);
+export const getBrands = (category: any) => API.get('/products/brands', { params: { category } });
 export const createProduct = (product: any) => API.post('/products', { params: { product } });
 export const updateProduct = (updatedProduct: any) => API.patch('/products', { params: { updatedProduct } });
 export const deleteProduct = (id: any) => API.delete('/products', { params: { id } });

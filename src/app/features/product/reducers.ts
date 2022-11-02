@@ -3,6 +3,7 @@ import {
   getProducts, 
   getTopProducts,
   getProduct, 
+  getBrands, 
   createProduct, 
   updateProduct, 
   deleteProduct, 
@@ -16,6 +17,7 @@ const initialState: IProductState = {
     data: [],
     pages: 0,
   },
+  brands: [],
   status: 'idle',
   error: null,
 };
@@ -66,6 +68,17 @@ const productsSlice = createSlice({
         state.product = action.payload;
       })
       .addCase(getProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(getBrands.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getBrands.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.brands = action.payload;
+      })
+      .addCase(getBrands.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })
