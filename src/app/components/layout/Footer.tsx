@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { footerLinks } from '../../data';
 import Logo from '../ui/Logo';
 
@@ -73,6 +74,8 @@ const NavLink = styled(Link)`
 `;
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation(['footer']);
+
   return (
     <Container>
       <Content>
@@ -83,31 +86,31 @@ const Footer: React.FC = () => {
             {footerLinks.estore.map(link => (
               <NavItem key={link.title}>
                 <NavLink to={link.to}>
-                  {link.title}
+                  {t(link.title)}
                 </NavLink>
               </NavItem>
             ))}
           </LinkList>
         </FooterSection>
         <FooterSection>
-          <FooterHeading>FOR CUSTOMERS</FooterHeading>
+          <FooterHeading>{t('forCustomers')}</FooterHeading>
           <LinkList>
             {footerLinks.forCustomers.map(link => (
               <NavItem key={link.title}>
                 <NavLink to={link.to}>
-                  {link.title}
+                  {t(link.title)}
                 </NavLink>
               </NavItem>
             ))}
           </LinkList>
         </FooterSection>
         <FooterSection>
-          <FooterHeading>SHOPS</FooterHeading>
+          <FooterHeading>{t('shops')}</FooterHeading>
           <LinkList>
             {footerLinks.shops.map(link => (
               <NavItem key={link.title}>
                 <NavLink to={link.to}>
-                  {link.title}
+                  {t(link.title)}
                 </NavLink>
               </NavItem>
             ))}

@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import '../../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel'; 
+import { useTranslation } from 'react-i18next';
 import slide1 from '../assets/img/slider/slide_1.png';
 import slide2 from '../assets/img/slider/slide_2.png';
 import slide3 from '../assets/img/slider/slide_3.png';
@@ -10,7 +12,7 @@ import background from '../assets/img/liquid-cheese.svg'
 import ProductList from '../components/products/ProductList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { AppDispatch } from '../features/store';
 import { getTopProducts } from '../features/product/asyncActions';
 import { selectProducts } from '../features/product/selectors';
@@ -112,6 +114,7 @@ const SubmitBtn = styled.button`
 
 
 const Home: React.FC = () => {
+  const { t } = useTranslation(['home']);
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
 
@@ -133,15 +136,15 @@ const Home: React.FC = () => {
         </div>
       </Carousel>
       <PageSection>
-        <PageTitle>Popular Products</PageTitle>
+        <PageTitle>{t('popular')}</PageTitle>
         <ProductList products={products} />
       </PageSection>
       <PageSection>
         <SubscriptionContainer>
           <SubscriptionInfo>
-            <SubscriptionTitle>Your Subscription</SubscriptionTitle>
+            <SubscriptionTitle>{t('subscriptionTitle')}</SubscriptionTitle>
             <SubscriptionText>
-              The best prices, cool promotions, and personal offers in your newsletter
+              {t('subscriptionText')}
             </SubscriptionText>
             <SubscriptionForm>
               <Input type='email' />

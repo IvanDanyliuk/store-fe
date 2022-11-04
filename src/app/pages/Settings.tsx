@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { faHeart, faPenToSquare, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faCommentDollar, faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -132,6 +133,7 @@ const Content = styled.div`
 
 
 const Settings: React.FC = () => {
+  const { t } = useTranslation(['settings']);
   const { pathname } = useLocation();
   const title = getFormattedTitle(pathname, 2);
   const user = useSelector(selectUser);
@@ -150,7 +152,7 @@ const Settings: React.FC = () => {
             <Link to='orders'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faListCheck} />
-                <LinkText>My Orders</LinkText>
+                <LinkText>{t('orders')}</LinkText>
               </LinkTitle>
             </Link>
           </NavItem>
@@ -158,7 +160,7 @@ const Settings: React.FC = () => {
             <Link to='wish-list'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faHeart} />
-                <LinkText>My Wish List</LinkText>
+                <LinkText>{t('wishList')}</LinkText>
               </LinkTitle>
             </Link>
           </NavItem>
@@ -166,7 +168,7 @@ const Settings: React.FC = () => {
             <Link to='reviews'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faCommentDollar} />
-                <LinkText>My Reviews</LinkText>
+                <LinkText>{t('reviews')}</LinkText>
               </LinkTitle>
             </Link>
           </NavItem>
@@ -174,7 +176,7 @@ const Settings: React.FC = () => {
             <Link to='profile'>
               <LinkTitle>
                 <FontAwesomeIcon icon={faUser} />
-                <LinkText>Profile</LinkText>
+                <LinkText>{t('profile')}</LinkText>
               </LinkTitle>
             </Link>
           </NavItem>
@@ -184,7 +186,7 @@ const Settings: React.FC = () => {
                 <Link to='editor'>
                   <LinkTitle>
                     <FontAwesomeIcon icon={faPenToSquare} />
-                    <LinkText>Editor</LinkText>
+                    <LinkText>{t('editor')}</LinkText>
                   </LinkTitle>
                 </Link>
               </NavItem>
@@ -193,7 +195,7 @@ const Settings: React.FC = () => {
         </NavLinks>
       </PageNavigation>
       <PageContent>
-        <PageTitle>{title}</PageTitle>
+        <PageTitle>{t(title)}</PageTitle>
         <Content>
           <Outlet />
         </Content>

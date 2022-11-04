@@ -29,83 +29,83 @@ export const footerLinks = {
   estore: [
     {
       to: '/about',
-      title: 'About',
+      title: 'about',
     },
     {
       to: '/contacts',
-      title: 'Contacts',
+      title: 'contacts',
     },
     {
       to: '/careers',
-      title: 'Careers',
+      title: 'careers',
     },
     {
       to: '/partnership',
-      title: 'Become a Partner',
+      title: 'partnership',
     },
     {
       to: '/trade-in',
-      title: 'Trade-In',
+      title: 'trade-in',
     },
     {
       to: '/legal-info',
-      title: 'Legal Information',
+      title: 'legal-info',
     },
     {
       to: '/network',
-      title: 'Network',
+      title: 'network',
     },
   ],
   forCustomers: [
     {
       to: '/shipment-and-payment',
-      title: 'Shipment and Payment',
+      title: 'shipment-and-payment',
     },
     {
       to: '/return-order',
-      title: 'Return the Order',
+      title: 'return-order',
     },
     {
       to: '/manuals',
-      title: 'Manuals',
+      title: 'manuals',
     },
     {
       to: '/promotions',
-      title: 'Sales and Promotions',
+      title: 'promotions',
     },
     {
       to: '/credit',
-      title: 'Credit',
+      title: 'credit',
     },
     {
       to: '/popular',
-      title: 'Popular Products',
+      title: 'popular',
     },
   ],
   shops: [
     {
       to: '/shops/ukraine',
-      title: 'Ukraine',
+      title: 'ukraine',
     },
     {
       to: '/shops/poland',
-      title: 'Poland',
+      title: 'poland',
     },
     {
       to: '/shops/germany',
-      title: 'Germany',
+      title: 'germany',
     },
     {
       to: '/shops/lithuania',
-      title: 'Lithuania',
+      title: 'lithuania',
     },
     {
       to: '/shops/latvia',
-      title: 'Latvia',
+      title: 'latvia',
     },
     {
       to: '/shops/estonia',
-      title: 'Estonia',
+      title: 'estonia',
     },
   ],
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { TableTypes } from '../../../types/types';
 import { getProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectPagesCount, selectProducts } from '../../features/product/selectors';
@@ -57,6 +58,7 @@ const SubTitle = styled.h6`
 
 
 const Editor: React.FC = () => {
+  const { t } = useTranslation(['settingTabsEditor']);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
@@ -113,7 +115,7 @@ const Editor: React.FC = () => {
     <Container>
       <Section>
         <SectionHeader>
-          <SubTitle>Products</SubTitle>
+          <SubTitle>{t('products')}</SubTitle>
           <CreateProductForm />
         </SectionHeader>
         <ProductsTable 
@@ -130,7 +132,7 @@ const Editor: React.FC = () => {
       </Section>
       <Section>
         <SectionHeader>
-          <SubTitle>Categories</SubTitle>
+          <SubTitle>{t('categories')}</SubTitle>
           <CreateCategoryForm />
         </SectionHeader>
         <Table 
@@ -142,7 +144,7 @@ const Editor: React.FC = () => {
       </Section>
       <Section>
         <SectionHeader>
-          <SubTitle>Shipping</SubTitle>
+          <SubTitle>{t('shipping')}</SubTitle>
           <CreateShippingForm />
         </SectionHeader>
         <Table 

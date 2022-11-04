@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import {v4 as uuid} from 'uuid';
+import { useTranslation } from 'react-i18next';
 import { AppDispatch } from '../../features/store';
 import { setLanguage } from '../../features/user/reducers';
 import { selectLanguage, selectUser } from '../../features/user/selectors';
@@ -138,6 +139,7 @@ const LanguageOption = styled.option`
 
 
 const Profile: React.FC = () => {
+  const { t } = useTranslation(['settingTabsProfile']);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const language = useSelector(selectLanguage);
@@ -150,7 +152,7 @@ const Profile: React.FC = () => {
   return (
     <Section>
       <SubSection>
-        <SubTitle>User Data</SubTitle>
+        <SubTitle>{t('userData')}</SubTitle>
         <Content>
           <PhotoContainer>
             <UserPhoto src={user!.avatarUrl} alt='user_photo' />
@@ -185,7 +187,7 @@ const Profile: React.FC = () => {
         </Actions>
       </SubSection>
       <SubSection>
-        <SubTitle>Language</SubTitle>
+        <SubTitle>{t('language')}</SubTitle>
         <LanguageSelect 
           value={language}
           onChange={handleLanguageChange}

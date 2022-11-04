@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SearchField from '../inputs/SearchField';
 import NavMenu from '../navigation/NavMenu';
@@ -95,6 +96,7 @@ const LogoutBtn = styled.button`
 `;
 
 const Header: React.FC = () => {
+  const { t } = useTranslation(['header']);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
@@ -121,12 +123,12 @@ const Header: React.FC = () => {
                   <FontAwesomeIcon icon={faUser} />
                 </ProfileBtn>
                 <LogoutBtn onClick={handleLogout}>
-                  Logout
+                  {t('logout')}
                 </LogoutBtn>
               </>
             ) : (
               <LoginBtn to='/auth'>
-                Signin/Signup
+                {t('signin')}
               </LoginBtn>
             )
           }

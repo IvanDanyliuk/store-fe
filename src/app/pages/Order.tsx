@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../types/types';
 import OrderForm from '../components/order/OrderForm';
 import Payment from '../components/order/Payment';
@@ -218,6 +219,7 @@ const BtnContainer = styled.div`
 
 
 const Order: React.FC = () => {
+  const { t } = useTranslation(['order']);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -364,11 +366,11 @@ const Order: React.FC = () => {
   return (
     <Container>
       <OrderDetails>
-        <Title>{order ? 'Update an Order' : 'Placing an Order'}</Title>
+        <Title>{order ? t('updateOrder') : t('placingOrder')}</Title>
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>1</SubTitleNum>
-            <SubTitleText>Your contact data</SubTitleText>
+            <SubTitleText>{t('contactData')}</SubTitleText>
           </SubTitle>
           <OrderForm 
             data={customer} 
@@ -378,7 +380,7 @@ const Order: React.FC = () => {
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>2</SubTitleNum>
-            <SubTitleText>Shipping</SubTitleText>
+            <SubTitleText>{t('shipping')}</SubTitleText>
           </SubTitle>
           <SelectionContainer>
             {
@@ -396,7 +398,7 @@ const Order: React.FC = () => {
                       onChange={handleCurrentShippingCompanyChange}
                     />
                     <RadioTitle>
-                      {item.company} {item.company === 'Self pickup' && '(only for Ukrainian customers)'}
+                      {item.company} {item.company === 'Self pickup' && t('onlyForUkrainians')}
                     </RadioTitle>
                   </RadioBody>
                   <Select 
@@ -423,14 +425,14 @@ const Order: React.FC = () => {
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>3</SubTitleNum>
-            <SubTitleText>Order Details</SubTitleText>
+            <SubTitleText>{t('orderDetails')}</SubTitleText>
           </SubTitle>
           <ShoppingList cart={order ? order.products : cart} />
         </DetailsSection>
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>4</SubTitleNum>
-            <SubTitleText>Payment Method</SubTitleText>
+            <SubTitleText>{t('paymentMethod')}</SubTitleText>
           </SubTitle>
           <SelectionContainer>
             <RadioContainer data-isChecked={currentPaymentMethod === 'when-receiving'}>
@@ -442,7 +444,7 @@ const Order: React.FC = () => {
                   checked={currentPaymentMethod === 'when-receiving'} 
                   onChange={handleCurrentPaymentMethodChange}
                 />
-                <RadioTitle>Pay when receiving an order</RadioTitle>
+                <RadioTitle>{t('receivingOrder')}</RadioTitle>
               </RadioBody>
             </RadioContainer>
             <RadioContainer data-isChecked={currentPaymentMethod === 'pay-now'}>
@@ -454,7 +456,7 @@ const Order: React.FC = () => {
                   checked={currentPaymentMethod === 'pay-now'} 
                   onChange={handleCurrentPaymentMethodChange}
                 />
-                <RadioTitle>Pay now by card</RadioTitle>
+                <RadioTitle>{t('payByCard')}</RadioTitle>
               </RadioBody>
               <Payment />
             </RadioContainer>
@@ -463,7 +465,7 @@ const Order: React.FC = () => {
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>5</SubTitleNum>
-            <SubTitleText>Receiver's contact data</SubTitleText>
+            <SubTitleText>{t('recContactData')}</SubTitleText>
           </SubTitle>
           <OrderForm 
             data={recepient} 
@@ -472,10 +474,10 @@ const Order: React.FC = () => {
         </DetailsSection>
       </OrderDetails>
       <AcceptOrderSection>
-        <AcceptOrderTitle>Total</AcceptOrderTitle>
+        <AcceptOrderTitle>{t('total')}</AcceptOrderTitle>
         <AcceptItem>
           <AcceptSubTitleText>
-            {cart.length} goods for the amount of
+            {cart.length} {t('amount')}
           </AcceptSubTitleText>
           <AcceptSubTitleAmount>
             UAH {totalAmount}
@@ -483,14 +485,14 @@ const Order: React.FC = () => {
         </AcceptItem>
         <AcceptItem>
           <AcceptSubTitleText>
-            Shipping
+            {t('shipping')}
           </AcceptSubTitleText>
           <AcceptSubTitleAmount>
             UAH {shippingAmount}
           </AcceptSubTitleAmount>
         </AcceptItem>
         <AcceptTotalItem>
-          <AcceptSubTitleText>Amount to be paid</AcceptSubTitleText>
+          <AcceptSubTitleText>{t('paymentAmount')}</AcceptSubTitleText>
           <AcceptAmount>UAH {totalAmount + shippingAmount}</AcceptAmount>
         </AcceptTotalItem>
         <BtnContainer>
@@ -499,7 +501,7 @@ const Order: React.FC = () => {
             color={ButtonColor.Success} 
             onClick={submitOrder}
           >
-            Submit Order
+            {t('submitOrder')}
           </Button>
         </BtnContainer>
       </AcceptOrderSection>

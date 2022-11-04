@@ -2,13 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { selectWishList } from '../../features/user/selectors';
 import ProductList from '../products/ProductList';
 
 const Container = styled.div`
   ${tw`
     w-full
-    
   `}
 `;
 
@@ -24,6 +24,7 @@ const WarningMessage = styled.div`
 `;
 
 const WishList = () => {
+  const { t } = useTranslation(['settingTabsWishList']);
   const wishList = useSelector(selectWishList);
   return (
     <Container>
@@ -31,7 +32,7 @@ const WishList = () => {
         wishList.length > 0 ? (
           <ProductList products={wishList} />
         ) : (
-          <WarningMessage>Your wish-list is empty</WarningMessage>
+          <WarningMessage>{t('message')}</WarningMessage>
         )
       }
     </Container>

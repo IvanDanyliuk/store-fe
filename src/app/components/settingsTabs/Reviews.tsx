@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonColor, ButtonType } from '../../../types/types';
@@ -97,6 +98,7 @@ const Message = styled.div`
 
 
 const Reviews: React.FC = () => {
+  const { t } = useTranslation(['settingTabsReviews']);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const reviews = useSelector(selectReviews);
@@ -122,11 +124,11 @@ const Reviews: React.FC = () => {
                 />
                 <CommentData>
                   <Text>
-                    <TextTitle>Advantages: </TextTitle>
+                    <TextTitle>{t('advantages')} </TextTitle>
                     {review.advantages}
                   </Text>
                   <Text>
-                    <TextTitle>Disadvantages: </TextTitle>
+                    <TextTitle>{t('disadvantages')} </TextTitle>
                     {review.disadvantages}
                   </Text>
                   <Text>
@@ -147,7 +149,7 @@ const Reviews: React.FC = () => {
             </ReviewItem>
           )) : (
             <Message>
-              You don't have any reviews
+              {t('noReviews')}
             </Message>
           )
         }

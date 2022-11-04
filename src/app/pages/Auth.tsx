@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import tw from 'twin.macro';
 import { storage } from '../../firebase';
+import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../types/types';
 import Button from '../components/ui/Button';
 import { useDispatch } from 'react-redux';
@@ -65,6 +66,7 @@ const ChangeModeBtn = styled.button`
 
 
 const Auth: React.FC = () => {
+  const { t } = useTranslation(['auth']);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -160,7 +162,8 @@ const Auth: React.FC = () => {
           clearForm();
           navigate('/');
         } catch (error) {
-          setError('Something went wrong...');
+          const message = t('wrong');
+          setError(message);
         }
       }
     } else {
@@ -181,7 +184,7 @@ const Auth: React.FC = () => {
     <Container>
       <AuthContainer>
         <Title>
-          {isSignIn ? 'Sign In' : 'Sign Up'}
+          {isSignIn ? t('signIn') : t('signUp')}
         </Title>
         <FormErrorMessage error={error} />
         <AuthForm onSubmit={handleFormSubmit}>
@@ -190,14 +193,14 @@ const Auth: React.FC = () => {
               <>
                 <Input 
                   name='firstName'
-                  label='First Name'
+                  label={t('firstName')}
                   value={userData.firstName}
                   onChange={handleUserDataChange}
                   isRequired
                 />
                 <Input 
                   name='lastName'
-                  label='Last Name'
+                  label={t('lastName')}
                   value={userData.lastName}
                   onChange={handleUserDataChange}
                   isRequired
@@ -207,7 +210,7 @@ const Auth: React.FC = () => {
           }
           <Input 
             name='email'
-            label='Email'
+            label={t('email')}
             type='email'
             value={userData.email}
             onChange={handleUserDataChange}
@@ -215,7 +218,7 @@ const Auth: React.FC = () => {
           />
           <Input 
             name='password'
-            label='Password'
+            label={t('password')}
             type='password'
             value={userData.password}
             onChange={handleUserDataChange}
@@ -226,7 +229,7 @@ const Auth: React.FC = () => {
               <>
                 <Input 
                   name='confirmPassword'
-                  label='Confirm Password'
+                  label={t('confirmPassword')}
                   type='password'
                   value={userData.confirmPassword}
                   onChange={handleUserDataChange}
@@ -234,21 +237,21 @@ const Auth: React.FC = () => {
                 />
                 <Input 
                   name='phone'
-                  label='Phone'
+                  label={t('phone')}
                   value={userData.phone}
                   onChange={handleUserDataChange}
                   isRequired
                 />
                 <Input 
                   name='city'
-                  label='City'
+                  label={t('city')}
                   value={userData.city}
                   onChange={handleUserDataChange}
                   isRequired
                 />
                 <Input 
                   name='avatarImg'
-                  label='Profile Photo'
+                  label={t('avatarImg')}
                   type='file'
                   onChange={handleImageUpload}
                 />
@@ -257,10 +260,10 @@ const Auth: React.FC = () => {
           }
           <Actions>
             <Button type={ButtonType.Submit} color={ButtonColor.Success}>
-              {!isSignIn ? 'Sign Up' : 'Sign In'}
+              {!isSignIn ? t('signUp') : t('signIn')}
             </Button>
             <ChangeModeBtn type='button' onClick={handleModeChange}>
-              {!isSignIn ? 'Already have an account? Sign In' : 'Don\'t have an account? Sign Up'}
+              {!isSignIn ? t('accountExists') : t('noAccount')}
             </ChangeModeBtn>
           </Actions>
         </AuthForm>

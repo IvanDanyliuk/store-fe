@@ -1,0 +1,15 @@
+{
+  "wrong": "Something went wrong...",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "phone": "Phone",
+  "city": "City",
+  "avatarImg": "Profile Photo",
+  "accountExists": "Already have an account? Sign In",
+  "noAccount": "Don't have an account? Sign Up"
+}

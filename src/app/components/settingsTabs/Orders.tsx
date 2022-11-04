@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { getOrders, getUserOrders } from '../../features/order/asyncActions';
 import { selectOrders } from '../../features/order/selectors';
@@ -38,6 +39,7 @@ const FilterSection = styled.div`
 
 
 const Orders: React.FC = () => {
+  const { t } = useTranslation(['settingTabsOrders']);
   const dispatch = useDispatch<AppDispatch>();
 
   const user = useSelector(selectUser);
@@ -74,7 +76,7 @@ const Orders: React.FC = () => {
         <FilterSection>
           <Input 
             name='searchValue'
-            label='Find an order by a consumer'
+            label={t('findInputTitle')}
             value={searchValue}
             onChange={handleSearchValueChange}
           />
@@ -83,7 +85,7 @@ const Orders: React.FC = () => {
             color={ButtonColor.Secondary}
             onClick={handleOrderFind}
           >
-            Search
+            {t('searchBtn')}
           </Button>
         </FilterSection>
       )}

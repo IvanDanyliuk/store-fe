@@ -1,0 +1,17 @@
+{
+  "updateOrder": "Змінити замовлення",
+  "placingOrder": "Оформити замовлення",
+  "contactData": "Ваші контактні дані",
+  "shipping": "Доставка",
+  "selfPickup": "Самовивіз",
+  "onlyForUkrainians": "(тільки для клієнтів з України)",
+  "orderDetails": "Деталі замовлення",
+  "paymentMethod": "Спосіб оплати",
+  "receivingOrder": "Оплатити при отриманні товару",
+  "payByCard": "Оплатити зараз карткою",
+  "recContactData": "Контактні дані отримувача",
+  "total": "Всього",
+  "amount": "товарів на суму",
+  "paymentAmount": "Сума до сплати",
+  "submitOrder": "Підтвердити замовлення"
+}

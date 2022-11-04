@@ -3,8 +3,7 @@ import { IProductData } from "../features/product/types";
 import { IShipping } from "../features/shipping/types";
 
 export const getFormattedTitle = (pathname: string, position: number) => {
-  const title = pathname.split('/')[position];
-  return title[0].toUpperCase() + title.slice(1);
+  return pathname.split('/')[position];
 };
 
 export const setButtonColor = (color: string) => {

@@ -1,0 +1,17 @@
+{
+  "updateOrder": "Update an Order",
+  "placingOrder": "Placing an Order",
+  "contactData": "Your contact data",
+  "shipping": "Shipping",
+  "selfPickup": "Self pickup",
+  "onlyForUkrainians": "(only for Ukrainian customers)",
+  "orderDetails": "Order Details",
+  "paymentMethod": "Payment Method",
+  "receivingOrder": "Pay when receiving an order",
+  "payByCard": "Pay now by card",
+  "recContactData": "Receiver's contact data",
+  "total": "Total",
+  "amount": "goods for the amount of",
+  "paymentAmount": "Amount to be paid",
+  "submitOrder": "Submit Order"
+}
