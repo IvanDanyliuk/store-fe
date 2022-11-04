@@ -4,6 +4,7 @@ import { IProduct } from "../product/types";
 
 export interface IUserState {
   user: IUser | null;
+  language: string;
   status: string;
   error: null | string;
 }
@@ -16,7 +17,6 @@ export interface IUser {
   phone: string;
   password: string;
   city: string;
-  language: string;
   avatarUrl: string;
   wishList: IProduct[];
   orders: IOrder[];
@@ -37,9 +37,4 @@ export interface IPasswordToUpdate {
   id: string;
   currentPassword: string;
   newPassword: string;
-};
-
-export interface ILanguageToUpdate {
-  id: string | undefined;
-  language: string | undefined;
 };

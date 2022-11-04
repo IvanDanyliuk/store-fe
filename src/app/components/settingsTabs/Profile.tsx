@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import {v4 as uuid} from 'uuid';
-import { selectUser } from '../../features/user/selectors';
+import { AppDispatch } from '../../features/store';
+import { setLanguage } from '../../features/user/reducers';
+import { selectLanguage, selectUser } from '../../features/user/selectors';
 import { formatObjectKey } from '../../helpers/helpers';
 import { SCREENS } from '../../services/screens';
 import DeleteUserModal from '../modals/DeleteUserModal';
@@ -119,9 +121,31 @@ const Actions = styled.div`
   `}
 `;
 
+const LanguageSelect = styled.select`
+  ${tw`
+    p-3
+    w-32
+    border
+    rounded
+  `}
+`;
+
+const LanguageOption = styled.option`
+  ${tw`
+  
+  `}
+`;
+
 
 const Profile: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
+  const language = useSelector(selectLanguage);
+
+  const handleLanguageChange = (e: any) => {
+    localStorage.setItem('language', e.target.value);
+    dispatch(setLanguage(e.target.value));
+  };
 
   return (
     <Section>
@@ -159,6 +183,16 @@ const Profile: React.FC = () => {
           <UpdateAvatarModal />
           <DeleteUserModal />
         </Actions>
+      </SubSection>
+      <SubSection>
+        <SubTitle>Language</SubTitle>
+        <LanguageSelect 
+          value={language}
+          onChange={handleLanguageChange}
+        >
+          <LanguageOption value={'en'}>EN</LanguageOption>
+          <LanguageOption value={'ua'}>UA</LanguageOption>
+        </LanguageSelect>
       </SubSection>
     </Section>
   );

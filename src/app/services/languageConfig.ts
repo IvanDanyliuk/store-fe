@@ -14,7 +14,7 @@ i18n
     },
     fallbackLng: 'en',
     debug: false,
-    ns: ['auth', 'authForm', 'contentTable', 'dashboard', 'expenses', 'incomes', 'navigation', 'reports', 'settings'],
+    ns: ['about', 'carrers', 'categories', 'contacts', 'home', 'legalinfo', 'network', 'notfound', 'order', 'partnership', 'product', 'products', 'settings', 'tradein'],
     interpolation: {
       escapeValue: false,
       formatSeparator: ',',

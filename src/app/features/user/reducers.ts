@@ -10,10 +10,12 @@ import { IUserState } from './types';
 
 
 const user = JSON.parse(localStorage.getItem('profile')!);
+const language = localStorage.getItem('language')!;
 
 const initialState: IUserState = {
   status: 'idle',
   user: user ? user.result : null,
+  language: language ? language : 'en',
   error: null,
 };
 
@@ -24,6 +26,9 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       localStorage.clear();
+    },
+    setLanguage: (state, action) => {
+      state.language = action.payload;
     },
     clearError: (state) => {
       state.status = 'succeeded';
@@ -90,6 +95,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { logout, clearError } = userSlice.actions;
+export const { logout, setLanguage, clearError } = userSlice.actions;
 
 export default userSlice.reducer;

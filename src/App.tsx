@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './app/components/layout/Layout';
 import Editor from './app/components/settingsTabs/Editor';
@@ -21,9 +21,14 @@ import Product from './app/pages/Product';
 import Products from './app/pages/Products';
 import Settings from './app/pages/Settings';
 import Tradein from './app/pages/Tradein';
+import i18n from './app/services/languageConfig';
 
 
 const App: React.FC = () => {
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem('language') || 'en');
+  }, []);
+
   return (
     <div className="App">
       <Suspense fallback={null}>

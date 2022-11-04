@@ -14,7 +14,7 @@ export const signin = createAsyncThunk(
     try {
       const { data } = await api.signin(userData);
       localStorage.setItem('profile', JSON.stringify(data));
-      console.log('Signin action')
+      localStorage.setItem('language', 'en');
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -28,6 +28,7 @@ export const signup = createAsyncThunk(
     try {
       const { data } = await api.signup(userData);
       localStorage.setItem('profile', JSON.stringify(data));
+      localStorage.setItem('language', 'en');
       return data;
     } catch (error) {
       return rejectWithValue(error);
