@@ -3,8 +3,7 @@
   "placingOrder": "Placing an Order",
   "contactData": "Your contact data",
   "shipping": "Shipping",
-  "selfPickup": "Self pickup",
-  "onlyForUkrainians": "(only for Ukrainian customers)",
+  "selfPickup": "Self pickup (only for Ukrainian customers)",
   "orderDetails": "Order Details",
   "paymentMethod": "Payment Method",
   "receivingOrder": "Pay when receiving an order",
@@ -13,5 +12,12 @@
   "total": "Total",
   "amount": "goods for the amount of",
   "paymentAmount": "Amount to be paid",
-  "submitOrder": "Submit Order"
+  "submitOrder": "Submit Order",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "phone": "Phone",
+  "paymentCardNumber": "Card number",
+  "paymentValidThru": "Valid thru",
+  "paymentPayBtn": "Pay"
 }

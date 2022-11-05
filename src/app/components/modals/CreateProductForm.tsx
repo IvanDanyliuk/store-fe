@@ -7,6 +7,7 @@ import { storage } from '../../../firebase';
 import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -152,6 +153,7 @@ const Option = styled.option``;
 
 
 const CreateProductForm: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const categories = useSelector(selectCategories);
   const dataToUpdate = useSelector(selectProduct);
@@ -421,7 +423,7 @@ const CreateProductForm: React.FC = () => {
         type={ButtonType.Button}
         onClick={handleOpenModal}
       >
-        Add new
+        {t('productBtn')}
       </Button>
       <Modal 
         isOpen={isOpen}
@@ -430,7 +432,7 @@ const CreateProductForm: React.FC = () => {
       >
         <FormHeader>
           <FormTitle>
-            {dataToUpdate ? 'Update the product' : 'Create a new product'}
+            {dataToUpdate ? t('productTitleUpdate') : t('productTitleCreate')}
           </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
@@ -440,7 +442,9 @@ const CreateProductForm: React.FC = () => {
         <ProductForm onSubmit={handleProductDataSubmit}>
           <Inputs>
             <FormItem>
-              <InputLabel>Category</InputLabel>
+              <InputLabel>
+                {t('productCategory')}
+              </InputLabel>
               <Select 
                 value={currentCategory.main.url}
                 onChange={handleMainCategoryChange}
@@ -458,7 +462,9 @@ const CreateProductForm: React.FC = () => {
               </Select>
             </FormItem>
             <FormItem>
-              <InputLabel>Sub-category</InputLabel>
+              <InputLabel>
+                {t('productSubCategory')}
+              </InputLabel>
               <Select
                 value={productData.category.subCategory.url}
                 onChange={handleSubCategoryChange}
@@ -478,7 +484,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <Input 
                 name='title'
-                label='Title'
+                label={t('productTitle')}
                 value={productData.title}
                 onChange={handleProductDataChange}
                 isRequired
@@ -487,7 +493,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <Input 
                 name='price'
-                label='Price'
+                label={t('productPrice')}
                 value={productData.price}
                 type='number'
                 onChange={handleProductDataChange}
@@ -497,7 +503,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <Input 
                 name='color'
-                label='Color'
+                label={t('productColor')}
                 value={productData.color}
                 onChange={handleProductDataChange}
                 isRequired
@@ -506,7 +512,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <Input 
                 name='image'
-                label='Image'
+                label={t('productImage')}
                 type='file'
                 onChange={handleUploadImage}
               />
@@ -514,14 +520,16 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <Input 
                 name='brand'
-                label='Brand'
+                label={t('productBrand')}
                 value={productData.brand}
                 onChange={handleProductDataChange}
                 isRequired
               />
             </FormItem>
             <FormItem>
-              <InputLabel>Rating</InputLabel>
+              <InputLabel>
+                {t('productRating')}
+              </InputLabel>
               <Select
                 name='rating'
                 value={productData.rating}
@@ -538,7 +546,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <TextArea 
                 name='shortInfo'
-                label='Short Information'
+                label={t('productShortInfo')}
                 value={productData.shortInfo}
                 onChange={handleProductDataChange}
                 rows={2}
@@ -547,7 +555,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <TextArea 
                 name='description'
-                label='Description'
+                label={t('productDescription')}
                 value={productData.description}
                 onChange={handleProductDataChange}
                 rows={2}
@@ -558,7 +566,7 @@ const CreateProductForm: React.FC = () => {
                 <FormItem>
                   <Input 
                     name='promotion'
-                    label='Promotion'
+                    label={t('productPromotion')}
                     value={newPromotion}
                     onChange={handlePromotionsChange}
                   />
@@ -568,7 +576,7 @@ const CreateProductForm: React.FC = () => {
                   color={ButtonColor.Secondary} 
                   onClick={handleAddPromotion}
                 >
-                  Add
+                  {t('productAddPromotionBtn')}
                 </Button>
               </PromotionInputContainer>
               <PromotionList>
@@ -581,7 +589,9 @@ const CreateProductForm: React.FC = () => {
                       </DeletePromotionBtn>
                     </PromotionItem>
                   )) : (
-                    <PromotionMessage>There are no promotions yet</PromotionMessage>
+                    <PromotionMessage>
+                      {t('productNoPromotionText')}
+                    </PromotionMessage>
                   )
                 }
               </PromotionList>
@@ -589,7 +599,7 @@ const CreateProductForm: React.FC = () => {
             <FormItem>
               <Checkbox 
                 name='isInStock'
-                label='In Stock'
+                label={t('promotionInStock')}
                 checked={productData.isInStock}
                 onChange={handleStockChange}
               />
@@ -599,7 +609,7 @@ const CreateProductForm: React.FC = () => {
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
           >
-            Submit
+            {t('productSubmitBtn')}
           </Button>
         </ProductForm>
       </Modal>

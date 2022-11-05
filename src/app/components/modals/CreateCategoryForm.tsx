@@ -5,6 +5,7 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +18,7 @@ import { createCategory, updateCategory } from '../../features/category/asyncAct
 import { clearCategory } from '../../features/category/reducers';
 import { isCategoryDataValid } from '../../helpers/formValidation';
 import FormErrorMessage from '../ui/FormErrorMessage';
+import Input from '../inputs/Input';
 
 
 Modal.setAppElement('#root');
@@ -56,24 +58,6 @@ const CategoryForm = styled.form`
 const Inputs = styled.fieldset`
   ${tw`
     w-full
-  `}
-`;
-
-const InputLabel = styled.label`
-  ${tw`
-    mb-1
-    text-gray-500
-    font-semibold
-  `}
-`;
-
-const Input = styled.input`
-  ${tw`
-    p-2
-    w-full
-    border
-    rounded
-    mb-3
   `}
 `;
 
@@ -123,6 +107,7 @@ const SubmitBtn = styled.button`
 
 
 const CreateCategoryForm: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectCategory);
   
@@ -276,7 +261,7 @@ const CreateCategoryForm: React.FC = () => {
         type={ButtonType.Button}
         onClick={handleOpenModal}
       >
-        Add new
+        {t('categoryBtn')}
       </Button>
       <Modal 
         isOpen={isOpen}
@@ -285,7 +270,7 @@ const CreateCategoryForm: React.FC = () => {
       >
         <FormHeader>
           <FormTitle>
-            {dataToUpdate ? 'Update the category' : 'Create a new category'}
+            {dataToUpdate ? t('categoryTitleUpdate') : t('categoryTitleCreate')}
           </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
@@ -294,17 +279,17 @@ const CreateCategoryForm: React.FC = () => {
         <FormErrorMessage error={error} />
         <CategoryForm onSubmit={handleCategoryDataSubmit}>
           <Inputs>
-            <InputLabel>Main Category Name</InputLabel>
             <Input
               name='title'
+              label={t('categoryName')}
               value={mainCategory.title}
               onChange={handleMainCategoryChange}
             />
           </Inputs>
           <Inputs>
-            <InputLabel>Sub Category Name</InputLabel>
-            <Input
+            <Input 
               name='title'
+              label={t('categorySubName')}
               value={subCategory.title}
               onChange={handleSubCategoryChange}
             />
@@ -313,7 +298,7 @@ const CreateCategoryForm: React.FC = () => {
               type={ButtonType.Button}
               onClick={handleAddSubCategory}
             >
-              New sub-category
+              {t('categoryCreateSubBtn')}
             </Button>
             {subCategories.length > 0 && (
               <SubCategoriesList>

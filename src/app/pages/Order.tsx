@@ -398,7 +398,7 @@ const Order: React.FC = () => {
                       onChange={handleCurrentShippingCompanyChange}
                     />
                     <RadioTitle>
-                      {item.company} {item.company === 'Self pickup' && t('onlyForUkrainians')}
+                      {item.company === 'Self pickup' ? t('selfPickup') : item.company}
                     </RadioTitle>
                   </RadioBody>
                   <Select 

@@ -1,0 +1,8 @@
+{
+  "inputFieldRequired": "Field is required!",
+  "inputMinLength1": "Minimal length is",
+  "inputMinLength2": "characters",
+  "inputMaxLength1": "Maximal length is",
+  "inputMaxLength2": "characters",
+  "inputInvalidEmail": "Invalid email!"
+}

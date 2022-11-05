@@ -3,8 +3,7 @@
   "placingOrder": "Оформити замовлення",
   "contactData": "Ваші контактні дані",
   "shipping": "Доставка",
-  "selfPickup": "Самовивіз",
-  "onlyForUkrainians": "(тільки для клієнтів з України)",
+  "selfPickup": "Самовивіз (тільки для клієнтів з України)",
   "orderDetails": "Деталі замовлення",
   "paymentMethod": "Спосіб оплати",
   "receivingOrder": "Оплатити при отриманні товару",
@@ -13,5 +12,12 @@
   "total": "Всього",
   "amount": "товарів на суму",
   "paymentAmount": "Сума до сплати",
-  "submitOrder": "Підтвердити замовлення"
+  "submitOrder": "Підтвердити замовлення",
+  "firstName": "Ім'я",
+  "lastName": "Прізвище",
+  "email": "Ел. адреса",
+  "phone": "Телефон",
+  "paymentCardNumber": "Номер картки",
+  "paymentValidThru": "Дійсна до",
+  "paymentPayBtn": "Оплатити"
 }

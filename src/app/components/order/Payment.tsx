@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { useDispatch } from 'react-redux';
@@ -112,10 +113,10 @@ const Form = styled.form`
 
 
 const Payment: React.FC = () => {
+  const { t } = useTranslation(['order']);
   const dispatch = useDispatch<AppDispatch>();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [cardData, setCardData] = useState({
     number: '',
     month: '',
@@ -125,7 +126,7 @@ const Payment: React.FC = () => {
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
-  }
+  };
 
   const handleCardDataChange = (e: any) => {
     setCardData({
@@ -144,7 +145,7 @@ const Payment: React.FC = () => {
       <Card>
         <CardTopSection>
           <Fieldset>
-            <Label>Card number</Label>
+            <Label>{t('paymentCardNumber')}</Label>
             <CardNumberContainer>
               {cardData.number.length > 8 && (
                 <PaymentSystemIcon cardNumber={cardData.number} />
@@ -160,7 +161,7 @@ const Payment: React.FC = () => {
         </CardTopSection>
         <CardBottomSection>
           <Fieldset>
-            <Label>Valid thru</Label>
+            <Label>{t('paymentValidThru')}</Label>
             <CardPeriodContainer>
               <CardPeriod 
                 name='month' 
@@ -193,7 +194,7 @@ const Payment: React.FC = () => {
         color={ButtonColor.Secondary} 
         onClick={handleModalOpen}
       >
-        Pay
+        {t('paymentPayBtn')}
       </Button>
     </Container>
   );

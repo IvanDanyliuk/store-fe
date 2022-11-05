@@ -39,7 +39,7 @@ const FilterSection = styled.div`
 
 
 const Orders: React.FC = () => {
-  const { t } = useTranslation(['settingTabsOrders']);
+  const { t } = useTranslation(['settingTabsOrder']);
   const dispatch = useDispatch<AppDispatch>();
 
   const user = useSelector(selectUser);
@@ -53,7 +53,7 @@ const Orders: React.FC = () => {
   };
 
   const handleOrderFind = () => {
-    setFilteredOrders(orders.filter(order => order.customer.lastName === searchValue));
+    setFilteredOrders(orders.filter((order: IOrder) => order.customer.lastName === searchValue));
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const Orders: React.FC = () => {
         <FilterSection>
           <Input 
             name='searchValue'
-            label={t('findInputTitle')}
+            label={t('searchInputTitle')}
             value={searchValue}
             onChange={handleSearchValueChange}
           />

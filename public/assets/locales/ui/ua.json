@@ -1,0 +1,8 @@
+{
+  "inputFieldRequired": "Поле є обов'язковим!",
+  "inputMinLength1": "Мінімальна довжина становить",
+  "inputMinLength2": "символів",
+  "inputMaxLength1": "Максимальна довжина становить",
+  "inputMaxLength2": "символів",
+  "inputInvalidEmail": "Невірний адрес ел. пошти!"
+}

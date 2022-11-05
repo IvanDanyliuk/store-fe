@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
+import Input from '../inputs/Input';
 
 
 interface IOrderFormProps {
@@ -29,59 +31,42 @@ const Fieldset = styled.fieldset`
   `}
 `;
 
-const Label = styled.label`
-  ${tw`
-    font-medium
-    text-xs
-    text-gray-500
-  `}
-`;
-
-const Input = styled.input`
-  ${tw`
-    mb-2
-    p-2
-    w-full
-    text-sm
-    font-semibold
-    border
-    rounded
-  `}
-`;
 
 const OrderForm: React.FC<IOrderFormProps> = ({ data, onChange }) => {
+  const { t } = useTranslation(['order']);
+
   return (
     <Form>
       <Fieldset>
-        <Label>First name</Label>
         <Input 
-          name='firstName' 
-          value={data.firstName} 
-          onChange={onChange} 
+          name='firstName'
+          label={t('firstName')}
+          value={data.firstName}
+          onChange={onChange}
         />
       </Fieldset>
       <Fieldset>
-        <Label>Last Name</Label>
         <Input 
-          name='lastName' 
-          value={data.lastName} 
-          onChange={onChange} 
+          name='lastName'
+          label={t('lastName')}
+          value={data.lastName}
+          onChange={onChange}
         />
       </Fieldset>
       <Fieldset>
-        <Label>Email</Label>
         <Input 
-          name='email' 
-          value={data.email} 
-          onChange={onChange} 
+          name='email'
+          label={t('email')}
+          value={data.email}
+          onChange={onChange}
         />
       </Fieldset>
       <Fieldset>
-        <Label>Phone</Label>
         <Input 
-          name='phone' 
-          value={data.phone} 
-          onChange={onChange} 
+          name='phone'
+          label={t('phone')}
+          value={data.phone}
+          onChange={onChange}
         />
       </Fieldset>
     </Form>

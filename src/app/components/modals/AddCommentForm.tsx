@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import Modal from 'react-modal';
 import StarRating from 'react-star-rate';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +15,8 @@ import FormErrorMessage from '../ui/FormErrorMessage';
 import { createReview } from '../../features/reviews/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
 import { selectUser } from '../../features/user/selectors';
+import Input from '../inputs/Input';
+import TextArea from '../inputs/TextArea';
 
 
 Modal.setAppElement('#root');
@@ -74,23 +77,9 @@ const Rating = styled.fieldset`
   `}
 `;
 
-const Inputs = styled.fieldset``;
-
-const InputLabel = styled.label`
+const Inputs = styled.fieldset`
   ${tw`
-    mb-1
-    text-gray-500
-    font-semibold
-  `}
-`;
-
-const Input = styled.textarea`
-  ${tw`
-    p-2
     w-full
-    border
-    rounded
-    mb-3
   `}
 `;
 
@@ -108,6 +97,7 @@ const SubmitBtn = styled.button`
 
 
 const AddCommentForm: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector(selectProduct);
   const user = useSelector(selectUser);
@@ -189,14 +179,18 @@ const AddCommentForm: React.FC = () => {
 
   return (
     <>
-      <CommentBtn onClick={handleOpenModal}>Comment</CommentBtn>
+      <CommentBtn onClick={handleOpenModal}>
+        {t('commentBtnComment')}
+      </CommentBtn>
       <Modal 
         isOpen={isOpen}
         onRequestClose={handleOpenModal}
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Leave a comment</FormTitle>
+          <FormTitle>
+            {t('commentLeaveComment')}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
@@ -210,27 +204,28 @@ const AddCommentForm: React.FC = () => {
             />
           </Rating>
           <Inputs>
-            <InputLabel>Adantages</InputLabel>
             <Input 
-              name='advantages' 
-              value={commentData.advantages} 
-              onChange={handleCommentDataChange} 
+              name='advantages'
+              label={t('commentAdvantages')}
+              value={commentData.advantages}
+              onChange={handleCommentDataChange}
             />
-            <InputLabel>Disadvantages</InputLabel>
             <Input 
-              name='disadvantages' 
-              value={commentData.disadvantages} 
-              onChange={handleCommentDataChange} 
+              name='disadvantages'
+              label={t('commentDisadvantages')}
+              value={commentData.disadvantages}
+              onChange={handleCommentDataChange}
             />
-            <InputLabel>Comment</InputLabel>
-            <Input 
+            <TextArea 
               name='comment'
-              value={commentData.comment} 
-              onChange={handleCommentDataChange} 
-              rows={5}
+              label={t('commentTextComment')}
+              value={commentData.comment}
+              onChange={handleCommentDataChange}
             />
           </Inputs>
-          <SubmitBtn type='submit'>Submit</SubmitBtn>
+          <SubmitBtn type='submit'>
+            {t('commentBtnSubmit')}
+          </SubmitBtn>
         </CommentForm>
       </Modal>
     </>

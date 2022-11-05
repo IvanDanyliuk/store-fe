@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
@@ -130,6 +131,7 @@ const FooterActions = styled.div`
 `;
 
 const Cart: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const navigate = useNavigate();
   const cart: ICartItem[] = useSelector(selectCartData);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
@@ -186,7 +188,9 @@ const Cart: React.FC = () => {
       >
         <Container>
           <CartHeader>
-            <FormTitle>Cart</FormTitle>
+            <FormTitle>
+              {t('cartTitle')}
+            </FormTitle>
             <CloseBtn onClick={handleOpenModal}>
               <FontAwesomeIcon icon={faXmark} />
             </CloseBtn>
@@ -194,7 +198,9 @@ const Cart: React.FC = () => {
           <ShoppingList cart={cart} />
           <CartFooter>
             <TotalAmount>
-              <AmountTitle>Total Order:</AmountTitle>
+              <AmountTitle>
+                {t('cartTotalOrderAmount')}
+              </AmountTitle>
               <AmountValue>
                 <Currency>$</Currency>
                 <Sum>{totalOrderAmount}</Sum>
@@ -206,14 +212,14 @@ const Cart: React.FC = () => {
                 color={ButtonColor.Secondary} 
                 onClick={handleOpenModal}
               >
-                Continue shopping
+                {t('cartContinue')}
               </Button>
               <Button 
                 type={ButtonType.Button} 
                 color={ButtonColor.Success} 
                 onClick={makeOrder}
               >
-                Checkout
+                {t('cartCheckoutBtn')}
               </Button>
             </FooterActions>
           </CartFooter>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,6 +34,7 @@ const Message = styled.div`
 `;
 
 const AcceptPaymentModal: React.FC<IAcceptPaymentModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation(['modals']);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
   const styles = {
@@ -62,7 +64,7 @@ const AcceptPaymentModal: React.FC<IAcceptPaymentModalProps> = ({ isOpen, onClos
         <FontAwesomeIcon icon={faXmark} />
       </CloseBtn>
       <Message>
-        The payment feature will be available soon!
+        {t('paymentMessage')}
       </Message>
     </Modal>
   );
