@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { selectUser } from '../../features/user/selectors';
@@ -12,6 +13,7 @@ import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
 import { updateUser } from '../../features/user/asyncActions';
+import Input from '../inputs/Input';
 
 
 Modal.setAppElement('#root');
@@ -48,27 +50,8 @@ const Form = styled.form`
   `}
 `;
 
-const Label = styled.label`
-  ${tw`
-    w-full
-    font-semibold
-    text-sm
-    text-gray-500
-    text-left
-  `}
-`;
-
-const Input = styled.input`
-  ${tw`
-    mb-2
-    p-1
-    w-full
-    border
-    rounded
-  `}
-`;
-
 const EditUserDataModal: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const token = localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile') || '').token;
@@ -138,7 +121,7 @@ const EditUserDataModal: React.FC = () => {
         color={ButtonColor.Success} 
         onClick={handleOpenModal}
       >
-        Edit Profile
+        {t('editUserDataBtn')}
       </Button>
       <Modal
         isOpen={isOpen}
@@ -146,41 +129,43 @@ const EditUserDataModal: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Edit your profile data</FormTitle>
+          <FormTitle>
+            {t('editUserDataTitle')}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
         <Form onSubmit={handleUpdateDataSubmit}>
-          <Label>First Name</Label>
           <Input 
-            name='firstName' 
-            value={userData.firstName} 
-            onChange={handleUserDataChange} 
+            name='firstName'
+            label={t('editUserDataFirstName')}
+            value={userData.firstName}
+            onChange={handleUserDataChange}
           />
-          <Label>Last Name</Label>
           <Input 
-            name='lastName' 
-            value={userData.lastName} 
-            onChange={handleUserDataChange} 
+            name='lastName'
+            label={t('editUserDataLastName')}
+            value={userData.lastName}
+            onChange={handleUserDataChange}
           />
-          <Label>Email</Label>
           <Input 
-            name='email' 
-            value={userData.email} 
-            onChange={handleUserDataChange} 
+            name='email'
+            label={t('editUserDataEmail')}
+            value={userData.email}
+            onChange={handleUserDataChange}
           />
-          <Label>Phone</Label>
           <Input 
-            name='phone' 
-            value={userData.phone} 
-            onChange={handleUserDataChange} 
+            name='phone'
+            label={t('editUserDataPhone')}
+            value={userData.phone}
+            onChange={handleUserDataChange}
           />
-          <Label>City</Label>
           <Input 
-            name='city' 
-            value={userData.city} 
-            onChange={handleUserDataChange} 
+            name='city'
+            label={t('editUserDataCity')}
+            value={userData.city}
+            onChange={handleUserDataChange}
           />
           <Button 
             type={ButtonType.Submit} 

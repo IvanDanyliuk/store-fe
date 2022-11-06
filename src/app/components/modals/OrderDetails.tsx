@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import RoundedButton from '../ui/RoundedButton';
-import { ButtonColor, ButtonType, DataCategory, MessageModalType, OperationType } from '../../../types/types';
+import { ButtonColor, ButtonType } from '../../../types/types';
 import { IOrder } from '../../features/order/types';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
@@ -14,11 +17,8 @@ import { faInfo, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { setOrderCellWidth } from '../../helpers/helpers';
 import ProductListImage from '../ui/ProductListImage';
 import Button from '../ui/Button';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
-import { deleteOrder, getOrders, getUserOrders } from '../../features/order/asyncActions';
-import { selectUser } from '../../features/user/selectors';
-import { useNavigate } from 'react-router-dom';
+import { deleteOrder } from '../../features/order/asyncActions';
 import { setOrderToUpdate } from '../../features/order/reducers';
 
 
@@ -185,6 +185,7 @@ const DetailsInfo = styled.div`
 
 
 const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
@@ -242,7 +243,7 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
           <OrderHeader>
-            <HeaderData>Order ID: {order._id}</HeaderData>
+            <HeaderData>{t('orderDetialsId')}: {order._id}</HeaderData>
             <HeaderData>{moment(order.createdAt).format('LLL')}</HeaderData>
           </OrderHeader>
           <OrderInfo>
@@ -250,9 +251,15 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
               <TableHead>
                 <Row>
                   <TableHeaderCell name='image'></TableHeaderCell>
-                  <TableHeaderCell name='title'>Product name</TableHeaderCell>
-                  <TableHeaderCell name='quantity'>Quantity</TableHeaderCell>
-                  <TableHeaderCell name='price'>Price</TableHeaderCell>
+                  <TableHeaderCell name='title'>
+                    {t('orderDetailsProductName')}
+                  </TableHeaderCell>
+                  <TableHeaderCell name='quantity'>
+                    {t('orderDetailsQuantity')}
+                  </TableHeaderCell>
+                  <TableHeaderCell name='price'>
+                    {t('orderDetailsPrice')}
+                  </TableHeaderCell>
                 </Row>
               </TableHead>
               <TableBody>
@@ -281,11 +288,15 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
           <OrderFooter>
             <Summary>
               <Details>
-                <DetailsTitle>Total amount</DetailsTitle>
+                <DetailsTitle>
+                  {t('orderDetailsTotalAmount')}
+                </DetailsTitle>
                 <DetailsInfo>UAH {order.amount}</DetailsInfo>
               </Details>
               <Details>
-                <DetailsTitle>Shipping</DetailsTitle>
+                <DetailsTitle>
+                  {t('orderDetailsShipping')}
+                </DetailsTitle>
                 <DetailsInfo>
                   {order.shippingCompany}
                 </DetailsInfo>
@@ -293,14 +304,24 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
                   {order.shippingCity}
                 </DetailsInfo>
                 <DetailsInfo>
-                  {order.isShipped ? 'Shipped' : 'Not shipped'}
+                  {
+                    order.isShipped ? 
+                      t('orderDetailsShippingStatusShipped') : 
+                      t('orderDetailsShippingStatusNotShipped')
+                  }
                 </DetailsInfo>
                 <DetailsInfo>
-                  {order.isPaid ? 'Paid' : 'Not paid yet'}
+                  {
+                    order.isPaid ? 
+                      t('orderDetailsPaymentStatusPaid') : 
+                      t('orderDetailsPaymentStatusNotPaid')
+                  }
                 </DetailsInfo>
               </Details>
               <Details>
-                <DetailsTitle>Customer</DetailsTitle>
+                <DetailsTitle>
+                  {t('orderDetailsCustomer')}
+                </DetailsTitle>
                 <DetailsInfo>
                   {`${order.customer.firstName} ${order.customer.lastName}`}
                 </DetailsInfo>
@@ -312,7 +333,9 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
                 </DetailsInfo>
               </Details>
               <Details>
-                <DetailsTitle>Recepient</DetailsTitle>
+                <DetailsTitle>
+                  {t('orderDetailsRecepient')}
+                </DetailsTitle>
                 <DetailsInfo>
                   {`${order.recepient.firstName} ${order.recepient.lastName}`}
                 </DetailsInfo>
@@ -330,14 +353,14 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
                 color={ButtonColor.Secondary}
                 onClick={handleOrderEdit}
               >
-                Edit
+                {t('orderDetailsEditBtn')}
               </Button>
               <Button
                 type={ButtonType.Button}
                 color={ButtonColor.Danger}
                 onClick={handleOrderDelete}
               >
-                Delete
+                {t('orderDetailsDeleteBtn')}
               </Button>
             </Actions>
           </OrderFooter>

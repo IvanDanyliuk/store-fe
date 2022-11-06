@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
+import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
 import { deleteUser } from '../../features/user/asyncActions';
@@ -62,6 +63,7 @@ const Actions = styled.div`
 `;
 
 const DeleteUserModal: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -104,7 +106,7 @@ const DeleteUserModal: React.FC = () => {
         color={ButtonColor.Danger} 
         onClick={handleOpenModal}
       >
-        Delete User
+        {t('deleteUserBtn')}
       </Button>
       <Modal
         isOpen={isOpen}
@@ -117,7 +119,7 @@ const DeleteUserModal: React.FC = () => {
           </CloseBtn>
         </FormHeader>
         <Message>
-          Your account will be removed! Are you sure?
+          {t('deleteUserMessage')}
         </Message>
         <Actions>
           <Button 
@@ -125,19 +127,19 @@ const DeleteUserModal: React.FC = () => {
             color={ButtonColor.Danger} 
             onClick={handleUserDelete}
           >
-            Yes
+            {t('deleteUserYes')}
           </Button>
           <Button 
             type={ButtonType.Button} 
             color={ButtonColor.Secondary} 
             onClick={handleOpenModal}
           >
-            No
+            {t('deleteUserNo')}
           </Button>
         </Actions>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default DeleteUserModal
+export default DeleteUserModal;

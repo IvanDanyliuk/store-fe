@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import Modal from 'react-modal';
 import StarRating from 'react-star-rate';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +17,8 @@ import { ButtonColor, ButtonType } from '../../../types/types';
 import Button from '../ui/Button';
 import { IReview } from '../../features/reviews/types';
 import { updateReview } from '../../features/reviews/asyncActions';
+import Input from '../inputs/Input';
+import TextArea from '../inputs/TextArea';
 
 
 interface IEditReviewModalProps {
@@ -63,28 +66,15 @@ const Rating = styled.fieldset`
   `}
 `;
 
-const Inputs = styled.fieldset``;
-
-const InputLabel = styled.label`
+const Inputs = styled.fieldset`
   ${tw`
-    mb-1
-    text-gray-500
-    font-semibold
-  `}
-`;
-
-const Input = styled.textarea`
-  ${tw`
-    p-2
     w-full
-    border
-    rounded
-    mb-3
   `}
 `;
 
 
 const EditReviewModal: React.FC<IEditReviewModalProps> = ({ review }) => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
@@ -182,7 +172,9 @@ const EditReviewModal: React.FC<IEditReviewModalProps> = ({ review }) => {
         style={styles}
       >
         <FormHeader>
-          <FormTitle>Leave a comment</FormTitle>
+          <FormTitle>
+            {t('editReviewTitle')}
+          </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
@@ -196,24 +188,23 @@ const EditReviewModal: React.FC<IEditReviewModalProps> = ({ review }) => {
             />
           </Rating>
           <Inputs>
-            <InputLabel>Adantages</InputLabel>
             <Input 
-              name='advantages' 
-              value={commentData.advantages} 
-              onChange={handleCommentDataChange} 
+              name='advantages'
+              label={t('editReviewAdvantages')}
+              value={commentData.advantages}
+              onChange={handleCommentDataChange}
             />
-            <InputLabel>Disadvantages</InputLabel>
             <Input 
-              name='disadvantages' 
-              value={commentData.disadvantages} 
-              onChange={handleCommentDataChange} 
+              name='disadvantages'
+              label={t('editReviewDisadvantages')}
+              value={commentData.disadvantages}
+              onChange={handleCommentDataChange}
             />
-            <InputLabel>Comment</InputLabel>
-            <Input 
+            <TextArea 
               name='comment'
-              value={commentData.comment} 
-              onChange={handleCommentDataChange} 
-              rows={5}
+              label={t('editReviewComment')}
+              value={commentData.comment}
+              onChange={handleCommentDataChange}
             />
           </Inputs>
           <Button
@@ -221,7 +212,7 @@ const EditReviewModal: React.FC<IEditReviewModalProps> = ({ review }) => {
             color={ButtonColor.Success}
             onClick={handleCommentDataSubmit}
           >
-            Submit
+            {t('editReviewSubmitBtn')}
           </Button>
         </CommentForm>
       </Modal>

@@ -5,6 +5,7 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -106,6 +107,7 @@ const SubmitBtn = styled.button`
 
 
 const CreateShippingForm: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const dataToUpdate = useSelector(selectShipping);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
@@ -240,7 +242,7 @@ const CreateShippingForm: React.FC = () => {
         type={ButtonType.Button}
         onClick={handleOpenModal}
       >
-        Add new
+        {t('shippingBtn')}
       </Button>
       <Modal 
         isOpen={isOpen}
@@ -249,7 +251,7 @@ const CreateShippingForm: React.FC = () => {
       >
         <FormHeader>
           <FormTitle>
-            {dataToUpdate ? 'Update the shipping' : 'Create a new shipping'}
+            {dataToUpdate ? t('shippingTitleUpdate') : t('shippingTitleCreate')}
           </FormTitle>
           <CloseBtn onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
@@ -260,14 +262,14 @@ const CreateShippingForm: React.FC = () => {
           <Inputs>
             <Input 
               name='company'
-              label='Company'
+              label={t('shippingCompany')}
               value={shippingData.company}
               onChange={handleShippingDataChange}
               isRequired
             />
             <Input 
               name='country'
-              label='Country'
+              label={t('shippingCountry')}
               value={shippingData.country}
               onChange={handleShippingDataChange}
             />
@@ -275,7 +277,7 @@ const CreateShippingForm: React.FC = () => {
           <Inputs>
             <Input 
               name='city'
-              label='City'
+              label={t('shippingCity')}
               value={city}
               onChange={handleCityChange}
             />
@@ -284,7 +286,7 @@ const CreateShippingForm: React.FC = () => {
               type={ButtonType.Button}
               onClick={handleAddCity}
             >
-              New city
+              {t('shipingAddNewCityBtn')}
             </Button>
             {shippingData.cities.length > 0 && (
               <CitiesList>
@@ -306,12 +308,14 @@ const CreateShippingForm: React.FC = () => {
             <Input 
               name='price'
               type='number'
-              label='Price'
+              label={t('shippingPrice')}
               value={shippingData.price}
               onChange={handleShippingDataChange}
             />
           </Inputs>
-          <SubmitBtn type='submit'>Submit</SubmitBtn>
+          <SubmitBtn type='submit'>
+            {t('shippingSubmitBtn')}
+          </SubmitBtn>
         </CategoryForm>
       </Modal>
     </>

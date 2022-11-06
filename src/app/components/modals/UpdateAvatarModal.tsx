@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { storage } from '../../../firebase';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
@@ -43,16 +44,6 @@ const Form = styled.form`
   `}
 `;
 
-const Label = styled.label`
-  ${tw`
-    w-full
-    font-semibold
-    text-sm
-    text-gray-500
-    text-left
-  `}
-`;
-
 const Input = styled.input`
   ${tw`
     mb-2
@@ -64,6 +55,7 @@ const Input = styled.input`
 `;
 
 const UpdateAvatarModal: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
@@ -146,7 +138,7 @@ const UpdateAvatarModal: React.FC = () => {
         color={ButtonColor.Success} 
         onClick={handleOpenModal}
       >
-        Update photo
+        {t('updateAvatarTitle')}
       </Button>
       <Modal
         isOpen={isOpen}
@@ -164,12 +156,12 @@ const UpdateAvatarModal: React.FC = () => {
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
           >
-            Submit
+            {t('updateAvatarSubmitBtn')}
           </Button>
         </Form>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default UpdateAvatarModal;

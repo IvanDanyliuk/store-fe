@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
+import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
 import { updatePassword } from '../../features/user/asyncActions';
@@ -13,6 +14,7 @@ import { selectError, selectUser } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { clearError } from '../../features/user/reducers';
+import Input from '../inputs/Input';
 
 
 Modal.setAppElement('#root');
@@ -42,26 +44,6 @@ const Form = styled.form`
   `}
 `;
 
-const Label = styled.label`
-  ${tw`
-    w-full
-    font-semibold
-    text-sm
-    text-gray-500
-    text-left
-  `}
-`;
-
-const Input = styled.input`
-  ${tw`
-    mb-2
-    p-1
-    w-full
-    border
-    rounded
-  `}
-`;
-
 const ErrorMessage = styled.p`
   ${tw`
     mt-3
@@ -73,6 +55,7 @@ const ErrorMessage = styled.p`
 
 
 const UpdatePasswordModal: React.FC = () => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const error = useSelector(selectError);
@@ -160,7 +143,7 @@ const UpdatePasswordModal: React.FC = () => {
         color={ButtonColor.Secondary} 
         onClick={handleOpenModal}
       >
-        Change password
+        {t('updatePasswordBtn')}
       </Button>
       <Modal
         isOpen={isOpen}
@@ -173,31 +156,31 @@ const UpdatePasswordModal: React.FC = () => {
           </CloseBtn>
         </FormHeader>
         <Form onSubmit={handleFormSubmit}>
-          <Label>Current Password</Label>
-          <Input 
-            name='curPassword' 
+          <Input
+            name='curPassword'
+            label={t('updatePasswordCurrentPassword')}
             type='password'
-            value={passwordData.curPassword} 
-            onChange={handleDataChange} 
+            value={passwordData.curPassword}
+            onChange={handleDataChange}
           />
-          <Label>New Password</Label>
-          <Input 
-            name='newPassword' 
+          <Input
+            name='newPassword'
+            label={t('updatePasswordNewPassowrd')}
             type='password'
-            value={passwordData.newPassword} 
-            onChange={handleDataChange} 
+            value={passwordData.newPassword}
+            onChange={handleDataChange}
           />
-          <Label>Confirm New Password</Label>
-          <Input 
-            name='confNewPassword' 
+          <Input
+            name='confNewPassword'
+            label={t('updatePasswordConfirmNewPassword')}
             type='password'
-            value={passwordData.confNewPassword} 
-            onChange={handleDataChange} 
+            value={passwordData.confNewPassword}
+            onChange={handleDataChange}
           />
           {
             error === 'error' && (
               <ErrorMessage>
-                Wrong credentials! Make sure data you entered is correct.
+                {t('updatePasswordErrorMessage')}
               </ErrorMessage>
             )
           }
@@ -205,7 +188,7 @@ const UpdatePasswordModal: React.FC = () => {
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
           >
-            Submit
+            {t('updatePasswordSubmitBtn')}
           </Button>
         </Form>
       </Modal>
