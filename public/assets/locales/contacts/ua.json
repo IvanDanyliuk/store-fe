@@ -1,0 +1,21 @@
+{
+  "title": "Контакти",
+  "ukraine": "Україна",
+  "ukraineAddress": "вул. Велика Васильківська 17a, Київ, Україна",
+  "ukrainePhone": "+38 (044) 758 77 77",
+  "poland": "Польща",
+  "polandAddress": "Aleja Wojska Polskiego str 44, Warsaw, Poland",
+  "polandPhone": "+48-123960677",
+  "germany": "Німеччина",
+  "germanyAddress": "Leichendorfer Straße 7, 90522 Berlin, Germany",
+  "germanyPhone": "+49-46532934183",
+  "lithuania": "Литва",
+  "lithuaniaAddress": "27 Atgimimo g. 11, Vilnius 54125, Lithuania",
+  "lithuaniaPhone": "+370 (655) 655 574 94",
+  "latvia": "Латвія",
+  "latviaAddress": "Vaļņu iela 18, Centra rajons, Rīga, Latvia,",
+  "latviaPhone": "+371 (67) 225 212",
+  "estonia": "Естонія",
+  "estoniaAddress": "Keldrimäe 25, Tallinn, Estonia",
+  "estoniaPhone": "+372 408 5010"
+}

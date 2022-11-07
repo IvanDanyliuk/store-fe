@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 
 
 const Container = styled.div`
@@ -76,66 +77,67 @@ const IndicatorText = styled.span`
 
 
 const About: React.FC = () => {
+  const { t } = useTranslation(['about']);
+
   return (
     <Container>
-      <Title>About Us</Title>
-      <SubTitle>Our Plans</SubTitle>
+      <Title>
+        {t('title')}
+      </Title>
+      <SubTitle>
+        {t('subtitleOne')}
+      </SubTitle>
       <Text>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ipsam temporibus adipisci eum porro laborum officia 
-        recusandae placeat dolore aut doloribus, quas culpa 
-        nesciunt qui commodi tenetur ipsa. Unde inventore 
-        reiciendis est magnam similique voluptatibus quos earum!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ipsam temporibus adipisci eum porro laborum officia 
-        recusandae placeat dolore aut doloribus, quas culpa 
-        nesciunt qui commodi tenetur ipsa. Unde inventore 
-        reiciendis est magnam similique voluptatibus quos earum!
+        {t('sectionTextOne')}
       </Text>
-      <Logo>eStore</Logo>
-      <SubTitle>Our Goal Is To Be Useful</SubTitle>
+      <Logo>
+        {t('logo')}
+      </Logo>
+      <SubTitle>
+        {t('subtitleTwo')}
+      </SubTitle>
       <Text>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ipsam temporibus adipisci eum porro laborum officia 
-        recusandae placeat dolore aut doloribus, quas culpa 
-        nesciunt qui commodi tenetur ipsa. Unde inventore 
-        reiciendis est magnam similique voluptatibus quos earum!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ipsam temporibus adipisci eum porro laborum officia 
-        recusandae placeat dolore aut doloribus, quas culpa 
-        nesciunt qui commodi tenetur ipsa. Unde inventore 
-        reiciendis est magnam similique voluptatibus quos earum!
+        {t('sectionTextTwo')}
       </Text>
       <KeyIndicators>
         <Indicator>
-          <IndicatorNum>2.3 million</IndicatorNum>
-          <IndicatorText>of products available</IndicatorText>
+          <IndicatorNum>
+            {t('indicatorNumOne')}
+          </IndicatorNum>
+          <IndicatorText>
+            {t('indicatorTextOne')}
+          </IndicatorText>
         </Indicator>
         <Indicator>
-          <IndicatorNum>777 million</IndicatorNum>
-          <IndicatorText>customers visited eStore last year</IndicatorText>
+          <IndicatorNum>
+            {t('indicatorNumTwo')}
+          </IndicatorNum>
+          <IndicatorText>
+            {t('indicatorTextTwo')}
+          </IndicatorText>
         </Indicator>
         <Indicator>
-          <IndicatorNum>80%</IndicatorNum>
-          <IndicatorText>of our customers go back</IndicatorText>
+          <IndicatorNum>
+            {t('indicatorNumThree')}
+          </IndicatorNum>
+          <IndicatorText>
+            {t('indicatorTextThree')}
+          </IndicatorText>
         </Indicator>
         <Indicator>
-          <IndicatorNum>1.8 million</IndicatorNum>
-          <IndicatorText>of visits per day</IndicatorText>
+          <IndicatorNum>
+            {t('indicatorNumFour')}
+          </IndicatorNum>
+          <IndicatorText>
+            {t('indicatorTextFour')}
+          </IndicatorText>
         </Indicator>
       </KeyIndicators>
-      <SubTitle>Convenient and Fast Shipping</SubTitle>
+      <SubTitle>
+        {t('subtitleThree')}
+      </SubTitle>
       <Text>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ipsam temporibus adipisci eum porro laborum officia 
-        recusandae placeat dolore aut doloribus, quas culpa 
-        nesciunt qui commodi tenetur ipsa. Unde inventore 
-        reiciendis est magnam similique voluptatibus quos earum!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ipsam temporibus adipisci eum porro laborum officia 
-        recusandae placeat dolore aut doloribus, quas culpa 
-        nesciunt qui commodi tenetur ipsa. Unde inventore 
-        reiciendis est magnam similique voluptatibus quos earum!
+        {t('sectionTextThree')}
       </Text>
     </Container>
   );
