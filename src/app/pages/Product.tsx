@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faStar, faThumbsDown, faThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import AddCommentForm from '../components/modals/AddCommentForm';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { selectProduct, selectProductStatus } from '../features/product/selectors';
 import { getProduct } from '../features/product/asyncActions';
@@ -360,6 +361,7 @@ const ReactionsNum = styled.span`
 
 
 const Product: React.FC = () => {
+  const { t } = useTranslation(['product']);
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector(selectProduct);
@@ -490,7 +492,9 @@ const Product: React.FC = () => {
         </Gallery>
         <GeneralInfo>
           <TopSection>
-            <Stock>In Stock</Stock>
+            <Stock>
+              {t('inStock')}
+            </Stock>
             <Rating>
               {
                 Array(product?.rating)
@@ -503,7 +507,7 @@ const Product: React.FC = () => {
             {product?.shortInfo}
           </ShortInfo>
           <ColorSection>
-            <InfoTitle>Color:</InfoTitle>
+            <InfoTitle>{t('color')}:</InfoTitle>
             <Color color={product?.color}></Color>
           </ColorSection>
           <SellingSection>
@@ -517,19 +521,19 @@ const Product: React.FC = () => {
                 color={ButtonColor.Primary}
                 onClick={handleAddToCart}
               >
-                Buy
+                {t('buyBtn')}
               </Button>
               <Button
                 type={ButtonType.Button}
                 color={ButtonColor.Secondary}
               >
-                Buy on Credit
+                {t('buyOnCreditBtn')}
               </Button>
             </ActionBtns>
           </SellingSection>
           <OrderInfo>
             <OrderInfoContainer>
-              <InfoTitle>Shipping:</InfoTitle>
+              <InfoTitle>{t('shipping')}:</InfoTitle>
               <OrderInfoList>
                 <OrderListItem>DHL</OrderListItem>
                 <OrderListItem>FedEx</OrderListItem>
@@ -538,7 +542,7 @@ const Product: React.FC = () => {
               </OrderInfoList>
             </OrderInfoContainer>
             <OrderInfoContainer>
-              <InfoTitle>Payment:</InfoTitle>
+              <InfoTitle>{t('payment')}:</InfoTitle>
               <OrderInfoList>
                 <OrderListItem>Visa / MasterCard</OrderListItem>
                 <OrderListItem>PayPal</OrderListItem>
@@ -555,7 +559,7 @@ const Product: React.FC = () => {
         </AdditionalSection>
         <AdditionalSection>
           <ReviewTopSection>
-            <InfoTitle>Reviews:</InfoTitle>
+            <InfoTitle>{t('reviews')}:</InfoTitle>
             <AddCommentForm />
           </ReviewTopSection>
           <ReviewList>
@@ -574,11 +578,11 @@ const Product: React.FC = () => {
                 </ReviewHeader>
                 <Comment>
                   <CommentSection>
-                    <CommentTitle>Advantages: </CommentTitle>
+                    <CommentTitle>{t('reviewAdvantages')}: </CommentTitle>
                     {review.advantages}
                   </CommentSection>
                   <CommentSection>
-                    <CommentTitle>Disadvantages: </CommentTitle>
+                    <CommentTitle>{t('reviewDisadvantages')}: </CommentTitle>
                     {review.disadvantages}
                   </CommentSection>
                   <CommentSection>

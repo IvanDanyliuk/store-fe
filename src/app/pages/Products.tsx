@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../types/types';
 import ProductList from '../components/products/ProductList';
 import ProductListPagination from '../components/products/ProductListPagination';
@@ -101,6 +102,7 @@ const PriceField = styled.input`
 
 
 const Products: React.FC = () => {
+  const { t } = useTranslation(['filters']);
   const { category } = useParams();
 
   const [page, setPage] = useState(1);
@@ -177,7 +179,9 @@ const Products: React.FC = () => {
     <Container>
       <FiltersContainer>
         <FilterGroup>
-          <FilterGroupLabel>Brands</FilterGroupLabel>
+          <FilterGroupLabel>
+            {t('brands')}
+          </FilterGroupLabel>
           <BrandList>
             {
               brands.map((brand: string, i) => (
@@ -199,7 +203,9 @@ const Products: React.FC = () => {
           </BrandList>
         </FilterGroup>
         <FilterGroup>
-          <FilterGroupLabel>Price</FilterGroupLabel>
+          <FilterGroupLabel>
+            {t('price')}
+          </FilterGroupLabel>
           <PriceFilters>
             <PriceField 
               type='number' 
@@ -222,14 +228,14 @@ const Products: React.FC = () => {
           color={ButtonColor.Primary} 
           onClick={handleFilterDataSubmit}
         >
-          Find
+          {t('findBtn')}
         </Button>
         <Button
           type={ButtonType.Button}
           color={ButtonColor.Secondary}
           onClick={clearFilters}
         >
-          Clear Filters
+          {t('clearBtn')}
         </Button>
       </FiltersContainer>
       <Content>
@@ -237,7 +243,7 @@ const Products: React.FC = () => {
           status === 'succeeded' ? (
             <ProductList products={products} />
           ) : (
-            <div>Loading...</div>
+            <div>{t('loading')}</div>
           )
         }
         <ProductListPagination 

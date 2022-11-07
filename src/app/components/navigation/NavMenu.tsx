@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +19,6 @@ import { SCREENS } from '../../services/screens';
 import SearchField from '../inputs/SearchField';
 import Divider from '../ui/Divider';
 import Copyright from '../ui/Copyright';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { selectCategories } from '../../features/category/selectors';
 import { getCategories } from '../../features/category/asyncActions';
