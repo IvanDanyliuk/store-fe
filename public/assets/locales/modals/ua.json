@@ -81,5 +81,22 @@
   "updatePasswordNewPassowrd": "Новий пароль",
   "updatePasswordConfirmNewPassword": "Підтвердити новий пароль",
   "updatePasswordErrorMessage": "Невірні дані! Перевірте правильність введеного пароля.",
-  "updatePasswordSubmitBtn": "Підтвердити"
+  "updatePasswordSubmitBtn": "Підтвердити",
+  "vacanciesOpenFormBtn": "Створити",
+  "vacanciesTitleCreate": "Створити нову вакансію",
+  "vacanciesTitleUpdate": "Змінити вакансію",
+  "vacanciesTitle": "Назва",
+  "vacanciesFullTime": "Повна зайнятість",
+  "vacanciesPartTime": "Часткова зайнятість",
+  "vacantciesOffice": "Офіс",
+  "vacanciesRemote": "Віддалено",
+  "vacanciesRemoteOffice": "Офіс/Віддалено",
+  "vacanciesResponsibilities": "Обов'язки",
+  "vacanciesMustHaves": "Необхідні навички",
+  "vacanciesExperience": "Досвід",
+  "vacanciesSalary": "Зарплата",
+  "vacanciesContactPerson": "Контактна особа",
+  "vacanciesContactPhone": "Контактний телефон",
+  "vacanciesContactEmail": "Контактна адреса ел. пошти",
+  "vacanciesSubmitBtn": "Підтвердити"
 }

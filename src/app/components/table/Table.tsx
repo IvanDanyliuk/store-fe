@@ -127,6 +127,11 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                   <TableHeaderCell name='categoryName'>Name</TableHeaderCell>
                   <TableHeaderCell name='categoryActions'></TableHeaderCell>
                 </>
+              ) : tableType === TableTypes.Vacancies ? (
+                <>
+                  <TableHeaderCell name='vacancyName'>Title</TableHeaderCell>
+                  <TableHeaderCell name='vacancyActions'></TableHeaderCell>
+                </>
               ) : (
                 <>
                   <TableHeaderCell name='shippingName'>Name</TableHeaderCell>
@@ -160,6 +165,26 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                     </TableCell>
                   </TableRow>
                 )
+              )) : tableType === TableTypes.Vacancies ? slice.map((vacancy: any) => (
+                <TableRow key={uuid()}>
+                  <TableCell name='vacancyName'>{vacancy.title}</TableCell>
+                    <TableCell name='vacancyActions'>
+                      <Button 
+                        color={ButtonColor.Success} 
+                        type={ButtonType.Button}
+                        onClick={() => onEdit(vacancy._id!)}
+                      >
+                        Edit
+                      </Button>
+                      <Button 
+                        color={ButtonColor.Danger} 
+                        type={ButtonType.Button}
+                        onClick={() => onDelete(vacancy._id!)}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                </TableRow>
               )) : slice.map((shippingOption: IShipping) => 'company' in shippingOption && (
                 <TableRow key={uuid()}>
                   <TableCell name='shippingName'>{shippingOption.company}</TableCell>

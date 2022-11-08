@@ -4,6 +4,7 @@ import { IProductCategory } from "../features/category/types";
 import { IProductData } from "../features/product/types";
 import { IShipping } from "../features/shipping/types";
 import { IComment } from '../../types/types';
+import { IVacancy } from '../features/vacancies/types';
 
 
 type SetErrorType = (error: string) => void;
@@ -48,6 +49,29 @@ export const isCategoryDataValid = (data: IProductCategory, setError: SetErrorTy
       return false;
     case data.subCategories.length === 0:
       setError('Category should have at least one sub-category!');
+      return false;
+    default:
+      setError('');
+      return true;
+  }
+};
+
+export const isVacancyDataValid = (data: IVacancy, setError: SetErrorType) => {
+  switch(true) {
+    case !data.title:
+      setError('Title field is required!');
+      return false;
+    case !data.responsibilities:
+      setError('Responsibilities field is required!');
+      return false;
+    case !data.contactPerson:
+      setError('Contact Person field is required!');
+      return false;
+    case !data.contactPhone:
+      setError('Contact Phone field is required!');
+      return false;
+    case !data.contactEmail:
+      setError('Contact Email field is required!');
       return false;
     default:
       setError('');

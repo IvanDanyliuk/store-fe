@@ -78,15 +78,6 @@ const FormItem = styled.fieldset`
   `}
 `;
 
-const PromotionContainer = styled.fieldset`
-  ${tw`
-    relative
-    w-full
-    flex
-    flex-col
-  `}
-`;
-
 const PromotionInputContainer = styled.div`
   ${tw`
     w-full

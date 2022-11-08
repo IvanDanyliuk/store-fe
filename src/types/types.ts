@@ -50,7 +50,8 @@ export interface IButtonProps {
 export enum TableTypes {
   Products = 'products',
   Categories = 'categories',
-  Shipping = 'options of shipping'
+  Shipping = 'options of shipping',
+  Vacancies = 'vacancies',
 }
 
 export interface ITableProps {

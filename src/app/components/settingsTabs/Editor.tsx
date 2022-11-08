@@ -22,6 +22,7 @@ import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
 import ProductsTable from '../table/ProductsTable';
 import ProductListPagination from '../products/ProductListPagination';
+import CreateVacancyForm from '../modals/CreateVacancyModal';
 
 
 const Container = styled.div`
@@ -153,6 +154,12 @@ const Editor: React.FC = () => {
           onEdit={handleShippingEdit} 
           onDelete={handleShippingDelete} 
         />
+      </Section>
+      <Section>
+        <SectionHeader>
+          <SubTitle>{t('vacancies')}</SubTitle>
+          <CreateVacancyForm />
+        </SectionHeader>
       </Section>
     </Container>
   );

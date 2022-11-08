@@ -37,9 +37,13 @@ export const setCellWidth = (name: string, isMobile: boolean) => {
       return isMobile ? '250px' : '80%';
     case 'categoryActions':
       return isMobile ? '230px' : '20%';
+    case 'vacancyName':
+      return isMobile ? '250px' : '80%';
+    case 'vacancyActions':
+      return isMobile ? '230px' : '20%';
     case 'shippingName':
       return isMobile ? '250px' : '80%';
-    case 'categoryActions':
+    case 'shippingActions':
       return isMobile ? '230px' : '20%';
     default:
       return '0%';

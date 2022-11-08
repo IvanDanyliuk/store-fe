@@ -6,6 +6,7 @@ import shippingReducer from './shipping/reducers';
 import cartReducer from './cart/reducers';
 import orderReducer from './order/reducers';
 import reviewsReducer from './reviews/reducers';
+import vacanciesReducer from './vacancies/reducers';
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   order: orderReducer,
   reviews: reviewsReducer,
+  vacancies: vacanciesReducer,
 });
 
 export default rootReducer;

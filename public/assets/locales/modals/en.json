@@ -82,5 +82,22 @@
   "updatePasswordNewPassowrd": "New Password",
   "updatePasswordConfirmNewPassword": "Confirm New Password",
   "updatePasswordErrorMessage": "Wrong credentials! Make sure data you entered is correct.",
-  "updatePasswordSubmitBtn": "Submit"
+  "updatePasswordSubmitBtn": "Submit",
+  "vacanciesOpenFormBtn": "Add new",
+  "vacanciesTitleCreate": "Create a new vacancy",
+  "vacanciesTitleUpdate": "Update the vacancy data",
+  "vacanciesTitle": "Title",
+  "vacanciesFullTime": "Full-Time",
+  "vacanciesPartTime": "Part-Time",
+  "vacantciesOffice": "Office",
+  "vacanciesRemote": "Remote",
+  "vacanciesRemoteOffice": "Remote/Office",
+  "vacanciesResponsibilities": "Responsibilities",
+  "vacanciesMustHaves": "Must-Haves",
+  "vacanciesExperience": "Experience",
+  "vacanciesSalary": "Salary",
+  "vacanciesContactPerson": "Contact Person",
+  "vacanciesContactPhone": "Contact Phone",
+  "vacanciesContactEmail": "Contact Email",
+  "vacanciesSubmitBtn": "Submit"
 }
