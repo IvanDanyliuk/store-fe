@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 
 
-interface IProductListPaginationProps {
+interface IPageListPaginationProps {
   pageCount: number;
   currentPage: number;
   setPage: (e: any) => void;
@@ -34,13 +34,10 @@ const NumberBtn = styled.button`
   &[data-isactive='false'] {
     color: #000000;
   }
-  ${tw`
-  
-  `}
 `;
 
 
-const ProductListPagination: React.FC<IProductListPaginationProps> = ({
+const PageListPagination: React.FC<IPageListPaginationProps> = ({
   pageCount, 
   currentPage, 
   setPage
@@ -60,4 +57,4 @@ const ProductListPagination: React.FC<IProductListPaginationProps> = ({
   );
 };
 
-export default ProductListPagination;
+export default PageListPagination;

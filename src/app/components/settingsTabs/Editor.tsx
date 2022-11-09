@@ -21,7 +21,7 @@ import { deleteShipping, getShippings } from '../../features/shipping/asyncActio
 import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
 import ProductsTable from '../table/ProductsTable';
-import ProductListPagination from '../products/ProductListPagination';
+import ProductListPagination from '../ui/PageListPagination';
 import CreateVacancyForm from '../modals/CreateVacancyModal';
 
 

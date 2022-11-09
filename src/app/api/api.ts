@@ -42,7 +42,7 @@ export const updateOrder = (updatedOrder: any) => API.patch('/orders', { params:
 export const payOrder = (order: any) => API.post('/orders/payment', { params: { order } });
 export const deleteOrder = (id: any) => API.delete('/orders', { params: { id } });
 
-export const getVacancies = () => API.get('/vacancies');
+export const getVacancies = (page: number, itemsPerPage: number) => API.get('/vacancies', { params: { page, itemsPerPage }});
 export const getVacancy = (id: any) => API.get(`/vacancies/${id}`);
 export const createVacancy = (vacancy: any) => API.post('/vacancies', { params: { vacancy } });
 export const updateVacancy = (updatedVacancy: any) => API.patch('/vacancies', { params: { updatedVacancy } });

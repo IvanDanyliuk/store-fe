@@ -6,7 +6,10 @@ import { IVacanciesState } from './types';
 const initialState: IVacanciesState = {
   status: 'idle',
   vacancy: null,
-  vacancies: [],
+  vacancies: {
+    data: [],
+    pages: 0,
+  },
   error: null,
 };
 
@@ -50,7 +53,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(createVacancy.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.vacancies.push(action.payload);
+        state.vacancies.data.push(action.payload);
       })
       .addCase(createVacancy.rejected, (state, action) => {
         state.status = 'failed';
@@ -61,7 +64,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(updateVacancy.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.vacancies = state.vacancies.map(vacancy => vacancy._id !== action.payload._id ? vacancy : { _id: vacancy._id, ...action.payload });
+        state.vacancies.data = state.vacancies.data.map(vacancy => vacancy._id !== action.payload._id ? vacancy : { _id: vacancy._id, ...action.payload });
       })
       .addCase(updateVacancy.rejected, (state, action) => {
         state.status = 'failed';
@@ -72,7 +75,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(deleteVacancy.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.vacancies = state.vacancies.filter(vacancy => vacancy._id !== action.meta.arg);
+        state.vacancies.data = state.vacancies.data.filter(vacancy => vacancy._id !== action.meta.arg);
       })
       .addCase(deleteVacancy.rejected, (state, action) => {
         state.status = 'failed';

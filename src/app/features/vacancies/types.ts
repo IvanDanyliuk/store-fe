@@ -1,15 +1,18 @@
 export interface IVacanciesState {
   status: string;
   vacancy: null | IVacancy,
-  vacancies: IVacancy[];
+  vacancies: {
+    data: IVacancy[];
+    pages: number;
+  };
   error: null | string;
 }
 
 export interface IVacancy {
   _id?: string;
   title: string,
-  employment: string[];
-  character: string[];
+  employment: string;
+  character: string;
   responsibilities: string;
   mustHaves: string;
   experience: string;
@@ -22,4 +25,9 @@ export interface IVacancy {
 export interface IVacancyToUpdate {
   id: string;
   updatedVacancy: IVacancy;
+}
+
+export interface IVacanciesRequestData {
+  page: number;
+  itemsPerPage: number;
 }

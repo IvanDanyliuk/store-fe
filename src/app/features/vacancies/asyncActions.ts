@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api';
+import { IVacanciesRequestData } from './types';
 
 
 export const getVacancies = createAsyncThunk(
   'vacancies/getVacancies',
-  async (_: void, { rejectWithValue }) => {
+  async (vacanciesRequestData: IVacanciesRequestData, { rejectWithValue }) => {
+    const { page, itemsPerPage } = vacanciesRequestData;
     try {
-      const { data } = await api.getVacancies();
+      const { data } = await api.getVacancies(page, itemsPerPage);
       return data;
     } catch (error) {
       return rejectWithValue(error);

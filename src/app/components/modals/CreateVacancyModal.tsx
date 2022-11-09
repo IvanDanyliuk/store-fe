@@ -2,22 +2,17 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'twin.macro';
-import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
-import { IShipping } from '../../features/shipping/types';
-import { selectShipping } from '../../features/shipping/selectors';
-import { createShipping, updateShipping } from '../../features/shipping/asyncActions';
-import { clearShipping } from '../../features/shipping/reducers';
 import Input from '../inputs/Input';
-import { isShippingDataValid, isVacancyDataValid } from '../../helpers/formValidation';
+import { isVacancyDataValid } from '../../helpers/formValidation';
 import FormErrorMessage from '../ui/FormErrorMessage';
 import TextArea from '../inputs/TextArea';
 import { clearVacancy } from '../../features/vacancies/reducers';
@@ -58,6 +53,9 @@ const VacancyForm = styled.form`
     flex-wrap
     justify-between
   `}
+  div:first-child {
+    width: 100%;
+  }
   div {
     width: 49%;
   }
@@ -87,8 +85,8 @@ const CreateVacancyForm: React.FC = () => {
   const [error, setError] = useState('');
   const [vacancyData, setVacancyData] = useState<IVacancy>({
     title: '',
-    employment: [],
-    character: [],
+    employment: 'full-time',
+    character: 'office',
     responsibilities: '',
     mustHaves: '',
     experience: '',
@@ -101,8 +99,8 @@ const CreateVacancyForm: React.FC = () => {
   const setInitialData = () => {
     setVacancyData({
       title: '',
-      employment: [],
-      character: [],
+      employment: '',
+      character: '',
       responsibilities: '',
       mustHaves: '',
       experience: '',
@@ -138,8 +136,7 @@ const CreateVacancyForm: React.FC = () => {
   const createNewVacancyOption = () => {
     const isDataValid = isVacancyDataValid(vacancyData, handleError);
     if(isDataValid) {
-      // dispatch(createVacancy(vacancyData));
-      console.log(vacancyData);
+      dispatch(createVacancy(vacancyData));
       setInitialData();
       handleOpenModal();
     }
@@ -188,8 +185,8 @@ const CreateVacancyForm: React.FC = () => {
       setIsOpen(!isOpen);
       setVacancyData({
         title: '',
-        employment: [],
-        character: [],
+        employment: '',
+        character: '',
         responsibilities: '',
         mustHaves: '',
         experience: '',
@@ -232,8 +229,32 @@ const CreateVacancyForm: React.FC = () => {
             onChange={handleVacancyDataChange}
             isRequired
           />
-          <Select>
-            <Option value='full-time'></Option>
+          <Select
+            name='employment'
+            value={vacancyData.employment}
+            onChange={handleVacancyDataChange}
+          >
+            <Option value='full-time'>
+              {t('vacanciesFullTime')}
+            </Option>
+            <Option value='part-time'>
+              {t('vacanciesPartTime')}
+            </Option>
+          </Select>
+          <Select
+            name='character'
+            value={vacancyData.character}
+            onChange={handleVacancyDataChange}
+          >
+            <Option value='office'>
+              {t('vacantciesOffice')}
+            </Option>
+            <Option value='remote'>
+              {t('vacanciesRemote')}
+            </Option>
+            <Option value='remote-office'>
+              {t('vacanciesRemoteOffice')}
+            </Option>
           </Select>
           <TextArea 
             name='responsibilities'

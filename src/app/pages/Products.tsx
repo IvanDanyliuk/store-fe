@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../types/types';
 import ProductList from '../components/products/ProductList';
-import ProductListPagination from '../components/products/ProductListPagination';
+import PageListPagination from '../components/ui/PageListPagination';
 import Button from '../components/ui/Button';
 import { getBrands, getProducts } from '../features/product/asyncActions';
 import { selectBrands, selectPagesCount, selectProducts, selectProductStatus } from '../features/product/selectors';
@@ -246,7 +246,7 @@ const Products: React.FC = () => {
             <div>{t('loading')}</div>
           )
         }
-        <ProductListPagination 
+        <PageListPagination 
           pageCount={pageCount}
           currentPage={page}
           setPage={setPage}
