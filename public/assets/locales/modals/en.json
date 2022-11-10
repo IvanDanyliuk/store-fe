@@ -99,5 +99,7 @@
   "vacanciesContactPerson": "Contact Person",
   "vacanciesContactPhone": "Contact Phone",
   "vacanciesContactEmail": "Contact Email",
-  "vacanciesSubmitBtn": "Submit"
+  "vacanciesSubmitBtn": "Submit",
+  "vacanciesLoading": "Loading...",
+  "vacanciesMessage": "There are no available vacancies"
 }

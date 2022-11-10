@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import { AppDispatch } from '../features/store';
-import { selectPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
+import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
 import PageListPagination from '../components/ui/PageListPagination';
 
@@ -41,13 +42,39 @@ const VacanciesList = styled.ul`
 
 const VacancyItem = styled.li`
   ${tw`
-  
+    border-b
   `}
 `;
 
 const VacancyLink = styled(Link)`
   ${tw`
-  
+    pt-3
+    pb-3
+    flex
+    justify-between
+    items-center
+  `}
+`;
+
+const VacancyTitle = styled.span`
+  ${tw`
+    font-semibold
+  `}
+`;
+
+const VacancyDate = styled.span`
+  ${tw`
+    text-sm
+  `}
+`;
+
+const Message = styled.div`
+  ${tw`
+    w-full
+    h-full
+    flex
+    justify-center
+    items-center
   `}
 `;
 
@@ -55,13 +82,12 @@ const VacancyLink = styled(Link)`
 const Careers: React.FC = () => {
   const { t } = useTranslation(['careers']);
   const dispatch = useDispatch<AppDispatch>();
-  const { id } = useParams();
 
   const [page, setPage] = useState(1);
   const itemsPerPage = 10;
   const vacancies = useSelector(selectVacancies);
   const status = useSelector(selectVacancyStatus);
-  const pageCount = useSelector(selectPagesCount);
+  const pageCount = useSelector(selectVacancyPagesCount);
 
   useEffect(() => {
     dispatch(getVacancies({ page, itemsPerPage }));
@@ -75,19 +101,23 @@ const Careers: React.FC = () => {
       <Content>
         {
           status === 'loading' ? (
-            <div>Loading...</div>
-          ) : (
+            <Message>{t('vacanciesLoading')}</Message>
+          ) : 
+          vacancies.length > 0 ? (
             <VacanciesList>
               {
                 vacancies.map(vacancy => (
                   <VacancyItem>
-                    <VacancyLink to={`/vacancies/${vacancy._id}`}>
-                      {vacancy.title}
+                    <VacancyLink to={`/careers/${vacancy._id}`}>
+                      <VacancyTitle>{vacancy.title}</VacancyTitle>
+                      <VacancyDate>{moment(vacancy.createdAt).format('DD MM YYYY')}</VacancyDate>
                     </VacancyLink>
                   </VacancyItem>
                 ))
               }
             </VacanciesList>
+          ) : (
+            <Message>{t('vacanciesMessage')}</Message>
           )
         }
       </Content>

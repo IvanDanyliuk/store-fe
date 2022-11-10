@@ -20,9 +20,13 @@ import { selectShippings } from '../../features/shipping/selectors';
 import { deleteShipping, getShippings } from '../../features/shipping/asyncActions';
 import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
-import ProductsTable from '../table/ProductsTable';
-import ProductListPagination from '../ui/PageListPagination';
+import ProductTable from '../table/ProductTable';
+import PageListPagination from '../ui/PageListPagination';
 import CreateVacancyForm from '../modals/CreateVacancyModal';
+import { selectVacancies, selectVacancyPagesCount } from '../../features/vacancies/selectors';
+import VacanciesTable from '../table/VacanciesTable';
+import { deleteVacancy, getVacancies, updateVacancy } from '../../features/vacancies/asyncActions';
+import { setVacancyToUpdate } from '../../features/vacancies/reducers';
 
 
 const Container = styled.div`
@@ -63,10 +67,12 @@ const Editor: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
-  const pageCount = useSelector(selectPagesCount);
+  const productsPageCount = useSelector(selectPagesCount);
   const categories = useSelector(selectCategories);
   const shippings = useSelector(selectShippings);
   const user = useSelector(selectUser);
+  const vacancies = useSelector(selectVacancies);
+  const vacanciesPageCount = useSelector(selectVacancyPagesCount);
 
   if(!user!.isAdmin) {
     navigate('/settings/orders');
@@ -96,12 +102,25 @@ const Editor: React.FC = () => {
     dispatch(deleteShipping(id));
   };
 
-  const [page, setPage] = useState(1);
+  const handleVacancyEdit = (id: string) => {
+    dispatch(setVacancyToUpdate(id));
+  };
+
+  const handleVacancyDelete = (id: string) => {
+    dispatch(deleteVacancy(id));
+  };
+
+  const [productsPage, setProductsPage] = useState(1);
+  const [vacanciesPage, setVacanciesPage] = useState(1);
   const productsPerPage = 10;
 
   useEffect(() => {
-    dispatch(getProducts({ page, productsPerPage }));
-  }, [dispatch, page]);
+    dispatch(getProducts({ page: productsPage, productsPerPage }));
+  }, [dispatch, productsPage]);
+
+  useEffect(() => {
+    dispatch(getVacancies({ page: vacanciesPage, itemsPerPage: productsPerPage }))
+  }, [dispatch, vacanciesPage]);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -119,16 +138,15 @@ const Editor: React.FC = () => {
           <SubTitle>{t('products')}</SubTitle>
           <CreateProductForm />
         </SectionHeader>
-        <ProductsTable 
+        <ProductTable 
           products={products} 
-          page={page}
           onEdit={handleProductEdit}
           onDelete={handleProductDelete}
         />
-        <ProductListPagination 
-          currentPage={page}
-          pageCount={pageCount}
-          setPage={setPage}
+        <PageListPagination 
+          currentPage={productsPage}
+          pageCount={productsPageCount}
+          setPage={setProductsPage}
         />
       </Section>
       <Section>
@@ -160,6 +178,16 @@ const Editor: React.FC = () => {
           <SubTitle>{t('vacancies')}</SubTitle>
           <CreateVacancyForm />
         </SectionHeader>
+        <VacanciesTable 
+          vacancies={vacancies}
+          onEdit={handleVacancyEdit}
+          onDelete={handleVacancyDelete}
+        />
+        <PageListPagination 
+          currentPage={vacanciesPage}
+          pageCount={vacanciesPageCount}
+          setPage={setVacanciesPage}
+        />
       </Section>
     </Container>
   );

@@ -93,21 +93,23 @@ const CreateVacancyForm: React.FC = () => {
     salary: '',
     contactPerson: '',
     contactPhone: '',
-    contactEmail: ''
+    contactEmail: '',
+    createdAt: '',
   });
 
   const setInitialData = () => {
     setVacancyData({
       title: '',
-      employment: '',
-      character: '',
+      employment: 'full-time',
+      character: 'office',
       responsibilities: '',
       mustHaves: '',
       experience: '',
       salary: '',
       contactPerson: '',
       contactPhone: '',
-      contactEmail: ''
+      contactEmail: '',
+      createdAt: '',
     });
   };
 
@@ -142,11 +144,11 @@ const CreateVacancyForm: React.FC = () => {
     }
   };
 
-  const updateVacancyOption = () => {
+  const updateVacancyOption = async () => {
     const isDataValid = isVacancyDataValid(vacancyData, handleError);
     if(isDataValid) {
-      dispatch(updateVacancy({ 
-        id: dataToUpdate?._id, 
+      await dispatch(updateVacancy({ 
+        id: dataToUpdate!._id!, 
         updatedVacancy: vacancyData, 
       }));
       dispatch(clearVacancy());
@@ -184,16 +186,17 @@ const CreateVacancyForm: React.FC = () => {
     if(dataToUpdate) {
       setIsOpen(!isOpen);
       setVacancyData({
-        title: '',
-        employment: '',
-        character: '',
-        responsibilities: '',
-        mustHaves: '',
-        experience: '',
-        salary: '',
-        contactPerson: '',
-        contactPhone: '',
-        contactEmail: ''
+        ...dataToUpdate,
+        title: dataToUpdate.title,
+        employment: dataToUpdate.employment,
+        character: dataToUpdate.character,
+        responsibilities: dataToUpdate.responsibilities,
+        mustHaves: dataToUpdate.mustHaves,
+        experience: dataToUpdate.experience,
+        salary: dataToUpdate.salary,
+        contactPerson: dataToUpdate.contactPerson,
+        contactPhone: dataToUpdate.contactPhone,
+        contactEmail: dataToUpdate.contactEmail,
       });
     }
   }, [dataToUpdate]);

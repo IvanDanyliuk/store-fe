@@ -21,6 +21,7 @@ import Product from './app/pages/Product';
 import Products from './app/pages/Products';
 import Settings from './app/pages/Settings';
 import Tradein from './app/pages/Tradein';
+import Vacancy from './app/pages/Vacancy';
 import i18n from './app/services/languageConfig';
 
 
@@ -53,6 +54,7 @@ const App: React.FC = () => {
               <Route path='/about' element={<About />} />
               <Route path='/contacts' element={<Contacts />} />
               <Route path='/careers' element={<Careers />} />
+              <Route path='/careers/:id' element={<Vacancy />} />
               <Route path='/partnership' element={<Partnership />} />
               <Route path='/trade-in' element={<Tradein />} />
               <Route path='/legal-info' element={<LegalInfo />} />

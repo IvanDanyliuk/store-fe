@@ -13,7 +13,6 @@ const Container = styled.div`
 `;
 
 const WarningMessage = styled.div`
-  
   ${tw`
     w-full
     h-full

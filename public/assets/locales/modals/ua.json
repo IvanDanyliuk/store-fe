@@ -98,5 +98,7 @@
   "vacanciesContactPerson": "Контактна особа",
   "vacanciesContactPhone": "Контактний телефон",
   "vacanciesContactEmail": "Контактна адреса ел. пошти",
-  "vacanciesSubmitBtn": "Підтвердити"
+  "vacanciesSubmitBtn": "Підтвердити",
+  "vacanciesLoading": "Завантаження...",
+  "vacanciesMessage": "Немає відкритих вакансій"
 }

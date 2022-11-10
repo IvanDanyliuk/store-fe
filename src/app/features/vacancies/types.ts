@@ -1,6 +1,6 @@
 export interface IVacanciesState {
   status: string;
-  vacancy: null | IVacancy,
+  vacancy: null | IVacancy | undefined,
   vacancies: {
     data: IVacancy[];
     pages: number;
@@ -20,6 +20,7 @@ export interface IVacancy {
   contactPerson: string;
   contactPhone: string;
   contactEmail: string;
+  createdAt: string;
 }
 
 export interface IVacancyToUpdate {

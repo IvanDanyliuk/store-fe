@@ -2,5 +2,14 @@
   "products": "Товари",
   "categories": "Категорії",
   "shipping": "Доставка",
-  "vacancies": "Вакансії"
+  "vacancies": "Вакансії",
+  "productsNoDataMessage": "Немає продуктів",
+  "vacanciesNoDataMessage": "Немає відкритих вакансій",
+  "productsTableTitleName": "Назва",
+  "productsTableTitlePrice": "Ціна",
+  "productsTableTitleRating": "Рейтинг",
+  "vacanciesTableTitleName": "Назва",
+  "vacanciesTableTitlePrice": "Дата",
+  "editBtn": "Змінити",
+  "deleteBtn": "Видалити"
 }

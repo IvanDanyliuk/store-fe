@@ -17,6 +17,9 @@ const vacanciesSlice = createSlice({
   name: 'vacancies',
   initialState,
   reducers: {
+    setVacancyToUpdate: (state, action) => {
+      state.vacancy = state.vacancies.data.find(item => item._id === action.payload);
+    },
     clearVacancy: (state) => {
       state.vacancy = null;
     },
@@ -84,6 +87,6 @@ const vacanciesSlice = createSlice({
   }
 });
 
-export const { clearVacancy, clearVacancyError } = vacanciesSlice.actions;
+export const { setVacancyToUpdate, clearVacancy, clearVacancyError } = vacanciesSlice.actions;
 
 export default vacanciesSlice.reducer;

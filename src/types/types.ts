@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { IProduct } from "../app/features/product/types";
+import { IVacancy } from "../app/features/vacancies/types";
 
 
 export interface IOrder {
@@ -63,7 +64,12 @@ export interface ITableProps {
 
 export interface IProductsTableProps {
   products: IProduct[];
-  page: number;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
+}
+
+export interface IVacanciesTableProps {
+  vacancies: IVacancy[];
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }

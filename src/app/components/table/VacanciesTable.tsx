@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
-import { ButtonColor, ButtonType, IProductsTableProps } from '../../../types/types';
+import { ButtonColor, ButtonType, IVacanciesTableProps } from '../../../types/types';
 import { IProduct } from '../../features/product/types';
 import ProductListImage from '../ui/ProductListImage';
+import { IVacancy } from '../../features/vacancies/types';
 
 
 interface ICellProps {
@@ -80,14 +82,14 @@ const WarningMessageBody = styled.div``;
 const Message = styled.p``;
 
 
-const ProductsTable: React.FC<IProductsTableProps> = ({ products, page, onEdit, onDelete }) => {
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, onEdit, onDelete }) => {
+  const { t } = useTranslation(['settingTabsEditor']);
 
-  if(products.length === 0) {
+  if(vacancies.length === 0) {
     return (
       <WarningMessageBody>
         <Message>
-          There are no available products
+          {t('vacanciesNoDataMessage')}
         </Message>
       </WarningMessageBody>
     )
@@ -98,37 +100,35 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, page, onEdit, 
       <TableContainer>
         <TableHead>
           <TableRow>
-            <TableHeaderCell name='productName'>Name</TableHeaderCell>
-            <TableHeaderCell name='productPrice'>Price</TableHeaderCell>
-            <TableHeaderCell name='productRating'>Rating</TableHeaderCell>
-            <TableHeaderCell name='productImage'></TableHeaderCell>
-            <TableHeaderCell name='productActions'></TableHeaderCell>
+            <TableHeaderCell name='vacancyName'>
+              {t('vacanciesTableTitleName')}
+            </TableHeaderCell>
+            <TableHeaderCell name='vacancyDate'>
+              {t('vacanciesTableTitlePrice')}
+            </TableHeaderCell>
+            <TableHeaderCell name='vacancyActions'></TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {
-            products.map((product: IProduct) => (
+            vacancies.map((vacancy: IVacancy) => (
               <TableRow key={uuid()}>
-                <TableCell name='productName'>{product.title}</TableCell>
-                <TableCell name='productPrice'>{product.price}</TableCell>
-                <TableCell name='productRating'>{product.rating}</TableCell>
-                <TableCell name='productImage'>
-                  <ProductListImage url={product.image} altText={product.title} />
-                </TableCell>
-                <TableCell name='productActions'>
+                <TableCell name='vacancyName'>{vacancy.title}</TableCell>
+                <TableCell name='vacancyDate'>{vacancy.createdAt}</TableCell>
+                <TableCell name='vacancyActions'>
                   <Button 
                     color={ButtonColor.Success} 
                     type={ButtonType.Button}
-                    onClick={() => onEdit(product._id)}
+                    onClick={() => onEdit(vacancy._id!)}
                   >
-                    Edit
+                    {t('editBtn')}
                   </Button>
                   <Button 
                     color={ButtonColor.Danger} 
                     type={ButtonType.Button}
-                    onClick={() => onDelete(product._id)}
+                    onClick={() => onDelete(vacancy._id!)}
                   >
-                    Delete
+                    {t('deleteBtn')}
                   </Button>
                 </TableCell>
               </TableRow>
@@ -140,4 +140,4 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, page, onEdit, 
   );
 };
 
-export default ProductsTable;
+export default VacanciesTable;

@@ -2,5 +2,14 @@
   "products": "Products",
   "categories": "Categories",
   "shipping": "Shipping",
-  "vacancies": "Vacancies"
+  "vacancies": "Vacancies",
+  "productsNoDataMessage": "There are no available products",
+  "vacanciesNoDataMessage": "There are no available vacancies",
+  "productsTableTitleName": "Name",
+  "productsTableTitlePrice": "Price",
+  "productsTableTitleRating": "Rating",
+  "vacanciesTableTitleName": "Name",
+  "vacanciesTableTitlePrice": "Price",
+  "editBtn": "Edit",
+  "deleteBtn": "Delete"
 }
