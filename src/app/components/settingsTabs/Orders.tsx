@@ -61,12 +61,17 @@ const Orders: React.FC = () => {
   };
 
   const handleOrderFind = () => {
+    setPage(1);
     dispatch(getOrders({ page: 1, ordersPerPage, filterData: searchValue }));
   };
 
   useEffect(() => {
     if(isAdmin!) {
-      dispatch(getOrders({ page, ordersPerPage }));
+      if(searchValue) {
+        dispatch(getOrders({ page, ordersPerPage, filterData: searchValue }));
+      } else {
+        dispatch(getOrders({ page, ordersPerPage }));
+      }
     } else {
       dispatch(getUserOrders({ page, ordersPerPage, email }));
     }
