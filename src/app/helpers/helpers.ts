@@ -45,6 +45,16 @@ export const setCellWidth = (name: string, isMobile: boolean) => {
       return isMobile ? '250px' : '80%';
     case 'shippingActions':
       return isMobile ? '230px' : '20%';
+    case 'orderId':
+      return isMobile ? '250px' : '30%';
+    case 'orderDate':
+      return isMobile ? '100px' : '15%';
+    case 'orderAmount':
+      return isMobile ? '70px' : '20%';
+    case 'orderImage':
+      return isMobile ? '100px' : '25%';
+    case 'orderActions':
+      return isMobile ? '300px' : '10%';
     default:
       return '0%';
   }

@@ -5,13 +5,13 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { getOrders, getUserOrders } from '../../features/order/asyncActions';
-import { selectOrders } from '../../features/order/selectors';
-import { IOrder } from '../../features/order/types';
+import { selectOrderPages, selectOrders } from '../../features/order/selectors';
 import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
 import Input from '../inputs/Input';
-import OrderList from '../order/OrderList';
 import Button from '../ui/Button';
+import OrdersTable from '../table/OrdersTable';
+import PageListPagination from '../ui/PageListPagination';
 
 
 const Container = styled.div`
@@ -37,15 +37,23 @@ const FilterSection = styled.div`
   }
 `;
 
+const Content = styled.div`
+  ${tw`
+  
+  `}
+`;
+
 
 const Orders: React.FC = () => {
   const { t } = useTranslation(['settingTabsOrder']);
   const dispatch = useDispatch<AppDispatch>();
 
-  const user = useSelector(selectUser);
+  const { isAdmin, email } = useSelector(selectUser);
   const orders = useSelector(selectOrders);
+  const pageCount = useSelector(selectOrderPages);
   
-  const [filteredOrders, setFilteredOrders] = useState<IOrder[]>([]);
+  const [page, setPage] = useState(1);
+  const ordersPerPage = 10;
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchValueChange = (e: any) => {
@@ -53,26 +61,20 @@ const Orders: React.FC = () => {
   };
 
   const handleOrderFind = () => {
-    setFilteredOrders(orders.filter((order: IOrder) => order.customer.lastName === searchValue));
+    dispatch(getOrders({ page: 1, ordersPerPage, filterData: searchValue }));
   };
 
   useEffect(() => {
-    if(searchValue === '') {
-      setFilteredOrders([]);
-    }
-  }, [searchValue]);
-
-  useEffect(() => {
-    if(user?.isAdmin!) {
-      dispatch(getOrders());
+    if(isAdmin!) {
+      dispatch(getOrders({ page, ordersPerPage }));
     } else {
-      dispatch(getUserOrders(user!.email!));
+      dispatch(getUserOrders({ page, ordersPerPage, email }));
     }
-  }, []);
+  }, [dispatch, page]);
 
   return (
     <Container>
-      {user?.isAdmin && (
+      {isAdmin && (
         <FilterSection>
           <Input 
             name='searchValue'
@@ -89,7 +91,14 @@ const Orders: React.FC = () => {
           </Button>
         </FilterSection>
       )}
-      <OrderList orders={filteredOrders.length > 0 ? filteredOrders : orders} />
+      <Content>
+        <OrdersTable orders={orders} />
+        <PageListPagination 
+          currentPage={page} 
+          pageCount={pageCount} 
+          setPage={setPage} 
+        />
+      </Content>
     </Container>
   );
 };

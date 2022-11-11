@@ -1,4 +1,7 @@
 {
   "searchInputTitle": "Find an order by a consumer",
-  "searchBtn": "Search"
+  "searchBtn": "Search",
+  "tableOrderId": "Order ID",
+  "tableOrderDate": "Date",
+  "tableOrderAmount": "Amount"
 }

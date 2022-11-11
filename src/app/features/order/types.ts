@@ -7,7 +7,10 @@ export interface IOrderState {
   status: string;
   order: IOrder | null;
   clientSecret: any;
-  orders: IOrder[];
+  orders: {
+    data: IOrder[];
+    pages: number;
+  };
   error: null | string;
 }
 
@@ -39,4 +42,11 @@ export interface IOrder {
 export interface IOrderToUpdate {
   id: string;
   updatedOrder: IOrder;
+}
+
+export interface IOrdersRequestData {
+  page: number;
+  ordersPerPage: number;
+  email?: string;
+  filterData?: string;
 }

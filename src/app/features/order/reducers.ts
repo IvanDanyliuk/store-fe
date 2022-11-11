@@ -9,7 +9,10 @@ const initialState: IOrderState = {
   status: 'idle',
   order: null,
   clientSecret: null,
-  orders: [],
+  orders: {
+    data: [],
+    pages: 0,
+  },
   error: null,
 };
 
@@ -37,7 +40,7 @@ const ordersSlice = createSlice({
     },
     clearOrder: (state) => {
       state.status = 'idle';
-      state.orders = [];
+      state.orders.data = [];
     },
   },
   extraReducers: (builder) => {
@@ -69,7 +72,7 @@ const ordersSlice = createSlice({
       })
       .addCase(createOrder.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.orders.push(action.payload);
+        state.orders.data.push(action.payload);
       })
       .addCase(createOrder.rejected, (state, action) =>{
         state.status = 'failed';
@@ -80,7 +83,7 @@ const ordersSlice = createSlice({
       })
       .addCase(updateOrder.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.orders = state.orders.map(order => order._id !== action.payload._id ? order : { _id: order._id, ...action.payload });
+        state.orders.data = state.orders.data.map(order => order._id !== action.payload._id ? order : { _id: order._id, ...action.payload });
         state.order = null;
       })
       .addCase(updateOrder.rejected, (state, action) => {
@@ -92,7 +95,7 @@ const ordersSlice = createSlice({
       })
       .addCase(deleteOrder.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.orders = state.orders.filter(order => order._id !== action.meta.arg);
+        state.orders.data = state.orders.data.filter(order => order._id !== action.meta.arg);
       })
       .addCase(deleteOrder.rejected, (state, action) =>{
         state.status = 'failed';

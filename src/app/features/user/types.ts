@@ -1,4 +1,4 @@
-import { IOrder } from "../../../types/types";
+import { IOrderInfo } from "../../../types/types";
 import { IProduct } from "../product/types";
 
 
@@ -19,7 +19,7 @@ export interface IUser {
   city: string;
   avatarUrl: string;
   wishList: IProduct[];
-  orders: IOrder[];
+  orders: IOrderInfo[];
   isAdmin: boolean;
 }
 

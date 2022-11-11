@@ -1,4 +1,7 @@
 {
   "searchInputTitle": "Знайти за клієнтом",
-  "searchBtn": "Знайти"
+  "searchBtn": "Знайти",
+  "tableOrderId": "ID замовлення",
+  "tableOrderDate": "Дата",
+  "tableOrderAmount": "Сума"
 }

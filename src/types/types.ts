@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
+import { IOrder } from "../app/features/order/types";
 import { IProduct } from "../app/features/product/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
 
-export interface IOrder {
+export interface IOrderInfo {
   product: IProduct;
   date: string;
 }
@@ -72,6 +73,10 @@ export interface IVacanciesTableProps {
   vacancies: IVacancy[];
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
+}
+
+export interface IOrdersTableProps {
+  orders: IOrder[];
 }
 
 export interface IPaginationProps {

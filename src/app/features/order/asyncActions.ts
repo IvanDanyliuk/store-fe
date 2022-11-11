@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api';
+import { IOrdersRequestData } from './types';
 
 
 export const getOrders = createAsyncThunk(
   'orders/getOrders',
-  async (_: void, { rejectWithValue }) => {
+  async (ordersRequestData: IOrdersRequestData, { rejectWithValue }) => {
+    const { page, ordersPerPage, filterData } = ordersRequestData;
     try {
-      const { data } = await api.getOrders();
+      const { data } = await api.getOrders(page, ordersPerPage, filterData);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -16,9 +18,10 @@ export const getOrders = createAsyncThunk(
 
 export const getUserOrders = createAsyncThunk(
   'orders/getUserOrders',
-  async (email: string, { rejectWithValue }) => {
+  async (ordersRequestData: IOrdersRequestData, { rejectWithValue }) => {
+    const { page, ordersPerPage, email } = ordersRequestData;
     try {
-      const { data } = await api.getUserOrder(email);
+      const { data } = await api.getUserOrder(page, ordersPerPage, email!);
       return data;
     } catch (error) {
       return rejectWithValue(error);
