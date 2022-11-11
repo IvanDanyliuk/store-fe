@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, IVacanciesTableProps } from '../../../types/types';
-import { IProduct } from '../../features/product/types';
-import ProductListImage from '../ui/ProductListImage';
 import { IVacancy } from '../../features/vacancies/types';
 
 
@@ -114,7 +113,7 @@ const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, onEdit, onD
             vacancies.map((vacancy: IVacancy) => (
               <TableRow key={uuid()}>
                 <TableCell name='vacancyName'>{vacancy.title}</TableCell>
-                <TableCell name='vacancyDate'>{vacancy.createdAt}</TableCell>
+                <TableCell name='vacancyDate'>{moment(vacancy.createdAt).format('DD MM YYYY')}</TableCell>
                 <TableCell name='vacancyActions'>
                   <Button 
                     color={ButtonColor.Success} 

@@ -82,7 +82,7 @@ const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
       {orders.length > 0 ? orders.map(order => (
         <ListItem key={uuid()}>
           <Text>{order._id}</Text>
-          <Text>{moment(order.createdAt).format('LLL')}</Text>
+          <Text>{moment(order.createdAt).format('DD MM YYYY')}</Text>
           <ProductImages>
             {order.products.slice(0, 3).map(product => (
               <ProductListImage 

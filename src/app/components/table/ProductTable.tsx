@@ -91,7 +91,7 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, onEdit, onDelet
           {t('productsNoDataMessage')}
         </Message>
       </WarningMessageBody>
-    )
+    );
   }
 
   return (
