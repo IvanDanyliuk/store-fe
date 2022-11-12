@@ -13,6 +13,7 @@ import DeleteUserModal from '../modals/DeleteUserModal';
 import EditUserDataModal from '../modals/EditUserDataModal';
 import UpdateAvatarModal from '../modals/UpdateAvatarModal';
 import UpdatePasswordModal from '../modals/UpdatePasswordModal';
+import i18 from '../../services/languageConfig';
 
 
 const Section = styled.section`
@@ -145,6 +146,7 @@ const Profile: React.FC = () => {
   const language = useSelector(selectLanguage);
 
   const handleLanguageChange = (e: any) => {
+    i18.changeLanguage(e.target.value);
     localStorage.setItem('language', e.target.value);
     dispatch(setLanguage(e.target.value));
   };
