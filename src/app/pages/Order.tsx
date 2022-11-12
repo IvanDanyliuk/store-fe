@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import { ButtonColor, ButtonType } from '../../types/types';
+import { ButtonColor, ButtonType, ICustomer } from '../../types/types';
 import OrderForm from '../components/order/OrderForm';
 import Payment from '../components/order/Payment';
 import ShoppingList from '../components/order/ShoppingList';
@@ -21,14 +21,6 @@ import { selectErrorStatus, selectOrder } from '../features/order/selectors';
 import { clearCart } from '../features/cart/reducers';
 import { clearOrder, clearOrderToUpdate } from '../features/order/reducers';
 import { calculateOrderTotalAmount } from '../helpers/helpers';
-
-
-interface ICustomer {
-  firstName: string | undefined,
-  lastName: string | undefined,
-  phone: string | undefined,
-  email: string | undefined,
-}
 
 
 const Container = styled.div`
@@ -82,11 +74,7 @@ const SubTitleNum = styled.span`
   `}
 `;
 
-const SubTitleText = styled.span`
-  ${tw`
-  
-  `}
-`;
+const SubTitleText = styled.span``;
 
 const AcceptOrderSection = styled.div`
   ${tw`
@@ -111,11 +99,7 @@ const DetailsSection = styled.div`
   `}
 `;
 
-const SelectionContainer = styled.div`
-  ${tw`
-  
-  `}
-`;
+const SelectionContainer = styled.div``;
 
 const RadioBody = styled.div``;
 

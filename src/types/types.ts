@@ -104,3 +104,22 @@ export enum MessageModalType {
   PreModal = 'pre-modal',
   PostModal = 'post-modal',
 }
+
+export interface IOrderDetailsProps {
+  order: IOrder;
+}
+
+export interface ICellProps {
+  name: string;
+}
+
+export interface ICustomer {
+  firstName: string | undefined,
+  lastName: string | undefined,
+  phone: string | undefined,
+  email: string | undefined,
+}
+
+export interface IColor {
+  color: string | undefined;
+}

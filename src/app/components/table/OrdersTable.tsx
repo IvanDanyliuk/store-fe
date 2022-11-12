@@ -4,18 +4,12 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
-import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { getOtherProductsQuantity, setCellWidth } from '../../helpers/helpers';
-import { ButtonColor, ButtonType, IOrdersTableProps } from '../../../types/types';
-import { IOrder } from '../../features/order/types';
+import { ICellProps, IOrdersTableProps } from '../../../types/types';
 import OrderDetails from '../modals/OrderDetails';
 import ProductListImage from '../ui/ProductListImage';
 
-
-interface ICellProps {
-  name: string;
-}
 
 const Container = styled.div`
   ${tw`

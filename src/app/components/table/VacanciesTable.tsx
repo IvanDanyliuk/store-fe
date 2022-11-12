@@ -7,13 +7,9 @@ import moment from 'moment';
 import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
-import { ButtonColor, ButtonType, IVacanciesTableProps } from '../../../types/types';
+import { ButtonColor, ButtonType, ICellProps, IVacanciesTableProps } from '../../../types/types';
 import { IVacancy } from '../../features/vacancies/types';
 
-
-interface ICellProps {
-  name: string;
-}
 
 const Container = styled.div`
   ${tw`

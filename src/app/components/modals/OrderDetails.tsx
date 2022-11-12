@@ -8,8 +8,7 @@ import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import RoundedButton from '../ui/RoundedButton';
-import { ButtonColor, ButtonType } from '../../../types/types';
-import { IOrder } from '../../features/order/types';
+import { ButtonColor, ButtonType, ICellProps, IOrderDetailsProps } from '../../../types/types';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,14 +22,6 @@ import { setOrderToUpdate } from '../../features/order/reducers';
 
 
 Modal.setAppElement('#root');
-
-interface IOrderDetailsProps {
-  order: IOrder;
-}
-
-interface ICellProps {
-  name: string;
-}
 
 const Container = styled.div`
   ${tw`
@@ -181,7 +172,6 @@ const DetailsInfo = styled.div`
     text-xs
   `}
 `;
-
 
 
 const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {

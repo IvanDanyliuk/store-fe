@@ -6,14 +6,10 @@ import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
-import { ButtonColor, ButtonType, IProductsTableProps } from '../../../types/types';
+import { ButtonColor, ButtonType, ICellProps, IProductsTableProps } from '../../../types/types';
 import { IProduct } from '../../features/product/types';
 import ProductListImage from '../ui/ProductListImage';
 
-
-interface ICellProps {
-  name: string;
-}
 
 const Container = styled.div`
   ${tw`

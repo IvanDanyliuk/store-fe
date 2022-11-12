@@ -14,7 +14,7 @@ import { getProduct } from '../features/product/asyncActions';
 import { clearProduct } from '../features/product/reducers';
 import { selectUser } from '../features/user/selectors';
 import RoundedButton from '../components/ui/RoundedButton';
-import { ButtonColor, ButtonType } from '../../types/types';
+import { ButtonColor, ButtonType, IColor } from '../../types/types';
 import { addToCart } from '../features/cart/reducers';
 import { selectCartData } from '../features/cart/selectors';
 import Button from '../components/ui/Button';
@@ -22,10 +22,6 @@ import { deleteReview, getProductReviews, updateReview } from '../features/revie
 import { selectReviews } from '../features/reviews/selectors';
 import { IReview } from '../features/reviews/types';
 
-
-interface IColor {
-  color: string | undefined;
-}
 
 const ProductBody = styled.div`
   ${tw`
