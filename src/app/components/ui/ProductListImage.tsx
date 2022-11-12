@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { IProductListImage } from '../../../types/types';
 
-
-interface IProductListImage {
-  url: string;
-  altText: string;
-}
 
 const ImageContainer = styled.div`
   ${tw`

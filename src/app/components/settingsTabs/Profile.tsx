@@ -20,13 +20,13 @@ const Section = styled.section`
   ${tw`
     relative
     w-full
-    mt-6
     mb-6
   `}
 `;
 
 const SubTitle = styled.h6`
   ${tw`
+    mb-3
     text-lg
     font-semibold
   `}
@@ -34,7 +34,7 @@ const SubTitle = styled.h6`
 
 const SubSection = styled.div`
   ${tw`
-  
+    mt-6
   `}
 `;
 
@@ -48,10 +48,8 @@ const Content = styled.div`
 `;
 
 const PhotoContainer = styled.div`
-
   ${tw`
     relative
-    mt-3
     md:mr-12
     w-36
     h-36
@@ -132,11 +130,7 @@ const LanguageSelect = styled.select`
   `}
 `;
 
-const LanguageOption = styled.option`
-  ${tw`
-  
-  `}
-`;
+const LanguageOption = styled.option``;
 
 
 const Profile: React.FC = () => {

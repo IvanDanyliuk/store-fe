@@ -25,7 +25,7 @@ import PageListPagination from '../ui/PageListPagination';
 import CreateVacancyForm from '../modals/CreateVacancyModal';
 import { selectVacancies, selectVacancyPagesCount } from '../../features/vacancies/selectors';
 import VacanciesTable from '../table/VacanciesTable';
-import { deleteVacancy, getVacancies, updateVacancy } from '../../features/vacancies/asyncActions';
+import { deleteVacancy, getVacancies } from '../../features/vacancies/asyncActions';
 import { setVacancyToUpdate } from '../../features/vacancies/reducers';
 
 

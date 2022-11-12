@@ -1,16 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SearchField from '../inputs/SearchField';
 import NavMenu from '../navigation/NavMenu';
-import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
 import Logo from '../ui/Logo';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../features/user/selectors';
 import { AppDispatch } from '../../features/store';
 import { logout } from '../../features/user/reducers';

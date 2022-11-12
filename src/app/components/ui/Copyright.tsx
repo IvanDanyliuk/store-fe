@@ -11,7 +11,7 @@ const Container = styled.div`
   `}
 `;
 
-const Copyright = () => {
+const Copyright: React.FC = () => {
   const year = new Date().getFullYear();
   return (
     <Container>All Rights Reserved. {year}</Container>

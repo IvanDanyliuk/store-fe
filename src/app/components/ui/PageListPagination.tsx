@@ -2,13 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
-
-
-interface IPageListPaginationProps {
-  pageCount: number;
-  currentPage: number;
-  setPage: (e: any) => void;
-}
+import { IPageListPaginationProps } from '../../../types/types';
 
 
 const Container = styled.ul`
@@ -48,7 +42,10 @@ const PageListPagination: React.FC<IPageListPaginationProps> = ({
     <Container>
       {numbers.map(number => (
         <NumberItem key={uuid()}>
-          <NumberBtn data-isactive={currentPage === number} onClick={() => setPage(number)}>
+          <NumberBtn 
+            data-isactive={currentPage === number} 
+            onClick={() => setPage(number)}
+          >
             {number}
           </NumberBtn>
         </NumberItem>

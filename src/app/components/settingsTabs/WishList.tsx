@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { selectWishList } from '../../features/user/selectors';
 import ProductList from '../products/ProductList';
 
+
 const Container = styled.div`
   ${tw`
     w-full
@@ -22,7 +23,7 @@ const WarningMessage = styled.div`
   `}
 `;
 
-const WishList = () => {
+const WishList: React.FC = () => {
   const { t } = useTranslation(['settingTabsWishList']);
   const wishList = useSelector(selectWishList);
   return (

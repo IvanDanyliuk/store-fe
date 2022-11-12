@@ -10,6 +10,7 @@
   "cartTotalOrderAmount": "Загальна сума замовлення:",
   "cartContinue": "Продовжити покупки",
   "cartCheckoutBtn": "Оформити замовлення",
+  "cartEmptyMessage": "Кошик порожній",
   "categoryBtn": "Створити",
   "categoryTitleUpdate": "Змінити категорію",
   "categoryTitleCreate": "Створити нову категорія",

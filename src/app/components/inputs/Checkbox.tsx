@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { ICheckbox } from '../../../types/types';
 
-
-interface ICheckbox {
-  name: string;
-  label?: string;
-  checked: boolean;
-  onChange: (e: any) => void;
-}
 
 const Container = styled.div`
   ${tw`
@@ -32,13 +26,6 @@ const Field = styled.input`
     border
     rounded
     mb-1
-  `}
-`;
-
-const ErrorMessage = styled.div`
-  ${tw`
-    text-xs
-    text-red-500
   `}
 `;
 

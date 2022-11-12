@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { ITextArea } from '../../../types/types';
 
-
-interface ITextArea {
-  name: string;
-  label?: string;
-  value: string | number;
-  rows?: number;
-  minLength?: number;
-  maxLength?: number;
-  onChange: (e: any) => void;
-  isRequired?: boolean;
-}
 
 const Container = styled.div`
   ${tw`

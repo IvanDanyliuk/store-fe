@@ -3,18 +3,8 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { checkEmailFormat } from '../../helpers/formValidation';
+import { IInput } from '../../../types/types';
 
-
-interface IInput {
-  name: string;
-  type?: string;
-  label?: string;
-  value?: string | number;
-  minLength?: number;
-  maxLength?: number;
-  onChange: (e: any) => void;
-  isRequired?: boolean;
-}
 
 const Container = styled.div`
   ${tw`

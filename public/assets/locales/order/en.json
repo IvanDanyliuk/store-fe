@@ -19,5 +19,6 @@
   "phone": "Phone",
   "paymentCardNumber": "Card number",
   "paymentValidThru": "Valid thru",
-  "paymentPayBtn": "Pay"
+  "paymentPayBtn": "Pay",
+  "noOrdersMessage": "You don't have orders yet!"
 }

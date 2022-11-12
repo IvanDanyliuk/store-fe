@@ -37,11 +37,7 @@ const FilterSection = styled.div`
   }
 `;
 
-const Content = styled.div`
-  ${tw`
-  
-  `}
-`;
+const Content = styled.div``;
 
 
 const Orders: React.FC = () => {

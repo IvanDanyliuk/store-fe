@@ -21,7 +21,11 @@ const RoundedButtonBody = styled.button`
 
 const RoundedButton: React.FC<IButtonProps> = ({ color, type, onClick, children }) => {
   return (
-    <RoundedButtonBody color={color} type={type} onClick={onClick}>
+    <RoundedButtonBody 
+      color={color} 
+      type={type} 
+      onClick={onClick}
+    >
       {children}
     </RoundedButtonBody>
   );

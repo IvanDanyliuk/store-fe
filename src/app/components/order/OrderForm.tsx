@@ -3,17 +3,8 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import Input from '../inputs/Input';
+import { IOrderFormProps } from '../../../types/types';
 
-
-interface IOrderFormProps {
-  data: {
-    firstName: string | undefined;
-    lastName: string | undefined;
-    email: string | undefined;
-    phone: string | undefined;
-  };
-  onChange: (e: any) => void;
-}
 
 const Form = styled.form`
   ${tw`

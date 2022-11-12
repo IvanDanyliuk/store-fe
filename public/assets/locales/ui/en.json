@@ -4,5 +4,11 @@
   "inputMinLength2": "characters",
   "inputMaxLength1": "Maximal length is",
   "inputMaxLength2": "characters",
-  "inputInvalidEmail": "Invalid email!"
+  "inputInvalidEmail": "Invalid email!",
+  "tableHeadName": "Name",
+  "tableHeadCompany": "Company",
+  "tableNoCategoriesMessage": "There are no available categories!",
+  "tableNoShippingMessage": "There are no available shipping options!",
+  "tableEditBtn": "Edit",
+  "tableDeleteBtn": "Delete"
 }

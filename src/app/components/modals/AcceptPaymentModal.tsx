@@ -7,12 +7,8 @@ import { SCREENS } from '../../services/screens';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { IAcceptPaymentModalProps } from '../../../types/types';
 
-
-interface IAcceptPaymentModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-};
 
 const CloseBtn = styled.button`
   ${tw`

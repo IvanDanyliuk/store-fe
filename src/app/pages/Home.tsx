@@ -12,7 +12,6 @@ import background from '../assets/img/liquid-cheese.svg'
 import ProductList from '../components/products/ProductList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-
 import { AppDispatch } from '../features/store';
 import { getTopProducts } from '../features/product/asyncActions';
 import { selectProducts } from '../features/product/selectors';

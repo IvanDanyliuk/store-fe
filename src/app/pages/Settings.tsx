@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -7,7 +8,6 @@ import { faHeart, faPenToSquare, faUser } from '@fortawesome/free-regular-svg-ic
 import { faCommentDollar, faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getFormattedTitle } from '../helpers/helpers';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../features/user/selectors';
 
 

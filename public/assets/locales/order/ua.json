@@ -19,5 +19,6 @@
   "phone": "Телефон",
   "paymentCardNumber": "Номер картки",
   "paymentValidThru": "Дійсна до",
-  "paymentPayBtn": "Оплатити"
+  "paymentPayBtn": "Оплатити",
+  "noOrdersMessage": "У Вас ще немає замовлень!"
 }

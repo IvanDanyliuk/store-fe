@@ -5,11 +5,8 @@ import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons';
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
+import { IPaymentSystemIconProps } from '../../../types/types';
 
-
-interface IPaymentSystemIconProps {
-  cardNumber: string;
-}
 
 const Container = styled.div`
   ${tw`
@@ -31,7 +28,9 @@ const PaymentSystemIcon: React.FC<IPaymentSystemIconProps> = ({ cardNumber }) =>
 
   return (
     <Container>
-      <FontAwesomeIcon icon={paymentSystemType ? setIcon(paymentSystemType.type) : faMoneyCheckDollar} />
+      <FontAwesomeIcon 
+        icon={paymentSystemType ? setIcon(paymentSystemType.type) : faMoneyCheckDollar} 
+      />
     </Container>
   );
 };

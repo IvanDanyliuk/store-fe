@@ -4,5 +4,11 @@
   "inputMinLength2": "символів",
   "inputMaxLength1": "Максимальна довжина становить",
   "inputMaxLength2": "символів",
-  "inputInvalidEmail": "Невірний адрес ел. пошти!"
+  "inputInvalidEmail": "Невірний адрес ел. пошти!",
+  "tableHeadName": "Назва",
+  "tableHeadCompany": "Компанія",
+  "tableNoCategoriesMessage": "There are no available categories!",
+  "tableNoShippingMessage": "There are no available shipping options!",
+  "tableEditBtn": "Змінити",
+  "tableDeleteBtn": "Видалити"
 }

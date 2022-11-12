@@ -35,14 +35,6 @@ const CloseBtn = styled.button`
   `}
 `;
 
-const Form = styled.form`
-  ${tw`
-    flex
-    flex-col
-    items-center
-  `}
-`;
-
 const Message = styled.p`
   ${tw`
     text-center

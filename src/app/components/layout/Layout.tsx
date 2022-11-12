@@ -1,13 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { ILayout } from '../../../types/types';
 import Footer from './Footer';
 import Header from './Header';
 
-
-interface ILayout {
-  children: ReactNode;
-}
 
 const Container = styled.div`
   ${tw`

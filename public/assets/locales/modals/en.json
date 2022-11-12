@@ -10,6 +10,7 @@
   "cartTotalOrderAmount": "Total Order:",
   "cartContinue": "Continue shopping",
   "cartCheckoutBtn": "Checkout",
+  "cartEmptyMessage": "Cart is empty",
   "categoryBtn": "Add new",
   "categoryTitleUpdate": "Update the category",
   "categoryTitleCreate": "Create a new category",

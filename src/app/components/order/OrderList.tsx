@@ -3,15 +3,12 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import moment from 'moment';
-import { IOrder } from '../../features/order/types';
+import { useTranslation } from 'react-i18next';
 import OrderDetails from '../modals/OrderDetails';
 import ProductListImage from '../ui/ProductListImage';
 import { getOtherProductsQuantity } from '../../helpers/helpers';
+import { IOrderListProps } from '../../../types/types';
 
-
-interface IOrderListProps {
-  orders: IOrder[];
-}
 
 const List = styled.ul`
   ${tw`
@@ -76,6 +73,7 @@ const Message = styled.div`
 
 
 const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
+  const { t } = useTranslation(['order']);
 
   return (
     <List>
@@ -100,7 +98,7 @@ const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
           </Actions>
         </ListItem>
       )) : (
-        <Message>There are no available orders!</Message>
+        <Message>{t('noOrdersMessage')}</Message>
       )}
     </List>
   );

@@ -13,17 +13,12 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import FormErrorMessage from '../ui/FormErrorMessage';
 import RoundedButton from '../ui/RoundedButton';
-import { ButtonColor, ButtonType } from '../../../types/types';
+import { ButtonColor, ButtonType, IEditReviewModalProps } from '../../../types/types';
 import Button from '../ui/Button';
-import { IReview } from '../../features/reviews/types';
 import { updateReview } from '../../features/reviews/asyncActions';
 import Input from '../inputs/Input';
 import TextArea from '../inputs/TextArea';
 
-
-interface IEditReviewModalProps {
-  review: IReview;
-}
 
 Modal.setAppElement('#root');
 

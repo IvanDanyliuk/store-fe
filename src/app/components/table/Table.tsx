@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import useTable from '../../hooks/useTable';
-import { ButtonColor, ButtonType, ITableProps, TableTypes } from '../../../types/types';
+import { ButtonColor, ButtonType, ICellProps, ITableProps, TableTypes } from '../../../types/types';
 import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
 import { IShipping } from '../../features/shipping/types';
 
-
-interface ICellProps {
-  name: string;
-}
 
 const Container = styled.div`
   ${tw`
@@ -40,16 +37,7 @@ const TableHead = styled.thead`
   `}
 `;
 
-const TableBody = styled.tbody`
-  tr {
-    ${tw`
-      
-    `}
-  }
-  ${tw`
-    
-  `}
-`;
+const TableBody = styled.tbody``;
 
 const TableRow = styled.tr`
   ${tw`
@@ -86,20 +74,13 @@ const TableCell = styled.td<ICellProps>`
   `}
 `;
 
-const WarningMessageBody = styled.div`
-  ${tw`
-  
-  `}
-`;
+const WarningMessageBody = styled.div``;
 
-const Message = styled.p`
-  ${tw`
-
-  `}
-`;
+const Message = styled.p``;
 
 
 const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => {
+  const { t } = useTranslation(['ui']);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const { slice, range } = useTable(data, page, rowsPerPage);
@@ -110,10 +91,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
     return (
       <WarningMessageBody>
         <Message>
-          There are no available {tableType}
+          {
+            tableType === TableTypes.Categories ? 
+              t('tableNoCategoriesMessage') : 
+              t('tableNoShippingMessage')
+          }
         </Message>
       </WarningMessageBody>
-    )
+    );
   }
 
   return (
@@ -124,17 +109,16 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
             {
               tableType === TableTypes.Categories ? (
                 <>
-                  <TableHeaderCell name='categoryName'>Name</TableHeaderCell>
+                  <TableHeaderCell name='categoryName'>
+                    {t('tableHeadName')}
+                  </TableHeaderCell>
                   <TableHeaderCell name='categoryActions'></TableHeaderCell>
-                </>
-              ) : tableType === TableTypes.Vacancies ? (
-                <>
-                  <TableHeaderCell name='vacancyName'>Title</TableHeaderCell>
-                  <TableHeaderCell name='vacancyActions'></TableHeaderCell>
                 </>
               ) : (
                 <>
-                  <TableHeaderCell name='shippingName'>Name</TableHeaderCell>
+                  <TableHeaderCell name='shippingName'>
+                    {t('tableHeadCompany')}
+                  </TableHeaderCell>
                   <TableHeaderCell name='shippingActions'></TableHeaderCell>
                 </>
               )
@@ -153,38 +137,18 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                         type={ButtonType.Button}
                         onClick={() => onEdit(category._id!)}
                       >
-                        Edit
+                        {t('tableEditBtn')}
                       </Button>
                       <Button 
                         color={ButtonColor.Danger} 
                         type={ButtonType.Button}
                         onClick={() => onDelete(category._id!)}
                       >
-                        Delete
+                        {t('tableDeleteBtn')}
                       </Button>
                     </TableCell>
                   </TableRow>
                 )
-              )) : tableType === TableTypes.Vacancies ? slice.map((vacancy: any) => (
-                <TableRow key={uuid()}>
-                  <TableCell name='vacancyName'>{vacancy.title}</TableCell>
-                    <TableCell name='vacancyActions'>
-                      <Button 
-                        color={ButtonColor.Success} 
-                        type={ButtonType.Button}
-                        onClick={() => onEdit(vacancy._id!)}
-                      >
-                        Edit
-                      </Button>
-                      <Button 
-                        color={ButtonColor.Danger} 
-                        type={ButtonType.Button}
-                        onClick={() => onDelete(vacancy._id!)}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
-                </TableRow>
               )) : slice.map((shippingOption: IShipping) => 'company' in shippingOption && (
                 <TableRow key={uuid()}>
                   <TableCell name='shippingName'>{shippingOption.company}</TableCell>
@@ -194,14 +158,14 @@ const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => 
                       type={ButtonType.Button}
                       onClick={() => onEdit(shippingOption._id!)}
                     >
-                      Edit
+                      {t('tableEditBtn')}
                     </Button>
                     <Button 
                       color={ButtonColor.Danger} 
                       type={ButtonType.Button}
                       onClick={() => onDelete(shippingOption._id!)}
                     >
-                      Delete
+                      {t('tableDeleteBtn')}
                     </Button>
                   </TableCell>
                 </TableRow>

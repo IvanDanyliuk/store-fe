@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { IFormErrorMessage } from '../../../types/types';
 
-
-interface IFormErrorMessage {
-  error: string;
-}
 
 const Container = styled.div``;
 

@@ -2,12 +2,8 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
-import { IPaginationProps } from '../../../types/types';
+import { IPaginationBtn, IPaginationProps } from '../../../types/types';
 
-
-interface IPaginationBtn {
-  isActive: boolean;
-}
 
 const PaginationBody = styled.div`
   ${tw`

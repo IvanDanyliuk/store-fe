@@ -3,21 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ButtonColor, ButtonType } from '../../../types/types';
+import { ButtonColor, ButtonType, IShoppingListProps } from '../../../types/types';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../features/cart/reducers';
-import { ICartItem } from '../../features/cart/types';
 import { AppDispatch } from '../../features/store';
 import RoundedButton from '../ui/RoundedButton';
 import ProductListImage from '../ui/ProductListImage';
 import { selectOrder } from '../../features/order/selectors';
-import { decreaseOrderProductQuantity, increaseOrderProductQuantity, removeProductFromOrder } from '../../features/order/reducers';
-
-
-interface IShoppingListProps {
-  cart: ICartItem[] | [];
-}
+import { 
+  decreaseOrderProductQuantity, 
+  increaseOrderProductQuantity, 
+  removeProductFromOrder 
+} from '../../features/order/reducers';
 
 
 const List = styled.ul`
@@ -113,6 +112,7 @@ const EmptyCartMessage = styled.li`
 `;
 
 const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
+  const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
   const order = useSelector(selectOrder);
 
@@ -167,7 +167,7 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
           </ShoppingListItem>
         )) : (
           <EmptyCartMessage>
-            Your cart is empty. Choose the product.
+            {t('cartEmptyMessage')}
           </EmptyCartMessage>
         )
       }

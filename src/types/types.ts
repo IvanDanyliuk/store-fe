@@ -1,8 +1,14 @@
 import { ReactNode } from "react";
+import { ICartItem } from "../app/features/cart/types";
 import { IOrder } from "../app/features/order/types";
 import { IProduct } from "../app/features/product/types";
+import { IReview } from "../app/features/reviews/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
+
+export interface ILayout {
+  children: ReactNode;
+}
 
 export interface IOrderInfo {
   product: IProduct;
@@ -122,4 +128,92 @@ export interface ICustomer {
 
 export interface IColor {
   color: string | undefined;
+}
+
+export interface IShoppingListProps {
+  cart: ICartItem[] | [];
+}
+
+export interface ICheckbox {
+  name: string;
+  label?: string;
+  checked: boolean;
+  onChange: (e: any) => void;
+}
+
+export interface IInput {
+  name: string;
+  type?: string;
+  label?: string;
+  value?: string | number;
+  minLength?: number;
+  maxLength?: number;
+  onChange: (e: any) => void;
+  isRequired?: boolean;
+}
+
+export interface ITextArea {
+  name: string;
+  label?: string;
+  value: string | number;
+  rows?: number;
+  minLength?: number;
+  maxLength?: number;
+  onChange: (e: any) => void;
+  isRequired?: boolean;
+}
+
+export interface IAcceptPaymentModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export interface IEditReviewModalProps {
+  review: IReview;
+}
+
+export interface IOrderFormProps {
+  data: {
+    firstName: string | undefined;
+    lastName: string | undefined;
+    email: string | undefined;
+    phone: string | undefined;
+  };
+  onChange: (e: any) => void;
+}
+
+export interface IOrderListProps {
+  orders: IOrder[];
+}
+
+export interface IPaymentSystemIconProps {
+  cardNumber: string;
+}
+
+export interface IPaginationBtn {
+  isActive: boolean;
+}
+
+export interface IDivider {
+  direction?: 'vertical' | 'horizontal';
+  length: number | string;
+  mTop?: number | string;
+  mBottom?: number | string;
+  mLeft?: number | string;
+  mRight?: number | string;
+}
+
+export interface IFormErrorMessage {
+  error: string;
+}
+
+export interface IPageListPaginationProps {
+  pageCount: number;
+  currentPage: number;
+  setPage: (e: any) => void;
+}
+
+export interface IProductListImage {
+  url: string;
+  altText: string;
 }
