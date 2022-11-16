@@ -11,14 +11,15 @@ import Auth from './app/pages/Auth';
 import Careers from './app/pages/Careers';
 import Categories from './app/pages/Categories';
 import Contacts from './app/pages/Contacts';
+import DeliveryAndPayment from './app/pages/DeliveryAndPayment';
 import Home from './app/pages/Home';
 import LegalInfo from './app/pages/LegalInfo';
-import Network from './app/pages/Network';
 import NotFound from './app/pages/NotFound';
 import Order from './app/pages/Order';
 import Partnership from './app/pages/Partnership';
 import Product from './app/pages/Product';
 import Products from './app/pages/Products';
+import Refund from './app/pages/Refund';
 import Settings from './app/pages/Settings';
 import Tradein from './app/pages/Tradein';
 import Vacancy from './app/pages/Vacancy';
@@ -58,7 +59,8 @@ const App: React.FC = () => {
               <Route path='/partnership' element={<Partnership />} />
               <Route path='/trade-in' element={<Tradein />} />
               <Route path='/legal-info' element={<LegalInfo />} />
-              <Route path='/network' element={<Network />} />
+              <Route path='/shipping-and-payment' element={<DeliveryAndPayment />} />
+              <Route path='/return-order' element={<Refund />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </Layout>

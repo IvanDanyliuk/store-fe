@@ -51,15 +51,11 @@ export const footerLinks = {
       to: '/legal-info',
       title: 'legal-info',
     },
-    {
-      to: '/network',
-      title: 'network',
-    },
   ],
   forCustomers: [
     {
-      to: '/shipment-and-payment',
-      title: 'shipment-and-payment',
+      to: '/shipping-and-payment',
+      title: 'shipping-and-payment',
     },
     {
       to: '/return-order',

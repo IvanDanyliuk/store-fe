@@ -1,0 +1,9 @@
+{
+  "pageTitle": "Delivery and Payment",
+  "deliveryTitle": "Delivery Methods",
+  "paymentMethods": "Payment Methods",
+  "paymentCash": "Cash settlement upon receipt of goods in chain stores, courier upon receipt of goods",
+  "paymentVisaMasterCard": "Visa/MasterCard",
+  "paymentLegalEntities": "Cashless for legal entities",
+  "paymentCredit": "Bank credit"
+}

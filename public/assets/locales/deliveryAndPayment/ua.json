@@ -1,0 +1,9 @@
+{
+  "pageTitle": "Доставка і оплата",
+  "deliveryTitle": "Способи доставки",
+  "paymentMethods": "Способи оплати",
+  "paymentCash": "Готівковий розрахунок при отриманні товару в магазинах мережі, кур'єру при отриманні товару",
+  "paymentVisaMasterCard": "Оплата карткою Visa/MasterCard",
+  "paymentLegalEntities": "Безготівковий розрахунок для юридичних осіб",
+  "paymentCredit": "Бінківський кредит"
+}
