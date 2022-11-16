@@ -13,6 +13,7 @@ const Container = styled.ul`
     md:flex-wrap
     gap-3
     md:gap-8
+    justify-center
   `}
 `;
 
