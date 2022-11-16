@@ -28,17 +28,9 @@ const Title = styled.h3`
   `}
 `;
 
-const Content = styled.div`
-  ${tw`
-  
-  `}
-`;
+const Content = styled.div``;
 
-const VacanciesList = styled.ul`
-  ${tw`
-  
-  `}
-`;
+const VacanciesList = styled.ul``;
 
 const VacancyItem = styled.li`
   ${tw`
