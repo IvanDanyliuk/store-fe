@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
   ${tw`
+    pl-3
+    pr-3
     w-full
     flex
     flex-col

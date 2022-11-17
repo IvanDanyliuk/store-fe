@@ -17,7 +17,7 @@ const PaginationBody = styled.div`
 
 const PageButton = styled.button<IPaginationBtn>`
   font-weight: ${({ isActive }) => isActive ? '700' : '300'};
-  text-decoration: ${({ isActive }) => isActive ? 'underline' : 'none'};
+  color: ${({ isActive }) => isActive ? '#1fcdd6' : '#000000'};
   ${tw`
     p-3
   `}

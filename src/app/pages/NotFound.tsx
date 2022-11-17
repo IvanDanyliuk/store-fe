@@ -7,6 +7,7 @@ import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 
 const Container = styled.div`
+  min-height: 30vh;
   flex: 1;
   ${tw`
     w-full

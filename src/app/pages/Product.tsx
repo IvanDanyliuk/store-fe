@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faStar, faThumbsDown, faThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import AddCommentForm from '../components/modals/AddCommentForm';
@@ -313,6 +314,9 @@ const BtnGroup = styled.div`
   ${tw`
     flex
   `}
+  button {
+    margin-right: 10px;
+  }
 `;
 
 const LikeBtn = styled.button`
@@ -569,7 +573,7 @@ const Product: React.FC = () => {
                     </UserName>
                   </UserInfo>
                   <PostDate>
-                    {review.date}
+                    {moment(review.date).format('DD MM YYYY')}
                   </PostDate>
                 </ReviewHeader>
                 <Comment>

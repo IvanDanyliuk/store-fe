@@ -58,6 +58,9 @@ const ProductForm = styled.form`
     flex-col
     items-center
   `}
+  button {
+    margin-top: 10px;
+  }
 `;
 
 const Inputs = styled.div`
@@ -359,6 +362,7 @@ const CreateProductForm: React.FC = () => {
   const styles = {
     content: {
       width: isMobile ? '90%' : '700px',
+      height: isMobile ? '100%' : 'auto',
       top: '50%',
       left: '50%',
       right: 'auto',

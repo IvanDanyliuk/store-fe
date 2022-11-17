@@ -19,10 +19,10 @@ import ShoppingList from '../order/ShoppingList';
 Modal.setAppElement('#root');
 
 const Container = styled.div`
+  min-height: 95%;
   ${tw`
     flex
     flex-col
-    h-full
   `}
 `;
 
@@ -60,6 +60,10 @@ const CartHeader = styled.div`
     flex
     justify-center
   `}
+`;
+
+const CartList = styled.div`
+  flex: 1;
 `;
 
 const FormTitle = styled.h6`
@@ -195,7 +199,9 @@ const Cart: React.FC = () => {
               <FontAwesomeIcon icon={faXmark} />
             </CloseBtn>
           </CartHeader>
-          <ShoppingList cart={cart} />
+          <CartList>
+            <ShoppingList cart={cart} />
+          </CartList>
           <CartFooter>
             <TotalAmount>
               <AmountTitle>

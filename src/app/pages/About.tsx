@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
   ${tw`
-    pt-3
-    pb-3
+    p-3
   `}
 `;
 
@@ -48,7 +47,10 @@ const KeyIndicators = styled.ul`
     p-3
     w-full
     flex
-    flex-wrap
+    flex-col
+    md:flex-row
+    md:flex-wrap
+    items-center
   `}
 `;
 

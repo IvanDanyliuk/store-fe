@@ -16,8 +16,7 @@ import { AppDispatch } from '../features/store';
 
 const Container = styled.div`
   ${tw`
-    pt-3
-    pb-3
+    p-3
     w-full
     flex
     flex-col

@@ -15,6 +15,8 @@ const ButtonBody = styled.button`
     pr-3
     rounded
     text-white
+    text-sm
+    md:text-base
     font-semibold
     hover:opacity-90
     transition

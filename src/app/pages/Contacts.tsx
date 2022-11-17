@@ -8,8 +8,8 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
   ${tw`
-    pt-3
-    pb-3
+    pl-3
+    pr-3
   `}
 `;
 
@@ -31,7 +31,8 @@ const Countries = styled.ul`
 const Country = styled.li`
   ${tw`
     mb-7
-    w-1/3
+    w-1/2
+    md:w-1/3
   `}
 `;
 

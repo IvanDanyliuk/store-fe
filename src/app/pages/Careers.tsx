@@ -13,6 +13,7 @@ import PageListPagination from '../components/ui/PageListPagination';
 
 const Container = styled.div`
   ${tw`
+    p-3
     w-full
     flex
     flex-col
