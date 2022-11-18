@@ -3,7 +3,19 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../features/store';
+import { findProducts } from '../../features/product/asyncActions';
+import { selectSearchData } from '../../features/product/selectors';
+import SearchResults from '../modals/SearchResults';
+import { clearSearchData } from '../../features/product/reducers';
 
+
+const Container = styled.div`
+  ${tw`
+    
+  `}
+`;
 
 const SearchForm = styled.form`
   ${tw`
@@ -44,29 +56,54 @@ const SearchBtn = styled.button`
   `}
 `;
 
+
 const SearchField: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [searchValue, setSearchValue] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const searchData = useSelector(selectSearchData);
 
   const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)
   };
 
+  const handleSearchResultsClose = () => {
+    setIsOpen(false);
+    dispatch(clearSearchData());
+  };
+
   const handleSearchSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log('Search process has been started...');
-  }
+    if(searchValue) {
+      dispatch(findProducts(searchValue));
+      setSearchValue('');
+      setIsOpen(true);
+    }
+  };
 
   return (
-    <SearchForm>
-      <SearchInput 
-        type='text' 
-        value={searchValue} 
-        onChange={handleSearchValueChange} 
-      />
-      <SearchBtn onClick={handleSearchSubmit}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-      </SearchBtn>
-    </SearchForm>
+    <Container>
+      <SearchForm>
+        <SearchInput 
+          type='text' 
+          value={searchValue} 
+          onChange={handleSearchValueChange} 
+        />
+        <SearchBtn onClick={handleSearchSubmit}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </SearchBtn>
+      </SearchForm>
+      {
+        searchData && (
+          <SearchResults 
+            isOpen={isOpen} 
+            onClose={handleSearchResultsClose} 
+            products={searchData} 
+          />
+        )
+      }
+    </Container>
   );
 };
 

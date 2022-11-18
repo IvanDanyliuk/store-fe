@@ -15,6 +15,7 @@ export const getProducts = (page: number, productsPerPage: number, category?: st
 export const getTopProducts = () => API.get('/products/top-rated');
 export const getProduct = (id: any) => API.get(`/products/${id}`);
 export const getBrands = (category: any) => API.get('/products/brands', { params: { category } });
+export const findProducts = (title: string) => API.get('/products/search', { params: { title } });
 export const createProduct = (product: any) => API.post('/products', { params: { product } });
 export const updateProduct = (updatedProduct: any) => API.patch('/products', { params: { updatedProduct } });
 export const deleteProduct = (id: any) => API.delete('/products', { params: { id } });

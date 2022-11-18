@@ -212,7 +212,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       <HeartIcon data-ispicked={isProductInWishList} onClick={handleAddToWishList}>
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
-      <ProductLink to={`/products/${category}/${product._id}`}>
+      <ProductLink to={`/products/${category ? category : 'top-products'}/${product._id}`}>
         <ImageSection>
           <Image src={product.image} alt={product.title} />
         </ImageSection>

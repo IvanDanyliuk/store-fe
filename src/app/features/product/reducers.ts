@@ -6,7 +6,8 @@ import {
   getBrands, 
   createProduct, 
   updateProduct, 
-  deleteProduct, 
+  deleteProduct,
+  findProducts, 
 } from './asyncActions';
 import { IProductState } from './types';
 
@@ -17,6 +18,7 @@ const initialState: IProductState = {
     data: [],
     pages: 0,
   },
+  search: [],
   brands: [],
   status: 'idle',
   error: null,
@@ -34,6 +36,9 @@ const productsSlice = createSlice({
     },
     clearProductError: (state) => {
       state.error = null;
+    },
+    clearSearchData: (state) => {
+      state.search = [];
     }
   },
   extraReducers: (builder) => {
@@ -68,6 +73,17 @@ const productsSlice = createSlice({
         state.product = action.payload;
       })
       .addCase(getProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(findProducts.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(findProducts.fulfilled, (state, action) => {
+        state.search = action.payload;
+        state.status = 'succeeded';
+      })
+      .addCase(findProducts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })
@@ -119,6 +135,11 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setProductToUpdate, clearProduct, clearProductError } = productsSlice.actions;
+export const { 
+  setProductToUpdate, 
+  clearProduct, 
+  clearProductError, 
+  clearSearchData 
+} = productsSlice.actions;
 
 export default productsSlice.reducer;

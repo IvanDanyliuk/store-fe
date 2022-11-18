@@ -217,3 +217,9 @@ export interface IProductListImage {
   url: string;
   altText: string;
 }
+
+export interface ISearchResultsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  products: IProduct[];
+}
