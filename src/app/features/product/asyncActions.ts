@@ -19,9 +19,9 @@ export const getProducts = createAsyncThunk(
 
 export const getTopProducts = createAsyncThunk(
   'products/topProducts',
-  async (_: void, { rejectWithValue }) => {
+  async (productsNumber: number, { rejectWithValue }) => {
     try {
-      const { data } = await api.getTopProducts();
+      const { data } = await api.getTopProducts(productsNumber);
       return data;
     } catch (error) {
       return rejectWithValue(error);

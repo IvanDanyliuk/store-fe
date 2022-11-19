@@ -56,11 +56,7 @@ const FilterGroupLabel = styled.div`
   `}
 `;
 
-const BrandList = styled.ul`
-  ${tw`
-  
-  `}
-`;
+const BrandList = styled.ul``;
 
 const BrandItem = styled.li`
   ${tw`
@@ -110,7 +106,7 @@ const Products: React.FC = () => {
     minPrice: 0,
     maxPrice: 0,
   });
-  const productsPerPage = 10;
+  const productsPerPage = 12;
 
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);

@@ -12,7 +12,7 @@ const API = axios.create({ baseURL: 'http://localhost:5000' });
 // });
 
 export const getProducts = (page: number, productsPerPage: number, category?: string | undefined, filterData?: any) => API.get('/products', { params: { page, productsPerPage, category, filterData } });
-export const getTopProducts = () => API.get('/products/top-rated');
+export const getTopProducts = (productsNumber: number) => API.get('/products/top-rated', { params: { productsNumber } });
 export const getProduct = (id: any) => API.get(`/products/${id}`);
 export const getBrands = (category: any) => API.get('/products/brands', { params: { category } });
 export const findProducts = (title: string) => API.get('/products/search', { params: { title } });

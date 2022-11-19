@@ -12,9 +12,6 @@ const Container = styled.ul`
     flex-col
     md:flex-row
     md:flex-wrap
-    gap-3
-    md:gap-8
-    justify-center
   `}
 `;
 

@@ -118,7 +118,7 @@ const Home: React.FC = () => {
   const products = useSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(getTopProducts());
+    dispatch(getTopProducts(12));
   }, []);
 
   return (

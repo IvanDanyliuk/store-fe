@@ -13,13 +13,18 @@ import { addToCart } from '../../features/cart/reducers';
 import { selectCartData } from '../../features/cart/selectors';
 import { selectUser } from '../../features/user/selectors';
 import { updateUser } from '../../features/user/asyncActions';
+import { SCREENS } from '../../services/screens';
 
 
 const Card = styled.li`
+  width: 24%;
+  margin: .5%;
+  @media (max-width: ${SCREENS.md}) {
+    width: 100%;
+  }
   ${tw`
     relative
     p-3
-    md:w-1/6
     border
     border-solid
     border-gray-300
