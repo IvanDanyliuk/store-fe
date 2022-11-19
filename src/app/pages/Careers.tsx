@@ -9,6 +9,7 @@ import { AppDispatch } from '../features/store';
 import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
 import PageListPagination from '../components/ui/PageListPagination';
+import { VACANCIES_PER_PAGE } from '../services/constants';
 
 
 const Container = styled.div`
@@ -77,13 +78,12 @@ const Careers: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const [page, setPage] = useState(1);
-  const itemsPerPage = 10;
   const vacancies = useSelector(selectVacancies);
   const status = useSelector(selectVacancyStatus);
   const pageCount = useSelector(selectVacancyPagesCount);
 
   useEffect(() => {
-    dispatch(getVacancies({ page, itemsPerPage }));
+    dispatch(getVacancies({ page, itemsPerPage: VACANCIES_PER_PAGE }));
   }, [dispatch, page])
 
   return (

@@ -1,6 +1,14 @@
 import { ICartItem } from "../features/cart/types";
 import { IProductData } from "../features/product/types";
 import { IShipping } from "../features/shipping/types";
+import { 
+  PRIMARY_COLOR, 
+  SECONDARY_COLOR, 
+  SUCCESS_COLOR, 
+  DANGER_COLOR, 
+  DEFAULT_COLOR 
+} from '../services/constants';
+
 
 export const getFormattedTitle = (pathname: string, position: number) => {
   return pathname.split('/')[position];
@@ -9,15 +17,15 @@ export const getFormattedTitle = (pathname: string, position: number) => {
 export const setButtonColor = (color: string) => {
   switch (color) {
     case 'primary':
-      return '#30D5F9';
+      return PRIMARY_COLOR;
     case 'secondary':
-      return '#25A0BB';
+      return SECONDARY_COLOR;
     case 'success':
-      return '#2BD4A1';
+      return SUCCESS_COLOR;
     case 'danger':
-      return '#ED6060';
+      return DANGER_COLOR;
     default:
-      return '#E0E0E0';
+      return DEFAULT_COLOR;
   }
 };
 

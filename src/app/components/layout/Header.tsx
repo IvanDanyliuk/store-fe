@@ -15,10 +15,11 @@ import { selectUser } from '../../features/user/selectors';
 import { AppDispatch } from '../../features/store';
 import { logout } from '../../features/user/reducers';
 import Cart from '../modals/Cart';
+import { PRIMARY_COLOR } from '../../services/constants';
 
 
 const Container = styled.header`
-  background-color: rgb(63, 197, 255);
+  background-color: ${PRIMARY_COLOR};
   ${tw`
     min-w-full
     flex

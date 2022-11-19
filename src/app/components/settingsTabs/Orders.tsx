@@ -12,6 +12,7 @@ import Input from '../inputs/Input';
 import Button from '../ui/Button';
 import OrdersTable from '../table/OrdersTable';
 import PageListPagination from '../ui/PageListPagination';
+import { ORDERS_PER_TABLE } from '../../services/constants';
 
 
 const Container = styled.div`
@@ -49,7 +50,7 @@ const Orders: React.FC = () => {
   const pageCount = useSelector(selectOrderPages);
   
   const [page, setPage] = useState(1);
-  const ordersPerPage = 10;
+  const ordersPerPage = ORDERS_PER_TABLE;
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchValueChange = (e: any) => {

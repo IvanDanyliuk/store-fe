@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { IPageListPaginationProps } from '../../../types/types';
+import { 
+  PAGINATION_LINK_COLOR, 
+  PAGINATION_ACTIVE_LINK_COLOR 
+} from '../../services/constants';
 
 
 const Container = styled.ul`
@@ -23,10 +27,10 @@ const NumberItem = styled.li`
 const NumberBtn = styled.button`
   &[data-isactive='true'] {
     font-weight: 700;
-    color: #1fcdd6;
+    color: ${PAGINATION_LINK_COLOR};
   }
   &[data-isactive='false'] {
-    color: #000000;
+    color: ${PAGINATION_ACTIVE_LINK_COLOR};
   }
 `;
 

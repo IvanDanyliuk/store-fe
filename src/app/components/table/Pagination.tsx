@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { IPaginationBtn, IPaginationProps } from '../../../types/types';
+import { 
+  PAGINATION_LINK_COLOR, 
+  PAGINATION_ACTIVE_LINK_COLOR 
+} from '../../services/constants';
 
 
 const PaginationBody = styled.div`
@@ -17,7 +21,7 @@ const PaginationBody = styled.div`
 
 const PageButton = styled.button<IPaginationBtn>`
   font-weight: ${({ isActive }) => isActive ? '700' : '300'};
-  color: ${({ isActive }) => isActive ? '#1fcdd6' : '#000000'};
+  color: ${({ isActive }) => isActive ? PAGINATION_ACTIVE_LINK_COLOR : PAGINATION_LINK_COLOR};
   ${tw`
     p-3
   `}

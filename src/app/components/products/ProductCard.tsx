@@ -14,6 +14,12 @@ import { selectCartData } from '../../features/cart/selectors';
 import { selectUser } from '../../features/user/selectors';
 import { updateUser } from '../../features/user/asyncActions';
 import { SCREENS } from '../../services/screens';
+import { 
+  ERROR_TEXT_COLOR, 
+  PRODUCT_RATING_STAR_COLOR, 
+  ADD_TO_WISHLIST_ICON_COLOR, 
+  NOT_PICKED_PRODUCT_HEART_ICON_COLOR 
+} from '../../services/constants';
 
 
 const Card = styled.li`
@@ -59,7 +65,7 @@ const Promotions = styled.div`
 `;
 
 const PromotionChip = styled.div`
-  background: #ca3939;
+  background: ${ERROR_TEXT_COLOR};
   ${tw`
     mr-2
     pt-1
@@ -89,21 +95,21 @@ const Rating = styled.div`
 `;
 
 const RatingIcon = styled.span`
-  color: #f0ab44;
+  color: ${PRODUCT_RATING_STAR_COLOR};
 `;
 
 const HeartIcon = styled.button`
   &[data-ispicked='true'] {
-    color: #f6c430;
+    color: ${ADD_TO_WISHLIST_ICON_COLOR};
   }
   &[data-ispicked='false'] {
-    color: #1fcdd6;
+    color: ${NOT_PICKED_PRODUCT_HEART_ICON_COLOR};
   }
   transition: ease-in-out .3s;
   z-index: 10;
 
   &:hover {
-    color: #f6c430;
+    color: ${ADD_TO_WISHLIST_ICON_COLOR};
   }
 
   ${tw`

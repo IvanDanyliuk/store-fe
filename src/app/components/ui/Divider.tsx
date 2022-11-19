@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IDivider } from '../../../types/types';
+import { DIVIDER_COLOR } from '../../services/constants';
 
 
 const HorizontalLine = styled.div<IDivider>`
@@ -11,7 +12,7 @@ const HorizontalLine = styled.div<IDivider>`
   display: flex;
   width: ${({ length }) => typeof length === 'number' ? `${length}%` : `${length}px`};
   height: 1px;
-  background: #a2a2a2;
+  background: ${DIVIDER_COLOR};
 `;
 
 const VerticalLine = styled.div<IDivider>`
@@ -22,7 +23,7 @@ const VerticalLine = styled.div<IDivider>`
   display: flex;
   width: 1px;
   height: ${({ length }) => typeof length === 'number' ? `${length}%` : `${length}px`};
-  background: #a2a2a2;
+  background: ${DIVIDER_COLOR};
 `;
 
 const Divider: React.FC<IDivider> = ({ 

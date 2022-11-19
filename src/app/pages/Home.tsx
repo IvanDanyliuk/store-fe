@@ -15,6 +15,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { AppDispatch } from '../features/store';
 import { getTopProducts } from '../features/product/asyncActions';
 import { selectProducts } from '../features/product/selectors';
+import { PRODUCTS_PER_PAGE } from '../services/constants';
+import { SUCCESS_COLOR } from '../services/constants';
 
 
 const Content = styled.div`
@@ -97,7 +99,7 @@ const Input = styled.input`
 `;
 
 const SubmitBtn = styled.button`
-  color: rgb(43, 212, 161);
+  color: ${SUCCESS_COLOR};
   ${tw`
     w-1/6
     h-12
@@ -118,7 +120,7 @@ const Home: React.FC = () => {
   const products = useSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(getTopProducts(12));
+    dispatch(getTopProducts(PRODUCTS_PER_PAGE));
   }, []);
 
   return (

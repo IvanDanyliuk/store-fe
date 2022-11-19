@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { PRIMARY_COLOR } from '../services/constants';
 
 
 const Container = styled.div`
@@ -18,7 +19,7 @@ const Container = styled.div`
   `}
   svg {
     font-size: 50px;
-    color: rgb(63, 197, 255);
+    color: ${PRIMARY_COLOR};
   }
 `;
 

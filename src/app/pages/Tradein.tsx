@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../services/screens';
 import { faArrowDown, faArrowRight, faHandshake, faLocationDot, faTags } from '@fortawesome/free-solid-svg-icons';
+import { PRIMARY_COLOR } from '../services/constants';
 
 
 const Container = styled.div`
@@ -49,7 +50,7 @@ const Step = styled.div`
   svg {
     margin-bottom: 20px;
     font-size: 85px;
-    color: rgb(63, 197, 255);
+    color: ${PRIMARY_COLOR};
   }
 `;
 
@@ -61,7 +62,7 @@ const StepText = styled.p`
 `;
 
 const Arrow = styled.div`
-  color: rgb(63, 197, 255);
+  color: ${PRIMARY_COLOR};
   ${tw`
     h-full
     flex

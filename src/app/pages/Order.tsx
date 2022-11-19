@@ -21,6 +21,7 @@ import { selectErrorStatus, selectOrder } from '../features/order/selectors';
 import { clearCart } from '../features/cart/reducers';
 import { clearOrder, clearOrderToUpdate } from '../features/order/reducers';
 import { calculateOrderTotalAmount } from '../helpers/helpers';
+import { PRIMARY_COLOR } from '../services/constants';
 
 
 const Container = styled.div`
@@ -61,7 +62,7 @@ const SubTitle = styled.h6`
 `;
 
 const SubTitleNum = styled.span`
-  background-color: rgb(63, 197, 255);
+  background-color: ${PRIMARY_COLOR};
   ${tw`
     mr-1
     w-6
@@ -112,7 +113,7 @@ const RadioTitle = styled.span`
 
 const RadioContainer = styled.div`
   &[data-isChecked="true"] {
-    border: 1px solid rgb(63, 197, 255);
+    border: 1px solid ${PRIMARY_COLOR};
   } 
   ${tw`
     mb-3

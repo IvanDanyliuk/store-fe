@@ -27,6 +27,7 @@ import { selectVacancies, selectVacancyPagesCount } from '../../features/vacanci
 import VacanciesTable from '../table/VacanciesTable';
 import { deleteVacancy, getVacancies } from '../../features/vacancies/asyncActions';
 import { setVacancyToUpdate } from '../../features/vacancies/reducers';
+import { PRODUCTS_PER_TABLE, VACANCIES_PER_TABLE } from '../../services/constants';
 
 
 const Container = styled.div`
@@ -74,6 +75,9 @@ const Editor: React.FC = () => {
   const vacancies = useSelector(selectVacancies);
   const vacanciesPageCount = useSelector(selectVacancyPagesCount);
 
+  const [productsPage, setProductsPage] = useState(1);
+  const [vacanciesPage, setVacanciesPage] = useState(1);
+
   if(!user!.isAdmin) {
     navigate('/settings/orders');
   }
@@ -110,16 +114,12 @@ const Editor: React.FC = () => {
     dispatch(deleteVacancy(id));
   };
 
-  const [productsPage, setProductsPage] = useState(1);
-  const [vacanciesPage, setVacanciesPage] = useState(1);
-  const productsPerPage = 10;
-
   useEffect(() => {
-    dispatch(getProducts({ page: productsPage, productsPerPage }));
+    dispatch(getProducts({ page: productsPage, productsPerPage: PRODUCTS_PER_TABLE }));
   }, [dispatch, productsPage]);
 
   useEffect(() => {
-    dispatch(getVacancies({ page: vacanciesPage, itemsPerPage: productsPerPage }))
+    dispatch(getVacancies({ page: vacanciesPage, itemsPerPage: VACANCIES_PER_TABLE }))
   }, [dispatch, vacanciesPage]);
 
   useEffect(() => {

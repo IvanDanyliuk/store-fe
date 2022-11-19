@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
+import { PRIMARY_COLOR } from '../services/constants';
 
 
 const Container = styled.div`
@@ -32,7 +33,7 @@ const Text = styled.p`
 `;
 
 const Logo = styled.h1`
-  color: rgb(63, 197, 255);
+  color: ${PRIMARY_COLOR};
   ${tw`
     mt-6
     text-7xl
@@ -64,7 +65,7 @@ const Indicator = styled.li`
 `;
 
 const IndicatorNum = styled.span`
-  color: rgb(63, 197, 255);
+  color: ${PRIMARY_COLOR};
   ${tw`
     text-2xl
     font-bold

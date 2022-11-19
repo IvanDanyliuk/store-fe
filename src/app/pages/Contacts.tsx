@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { PRIMARY_COLOR } from '../services/constants';
 
 
 const Container = styled.div`
@@ -49,7 +50,7 @@ const CountryAddress = styled.div`
     mt-2
   `}
   svg {
-    color: #30D5F9;
+    color: ${PRIMARY_COLOR};
   }
 `;
 

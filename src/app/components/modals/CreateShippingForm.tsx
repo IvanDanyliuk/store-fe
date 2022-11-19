@@ -19,6 +19,7 @@ import { clearShipping } from '../../features/shipping/reducers';
 import Input from '../inputs/Input';
 import { isShippingDataValid } from '../../helpers/formValidation';
 import FormErrorMessage from '../ui/FormErrorMessage';
+import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR, SUCCESS_COLOR } from '../../services/constants';
 
 
 Modal.setAppElement('#root');
@@ -94,7 +95,7 @@ const DeleteBtn = styled.button`
 `;
 
 const SubmitBtn = styled.button`
-  background: rgb(43, 212, 161);
+  background: ${SUCCESS_COLOR};
   ${tw`
     mt-3
     p-2
@@ -215,11 +216,11 @@ const CreateShippingForm: React.FC = () => {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      background: 'rgb(255, 255, 255',
+      background: BASIC_BACKGROUND_WHITE,
       transform: 'translate(-50%, -50%)',
     },
     overlay: {
-      background: 'rgba(141, 141, 141, .6',
+      background: MODAL_OVERLAY_COLOR,
     }
   };
 

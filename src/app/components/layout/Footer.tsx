@@ -5,10 +5,11 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { footerLinks } from '../../data';
 import Logo from '../ui/Logo';
+import { FOOTER_BACKGROUND_COLOR } from '../../services/constants';
 
 
 const Container = styled.header`
-  background-color: rgb(12, 64, 80);
+  background-color: ${FOOTER_BACKGROUND_COLOR};
   ${tw`
     min-w-full
     flex

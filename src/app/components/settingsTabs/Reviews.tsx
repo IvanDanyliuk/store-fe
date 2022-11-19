@@ -15,6 +15,7 @@ import ProductListImage from '../ui/ProductListImage';
 import RoundedButton from '../ui/RoundedButton';
 import EditReviewModal from '../modals/EditReviewModal';
 import { selectReviews } from '../../features/reviews/selectors';
+import { REVIEW_ITEM_BACKGROUND } from '../../services/constants';
 
 
 const Container = styled.div`
@@ -30,7 +31,7 @@ const ReviewList = styled.ul`
 `;
 
 const ReviewItem = styled.li`
-  border-bottom: 1px solid #c1c1c1;
+  border-bottom: 1px solid ${REVIEW_ITEM_BACKGROUND};
   ${tw`
     pt-3
     pb-3

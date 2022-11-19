@@ -9,6 +9,11 @@ import { faCommentDollar, faListCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getFormattedTitle } from '../helpers/helpers';
 import { selectUser } from '../features/user/selectors';
+import { 
+  SETTINGS_LINK_BACKGROUND, 
+  SETTINGS_LINK_BACKGROUND_HOVER, 
+  SETTINGS_LINK_BACKGROUND_ACTIVE 
+} from '../services/constants';
 
 
 const Container = styled.div`
@@ -82,12 +87,12 @@ const NavItem = styled.li`
 
 const Link = styled(NavLink)`
   display: block;
-  background: rgb(229, 250, 255);
+  background: ${SETTINGS_LINK_BACKGROUND};
   &:hover {
-    background: rgb(151, 236, 255);
+    background: ${SETTINGS_LINK_BACKGROUND_HOVER};
   }
   &.active {
-    background: rgb(151, 236, 255);
+    background: ${SETTINGS_LINK_BACKGROUND_ACTIVE};
   }
 `;
 

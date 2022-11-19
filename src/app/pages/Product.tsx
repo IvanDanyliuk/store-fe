@@ -22,6 +22,7 @@ import Button from '../components/ui/Button';
 import { deleteReview, getProductReviews, updateReview } from '../features/reviews/asyncActions';
 import { selectReviews } from '../features/reviews/selectors';
 import { IReview } from '../features/reviews/types';
+import { SUCCESS_COLOR, DANGER_COLOR, PRODUCT_RATING_STAR_COLOR } from '../services/constants';
 
 
 const ProductBody = styled.div`
@@ -109,7 +110,7 @@ const TopSection = styled.div`
 `;
 
 const Stock = styled.div`
-  background: rgb(43, 212, 161);
+  background: ${SUCCESS_COLOR};
   ${tw`
     mr-3
     pt-2
@@ -124,7 +125,7 @@ const Stock = styled.div`
 `;
 
 const Rating = styled.div`
-  color: #f0ab44;
+  color: ${PRODUCT_RATING_STAR_COLOR};
   ${tw`
     text-xl
   `}
@@ -320,7 +321,7 @@ const BtnGroup = styled.div`
 `;
 
 const LikeBtn = styled.button`
-  background: rgb(43, 212, 161);
+  background: ${SUCCESS_COLOR};
   ${tw`
     mr-2
     w-16
@@ -337,7 +338,7 @@ const LikeBtn = styled.button`
 `;
 
 const DislikeBtn = styled.button`
-  background: rgb(237, 96, 96);
+  background: ${DANGER_COLOR};
   ${tw`
     w-16
     h-8

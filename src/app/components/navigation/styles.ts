@@ -1,3 +1,12 @@
+import { 
+  PRIMARY_COLOR, 
+  BASIC_BACKGROUND_WHITE, 
+  MENU_BACKGROUND_COLOR, 
+  BURGER_BARS_COLOR, 
+  BURGER_SHAPE_COLOR 
+} from '../../services/constants';
+
+
 export default {
   bmBurgerButton: {
     position: 'relative',
@@ -6,10 +15,10 @@ export default {
     height: '20px',
   },
   bmBurgerBars: {
-    background: '#ffffff',
+    background: BASIC_BACKGROUND_WHITE,
   },
   bmBurgerBarsHover: {
-    background: '#a90000',
+    background: BURGER_BARS_COLOR,
   },
   bmCrossButton: {
     position: 'absolute',
@@ -18,7 +27,7 @@ export default {
     width: '24px',
   },
   bmCross: {
-    background: '#3fc5ff',
+    background: PRIMARY_COLOR,
   },
   bmMenuWrap: {
     position: 'fixed',
@@ -27,13 +36,13 @@ export default {
     left: '0px',
   },
   bmMenu: {
-    background: '#f1cc49',
+    background: MENU_BACKGROUND_COLOR,
     padding: '2.5em 1.5em 0',
     fontSize: '1em',
     fontWeight: '600',
   },
   bmMorphShape: {
-    fill: '#373a47',
+    fill: BURGER_SHAPE_COLOR,
   },
   bmItem: {
     display: 'inline-block',

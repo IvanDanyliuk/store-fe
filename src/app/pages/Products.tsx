@@ -12,6 +12,7 @@ import Button from '../components/ui/Button';
 import { getBrands, getProducts } from '../features/product/asyncActions';
 import { selectBrands, selectPagesCount, selectProducts, selectProductStatus } from '../features/product/selectors';
 import { AppDispatch } from '../features/store';
+import { PRODUCTS_PER_PAGE } from '../services/constants';
 
 
 const Container = styled.div`
@@ -99,6 +100,7 @@ const PriceField = styled.input`
 const Products: React.FC = () => {
   const { t } = useTranslation(['filters']);
   const { category } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [page, setPage] = useState(1);
   const [checkedBrandIds, setCheckedBrandIds] = useState<boolean[]>([]);
@@ -106,16 +108,16 @@ const Products: React.FC = () => {
     minPrice: 0,
     maxPrice: 0,
   });
-  const productsPerPage = 12;
+  const productsPerPage = PRODUCTS_PER_PAGE;
 
-  const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
   const brands = useSelector(selectBrands);
   const pageCount = useSelector(selectPagesCount)
   const status = useSelector(selectProductStatus);
 
   const handleCheckingBrandChange = (position: number) => {
-    const updatedCheckedBrandIds = checkedBrandIds.map((check: boolean, i) => i === position ? !check : check);
+    const updatedCheckedBrandIds = checkedBrandIds
+      .map((check: boolean, i) => i === position ? !check : check);
     setCheckedBrandIds(updatedCheckedBrandIds);
   };
 
