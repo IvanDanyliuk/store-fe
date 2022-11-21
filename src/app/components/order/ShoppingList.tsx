@@ -152,14 +152,14 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
             </ItemInfo>
             <ItemActions>
               <ProductNumber>
-                <SetNumberBtn onClick={() => decreaseProductQuantity(item._id)}>-</SetNumberBtn>
+                <SetNumberBtn onClick={() => decreaseProductQuantity(item._id!)}>-</SetNumberBtn>
                 <Number>{item.quantity}</Number>
-                <SetNumberBtn onClick={() => increaseProductQuantity(item._id)}>+</SetNumberBtn>
+                <SetNumberBtn onClick={() => increaseProductQuantity(item._id!)}>+</SetNumberBtn>
               </ProductNumber>
               <RoundedButton 
                 type={ButtonType.Button} 
                 color={ButtonColor.Danger} 
-                onClick={() => hadnleDeleteFromCart(item._id)}
+                onClick={() => hadnleDeleteFromCart(item._id!)}
               >
                 <FontAwesomeIcon icon={faTrash} />
               </RoundedButton>

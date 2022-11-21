@@ -126,14 +126,10 @@ const EditReviewModal: React.FC<IEditReviewModalProps> = ({ review }) => {
     const isDataValid = isCommentDataValid(commentData, handleError);
     if(isDataValid) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: commentData,
       }));
       setIsOpen(false);
-      console.log({
-        id: review._id,
-        updateReview: commentData,
-      })
     }
   };
 

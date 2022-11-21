@@ -269,7 +269,7 @@ const Order: React.FC = () => {
   const submitOrder = async (e: any) => {
     if(order) {
       dispatch(updateOrder({
-        id: order._id,
+        id: order._id!,
         updatedOrder: {
           products: order.products,
           amount: totalAmount,

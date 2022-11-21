@@ -190,7 +190,7 @@ const CreateShippingForm: React.FC = () => {
     const isDataValid = isShippingDataValid(shippingData, handleError);
     if(isDataValid) {
       dispatch(updateShipping({ 
-        id: dataToUpdate?._id, 
+        id: dataToUpdate?._id!, 
         updatedShipping: shippingData, 
       }));
       dispatch(clearShipping());

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api';
-import { IReview } from './types';
+import { IReview, IReviewToUpdate } from './types';
 
 
 export const getUserReviews = createAsyncThunk(
@@ -41,7 +41,7 @@ export const createReview = createAsyncThunk(
 
 export const updateReview = createAsyncThunk(
   'reviews/updateReview',
-  async (reviewData: any, { rejectWithValue }) => {
+  async (reviewData: IReviewToUpdate, { rejectWithValue }) => {
     try {
       const { data } = await api.updateReview(reviewData);
       return data;

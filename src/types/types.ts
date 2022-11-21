@@ -120,10 +120,10 @@ export interface ICellProps {
 }
 
 export interface ICustomer {
-  firstName: string | undefined,
-  lastName: string | undefined,
-  phone: string | undefined,
-  email: string | undefined,
+  firstName: string,
+  lastName: string,
+  phone: string,
+  email: string,
 }
 
 export interface IColor {

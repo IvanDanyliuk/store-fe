@@ -391,7 +391,7 @@ const Product: React.FC = () => {
     const isDisliked = review!.dislikes!.includes(user!.email);
     if(!isLiked && !isDisliked) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: {
           ...review,
           likes: [ ...review.likes, user?.email ],
@@ -400,7 +400,7 @@ const Product: React.FC = () => {
     }
     if(!isLiked && isDisliked) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: {
           ...review,
           likes: [ ...review.likes, user?.email ],
@@ -410,7 +410,7 @@ const Product: React.FC = () => {
     }
     if(isLiked) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: {
           ...review,
           likes: [...review.likes.filter((item: string) => item !== user!.email)],
@@ -424,7 +424,7 @@ const Product: React.FC = () => {
     const isDisliked = review!.dislikes!.includes(user!.email);
     if(!isLiked && !isDisliked) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: {
           ...review,
           dislikes: [ ...review.dislikes, user?.email ],
@@ -433,7 +433,7 @@ const Product: React.FC = () => {
     }
     if(isLiked && !isDisliked) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: {
           ...review,
           likes: [...review.likes.filter((item: string) => item !== user!.email)],
@@ -443,7 +443,7 @@ const Product: React.FC = () => {
     }
     if(isDisliked) {
       dispatch(updateReview({
-        id: review._id,
+        id: review._id!,
         updatedReview: {
           ...review,
           dislikes: review.dislikes.filter((item: string) => item !== user?.email),

@@ -55,7 +55,7 @@ export const findProducts = createAsyncThunk(
 
 export const getBrands = createAsyncThunk(
   'products/getBrands',
-  async (category: any, { rejectWithValue }) => {
+  async (category: string, { rejectWithValue }) => {
     try {
       const { data } = await api.getBrands(category);
       return data;

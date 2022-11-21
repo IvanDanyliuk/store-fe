@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api';
-import { IVacanciesRequestData } from './types';
+import { IVacanciesRequestData, IVacancy, IVacancyToUpdate } from './types';
 
 
 export const getVacancies = createAsyncThunk(
@@ -30,7 +30,7 @@ export const getVacancy = createAsyncThunk(
 
 export const createVacancy = createAsyncThunk(
   'vacancies/createVacancy',
-  async (newVacancy: any, { rejectWithValue }) => {
+  async (newVacancy: IVacancy, { rejectWithValue }) => {
     try {
       const { data } = await api.createVacancy(newVacancy);
       return data;
@@ -42,7 +42,7 @@ export const createVacancy = createAsyncThunk(
 
 export const updateVacancy = createAsyncThunk(
   'vacancies/updateVacancy',
-  async (vacancyToUpdate: any, {rejectWithValue }) => {
+  async (vacancyToUpdate: IVacancyToUpdate, {rejectWithValue }) => {
     try {
       const { data } = await api.updateVacancy(vacancyToUpdate);
       return data;
@@ -54,7 +54,7 @@ export const updateVacancy = createAsyncThunk(
 
 export const deleteVacancy = createAsyncThunk(
   'vacancies/deleteVacancy',
-  async (id: any, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
       await api.deleteVacancy(id);
     } catch (error) {

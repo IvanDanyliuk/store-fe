@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductCategory } from './types';
+import { ICategoryToUpdate, IProductCategory } from './types';
 import * as api from '../../api/api';
+
 
 export const getCategories = createAsyncThunk(
   'categories/getCategories',
@@ -16,7 +17,7 @@ export const getCategories = createAsyncThunk(
 
 export const createCategory = createAsyncThunk(
   'categories/createCategory',
-  async (newCategory: any, { rejectWithValue }) => {
+  async (newCategory: IProductCategory, { rejectWithValue }) => {
     try {
       if(!newCategory.main.title) {
         throw new Error();
@@ -31,7 +32,7 @@ export const createCategory = createAsyncThunk(
 
 export const updateCategory = createAsyncThunk(
   'categories/updateCategory',
-  async (categoryToUpdate: any, {rejectWithValue }) => {
+  async (categoryToUpdate: ICategoryToUpdate, {rejectWithValue }) => {
     try {
       const { data } = await api.updateCategory(categoryToUpdate);
       return data;
@@ -43,7 +44,7 @@ export const updateCategory = createAsyncThunk(
 
 export const deleteCategory = createAsyncThunk(
   'categories/deleteCategories',
-  async (id: any, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
       await api.deleteCategory(id);
     } catch (error) {

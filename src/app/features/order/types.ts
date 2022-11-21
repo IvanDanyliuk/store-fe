@@ -1,6 +1,4 @@
 import { ICartItem } from "../cart/types";
-import { IProduct } from "../product/types";
-import { IUser } from "../user/types";
 
 
 export interface IOrderState {
@@ -15,7 +13,7 @@ export interface IOrderState {
 }
 
 export interface IOrder {
-  _id: string;
+  _id?: string;
   products: ICartItem[];
   amount: number;
   customer: {
@@ -36,7 +34,7 @@ export interface IOrder {
   shippingCompany: string;
   paymentMethod: string;
   creditCardNumber: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 export interface IOrderToUpdate {

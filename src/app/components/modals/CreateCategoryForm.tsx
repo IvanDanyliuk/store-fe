@@ -212,7 +212,7 @@ const CreateCategoryForm: React.FC = () => {
 
     if(isDataValid) {
       dispatch(updateCategory({ 
-        id: dataToUpdate?._id, 
+        id: dataToUpdate?._id!, 
         updatedCategory: { 
           main: mainCategory, 
           subCategories, 

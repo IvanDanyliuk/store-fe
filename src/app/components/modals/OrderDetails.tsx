@@ -193,7 +193,7 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
   };
 
   const handleOrderDelete = () => {
-    dispatch(deleteOrder(order._id));
+    dispatch(deleteOrder(order._id!));
     setIsOpen(false);
   };
 

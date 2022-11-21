@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api';
+import { IShipping, IShippingToUpdate } from './types';
 
 
 export const getShippings = createAsyncThunk(
@@ -16,7 +17,7 @@ export const getShippings = createAsyncThunk(
 
 export const createShipping = createAsyncThunk(
   'shipping/createShipping',
-  async (newShipping: any, { rejectWithValue }) => {
+  async (newShipping: IShipping, { rejectWithValue }) => {
     try {
       const { data } = await api.createShipping(newShipping);
       return data;
@@ -28,7 +29,7 @@ export const createShipping = createAsyncThunk(
 
 export const updateShipping = createAsyncThunk(
   'shipping/updateShipping',
-  async (shippingToUpdate: any, {rejectWithValue }) => {
+  async (shippingToUpdate: IShippingToUpdate, {rejectWithValue }) => {
     try {
       const { data } = await api.updateShipping(shippingToUpdate);
       return data;
@@ -40,7 +41,7 @@ export const updateShipping = createAsyncThunk(
 
 export const deleteShipping = createAsyncThunk(
   'shipping/deleteShipping',
-  async (id: any, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
       await api.deleteShipping(id);
     } catch (error) {
