@@ -137,6 +137,10 @@ const CreateCategoryForm: React.FC = () => {
       title: '',
       url: '',
     });
+    setSubCategory({
+      title: '',
+      url: '',
+    });
     setSubCategories([]);
   };
 

@@ -95,7 +95,6 @@ const CreateVacancyForm: React.FC = () => {
     contactPerson: '',
     contactPhone: '',
     contactEmail: '',
-    createdAt: '',
   });
 
   const setInitialData = () => {
@@ -110,7 +109,6 @@ const CreateVacancyForm: React.FC = () => {
       contactPerson: '',
       contactPhone: '',
       contactEmail: '',
-      createdAt: '',
     });
   };
 

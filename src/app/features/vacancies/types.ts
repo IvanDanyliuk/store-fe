@@ -20,7 +20,7 @@ export interface IVacancy {
   contactPerson: string;
   contactPhone: string;
   contactEmail: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 export interface IVacancyToUpdate {
