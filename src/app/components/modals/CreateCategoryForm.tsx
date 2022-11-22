@@ -204,6 +204,7 @@ const CreateCategoryForm: React.FC = () => {
         main: mainCategory,
         subCategories,
       }));
+      setInitialData();
       handleOpenModal();
     }
   };
