@@ -62,6 +62,7 @@ const Address = styled.span`
 
 const Phone = styled.p``;
 
+
 const Contacts: React.FC = () => {
   const { t } = useTranslation(['contacts']);
 

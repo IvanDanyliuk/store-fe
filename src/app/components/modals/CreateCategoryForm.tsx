@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'twin.macro';
@@ -156,7 +156,7 @@ const CreateCategoryForm: React.FC = () => {
     setError(error);
   };
 
-  const handleMainCategoryChange = (e: any) => {
+  const handleMainCategoryChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMainCategory({
       ...mainCategory,
       title: e.target.value,
@@ -164,7 +164,7 @@ const CreateCategoryForm: React.FC = () => {
     });
   };
 
-  const handleSubCategoryChange = (e: any) => {
+  const handleSubCategoryChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSubCategory({
       ...subCategory,
       title: e.target.value,
@@ -172,7 +172,7 @@ const CreateCategoryForm: React.FC = () => {
     });
   };
 
-  const handleAddSubCategory = (e: any) => {
+  const handleAddSubCategory = (e: SyntheticEvent) => {
     e.preventDefault();
     if(subCategory.title && subCategory.url) {
       setSubCategories([...subCategories, subCategory]);
@@ -183,7 +183,7 @@ const CreateCategoryForm: React.FC = () => {
     });
   };
 
-  const handleDeleteSubCategory = (title: any) => {
+  const handleDeleteSubCategory = (title: string) => {
     setSubCategories(
       subCategories.filter((item: any) => item.title !== title)
     );

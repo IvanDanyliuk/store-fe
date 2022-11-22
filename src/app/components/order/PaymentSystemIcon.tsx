@@ -19,7 +19,7 @@ const PaymentSystemIcon: React.FC<IPaymentSystemIconProps> = ({ cardNumber }) =>
   const numberToValidate = cardNumber.replace(/\s+/g, '');
   const paymentSystemType = creditCardType(numberToValidate)[0];
 
-  const setIcon = (type: any) => {
+  const setIcon = (type: string) => {
     if(type === 'visa') {
       return faCcVisa;
     }

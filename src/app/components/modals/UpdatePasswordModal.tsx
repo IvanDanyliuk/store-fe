@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -88,14 +88,14 @@ const UpdatePasswordModal: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleDataChange = (e: any) => {
+  const handleDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPasswordData({
       ...passwordData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if(passwordData.newPassword === passwordData.confNewPassword) {
       dispatch(updatePassword({

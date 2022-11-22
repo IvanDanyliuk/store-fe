@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -72,11 +72,11 @@ const UpdateAvatarModal: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleImageChange = (e: any) => {
+  const handleImageChange = (e: ChangeEvent<any>) => {
     setFile(e.target.files[0]);
   };
 
-  const uploadImage = (file: any) => {
+  const uploadImage = (file: File) => {
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadData = uploadBytesResumable(storageRef, file);
 
@@ -96,7 +96,7 @@ const UpdateAvatarModal: React.FC = () => {
     );
   };
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if(file) {
       uploadImage(file);

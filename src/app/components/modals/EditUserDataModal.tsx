@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -72,14 +72,14 @@ const EditUserDataModal: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleUserDataChange = (e: any) => {
+  const handleUserDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleUpdateDataSubmit = (e: any) => {
+  const handleUpdateDataSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(updateUser({ id: user?._id!, userData }));
     localStorage.setItem('profile', JSON.stringify({ token, result: userData }));

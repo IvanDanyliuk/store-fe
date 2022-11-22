@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -237,36 +237,36 @@ const Order: React.FC = () => {
     email: '',
   });
 
-  const handleCustomerDataChange = (e: any) => {
+  const handleCustomerDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCustomer({
       ...customer,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleReceiverDataChange = (e: any) => {
+  const handleReceiverDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setRecepient({
       ...recepient,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleCurrentShippingCompanyChange = (e: any) => {
+  const handleCurrentShippingCompanyChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentShippingCompany(e.target.value);
     const currentCompany = shippings.find(item => item.company === e.target.value);
     setCurrentShippingCity(currentCompany?.cities[0]!);
     setShippingAmount(currentCompany?.price!);
   };
 
-  const handleCurrentPaymentMethodChange = (e: any) => {
+  const handleCurrentPaymentMethodChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentPaymentMethod(e.target.value);
   };
 
-  const handleCurrentShippingCityChange = (e: any) => {
+  const handleCurrentShippingCityChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCurrentShippingCity(e.target.value);
   };
 
-  const submitOrder = async (e: any) => {
+  const submitOrder = async (e: SyntheticEvent) => {
     if(order) {
       dispatch(updateOrder({
         id: order._id!,

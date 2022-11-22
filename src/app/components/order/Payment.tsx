@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../features/store';
 import { formatCardNumber } from '../../helpers/helpers';
 import PaymentSystemIcon from './PaymentSystemIcon';
 import AcceptPaymentModal from '../modals/AcceptPaymentModal';
@@ -105,16 +103,9 @@ const CardCvvCode = styled.input`
   `}
 `;
 
-const Form = styled.form`
-  ${tw`
-  
-  `}
-`;
-
 
 const Payment: React.FC = () => {
   const { t } = useTranslation(['order']);
-  const dispatch = useDispatch<AppDispatch>();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardData, setCardData] = useState({
@@ -128,7 +119,7 @@ const Payment: React.FC = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleCardDataChange = (e: any) => {
+  const handleCardDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCardData({
       ...cardData,
       [e.target.name]: e.target.value,

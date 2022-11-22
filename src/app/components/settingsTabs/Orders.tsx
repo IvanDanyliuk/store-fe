@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -53,7 +53,7 @@ const Orders: React.FC = () => {
   const ordersPerPage = ORDERS_PER_TABLE;
   const [searchValue, setSearchValue] = useState('');
 
-  const handleSearchValueChange = (e: any) => {
+  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 

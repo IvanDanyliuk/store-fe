@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
 import styled from 'styled-components';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import tw from 'twin.macro';
@@ -98,17 +98,17 @@ const Auth: React.FC = () => {
     setError(error);
   };
 
-  const handleUserDataChange = (e: any) => {
+  const handleUserDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleImageUpload = (e: any) => {
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const file = e.target?.files[0];
+    const file = e.target?.files?.[0];
     if(!file) return;
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadData = uploadBytesResumable(storageRef, file);
@@ -149,7 +149,7 @@ const Auth: React.FC = () => {
     });
   };
 
-  const handleFormSubmit = async (e: any) => {
+  const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     if(isSignIn) {
       const isDataValid = isSigninDataValid(

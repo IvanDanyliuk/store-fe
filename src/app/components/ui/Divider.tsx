@@ -26,6 +26,7 @@ const VerticalLine = styled.div<IDivider>`
   background: ${DIVIDER_COLOR};
 `;
 
+
 const Divider: React.FC<IDivider> = ({ 
   direction, 
   length, 

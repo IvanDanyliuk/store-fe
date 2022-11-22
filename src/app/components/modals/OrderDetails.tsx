@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -187,7 +187,7 @@ const OrderDetails: React.FC<IOrderDetailsProps> = ({ order }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleOrderEdit = (e: any) => {
+  const handleOrderEdit = (e: SyntheticEvent) => {
     dispatch(setOrderToUpdate(order));
     navigate('/order');
   };

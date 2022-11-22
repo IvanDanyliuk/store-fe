@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -235,10 +235,10 @@ const CreateProductForm: React.FC = () => {
     setError(error);
   };
 
-  const handleUploadImage = (e: any) => {
+  const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const file = e.target?.files[0];
+    const file = e.target?.files?.[0];
     if(!file) return;
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadData = uploadBytesResumable(storageRef, file);
@@ -262,14 +262,14 @@ const CreateProductForm: React.FC = () => {
     );
   };
 
-  const handleProductDataChange = (e: any) => {
+  const handleProductDataChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setProductData({
       ...productData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleMainCategoryChange = (e: any) => {
+  const handleMainCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const current = categories.find(item => item.main.url === e.target.value)
     setCurrentCategory(current!);
     setProductData({
@@ -287,7 +287,7 @@ const CreateProductForm: React.FC = () => {
     });
   };
 
-  const handleSubCategoryChange = (e: any) => {
+  const handleSubCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const current = currentCategory.subCategories.find(item => item.url === e.target.value);
     setProductData({
       ...productData,
@@ -301,18 +301,18 @@ const CreateProductForm: React.FC = () => {
     });
   };
 
-  const handleStockChange = (e: any) => {
+  const handleStockChange = (e: ChangeEvent<HTMLInputElement>) => {
     setProductData({
       ...productData,
       isInStock: !productData.isInStock
     });
   };
 
-  const handlePromotionsChange = (e: any) => {
+  const handlePromotionsChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewPromotion(e.target.value);
   };
 
-  const handleAddPromotion = (e: any) => {
+  const handleAddPromotion = () => {
     setProductData({
       ...productData,
       promotion: [...productData.promotion, newPromotion],

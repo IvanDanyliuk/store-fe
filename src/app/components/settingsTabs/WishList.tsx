@@ -26,6 +26,7 @@ const WarningMessage = styled.div`
 const WishList: React.FC = () => {
   const { t } = useTranslation(['settingTabsWishList']);
   const wishList = useSelector(selectWishList);
+  
   return (
     <Container>
       {

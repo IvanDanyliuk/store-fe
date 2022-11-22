@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'twin.macro';
@@ -148,18 +148,18 @@ const CreateShippingForm: React.FC = () => {
     setError(error);
   };
 
-  const handleShippingDataChange = (e: any) => {
+  const handleShippingDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setShippingData({
       ...shippingData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleCityChange = (e: any) => {
+  const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
 
-  const handleAddCity = (e: any) => {
+  const handleAddCity = (e: SyntheticEvent) => {
     e.preventDefault();
     if(city) {
       setShippingData({
@@ -170,7 +170,7 @@ const CreateShippingForm: React.FC = () => {
     setCity('');
   };
 
-  const handleDeleteCity = (name: any) => {
+  const handleDeleteCity = (name: SyntheticEvent) => {
     setShippingData({
       ...shippingData,
       cities: shippingData.cities.filter((item: any) => item !== name)

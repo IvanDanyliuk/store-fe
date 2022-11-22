@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
@@ -138,7 +138,7 @@ const AddCommentForm: React.FC = () => {
     setError(error);
   };
 
-  const handleCommentDataChange = (e: any) => {
+  const handleCommentDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCommentData({
       ...commentData,
       [e.target.name]: e.target.value,

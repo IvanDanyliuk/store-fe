@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -139,7 +139,7 @@ const Profile: React.FC = () => {
   const user = useSelector(selectUser);
   const language = useSelector(selectLanguage);
 
-  const handleLanguageChange = (e: any) => {
+  const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     i18.changeLanguage(e.target.value);
     localStorage.setItem('language', e.target.value);
     dispatch(setLanguage(e.target.value));

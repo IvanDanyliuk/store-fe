@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'twin.macro';
@@ -129,7 +129,7 @@ const CreateVacancyForm: React.FC = () => {
     setError(error);
   };
 
-  const handleVacancyDataChange = (e: any) => {
+  const handleVacancyDataChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setVacancyData({
       ...vacancyData,
       [e.target.name]: e.target.value,
