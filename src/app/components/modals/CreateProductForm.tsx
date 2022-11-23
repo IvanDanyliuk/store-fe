@@ -6,6 +6,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../../firebase';
 import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
+import { HexColorPicker } from 'react-colorful';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { SCREENS } from '../../services/screens';
@@ -156,6 +157,7 @@ const CreateProductForm: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState('');
+  const [productColor, setProductColor] = useState('#ffffff');
 
   const [productData, setProductData] = useState<IProductData>({
     category: {
@@ -171,7 +173,7 @@ const CreateProductForm: React.FC = () => {
     title: '',
     brand: '',
     price: 0,
-    color: '',
+    color: '#ffffff',
     rating: 0,
     image: '',
     promotion: [],
@@ -210,7 +212,7 @@ const CreateProductForm: React.FC = () => {
       title: '',
       brand: '',
       price: 0,
-      color: '',
+      color: '#ffffff',
       rating: 0,
       image: '',
       promotion: [],
@@ -218,6 +220,7 @@ const CreateProductForm: React.FC = () => {
       shortInfo: '',
       description: '',
     });
+    setProductColor('#ffffff');
   };
 
   const handleOpenModal = () => {
@@ -265,6 +268,7 @@ const CreateProductForm: React.FC = () => {
   const handleProductDataChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setProductData({
       ...productData,
+      color: productColor,
       [e.target.name]: e.target.value,
     });
   };
@@ -497,13 +501,14 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
-              <Input 
+              {/* <Input 
                 name='color'
                 label={t('productColor')}
                 value={productData.color}
                 onChange={handleProductDataChange}
                 isRequired
-              />
+              /> */}
+              <HexColorPicker color={productColor} onChange={setProductColor} />
             </FormItem>
             <FormItem>
               <Input 
