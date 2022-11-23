@@ -1,4 +1,5 @@
 import { ICartItem } from "../features/cart/types";
+import { IProductCategory } from "../features/category/types";
 import { IProductData } from "../features/product/types";
 import { IShipping } from "../features/shipping/types";
 import { 
@@ -88,8 +89,8 @@ export const setCategoryUrl = (title: string) => {
   return splittedTitle.length > 1 ? splittedTitle.join('-') : splittedTitle[0];
 };
 
-export const getSubCategoryList = (categories: any, mainCategoryTitle: any) => {
-  return categories.find((category: any) => category.main.title === mainCategoryTitle);
+export const getSubCategoryList = (categories: IProductCategory[], mainCategoryTitle: string) => {
+  return categories.find((category: IProductCategory) => category.main.title === mainCategoryTitle);
 };
 
 export const formatObjectKey = (key: string) => {
