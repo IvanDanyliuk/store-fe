@@ -58,7 +58,10 @@ const ProductForm = styled.form`
   ${tw`
     flex
     flex-col
-    items-center
+    md:flex-row
+    flex-wrap
+    md:justify-center
+    // items-center
   `}
   button {
     margin-top: 10px;
@@ -67,8 +70,19 @@ const ProductForm = styled.form`
 
 const Inputs = styled.div`
   ${tw`
+    w-full
+    md:w-2/3
     flex
     flex-wrap
+  `}
+`;
+
+const Promotions = styled.div`
+  ${tw`
+    pl-2
+    pr-2
+    w-full
+    md:w-1/3
   `}
 `;
 
@@ -90,6 +104,9 @@ const PromotionInputContainer = styled.div`
     justify-between
     items-center
   `}
+  input {
+    width: 80%;
+  }
 `;
 
 const PromotionList = styled.ul`
@@ -99,7 +116,7 @@ const PromotionList = styled.ul`
     pt-2
     pl-3
     pr-3
-    border
+    // border
   `}
 `;
 
@@ -366,7 +383,7 @@ const CreateProductForm: React.FC = () => {
 
   const styles = {
     content: {
-      width: isMobile ? '90%' : '700px',
+      width: isMobile ? '90%' : '70%',
       height: isMobile ? '100%' : 'auto',
       top: '50%',
       left: '50%',
@@ -492,34 +509,6 @@ const CreateProductForm: React.FC = () => {
             </FormItem>
             <FormItem>
               <Input 
-                name='price'
-                label={t('productPrice')}
-                value={productData.price}
-                type='number'
-                onChange={handleProductDataChange}
-                isRequired
-              />
-            </FormItem>
-            <FormItem>
-              {/* <Input 
-                name='color'
-                label={t('productColor')}
-                value={productData.color}
-                onChange={handleProductDataChange}
-                isRequired
-              /> */}
-              <HexColorPicker color={productColor} onChange={setProductColor} />
-            </FormItem>
-            <FormItem>
-              <Input 
-                name='image'
-                label={t('productImage')}
-                type='file'
-                onChange={handleUploadImage}
-              />
-            </FormItem>
-            <FormItem>
-              <Input 
                 name='brand'
                 label={t('productBrand')}
                 value={productData.brand}
@@ -528,6 +517,14 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
+              <Input 
+                name='price'
+                label={t('productPrice')}
+                value={productData.price}
+                type='number'
+                onChange={handleProductDataChange}
+                isRequired
+              />
               <InputLabel>
                 {t('productRating')}
               </InputLabel>
@@ -543,6 +540,16 @@ const CreateProductForm: React.FC = () => {
                 <Option value='4'>4</Option>
                 <Option value='5'>5</Option>
               </Select>
+              <Input 
+                name='image'
+                label={t('productImage')}
+                type='file'
+                onChange={handleUploadImage}
+              />
+            </FormItem>
+            <FormItem>
+              <InputLabel>Color</InputLabel>
+              <HexColorPicker color={productColor} onChange={setProductColor} />
             </FormItem>
             <FormItem>
               <TextArea 
@@ -563,15 +570,22 @@ const CreateProductForm: React.FC = () => {
               />
             </FormItem>
             <FormItem>
+              <Checkbox 
+                name='isInStock'
+                label={t('promotionInStock')}
+                checked={productData.isInStock}
+                onChange={handleStockChange}
+              />
+            </FormItem>
+          </Inputs>
+          <Promotions>
               <PromotionInputContainer>
-                <FormItem>
-                  <Input 
-                    name='promotion'
-                    label={t('productPromotion')}
-                    value={newPromotion}
-                    onChange={handlePromotionsChange}
-                  />
-                </FormItem>
+                <Input 
+                  name='promotion'
+                  label={t('productPromotion')}
+                  value={newPromotion}
+                  onChange={handlePromotionsChange}
+                />
                 <Button 
                   type={ButtonType.Button} 
                   color={ButtonColor.Secondary} 
@@ -596,16 +610,7 @@ const CreateProductForm: React.FC = () => {
                   )
                 }
               </PromotionList>
-            </FormItem>
-            <FormItem>
-              <Checkbox 
-                name='isInStock'
-                label={t('promotionInStock')}
-                checked={productData.isInStock}
-                onChange={handleStockChange}
-              />
-            </FormItem>
-          </Inputs>
+            </Promotions>
           <Button 
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
