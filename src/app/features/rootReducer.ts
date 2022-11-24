@@ -7,6 +7,7 @@ import cartReducer from './cart/reducers';
 import orderReducer from './order/reducers';
 import reviewsReducer from './reviews/reducers';
 import vacanciesReducer from './vacancies/reducers';
+import galleryReducer from './gallery/reducers';
 
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   order: orderReducer,
   reviews: reviewsReducer,
   vacancies: vacanciesReducer,
+  gallery: galleryReducer,
 });
 
 export default rootReducer;

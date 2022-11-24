@@ -5,9 +5,7 @@ import tw from 'twin.macro';
 import '../../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel'; 
 import { useTranslation } from 'react-i18next';
-import slide1 from '../assets/img/slider/slide_1.png';
-import slide2 from '../assets/img/slider/slide_2.png';
-import slide3 from '../assets/img/slider/slide_3.png';
+import { v4 as uuid } from 'uuid';
 import background from '../assets/img/liquid-cheese.svg'
 import ProductList from '../components/products/ProductList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,6 +15,8 @@ import { getTopProducts } from '../features/product/asyncActions';
 import { selectProducts } from '../features/product/selectors';
 import { PRODUCTS_PER_PAGE } from '../services/constants';
 import { SUCCESS_COLOR } from '../services/constants';
+import { selectGalleryImages } from '../features/gallery/selectors';
+import { getGalleryImages } from '../features/gallery/asyncActions';
 
 
 const Content = styled.div`
@@ -118,23 +118,21 @@ const Home: React.FC = () => {
   const { t } = useTranslation(['home']);
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
+  const galleryImages = useSelector(selectGalleryImages);
 
   useEffect(() => {
     dispatch(getTopProducts(PRODUCTS_PER_PAGE));
+    dispatch(getGalleryImages());
   }, []);
 
   return (
     <Content>
       <Carousel axis='horizontal' autoPlay showArrows infiniteLoop showThumbs={false}>
-        <div>
-          <img src={slide1} alt='image_1' />
-        </div>
-        <div>
-          <img src={slide2} alt='image_2' />
-        </div>
-        <div>
-          <img src={slide3} alt='image_3' />
-        </div>
+        {galleryImages.map(image => (
+          <div key={uuid()}>
+            <img src={image.url} alt={image._id} />
+          </div>
+        ))}
       </Carousel>
       <PageSection>
         <PageTitle>{t('popular')}</PageTitle>

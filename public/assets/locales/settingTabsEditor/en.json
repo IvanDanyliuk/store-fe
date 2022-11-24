@@ -11,5 +11,6 @@
   "vacanciesTableTitleName": "Name",
   "vacanciesTableTitlePrice": "Price",
   "editBtn": "Edit",
-  "deleteBtn": "Delete"
+  "deleteBtn": "Delete",
+  "gallery": "Main page gallery"
 }

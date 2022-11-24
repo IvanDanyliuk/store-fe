@@ -61,7 +61,6 @@ const ProductForm = styled.form`
     md:flex-row
     flex-wrap
     md:justify-center
-    // items-center
   `}
   button {
     margin-top: 10px;
@@ -116,7 +115,6 @@ const PromotionList = styled.ul`
     pt-2
     pl-3
     pr-3
-    // border
   `}
 `;
 

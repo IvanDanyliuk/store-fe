@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import { TableTypes } from '../../../types/types';
+import { ButtonColor, ButtonType, TableTypes } from '../../../types/types';
 import { getProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectPagesCount, selectProducts } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
@@ -15,7 +17,6 @@ import { clearCategory, getCategory } from '../../features/category/reducers';
 import CreateProductForm from '../modals/CreateProductForm';
 import {clearProduct, setProductToUpdate } from '../../features/product/reducers';
 import { selectUser } from '../../features/user/selectors';
-import { useNavigate } from 'react-router-dom';
 import { selectShippings } from '../../features/shipping/selectors';
 import { deleteShipping, getShippings } from '../../features/shipping/asyncActions';
 import CreateShippingForm from '../modals/CreateShippingForm';
@@ -28,6 +29,12 @@ import VacanciesTable from '../table/VacanciesTable';
 import { deleteVacancy, getVacancies } from '../../features/vacancies/asyncActions';
 import { setVacancyToUpdate } from '../../features/vacancies/reducers';
 import { PRODUCTS_PER_TABLE, VACANCIES_PER_TABLE } from '../../services/constants';
+import AddGalleryImageModal from '../modals/AddGalleryImageModal';
+import { selectGalleryImages } from '../../features/gallery/selectors';
+import { deleteGalleryImage, getGalleryImages } from '../../features/gallery/asyncActions';
+import RoundedButton from '../ui/RoundedButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 const Container = styled.div`
@@ -62,6 +69,40 @@ const SubTitle = styled.h6`
   `}
 `;
 
+const GalleryImagesList = styled.ul`
+  ${tw`
+    mt-6
+    w-full
+    flex
+    flex-col
+    md:flex-row
+    flex-wrap
+  `}
+`;
+
+const GalleryImageItem = styled.li`
+  ${tw`
+    p-3
+    relative
+    w-full
+    w-1/3
+  `}
+  button {
+    ${tw`
+      absolute
+      top-3
+      right-3
+      z-10
+    `}
+  }
+`;
+
+const Image = styled.img`
+  ${tw`
+    
+  `}
+`;
+
 
 const Editor: React.FC = () => {
   const { t } = useTranslation(['settingTabsEditor']);
@@ -74,6 +115,7 @@ const Editor: React.FC = () => {
   const user = useSelector(selectUser);
   const vacancies = useSelector(selectVacancies);
   const vacanciesPageCount = useSelector(selectVacancyPagesCount);
+  const galleryImages = useSelector(selectGalleryImages);
 
   const [productsPage, setProductsPage] = useState(1);
   const [vacanciesPage, setVacanciesPage] = useState(1);
@@ -114,6 +156,10 @@ const Editor: React.FC = () => {
     dispatch(deleteVacancy(id));
   };
 
+  const handleGalleryImageDelete = (id: string) => {
+    dispatch(deleteGalleryImage(id));
+  };
+
   useEffect(() => {
     dispatch(getProducts({ page: productsPage, productsPerPage: PRODUCTS_PER_TABLE }));
   }, [dispatch, productsPage]);
@@ -125,6 +171,7 @@ const Editor: React.FC = () => {
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getShippings());
+    dispatch(getGalleryImages());
     return () => { 
       dispatch(clearProduct());
       dispatch(clearCategory());
@@ -188,6 +235,26 @@ const Editor: React.FC = () => {
           pageCount={vacanciesPageCount}
           setPage={setVacanciesPage}
         />
+      </Section>
+      <Section>
+        <SectionHeader>
+          <SubTitle>{t('gallery')}</SubTitle>
+          <AddGalleryImageModal />
+        </SectionHeader>
+        <GalleryImagesList>
+          {galleryImages.map(image => (
+            <GalleryImageItem key={uuid()}>
+              <Image src={image.url} />
+              <RoundedButton
+                type={ButtonType.Button}
+                color={ButtonColor.Danger}
+                onClick={() => handleGalleryImageDelete(image._id!)}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </RoundedButton>
+            </GalleryImageItem>
+          ))}
+        </GalleryImagesList>
       </Section>
     </Container>
   );

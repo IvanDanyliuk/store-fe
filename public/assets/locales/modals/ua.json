@@ -101,5 +101,7 @@
   "vacanciesContactEmail": "Контактна адреса ел. пошти",
   "vacanciesSubmitBtn": "Підтвердити",
   "vacanciesLoading": "Завантаження...",
-  "vacanciesMessage": "Немає відкритих вакансій"
+  "vacanciesMessage": "Немає відкритих вакансій",
+  "galleryBtn": "Додати",
+  "gallerySubmitBtn": "Підтвердити"
 }

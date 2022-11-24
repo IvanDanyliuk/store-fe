@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ICategoryToUpdate, IProductCategory } from '../features/category/types';
+import { IGalleryImage } from '../features/gallery/types';
 import { IOrder, IOrderToUpdate } from '../features/order/types';
 import { IProductData, IProductToUpdate } from '../features/product/types';
 import { IReview, IReviewToUpdate } from '../features/reviews/types';
@@ -61,3 +62,6 @@ export const updateUser = (userData: IUserToUpdate) => API.patch('/user', { para
 export const updatePassword = (passwordData: IPasswordToUpdate) => API.patch('/user/update-password', { params: { passwordData } });
 export const deleteUser = (id: string) => API.delete('/user', { params: { id } });
 
+export const getGalleryImages = () => API.get('/gallery');
+export const addGalleryImage = (imageUrl: IGalleryImage) => API.post('/gallery', { params: { imageUrl } });
+export const deleteGalleryImage = (id: string) => API.delete('/gallery', { params: { id } });
