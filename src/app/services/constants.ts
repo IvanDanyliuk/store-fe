@@ -9,6 +9,9 @@ export const VACANCIES_PER_TABLE = 10;
 //Orders request params
 export const ORDERS_PER_TABLE = 10;
 
+//Home page gallery images number limit
+export const GALLERY_IMAGES_NUMBER_LIMIT = 6;
+
 
 //Colors
 export const PRIMARY_COLOR = 'rgb(63, 197, 255)';

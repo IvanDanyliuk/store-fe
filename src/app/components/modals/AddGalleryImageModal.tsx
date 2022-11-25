@@ -11,11 +11,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
-import { selectUser } from '../../features/user/selectors';
 import Button from '../ui/Button';
 import { ButtonColor, ButtonType } from '../../../types/types';
-import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
+import { BASIC_BACKGROUND_WHITE, GALLERY_IMAGES_NUMBER_LIMIT, MODAL_OVERLAY_COLOR } from '../../services/constants';
 import { addGalleryImage } from '../../features/gallery/asyncActions';
+import { selectGalleryImages } from '../../features/gallery/selectors';
 
 
 Modal.setAppElement('#root');
@@ -58,7 +58,7 @@ const Input = styled.input`
 const AddGalleryImageModal: React.FC = () => {
   const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector(selectUser);
+  const galleryImages = useSelector(selectGalleryImages);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -96,7 +96,7 @@ const AddGalleryImageModal: React.FC = () => {
 
   const handleFormSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if(file) {
+    if(file && galleryImages.length < GALLERY_IMAGES_NUMBER_LIMIT) {
       uploadImage(file);
       setFile(null);
       setIsOpen(false);
