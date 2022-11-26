@@ -9,6 +9,7 @@ import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, ICellProps, IVacanciesTableProps } from '../../../types/types';
 import { IVacancy } from '../../features/vacancies/types';
+import Loader from '../ui/Loader';
 
 
 const Container = styled.div`
@@ -77,8 +78,12 @@ const WarningMessageBody = styled.div``;
 const Message = styled.p``;
 
 
-const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, onEdit, onDelete }) => {
+const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, status, onEdit, onDelete }) => {
   const { t } = useTranslation(['settingTabsEditor']);
+
+  if(status === 'loading') {
+    return <Loader />;
+  }
 
   if(vacancies.length === 0) {
     return (
@@ -87,7 +92,7 @@ const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, onEdit, onD
           {t('vacanciesNoDataMessage')}
         </Message>
       </WarningMessageBody>
-    )
+    );
   }
 
   return (

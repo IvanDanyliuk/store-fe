@@ -9,6 +9,7 @@ import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, ICellProps, IProductsTableProps } from '../../../types/types';
 import { IProduct } from '../../features/product/types';
 import ProductListImage from '../ui/ProductListImage';
+import Loader from '../ui/Loader';
 
 
 const Container = styled.div`
@@ -77,8 +78,12 @@ const WarningMessageBody = styled.div``;
 const Message = styled.p``;
 
 
-const ProductTable: React.FC<IProductsTableProps> = ({ products, onEdit, onDelete }) => {
+const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit, onDelete }) => {
   const { t } = useTranslation(['settingTabsEditor']);
+
+  if(status === 'loading') {
+    return <Loader />
+  }
 
   if(products.length === 0) {
     return (

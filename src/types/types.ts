@@ -65,18 +65,21 @@ export enum TableTypes {
 export interface ITableProps {
   tableType: TableTypes;
   data: any;
+  status: string;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
 export interface IProductsTableProps {
   products: IProduct[];
+  status: string;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
 export interface IVacanciesTableProps {
   vacancies: IVacancy[];
+  status: string;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }

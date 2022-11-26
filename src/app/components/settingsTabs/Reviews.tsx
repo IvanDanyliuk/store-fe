@@ -14,8 +14,9 @@ import { selectUser } from '../../features/user/selectors';
 import ProductListImage from '../ui/ProductListImage';
 import RoundedButton from '../ui/RoundedButton';
 import EditReviewModal from '../modals/EditReviewModal';
-import { selectReviews } from '../../features/reviews/selectors';
+import { selectReviews, selectReviewsStatus } from '../../features/reviews/selectors';
 import { REVIEW_ITEM_BACKGROUND } from '../../services/constants';
+import Loader from '../ui/Loader';
 
 
 const Container = styled.div`
@@ -103,6 +104,7 @@ const Reviews: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const reviews = useSelector(selectReviews);
+  const reviewsLoadingStatus = useSelector(selectReviewsStatus);
 
   const handleReviewDelete = (id: string) => {
     dispatch(deleteReview(id));
@@ -111,6 +113,10 @@ const Reviews: React.FC = () => {
   useEffect(() => {
     dispatch(getUserReviews(user?.email!));
   }, [dispatch]);
+
+  if(reviewsLoadingStatus === 'loading') {
+    return <Loader />;
+  }
 
   return (
     <Container>

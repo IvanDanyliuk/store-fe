@@ -11,6 +11,7 @@ import { ButtonColor, ButtonType, ICellProps, ITableProps, TableTypes } from '..
 import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
 import { IShipping } from '../../features/shipping/types';
+import Loader from '../ui/Loader';
 
 
 const Container = styled.div`
@@ -79,13 +80,17 @@ const WarningMessageBody = styled.div``;
 const Message = styled.p``;
 
 
-const Table: React.FC<ITableProps> = ({ tableType, data, onEdit, onDelete }) => {
+const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelete }) => {
   const { t } = useTranslation(['ui']);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const { slice, range } = useTable(data, page, rowsPerPage);
 
   const emptyRows = page > 1 ? Math.max(0, page) * rowsPerPage - data.length : 0;
+
+  if(status === 'loading') {
+    return <Loader />;
+  }
 
   if(data.length === 0) {
     return (

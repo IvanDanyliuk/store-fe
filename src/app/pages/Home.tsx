@@ -12,11 +12,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { AppDispatch } from '../features/store';
 import { getTopProducts } from '../features/product/asyncActions';
-import { selectProducts } from '../features/product/selectors';
+import { selectProducts, selectProductStatus } from '../features/product/selectors';
 import { PRODUCTS_PER_PAGE } from '../services/constants';
 import { SUCCESS_COLOR } from '../services/constants';
-import { selectGalleryImages } from '../features/gallery/selectors';
+import { selectGalleryImages, selectGalleryStatus } from '../features/gallery/selectors';
 import { getGalleryImages } from '../features/gallery/asyncActions';
+import Loader from '../components/ui/Loader';
 
 
 const Content = styled.div`
@@ -118,7 +119,9 @@ const Home: React.FC = () => {
   const { t } = useTranslation(['home']);
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
+  const productsLoadingStatus = useSelector(selectProductStatus);
   const galleryImages = useSelector(selectGalleryImages);
+  const galleryLoadingStatus = useSelector(selectGalleryStatus);
 
   useEffect(() => {
     dispatch(getTopProducts(PRODUCTS_PER_PAGE));
@@ -127,16 +130,34 @@ const Home: React.FC = () => {
 
   return (
     <Content>
-      <Carousel axis='horizontal' autoPlay showArrows infiniteLoop showThumbs={false}>
-        {galleryImages.map(image => (
-          <div key={uuid()}>
-            <img src={image.url} alt={image._id} />
-          </div>
-        ))}
-      </Carousel>
+      {
+        galleryLoadingStatus === 'succeeded' ? (
+          <Carousel 
+            axis='horizontal' 
+            autoPlay 
+            showArrows 
+            infiniteLoop 
+            showThumbs={false}
+          >
+            {galleryImages.map(image => (
+              <div key={uuid()}>
+                <img src={image.url} alt={image._id} />
+              </div>
+            ))}
+          </Carousel>
+        ) : (
+          <Loader />
+        )
+      }
       <PageSection>
         <PageTitle>{t('popular')}</PageTitle>
-        <ProductList products={products} />
+        {
+          productsLoadingStatus === 'succeeded' ? (
+            <ProductList products={products} />
+          ) : (
+            <Loader />
+          )
+        }
       </PageSection>
       <PageSection>
         <SubscriptionContainer>

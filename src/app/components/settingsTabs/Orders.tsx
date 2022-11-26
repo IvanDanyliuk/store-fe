@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { getOrders, getUserOrders } from '../../features/order/asyncActions';
-import { selectOrderPages, selectOrders } from '../../features/order/selectors';
+import { selectOrderPages, selectOrders, selectOrderStatus } from '../../features/order/selectors';
 import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
 import Input from '../inputs/Input';
@@ -13,6 +13,7 @@ import Button from '../ui/Button';
 import OrdersTable from '../table/OrdersTable';
 import PageListPagination from '../ui/PageListPagination';
 import { ORDERS_PER_TABLE } from '../../services/constants';
+import Loader from '../ui/Loader';
 
 
 const Container = styled.div`
@@ -47,6 +48,7 @@ const Orders: React.FC = () => {
 
   const { isAdmin, email } = useSelector(selectUser);
   const orders = useSelector(selectOrders);
+  const orderLoadingStatus = useSelector(selectOrderStatus);
   const pageCount = useSelector(selectOrderPages);
   
   const [page, setPage] = useState(1);
@@ -94,7 +96,13 @@ const Orders: React.FC = () => {
         </FilterSection>
       )}
       <Content>
-        <OrdersTable orders={orders} />
+        {
+          orderLoadingStatus === 'succeeded' ? (
+            <OrdersTable orders={orders} />
+          ) : (
+            <Loader />
+          )
+        }
         <PageListPagination 
           currentPage={page} 
           pageCount={pageCount} 

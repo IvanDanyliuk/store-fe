@@ -13,6 +13,7 @@ import { getBrands, getProducts } from '../features/product/asyncActions';
 import { selectBrands, selectPagesCount, selectProducts, selectProductStatus } from '../features/product/selectors';
 import { AppDispatch } from '../features/store';
 import { PRODUCTS_PER_PAGE } from '../services/constants';
+import Loader from '../components/ui/Loader';
 
 
 const Container = styled.div`
@@ -240,7 +241,7 @@ const Products: React.FC = () => {
           status === 'succeeded' ? (
             <ProductList products={products} />
           ) : (
-            <div>{t('loading')}</div>
+            <Loader />
           )
         }
         <PageListPagination 

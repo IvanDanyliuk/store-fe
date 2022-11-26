@@ -7,34 +7,35 @@ import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType, TableTypes } from '../../../types/types';
 import { getProducts, deleteProduct } from '../../features/product/asyncActions';
-import { selectPagesCount, selectProducts } from '../../features/product/selectors';
+import { selectPagesCount, selectProducts, selectProductStatus } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
 import Table from '../table/Table';
 import CreateCategoryForm from '../modals/CreateCategoryForm';
-import { selectCategories } from '../../features/category/selectors';
+import { selectCategories, selectCategoryStatus } from '../../features/category/selectors';
 import { getCategories, deleteCategory } from '../../features/category/asyncActions';
 import { clearCategory, getCategory } from '../../features/category/reducers';
 import CreateProductForm from '../modals/CreateProductForm';
 import {clearProduct, setProductToUpdate } from '../../features/product/reducers';
 import { selectUser } from '../../features/user/selectors';
-import { selectShippings } from '../../features/shipping/selectors';
+import { selectShippings, selectShippingStatus } from '../../features/shipping/selectors';
 import { deleteShipping, getShippings } from '../../features/shipping/asyncActions';
 import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
 import ProductTable from '../table/ProductTable';
 import PageListPagination from '../ui/PageListPagination';
 import CreateVacancyForm from '../modals/CreateVacancyModal';
-import { selectVacancies, selectVacancyPagesCount } from '../../features/vacancies/selectors';
+import { selectVacancies, selectVacancyPagesCount, selectVacancyStatus } from '../../features/vacancies/selectors';
 import VacanciesTable from '../table/VacanciesTable';
 import { deleteVacancy, getVacancies } from '../../features/vacancies/asyncActions';
 import { setVacancyToUpdate } from '../../features/vacancies/reducers';
 import { PRODUCTS_PER_TABLE, VACANCIES_PER_TABLE } from '../../services/constants';
 import AddGalleryImageModal from '../modals/AddGalleryImageModal';
-import { selectGalleryImages } from '../../features/gallery/selectors';
+import { selectGalleryImages, selectGalleryStatus } from '../../features/gallery/selectors';
 import { deleteGalleryImage, getGalleryImages } from '../../features/gallery/asyncActions';
 import RoundedButton from '../ui/RoundedButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Loader from '../ui/Loader';
 
 
 const Container = styled.div`
@@ -108,13 +109,18 @@ const Editor: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector(selectProducts);
+  const productsLoadingStatus = useSelector(selectProductStatus);
   const productsPageCount = useSelector(selectPagesCount);
   const categories = useSelector(selectCategories);
+  const categoriesLoadingStatus = useSelector(selectCategoryStatus);
   const shippings = useSelector(selectShippings);
+  const shippingLoadingStatus = useSelector(selectShippingStatus);
   const user = useSelector(selectUser);
   const vacancies = useSelector(selectVacancies);
+  const vacanciesLoadingStatus = useSelector(selectVacancyStatus);
   const vacanciesPageCount = useSelector(selectVacancyPagesCount);
   const galleryImages = useSelector(selectGalleryImages);
+  const galleryLoadingStatus = useSelector(selectGalleryStatus);
 
   const [productsPage, setProductsPage] = useState(1);
   const [vacanciesPage, setVacanciesPage] = useState(1);
@@ -186,6 +192,7 @@ const Editor: React.FC = () => {
         </SectionHeader>
         <ProductTable 
           products={products} 
+          status={productsLoadingStatus}
           onEdit={handleProductEdit}
           onDelete={handleProductDelete}
         />
@@ -203,6 +210,7 @@ const Editor: React.FC = () => {
         <Table 
           tableType={TableTypes.Categories} 
           data={categories} 
+          status={categoriesLoadingStatus}
           onEdit={handleCategoryEdit} 
           onDelete={handleCategoryDelete} 
         />
@@ -215,6 +223,7 @@ const Editor: React.FC = () => {
         <Table 
           tableType={TableTypes.Shipping} 
           data={shippings} 
+          status={shippingLoadingStatus}
           onEdit={handleShippingEdit} 
           onDelete={handleShippingDelete} 
         />
@@ -226,6 +235,7 @@ const Editor: React.FC = () => {
         </SectionHeader>
         <VacanciesTable 
           vacancies={vacancies}
+          status={vacanciesLoadingStatus}
           onEdit={handleVacancyEdit}
           onDelete={handleVacancyDelete}
         />
@@ -240,20 +250,26 @@ const Editor: React.FC = () => {
           <SubTitle>{t('gallery')}</SubTitle>
           <AddGalleryImageModal />
         </SectionHeader>
-        <GalleryImagesList>
-          {galleryImages.map(image => (
-            <GalleryImageItem key={uuid()}>
-              <Image src={image.url} />
-              <RoundedButton
-                type={ButtonType.Button}
-                color={ButtonColor.Danger}
-                onClick={() => handleGalleryImageDelete(image._id!)}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </RoundedButton>
-            </GalleryImageItem>
-          ))}
-        </GalleryImagesList>
+        {
+          galleryLoadingStatus === 'succeeded' ? (
+            <GalleryImagesList>
+              {galleryImages.map(image => (
+                <GalleryImageItem key={uuid()}>
+                  <Image src={image.url} />
+                  <RoundedButton
+                    type={ButtonType.Button}
+                    color={ButtonColor.Danger}
+                    onClick={() => handleGalleryImageDelete(image._id!)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </RoundedButton>
+                </GalleryImageItem>
+              ))}
+            </GalleryImagesList>
+          ) : (
+            <Loader />
+          )
+        }
       </Section>
     </Container>
   );

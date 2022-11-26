@@ -6,7 +6,7 @@ import {v4 as uuid} from 'uuid';
 import { useTranslation } from 'react-i18next';
 import { AppDispatch } from '../../features/store';
 import { setLanguage } from '../../features/user/reducers';
-import { selectLanguage, selectUser } from '../../features/user/selectors';
+import { selectLanguage, selectUser, selectUserStatus } from '../../features/user/selectors';
 import { formatObjectKey } from '../../helpers/helpers';
 import { SCREENS } from '../../services/screens';
 import DeleteUserModal from '../modals/DeleteUserModal';
@@ -14,6 +14,7 @@ import EditUserDataModal from '../modals/EditUserDataModal';
 import UpdateAvatarModal from '../modals/UpdateAvatarModal';
 import UpdatePasswordModal from '../modals/UpdatePasswordModal';
 import i18 from '../../services/languageConfig';
+import Loader from '../ui/Loader';
 
 
 const Section = styled.section`
@@ -137,6 +138,7 @@ const Profile: React.FC = () => {
   const { t } = useTranslation(['settingTabsProfile']);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
+  const userLoadingStatus = useSelector(selectUserStatus);
   const language = useSelector(selectLanguage);
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -144,6 +146,10 @@ const Profile: React.FC = () => {
     localStorage.setItem('language', e.target.value);
     dispatch(setLanguage(e.target.value));
   };
+
+  if(userLoadingStatus === 'loading') {
+    return <Loader />;
+  }
 
   return (
     <Section>
