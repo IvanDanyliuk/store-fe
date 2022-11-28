@@ -23,6 +23,7 @@ import { deleteReview, getProductReviews, updateReview } from '../features/revie
 import { selectReviews } from '../features/reviews/selectors';
 import { IReview } from '../features/reviews/types';
 import { SUCCESS_COLOR, DANGER_COLOR, PRODUCT_RATING_STAR_COLOR } from '../services/constants';
+import Loader from '../components/ui/Loader';
 
 
 const ProductBody = styled.div`
@@ -468,9 +469,7 @@ const Product: React.FC = () => {
   }, [product]);
   
   if(status === 'loading') {
-    return (
-      <div>Loading...</div>
-    );
+    return <Loader />;
   }
 
   return (

@@ -10,6 +10,7 @@ import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '.
 import { getVacancies } from '../features/vacancies/asyncActions';
 import PageListPagination from '../components/ui/PageListPagination';
 import { VACANCIES_PER_PAGE } from '../services/constants';
+import Loader from '../components/ui/Loader';
 
 
 const Container = styled.div`
@@ -94,7 +95,7 @@ const Careers: React.FC = () => {
       <Content>
         {
           status === 'loading' ? (
-            <Message>{t('vacanciesLoading')}</Message>
+            <Loader />
           ) : 
           vacancies.length > 0 ? (
             <VacanciesList>
