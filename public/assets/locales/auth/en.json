@@ -11,5 +11,10 @@
   "city": "City",
   "avatarImg": "Profile Photo",
   "accountExists": "Already have an account? Sign In",
-  "noAccount": "Don't have an account? Sign Up"
+  "noAccount": "Don't have an account? Sign Up",
+  "alertSignupMessage": "Cannot sign up. Try again.",
+  "alertSigninMessage": "Cannot signin. Try again.",
+  "alertUpdateUserMessage": "Cannot update the user data.",
+  "alertUpdatePasswordMessage": "Cannot update the password.",
+  "alertDeleteUserMessage": "Cannot delete a user."
 }

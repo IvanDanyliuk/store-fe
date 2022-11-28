@@ -1,5 +1,8 @@
 {
   "popular": "Популярні продукти",
   "subscriptionTitle": "Ваша підписка",
-  "subscriptionText": "Кращі ціни, круті акції та персональні пропозиції в Вашій розсилці"
+  "subscriptionText": "Кращі ціни, круті акції та персональні пропозиції в Вашій розсилці",
+  "alertGetGalleryImagesMessage": "Не вдалося завантажити зображення",
+  "alertAddGalleryImageMessage": "Не вдалося додати злбраження. Спробуйте ще",
+  "alertDeleteGalleryImageMessage": "Не вдалося видалити зображення"
 }

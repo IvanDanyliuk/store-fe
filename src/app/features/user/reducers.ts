@@ -46,7 +46,7 @@ const userSlice = createSlice({
       })
       .addCase(signup.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertSignupMessage';
       })
       .addCase(signin.pending, (state, action) => {
         state.status = 'loading';
@@ -57,7 +57,7 @@ const userSlice = createSlice({
       })
       .addCase(signin.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertSigninMessage';
       })
       .addCase(updateUser.pending, (state, action) => {
         state.status = 'loading';
@@ -68,7 +68,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdateUserMessage';
       })
       .addCase(updatePassword.pending, (state, action) => {
         state.status = 'loading';
@@ -79,7 +79,7 @@ const userSlice = createSlice({
       })
       .addCase(updatePassword.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdatePasswordMessage';
       })
       .addCase(deleteUser.pending, (state, action) => {
         state.status = 'loading';
@@ -90,7 +90,7 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertDeleteUserMessage';
       })
   }
 });

@@ -7,5 +7,13 @@
   "payment": "Payment Methods",
   "reviews": "Reviews",
   "reviewAdvantages": "Advantages",
-  "reviewDisadvantages": "Disadvantages"
+  "reviewDisadvantages": "Disadvantages",
+  "alertGetProductsMessage": "Cannot get products.",
+  "alertGetTopProductsMessage": "Cannot get top products.",
+  "alertGetProductMessage": "Cannot get a product.",
+  "alertFindProductsMessage": "Cannot find the products on your request.",
+  "alertGetBrandsMessage": "Cannot get brands.",
+  "alertCreateProductMessage": "Cannot create a product. Try again.",
+  "alertUpdateProductMessage": "Cannot update a product. Try again.",
+  "alertDeleteProductMessage": "Cannot delete a product."
 }

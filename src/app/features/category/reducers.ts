@@ -35,7 +35,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(getCategories.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetCategoriesMessage';
       })
       .addCase(createCategory.pending, (state, action) => {
         state.status = 'loading';
@@ -46,7 +46,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(createCategory.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'Category must contain a title. Fill the form!';
+        state.error = 'alertCreateCategoryMessage';
       })
       .addCase(updateCategory.pending, (state, action) => {
         state.status = 'loading';
@@ -57,7 +57,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdateCategoryMessage';
       })
       .addCase(deleteCategory.pending, (state, action) => {
         state.status = 'loading';
@@ -68,7 +68,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(deleteCategory.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertDeleteCategoryMessage';
       })
   }
 });

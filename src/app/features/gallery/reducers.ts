@@ -23,7 +23,7 @@ const gallerySlice = createSlice({
       })
       .addCase(getGalleryImages.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetGalleryImagesMessage';
       })
       .addCase(addGalleryImage.pending, (state, action) => {
         state.status = 'loading';
@@ -34,7 +34,7 @@ const gallerySlice = createSlice({
       })
       .addCase(addGalleryImage.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertAddGalleryImageMessage';
       })
       .addCase(deleteGalleryImage.pending, (state, action) => {
         state.status = 'loading';
@@ -42,6 +42,10 @@ const gallerySlice = createSlice({
       .addCase(deleteGalleryImage.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.imageUrls = state.imageUrls.filter(image => image._id !== action.meta.arg)
+      })
+      .addCase(deleteGalleryImage.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'alertDeleteGalleryImageMessage';
       })
   }
 });

@@ -17,7 +17,7 @@ import { AppDispatch } from '../features/store';
 import { selectUser } from '../features/user/selectors';
 import { createOrder, updateOrder } from '../features/order/asyncActions';
 import { useNavigate } from 'react-router-dom';
-import { selectErrorStatus, selectOrder } from '../features/order/selectors';
+import { selectOrderError, selectOrder } from '../features/order/selectors';
 import { clearCart } from '../features/cart/reducers';
 import { clearOrder, clearOrderToUpdate } from '../features/order/reducers';
 import { calculateOrderTotalAmount } from '../helpers/helpers';
@@ -213,7 +213,7 @@ const Order: React.FC = () => {
   const cart: ICartItem[] = useSelector(selectCartData);
   const shippings = useSelector(selectShippings);
   const shippingStatus = useSelector(selectShippingStatus);
-  const errorStatus = useSelector(selectErrorStatus);
+  const errorStatus = useSelector(selectOrderError);
   
   const totalAmount = calculateOrderTotalAmount(order ? order.products : cart);
 

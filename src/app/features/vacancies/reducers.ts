@@ -38,7 +38,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(getVacancies.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetVacanciesMessage';
       })
       .addCase(getVacancy.pending, (state, action) => {
         state.status = 'loading';
@@ -49,7 +49,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(getVacancy.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetVacancyMessage';
       })
       .addCase(createVacancy.pending, (state, action) => {
         state.status = 'loading';
@@ -60,7 +60,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(createVacancy.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertCreateVacancyMessage';
       })
       .addCase(updateVacancy.pending, (state, action) => {
         state.status = 'loading';
@@ -71,7 +71,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(updateVacancy.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdateVacancyMessage';
       })
       .addCase(deleteVacancy.pending, (state, action) => {
         state.status = 'loading';
@@ -82,7 +82,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(deleteVacancy.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'aletDeleteVacancyMessage';
       })
   }
 });

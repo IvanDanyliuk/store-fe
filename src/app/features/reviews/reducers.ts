@@ -30,7 +30,7 @@ const reviewSlice = createSlice({
       })
       .addCase(getUserReviews.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetReviewsMessage';
       })
       .addCase(getProductReviews.pending, (state, action) => {
         state.status = 'loading';
@@ -41,7 +41,7 @@ const reviewSlice = createSlice({
       })
       .addCase(getProductReviews.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetReviewsMessage';
       })
       .addCase(createReview.pending, (state, action) => {
         state.status = 'loading';
@@ -52,7 +52,7 @@ const reviewSlice = createSlice({
       })
       .addCase(createReview.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertCreateReivewMessage';
       })
       .addCase(updateReview.pending, (state, action) => {
         state.status = 'loading';
@@ -60,6 +60,10 @@ const reviewSlice = createSlice({
       .addCase(updateReview.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.reviews = state.reviews.map(review => review._id === action.meta.arg.id ? action.meta.arg.updatedReview : review)
+      })
+      .addCase(updateReview.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'alertUpdateReviewMessage'
       })
       .addCase(deleteReview.pending, (state, action) => {
         state.status = 'loading';
@@ -70,11 +74,9 @@ const reviewSlice = createSlice({
       })
       .addCase(deleteReview.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertDeleteReviewMessage';
       })
   }
 });
-
-// export const {  } = reviewSlice.actions;
 
 export default reviewSlice.reducer;

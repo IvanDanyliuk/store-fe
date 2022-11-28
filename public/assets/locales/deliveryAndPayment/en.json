@@ -5,5 +5,9 @@
   "paymentCash": "Cash settlement upon receipt of goods in chain stores, courier upon receipt of goods",
   "paymentVisaMasterCard": "Visa/MasterCard",
   "paymentLegalEntities": "Cashless for legal entities",
-  "paymentCredit": "Bank credit"
+  "paymentCredit": "Bank credit",
+  "alertGetShippingsMessage": "Cannot get the shipping options list.",
+  "alertCreateShippingMessage": "Cannot create a shipping option.",
+  "alertUpdateShippingMessage": "Cannot update a shipping option.",
+  "alertDeleteShippingMessage": "Cannot delete a shipping option."
 }

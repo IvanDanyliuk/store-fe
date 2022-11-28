@@ -1,5 +1,9 @@
 {
   "advantages": "Advantages:",
   "disadvantages": "Disadvantages:",
-  "noReviews": "You don't have any reviews"
+  "noReviews": "You don't have any reviews",
+  "alertGetReviewsMessage": "Cannot get any reviews.",
+  "alertCreateReivewMessage": "Cannot create a review.",
+  "alertUpdateReviewMessage": "Cannot update a review. Try again.",
+  "alertDeleteReviewMessage": "Cannot delete a review."
 }

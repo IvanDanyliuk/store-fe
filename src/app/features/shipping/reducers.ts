@@ -38,7 +38,7 @@ const shippingSlice = createSlice({
       })
       .addCase(getShippings.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetShippingsMessage';
       })
       .addCase(createShipping.pending, (state, action) => {
         state.status = 'loading';
@@ -49,7 +49,7 @@ const shippingSlice = createSlice({
       })
       .addCase(createShipping.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertCreateShippingMessage';
       })
       .addCase(updateShipping.pending, (state, action) => {
         state.status = 'loading';
@@ -60,7 +60,7 @@ const shippingSlice = createSlice({
       })
       .addCase(updateShipping.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdateShippingMessage';
       })
       .addCase(deleteShipping.pending, (state, action) => {
         state.status = 'loading';
@@ -71,7 +71,7 @@ const shippingSlice = createSlice({
       })
       .addCase(deleteShipping.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertDeleteShippingMessage';
       })
   }
 });

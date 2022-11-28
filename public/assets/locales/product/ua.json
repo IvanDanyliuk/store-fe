@@ -7,5 +7,13 @@
   "payment": "Спосіб оплати",
   "reviews": "Огляди",
   "reviewAdvantages": "Переваги",
-  "reviewDisadvantages": "Недоліки"
+  "reviewDisadvantages": "Недоліки",
+  "alertGetProductsMessage": "Не вдалося завантажити товари",
+  "alertGetTopProductsMessage": "Не вдалося завантажити популярні товари",
+  "alertGetProductMessage": "Не вдалося завантажити товар",
+  "alertFindProductsMessage": "Товари за Вашим запитом не знайдені",
+  "alertGetBrandsMessage": "Не вдалося завантажити бренди",
+  "alertCreateProductMessage": "Не вдалося створити товар. Спробуйте ще",
+  "alertUpdateProductMessage": "Не вдалося змінити товар. Спробуйте ще",
+  "alertDeleteProductMessage": "Не вдалося видалити товар"
 }

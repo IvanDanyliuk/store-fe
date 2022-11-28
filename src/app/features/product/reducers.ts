@@ -52,7 +52,7 @@ const productsSlice = createSlice({
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetProductsMessage';
       })
       .addCase(getTopProducts.pending, (state, action) => {
         state.status = 'loading';
@@ -63,7 +63,7 @@ const productsSlice = createSlice({
       })
       .addCase(getTopProducts.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetTopProductsMessage';
       })
       .addCase(getProduct.pending, (state, action) => {
         state.status = 'loading';
@@ -74,7 +74,7 @@ const productsSlice = createSlice({
       })
       .addCase(getProduct.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetProductMessage';
       })
       .addCase(findProducts.pending, (state, action) => {
         state.status = 'loading';
@@ -85,7 +85,7 @@ const productsSlice = createSlice({
       })
       .addCase(findProducts.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertFindProductsMessage';
       })
       .addCase(getBrands.pending, (state, action) => {
         state.status = 'loading';
@@ -96,7 +96,7 @@ const productsSlice = createSlice({
       })
       .addCase(getBrands.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetBrandsMessage';
       })
       .addCase(createProduct.pending, (state, action) => {
         state.status = 'loading';
@@ -107,7 +107,7 @@ const productsSlice = createSlice({
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertCreateProductMessage';
       })
       .addCase(updateProduct.pending, (state, action) => {
         state.status = 'loading';
@@ -119,7 +119,7 @@ const productsSlice = createSlice({
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdateProductMessage';
       })
       .addCase(deleteProduct.pending, (state, action) => {
         state.status = 'loading';
@@ -130,7 +130,7 @@ const productsSlice = createSlice({
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertDeleteProductMessage';
       })
   },
 });

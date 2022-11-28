@@ -1,5 +1,9 @@
 {
   "advantages": "Переваги:",
   "disadvantages": "Недоліки:",
-  "noReviews": "У вас немає оглядів"
+  "noReviews": "У вас немає відгуків",
+  "alertGetReviewsMessage": "Не вдалося завантажити відгук",
+  "alertCreateReivewMessage": "Не вдалося створити відгук. Спробуйте ще",
+  "alertUpdateReviewMessage": "Не вдалося змінити відгук. Спробуйте ще",
+  "alertDeleteReviewMessage": "Не вдалося видалити відгук"
 }

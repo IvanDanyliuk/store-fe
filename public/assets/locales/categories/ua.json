@@ -1,0 +1,6 @@
+{
+  "alertGetCategoriesMessage": "Не вдалося завантажити категорії",
+  "alertCreateCategoryMessage": "Щось пішло не так! Не вдалося створити катеорію",
+  "alertUpdateCategoryMessage": "Не вдалося змінити категорію. Спробуйте ще",
+  "alertDeleteCategoryMessage": "Не вдалося видалити категорію"
+}

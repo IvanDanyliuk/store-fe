@@ -54,7 +54,7 @@ const ordersSlice = createSlice({
       })
       .addCase(getOrders.rejected, (state, action) =>{
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetOrdersMessage';
       })
       .addCase(getUserOrders.pending, (state, action) => {
         state.status = 'loading';
@@ -65,7 +65,7 @@ const ordersSlice = createSlice({
       })
       .addCase(getUserOrders.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertGetOrdersMessage';
       })
       .addCase(createOrder.pending, (state, action) => {
         state.status = 'loading';
@@ -76,7 +76,7 @@ const ordersSlice = createSlice({
       })
       .addCase(createOrder.rejected, (state, action) =>{
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertCreateOrderMessage';
       })
       .addCase(updateOrder.pending, (state, action) => {
         state.status = 'loading';
@@ -88,7 +88,7 @@ const ordersSlice = createSlice({
       })
       .addCase(updateOrder.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertUpdateOrderMessage';
       })
       .addCase(deleteOrder.pending, (state, action) => {
         state.status = 'loading';
@@ -99,7 +99,7 @@ const ordersSlice = createSlice({
       })
       .addCase(deleteOrder.rejected, (state, action) =>{
         state.status = 'failed';
-        state.error = 'error';
+        state.error = 'alertDeleteOrderMessage';
       })
   }
 });
