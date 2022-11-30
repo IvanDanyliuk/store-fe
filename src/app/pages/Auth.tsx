@@ -1,18 +1,22 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import tw from 'twin.macro';
 import { storage } from '../../firebase';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ButtonColor, ButtonType } from '../../types/types';
 import Button from '../components/ui/Button';
-import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../features/store';
 import { signin, signup } from '../features/user/asyncActions';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/inputs/Input';
 import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
 import FormErrorMessage from '../components/ui/FormErrorMessage';
+import { selectError, selectUserStatus } from '../features/user/selectors';
+import { clearError } from '../features/user/reducers';
 
 
 const Container = styled.div`
@@ -70,6 +74,9 @@ const Auth: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
+  const status = useSelector(selectUserStatus);
+  const authError = useSelector(selectError);
+
   const [isSignIn, setIsSignIn] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
   const [error, setError] = useState('');
@@ -88,6 +95,8 @@ const Auth: React.FC = () => {
     isAdmin: false,
   });
 
+  const notify = () => toast.error(t(authError!));
+
   const handleModeChange = () => {
     setIsSignIn(!isSignIn);
     clearForm();
@@ -99,6 +108,9 @@ const Auth: React.FC = () => {
   };
 
   const handleUserDataChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if(status === 'failed') {
+      dispatch(clearError());
+    } 
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
@@ -159,8 +171,10 @@ const Auth: React.FC = () => {
       if(isDataValid) {
         try {
           await dispatch(signin({ email: userData.email, password: userData.password }));
-          clearForm();
-          navigate('/');
+          if(status === 'succeeded') {
+            clearForm();
+            navigate('/');
+          }
         } catch (error) {
           const message = t('wrong');
           setError(message);
@@ -179,6 +193,12 @@ const Auth: React.FC = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if(authError) {
+      notify();
+    }
+  }, [status]);
 
   return (
     <Container>
@@ -267,6 +287,12 @@ const Auth: React.FC = () => {
             </ChangeModeBtn>
           </Actions>
         </AuthForm>
+        {status === 'failed' && (
+          <ToastContainer
+            position='bottom-right' 
+            theme='colored'
+          />
+        )}
       </AuthContainer>
     </Container>
   );
