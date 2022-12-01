@@ -50,6 +50,7 @@ export default {
   bmOverlay: {
     position: 'fixed',
     top: '0px',
+    left: '0px',
     background: 'rgba(0, 0, 0, 0.3)',
   },
 };
