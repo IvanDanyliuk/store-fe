@@ -24,6 +24,7 @@ const vacanciesSlice = createSlice({
       state.vacancy = null;
     },
     clearVacancyError: (state) => {
+      state.status = 'idle';
       state.error = null;
     }
   },

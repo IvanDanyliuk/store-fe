@@ -42,6 +42,10 @@ const ordersSlice = createSlice({
       state.status = 'idle';
       state.orders.data = [];
     },
+    clearOrderError: (state) => {
+      state.status = 'idle';
+      state.error = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -110,7 +114,8 @@ export const {
   clearOrderToUpdate, 
   increaseOrderProductQuantity, 
   decreaseOrderProductQuantity, 
-  removeProductFromOrder 
+  removeProductFromOrder, 
+  clearOrderError
 } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

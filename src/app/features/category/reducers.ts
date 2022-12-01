@@ -21,6 +21,7 @@ const categoriesSlice = createSlice({
       state.category = null;
     },
     clearError: (state) => {
+      state.status = 'idle';
       state.error = null;
     }
   },

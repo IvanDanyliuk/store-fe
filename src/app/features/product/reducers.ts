@@ -35,6 +35,7 @@ const productsSlice = createSlice({
       state.product = null;
     },
     clearProductError: (state) => {
+      state.status = 'idle';
       state.error = null;
     },
     clearSearchData: (state) => {

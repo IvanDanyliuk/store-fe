@@ -6,8 +6,5 @@
   "paymentVisaMasterCard": "Оплата карткою Visa/MasterCard",
   "paymentLegalEntities": "Безготівковий розрахунок для юридичних осіб",
   "paymentCredit": "Бінківський кредит",
-  "alertGetShippingsMessage": "Не вдалося завантажити способи доставки",
-  "alertCreateShippingMessage": "Не вдалося створити спосіб доставки",
-  "alertUpdateShippingMessage": "Не вдалося змінити спосіб доставки",
-  "alertDeleteShippingMessage": "Не вдалося видалити спосіб доставки"
+  "shippingMethodsNotFoundMessage": "Не знайдено доступних способів доставки"
 }

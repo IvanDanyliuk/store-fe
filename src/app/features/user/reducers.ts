@@ -31,7 +31,7 @@ const userSlice = createSlice({
       state.language = action.payload;
     },
     clearError: (state) => {
-      state.status = 'succeeded';
+      state.status = 'idle';
       state.error = null;
     },
   },

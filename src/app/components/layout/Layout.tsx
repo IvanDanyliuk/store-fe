@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { ILayout } from '../../../types/types';
+import ServerErrorAlert from '../ui/ServerErrorAlert';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -33,6 +34,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
         {children}
       </Content>
       <Footer />
+      <ServerErrorAlert />
     </Container>
   );
 };

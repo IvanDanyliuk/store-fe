@@ -1,10 +1,5 @@
 {
   "title": "Вакансії",
   "loading": "Завантаження",
-  "vacanciesErrorMessage": "Не вдалося знайти доступних вакансій",
-  "alertGetVacanciesMessage": "Вакансії не знайдені",
-  "alertGetVacancyMessage": "Не вдалося завантажити вакансію",
-  "alertCreateVacancyMessage": "Не вдалося створити вакансія. Спробуйте ще",
-  "alertUpdateVacancyMessage": "Не вдалося змінити вакансію. Спробуйте ще",
-  "aletDeleteVacancyMessage": "Не вдалося видалити вакансію"
+  "vacanciesErrorMessage": "Не вдалося знайти доступних вакансій"
 }

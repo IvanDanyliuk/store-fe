@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { AppDispatch } from '../features/store';
 import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus, selectVacancyError } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
@@ -83,16 +81,7 @@ const Careers: React.FC = () => {
   const [page, setPage] = useState(1);
   const vacancies = useSelector(selectVacancies);
   const status = useSelector(selectVacancyStatus);
-  const error = useSelector(selectVacancyError);
   const pageCount = useSelector(selectVacancyPagesCount);
-
-  const notify = () => toast.error(t(error!));
-
-  useEffect(() => {
-    if(error) {
-      notify();
-    }
-  }, [status]);
 
   useEffect(() => {
     dispatch(getVacancies({ page, itemsPerPage: VACANCIES_PER_PAGE }));
@@ -131,12 +120,6 @@ const Careers: React.FC = () => {
         pageCount={pageCount} 
         setPage={setPage} 
       />
-      {status === 'failed' && (
-        <ToastContainer
-          position='bottom-right' 
-          theme='colored'
-        />
-      )}
     </Container>
   );
 };

@@ -20,9 +20,5 @@
   "paymentCardNumber": "Номер картки",
   "paymentValidThru": "Дійсна до",
   "paymentPayBtn": "Оплатити",
-  "noOrdersMessage": "У Вас ще немає замовлень!",
-  "alertGetOrdersMessage": "Не вдалося завантажити замовлення",
-  "alertCreateOrderMessage": "Не вдалося створити замовлення. Спробуйте ще",
-  "alertUpdateOrderMessage": "Не вдалося змінити замовлення. Спробуйте ще",
-  "alertDeleteOrderMessage": "Не вдалося видалити замовлення"
+  "noOrdersMessage": "У Вас ще немає замовлень!"
 }

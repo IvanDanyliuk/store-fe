@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { getShippings } from '../features/shipping/asyncActions';
 import { selectShippings } from '../features/shipping/selectors';
 import { AppDispatch } from '../features/store';
+import { IShipping } from '../features/shipping/types';
 
 
 const Container = styled.div`
@@ -49,6 +50,17 @@ const SectionContentItem = styled.li`
 
 const Text = styled.span``;
 
+const Message = styled.div`
+  ${tw`
+    w-full
+    h-full
+    flex
+    justify-center
+    md:justify-start
+    items-center
+  `}
+`;
+
 
 const DeliveryAndPayment: React.FC = () => {
   const { t } = useTranslation(['deliveryAndPayment']);
@@ -66,11 +78,13 @@ const DeliveryAndPayment: React.FC = () => {
         {t('deliveryTitle')}
       </SectionTitle>
       <SectionContent>
-        {shippingMethods.map(shipping => (
+        {shippingMethods.length > 0 ? shippingMethods.map((shipping: IShipping) => (
           <SectionContentItem key={uuid()}>
             {shipping.company}
           </SectionContentItem>
-        ))}
+        )) : (
+          <Message>{t('shippingMethodsNotFoundMessage')}</Message>
+        )}
       </SectionContent>
       <SectionTitle>
         {t('paymentMethods')}

@@ -1,6 +1,0 @@
-{
-  "alertGetCategoriesMessage": "Cannot load catogories.",
-  "alertCreateCategoryMessage": "Something went wrong! Category creation failed.",
-  "alertUpdateCategoryMessage": "Cannot update category. Try again.",
-  "alertDeleteCategoryMessage": "Cannot delete a category."
-}

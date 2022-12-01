@@ -24,6 +24,7 @@ const shippingSlice = createSlice({
       state.error = action.payload;
     },
     clearShippingError: (state) => {
+      state.status = 'idle';
       state.error = null;
     }
   },

@@ -20,9 +20,5 @@
   "paymentCardNumber": "Card number",
   "paymentValidThru": "Valid thru",
   "paymentPayBtn": "Pay",
-  "noOrdersMessage": "You don't have orders yet!",
-  "alertGetOrdersMessage": "Cannot get orders.",
-  "alertCreateOrderMessage": "Cannot create an order. Try again.",
-  "alertUpdateOrderMessage": "Cannot update an order. Try again.",
-  "alertDeleteOrderMessage": "Cannot delete an order."
+  "noOrdersMessage": "You don't have orders yet!"
 }

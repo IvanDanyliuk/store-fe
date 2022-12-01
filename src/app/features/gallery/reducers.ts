@@ -11,7 +11,12 @@ const initialState: IGalleryState = {
 const gallerySlice = createSlice({
   name: 'gallery',
   initialState,
-  reducers: {},
+  reducers: {
+    clearGalleryError: (state) => {
+      state.status = 'idle';
+      state.error = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getGalleryImages.pending, (state, action) => {
@@ -49,5 +54,7 @@ const gallerySlice = createSlice({
       })
   }
 });
+
+export const { clearGalleryError } = gallerySlice.actions;
 
 export default gallerySlice.reducer;

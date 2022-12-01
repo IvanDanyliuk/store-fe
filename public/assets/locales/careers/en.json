@@ -1,10 +1,5 @@
 {
   "title": "Vacancies",
   "loading": "Loading...",
-  "vacanciesErrorMessage": "Can't find any available vacamcies.",
-  "alertGetVacanciesMessage": "Cannot get vacancies.",
-  "alertGetVacancyMessage": "Cannot get the current vacancy.",
-  "alertCreateVacancyMessage": "Cannot create a vacancy. Try again.",
-  "alertUpdateVacancyMessage": "Cannot update a vacancy. Try again.",
-  "aletDeleteVacancyMessage": "Cannot delete a vacancy."
+  "vacanciesErrorMessage": "Can't find any available vacamcies."
 }

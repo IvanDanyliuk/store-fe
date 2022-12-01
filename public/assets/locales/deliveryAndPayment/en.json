@@ -6,8 +6,5 @@
   "paymentVisaMasterCard": "Visa/MasterCard",
   "paymentLegalEntities": "Cashless for legal entities",
   "paymentCredit": "Bank credit",
-  "alertGetShippingsMessage": "Cannot get the shipping options list.",
-  "alertCreateShippingMessage": "Cannot create a shipping option.",
-  "alertUpdateShippingMessage": "Cannot update a shipping option.",
-  "alertDeleteShippingMessage": "Cannot delete a shipping option."
+  "shippingMethodsNotFoundMessage": "There are no available shipping methods"
 }
