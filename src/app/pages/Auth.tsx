@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/inputs/Input';
 import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
 import FormErrorMessage from '../components/ui/FormErrorMessage';
-import { selectError, selectUserStatus } from '../features/user/selectors';
+import { selectUserStatus } from '../features/user/selectors';
 
 
 const Container = styled.div`
