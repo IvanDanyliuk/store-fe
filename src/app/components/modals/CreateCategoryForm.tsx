@@ -6,6 +6,8 @@ import { v4 as uuid } from 'uuid';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../../firebase';
 import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -119,6 +121,7 @@ const CreateCategoryForm: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState('');
+  const [progressPercent, setProgressPercent] = useState(0);
 
   const [mainCategory, setMainCategory] = useState({
     title: '',
@@ -128,6 +131,7 @@ const CreateCategoryForm: React.FC = () => {
   const [subCategory, setSubCategory] = useState({
     title: '',
     url: '',
+    image: '',
   });
 
   const [subCategories, setSubCategories] = useState<any>([]);
@@ -140,6 +144,7 @@ const CreateCategoryForm: React.FC = () => {
     setSubCategory({
       title: '',
       url: '',
+      image: ''
     });
     setSubCategories([]);
   };
@@ -176,6 +181,33 @@ const CreateCategoryForm: React.FC = () => {
     });
   };
 
+  const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const file = e.target?.files?.[0];
+    if(!file) return;
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadData = uploadBytesResumable(storageRef, file);
+
+    uploadData.on('state_changed', 
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgressPercent(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadData.snapshot.ref).then((downloadUrl) => {
+          setSubCategory({
+            ...subCategory,
+            image: downloadUrl
+          })
+        });
+      }
+    );
+  };
+
   const handleAddSubCategory = (e: SyntheticEvent) => {
     e.preventDefault();
     if(subCategory.title && subCategory.url) {
@@ -184,6 +216,7 @@ const CreateCategoryForm: React.FC = () => {
     setSubCategory({
       title: '',
       url: '',
+      image: '',
     });
   };
 
@@ -295,13 +328,17 @@ const CreateCategoryForm: React.FC = () => {
               value={mainCategory.title}
               onChange={handleMainCategoryChange}
             />
-          </Inputs>
-          <Inputs>
             <Input 
               name='title'
               label={t('categorySubName')}
               value={subCategory.title}
               onChange={handleSubCategoryChange}
+            />
+            <Input 
+              name='image'
+              label={t('categoryImage')}
+              type='file'
+              onChange={handleUploadImage}
             />
             <Button
               color={ButtonColor.Secondary}
@@ -318,9 +355,9 @@ const CreateCategoryForm: React.FC = () => {
                   <DeleteBtn 
                     type='button' 
                     onClick={() => handleDeleteSubCategory(category.title)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </DeleteBtn>
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </DeleteBtn>
                 </SubCategoryListItem>
               ))}
               </SubCategoriesList>

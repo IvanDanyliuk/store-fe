@@ -32,16 +32,22 @@ const CategoryItem = styled.li`
   `}
 `;
 
-const CategoryLink = styled(Link)``;
+const CategoryLink = styled(Link)`
+  ${tw`
+    text-center
+  `}
+`;
 
 const Image = styled.img`
   ${tw`
+    m-auto
     h-44
   `}
 `;
 
 const Title = styled.h4`
   ${tw`
+    mt-1
     text-sm
     text-center
     font-semibold
@@ -65,7 +71,7 @@ const CategoryList: React.FC<ISubCategoriesProps> = ({ category }) => {
         ?.subCategories.map(item => (
           <CategoryItem key={uuid()}>
             <CategoryLink to={`/products/${item.url}`}>
-              <Image src={''} alt={item.title} />
+              <Image src={item.image} alt={item.title} />
               <Title>{item.title}</Title>
             </CategoryLink>
           </CategoryItem>
