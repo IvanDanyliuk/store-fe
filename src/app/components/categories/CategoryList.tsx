@@ -34,14 +34,18 @@ const CategoryItem = styled.li`
 
 const CategoryLink = styled(Link)`
   ${tw`
+    h-full
     text-center
+    flex
+    flex-col
+    content-between 
   `}
 `;
 
 const Image = styled.img`
   ${tw`
     m-auto
-    h-44
+    max-h-44
   `}
 `;
 
