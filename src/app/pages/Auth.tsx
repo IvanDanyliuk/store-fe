@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/inputs/Input';
 import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
 import FormErrorMessage from '../components/ui/FormErrorMessage';
-import { selectUserStatus } from '../features/user/selectors';
+import { selectUser } from '../features/user/selectors';
 
 
 const Container = styled.div`
@@ -71,7 +71,7 @@ const Auth: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const status = useSelector(selectUserStatus);
+  const user = useSelector(selectUser);
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
@@ -182,11 +182,11 @@ const Auth: React.FC = () => {
   };
 
   useEffect(() => {
-    if(status === 'succeeded') {
+    if(user) {
       clearForm();
       navigate('/');
     }
-  }, [status]);
+  }, [user]);
 
   return (
     <Container>
