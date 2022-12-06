@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PRODUCTS_PER_TABLE } from '../../services/constants';
 import {  
   getProducts, 
   getTopProducts,
@@ -104,7 +105,7 @@ const productsSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products.data.push(action.payload);
+        state.products.data.length < PRODUCTS_PER_TABLE && state.products.data.push(action.payload);
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.status = 'failed';
