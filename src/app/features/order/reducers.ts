@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { limitDecreasing, limitIncreasing } from '../../helpers/helpers';
+import { ORDERS_PER_TABLE } from '../../services/constants';
 import { ICartItem } from '../cart/types';
 import { getOrders, getUserOrders, createOrder, updateOrder, payOrder, deleteOrder } from './asyncActions';
 import { IOrderState } from './types';
@@ -76,7 +77,7 @@ const ordersSlice = createSlice({
       })
       .addCase(createOrder.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.orders.data.push(action.payload);
+        state.orders.data.length < ORDERS_PER_TABLE && state.orders.data.push(action.payload);
       })
       .addCase(createOrder.rejected, (state, action) =>{
         state.status = 'failed';

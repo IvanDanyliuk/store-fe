@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { VACANCIES_PER_TABLE } from '../../services/constants';
 import { getVacancies, getVacancy, createVacancy,updateVacancy, deleteVacancy } from './asyncActions';
 import { IVacanciesState } from './types';
 
@@ -57,7 +58,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(createVacancy.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.vacancies.data.push(action.payload);
+        state.vacancies.data.length < VACANCIES_PER_TABLE && state.vacancies.data.push(action.payload);
       })
       .addCase(createVacancy.rejected, (state, action) => {
         state.status = 'failed';
