@@ -24,7 +24,7 @@ import {
 } from '../../services/constants';
 
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const CommentBtn = styled.button`
   ${tw`

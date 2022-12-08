@@ -21,7 +21,7 @@ import TextArea from '../inputs/TextArea';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const FormHeader = styled.div`
   ${tw`

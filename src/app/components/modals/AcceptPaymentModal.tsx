@@ -10,6 +10,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IAcceptPaymentModalProps } from '../../../types/types';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const CloseBtn = styled.button`
   ${tw`

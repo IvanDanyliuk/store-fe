@@ -28,7 +28,7 @@ import {
 } from '../../services/constants';
 
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const FormHeader = styled.div`
   ${tw`

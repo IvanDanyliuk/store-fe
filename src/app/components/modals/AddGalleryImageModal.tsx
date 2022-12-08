@@ -18,7 +18,7 @@ import { addGalleryImage } from '../../features/gallery/asyncActions';
 import { selectGalleryImages } from '../../features/gallery/selectors';
 
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const FormHeader = styled.div`
   ${tw`

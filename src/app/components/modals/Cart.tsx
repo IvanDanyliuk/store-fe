@@ -21,7 +21,7 @@ import {
 } from '../../services/constants';
 
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const Container = styled.div`
   min-height: 95%;
