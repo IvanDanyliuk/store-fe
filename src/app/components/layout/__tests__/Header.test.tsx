@@ -1,9 +1,5 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import Modal from 'react-modal';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import Header from '../Header';
-import { Provider } from 'react-redux';
-import store from '../../../features/store';
 import { renderWithProviders } from '../../../../utils/testUtils';
 
 
