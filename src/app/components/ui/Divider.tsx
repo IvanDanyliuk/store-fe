@@ -42,6 +42,7 @@ const Divider: React.FC<IDivider> = ({
         mBottom={mBottom} 
         mLeft={mLeft} 
         mRight={mRight} 
+        data-testid='horizontal-divider'
       />
     ) : (
       <VerticalLine 
@@ -50,6 +51,7 @@ const Divider: React.FC<IDivider> = ({
         mBottom={mBottom} 
         mLeft={mLeft} 
         mRight={mRight} 
+        data-testid='vertical-divider'
       />
     );
 };
