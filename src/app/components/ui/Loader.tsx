@@ -50,7 +50,7 @@ const LoaderInnerRing = styled.div`
 
 const Loader: React.FC = () => {
   return (
-    <Container>
+    <Container data-testid='loader'>
       <LoaderRing>
         <LoaderInnerRing />
         <LoaderInnerRing />
