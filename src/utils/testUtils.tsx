@@ -73,3 +73,94 @@ export const renderWithProviders = (
 
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
+
+export const renderWithProvidersErrorCase = (
+  ui: React.ReactElement,
+  {
+    preloadedState = {
+      user: {
+        status: 'failed',
+        language: 'en',
+        user: null,
+        error: 'User error'
+      },
+      category: {
+        status: 'failed',
+        category: null,
+        categories: [],
+        error: 'Category error'
+      },
+      gallery: {
+        status: 'failed',
+        imageUrls: [],
+        error: 'Gallery error'
+      },
+      order: {
+        status: 'failed',
+        order: null,
+        clientSecret: 'client_secret_unique_key',
+        orders: {
+          data: [],
+          pages: 0,
+        },
+        error: 'Order error'
+      },
+      product: {
+        status: 'failed',
+        search: [],
+        product: null,
+        products: {
+          data: [],
+          pages: 0
+        },
+        brands: [],
+        error: 'Product error'
+      },
+      reviews: {
+        status: 'failed',
+        reviews: [],
+        error: 'Reviews error'
+      },
+      shipping: {
+        status: 'failed',
+        shipping: null,
+        shippings: [],
+        error: 'Shipping error'
+      },
+      vacancies: {
+        status: 'failed',
+        vacancy: null,
+        vacancies: {
+          data: [],
+          pages: 0,
+        },
+        error: 'Vacancies error'
+      }
+    },
+    store = configureStore({
+      reducer: combineReducers({
+        user: userReducer,
+        product: productReducer,
+        category: categoryReducer,
+        shipping: shippingReducer,
+        cart: cartReducer,
+        order: orderReducer,
+        reviews: reviewsReducer,
+        vacancies: vacanciesReducer,
+        gallery: galleryReducer,
+      }),
+      preloadedState
+    }),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) => {
+  const Wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => {
+    return <MemoryRouter>
+      <Provider store={store}>
+        {children}
+      </Provider>
+    </MemoryRouter>
+  };
+
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+};

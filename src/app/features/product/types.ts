@@ -48,7 +48,7 @@ export interface IProductData {
 export interface IProductState {
   status: string;
   search: IProduct[];
-  product: IProduct | null | undefined,
+  product: IProduct | null | undefined;
   products: {
     data: IProduct[];
     pages: number;
