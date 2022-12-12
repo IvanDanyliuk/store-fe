@@ -44,6 +44,26 @@ export const renderWithProviders = (
           isAdmin: true,
         },
         error: null
+      },
+      category: {
+        status: 'succeeded',
+        category: null,
+        categories: [
+          {
+            main: {
+              title: 'Main Category Name',
+              url: 'main-category-title'
+            },
+            subCategories: [
+              {
+                title: 'Sub-category name',
+                image: 'https://www.storage.com/categories/category_1.png',
+                url: 'sub-category-name'
+              },
+            ],
+          },
+        ],
+        error: null
       }
     },
     store = configureStore({
