@@ -64,6 +64,63 @@ export const renderWithProviders = (
           },
         ],
         error: null
+      },
+      product: {
+        status: 'succeeded',
+        brands: ['Test Brand'],
+        product: null,
+        products: {
+          data: [{
+            _id: 'product_id_1',
+            brand: 'Test Brand',
+            category: {
+              main: {
+                title: 'Main Category Name',
+                url: 'main-category-title'
+              },
+              subCategory: {
+                title: 'Sub-category name',
+                url: 'sub-category-name'
+              }
+            },
+            color: '#ffffff',
+            description: 'Test Descrinption',
+            image: 'https://www.storage.com/categories/test_product.png',
+            isInStock: true,
+            price: 1000,
+            promotion: ['TOP'],
+            rating: 5,
+            shortInfo: 'Test short information',
+            title: 'Test Title'
+          }],
+          pages: 1
+        },
+        search: [
+          {
+            _id: 'product_id_1',
+            brand: 'Test Brand',
+            category: {
+              main: {
+                title: 'Main Category Name',
+                url: 'main-category-title'
+              },
+              subCategory: {
+                title: 'Sub-category name',
+                url: 'sub-category-name'
+              }
+            },
+            color: '#ffffff',
+            description: 'Test Descrinption',
+            image: 'https://www.storage.com/categories/test_product.png',
+            isInStock: true,
+            price: 1000,
+            promotion: ['TOP'],
+            rating: 5,
+            shortInfo: 'Test short information',
+            title: 'Test Title'
+          }
+        ],
+        error: null
       }
     },
     store = configureStore({
