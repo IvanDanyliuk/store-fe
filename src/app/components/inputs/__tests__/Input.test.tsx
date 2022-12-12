@@ -103,7 +103,6 @@ describe('Tests for the Input component', () => {
       />
     );
     runValueValidation('');
-    screen.debug(undefined, 300000)
     runValueValidation('Test Value');
     expect(screen.queryByText(/inputFieldRequired/)).not.toBeInTheDocument();
   });
