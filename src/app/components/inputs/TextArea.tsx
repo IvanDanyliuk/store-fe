@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { ITextArea } from '../../../types/types';
 
 
@@ -49,18 +50,19 @@ const TextArea: React.FC<ITextArea> = (
     isRequired 
   }
 ) => {
+  const { t } = useTranslation(['ui']);
   const [error, setError] = useState('');
 
   const validateFieldValue = (value: string | number) => {
     switch(true) {
       case isRequired && value === '':
-        setError('Field is required!');
+        setError(`${t('inputFieldRequired')}`);
         break;
       case typeof value === 'string' && value.length < minLength!:
-        setError(`Minimal length is ${minLength} characters`);
+        setError(`${t('inputMinLength1')} ${minLength} ${t('inputMinLength2')}`);
         break;
       case typeof value === 'string' && value.length > maxLength!:
-        setError(`Maximal length is ${maxLength} characters`);
+        setError(`${t('inputMaxLength1')} ${maxLength} ${t('inputMaxLength2')}`);
         break;
       default:
         setError('');
