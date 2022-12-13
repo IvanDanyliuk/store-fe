@@ -148,7 +148,7 @@ const AddGalleryImageModal: React.FC = () => {
           </CloseBtn>
         </FormHeader>
         <Form onSubmit={handleFormSubmit}>
-          <Input type='file' onChange={handleImageChange} />
+          <Input data-testid='input' type='file' onChange={handleImageChange} />
           <Button 
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
