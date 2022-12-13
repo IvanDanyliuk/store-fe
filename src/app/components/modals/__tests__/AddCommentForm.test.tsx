@@ -1,5 +1,4 @@
 import { fireEvent, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../../utils/testUtils';
 import AddCommentForm from '../AddCommentForm';
 
