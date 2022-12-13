@@ -127,7 +127,7 @@ const AddCommentForm: React.FC = () => {
   };
 
   const handleOpenModal = () => {
-    if(isOpen&& error) {
+    if(isOpen && error) {
       setError('');
       clearCommentForm();
     }
