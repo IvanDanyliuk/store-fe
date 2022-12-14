@@ -273,3 +273,197 @@ export const renderWithProvidersErrorCase = (
 
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
+
+export const renderWithProvidersForUpdation = (
+  ui: React.ReactElement,
+  {
+    preloadedState = {
+      user: {
+        status: 'succeeded',
+        language: 'en',
+        user: {
+          _id: 'user_1',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'j.doe@gmail.com',
+          phone: '7777777',
+          password: '123456',
+          city: 'London',
+          avatarUrl: 'https://www.storage.com/user_1_image.png',
+          wishList: [],
+          orders: [],
+          isAdmin: true,
+        },
+        error: null
+      },
+      category: {
+        status: 'succeeded',
+        category: {
+          main: {
+            title: 'Main Category Name',
+            url: 'main-category-title'
+          },
+          subCategories: [
+            {
+              title: 'Sub-category name',
+              image: 'https://www.storage.com/categories/category_1.png',
+              url: 'sub-category-name'
+            },
+          ],
+        },
+        categories: [
+          {
+            main: {
+              title: 'Main Category Name',
+              url: 'main-category-title'
+            },
+            subCategories: [
+              {
+                title: 'Sub-category name',
+                image: 'https://www.storage.com/categories/category_1.png',
+                url: 'sub-category-name'
+              },
+            ],
+          },
+        ],
+        error: null
+      },
+      product: {
+        status: 'succeeded',
+        brands: ['Test Brand'],
+        product: {
+          _id: 'product_id_1',
+          brand: 'Test Brand',
+          category: {
+            main: {
+              title: 'Main Category Name',
+              url: 'main-category-title'
+            },
+            subCategory: {
+              title: 'Sub-category name',
+              url: 'sub-category-name'
+            }
+          },
+          color: '#ffffff',
+          description: 'Test Descrinption',
+          image: 'https://www.storage.com/categories/test_product.png',
+          isInStock: true,
+          price: 1000,
+          promotion: ['TOP'],
+          rating: 5,
+          shortInfo: 'Test short information',
+          title: 'Test Title'
+        },
+        products: {
+          data: [{
+            _id: 'product_id_1',
+            brand: 'Test Brand',
+            category: {
+              main: {
+                title: 'Main Category Name',
+                url: 'main-category-title'
+              },
+              subCategory: {
+                title: 'Sub-category name',
+                url: 'sub-category-name'
+              }
+            },
+            color: '#ffffff',
+            description: 'Test Descrinption',
+            image: 'https://www.storage.com/categories/test_product.png',
+            isInStock: true,
+            price: 1000,
+            promotion: ['TOP'],
+            rating: 5,
+            shortInfo: 'Test short information',
+            title: 'Test Title'
+          }],
+          pages: 1
+        },
+        search: [
+          {
+            _id: 'product_id_1',
+            brand: 'Test Brand',
+            category: {
+              main: {
+                title: 'Main Category Name',
+                url: 'main-category-title'
+              },
+              subCategory: {
+                title: 'Sub-category name',
+                url: 'sub-category-name'
+              }
+            },
+            color: '#ffffff',
+            description: 'Test Descrinption',
+            image: 'https://www.storage.com/categories/test_product.png',
+            isInStock: true,
+            price: 1000,
+            promotion: ['TOP'],
+            rating: 5,
+            shortInfo: 'Test short information',
+            title: 'Test Title'
+          }
+        ],
+        error: null
+      },
+      cart: {
+        status: 'succeeded',
+        cart: [
+          {
+            product: {
+              _id: 'product_id_1',
+              brand: 'Test Brand',
+              category: {
+                main: {
+                  title: 'Main Category Name',
+                  url: 'main-category-title'
+                },
+                subCategory: {
+                  title: 'Sub-category name',
+                  url: 'sub-category-name'
+                }
+              },
+              color: '#ffffff',
+              description: 'Test Descrinption',
+              image: 'https://www.storage.com/categories/test_product.png',
+              isInStock: true,
+              price: 1000,
+              promotion: ['TOP'],
+              rating: 5,
+              shortInfo: 'Test short information',
+              title: 'Test Title'
+            },
+            quantity: 1
+          }
+        ],
+        error: null
+      }
+    },
+    store = configureStore({
+      reducer: combineReducers({
+        user: userReducer,
+        product: productReducer,
+        category: categoryReducer,
+        shipping: shippingReducer,
+        cart: cartReducer,
+        order: orderReducer,
+        reviews: reviewsReducer,
+        vacancies: vacanciesReducer,
+        gallery: galleryReducer,
+      }),
+      preloadedState
+    }),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) => {
+  const Wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => {
+    return <MemoryRouter>
+      <Provider store={store}>
+        {children}
+      </Provider>
+    </MemoryRouter>
+  };
+
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+};

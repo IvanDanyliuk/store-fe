@@ -77,18 +77,17 @@ const Input: React.FC<IInput> = (
 
   return (
     <Container>
-      {
-        label && (
-          <Label>{label}</Label>
-        )
-      }
-      <Field 
-        name={name} 
-        type={type ? type : 'text'}
-        value={value} 
-        onChange={onChange} 
-        onBlur={() => validateFieldValue(value!)} 
-      />
+      
+      <Label>
+        {label && label}
+        <Field 
+          name={name} 
+          type={type ? type : 'text'}
+          value={value} 
+          onChange={onChange} 
+          onBlur={() => validateFieldValue(value!)} 
+        />
+      </Label>
       <ErrorMessage>{error}</ErrorMessage>
     </Container>
   );
