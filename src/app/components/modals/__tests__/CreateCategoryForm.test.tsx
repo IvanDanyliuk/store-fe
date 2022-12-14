@@ -47,7 +47,7 @@ describe('Tests for the CreateCategoryForm component: creation case', () => {
     userEvent.click(addSubCategoryBtn);
     submitForm();
     closeForm();
-    expect(screen.queryByText('Main Category Name field is required!')).not.toBeInTheDocument();
+    expect(screen.queryByText('categoryValidationMainCategoryRequired')).not.toBeInTheDocument();
   });
 });
 

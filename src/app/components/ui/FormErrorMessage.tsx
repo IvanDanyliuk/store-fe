@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { useTranslation } from 'react-i18next';
 import { IFormErrorMessage } from '../../../types/types';
 
 
@@ -17,11 +18,12 @@ const ErrorMessage = styled.div`
 
 
 const FormErrorMessage: React.FC<IFormErrorMessage> = ({ error }) => {
+  const { t } = useTranslation(['modals']);
   return (
     <Container>
       {
         error && (
-          <ErrorMessage>{error}</ErrorMessage>
+          <ErrorMessage>{t(error)}</ErrorMessage>
         )
       }
     </Container>

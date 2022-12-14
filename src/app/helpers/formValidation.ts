@@ -11,7 +11,7 @@ type SetErrorType = (error: string) => void;
 
 export const isShippingDataValid = (data: IShipping, setError: SetErrorType) => {
   if(!data.company) {
-    setError('Company field is required!');
+    setError('shippingValidationCompanyRequired');
     return false;
   } else {
     setError('');
@@ -22,19 +22,19 @@ export const isShippingDataValid = (data: IShipping, setError: SetErrorType) => 
 export const isProductDataValid = (data: IProductData, setError: SetErrorType) => {
   switch(true) {
     case !data.title:
-      setError('Name field is required!');
+      setError('productValidationNameRequired');
       return false;
     case !data.price:
-      setError('Price field is required!');
+      setError('productValidationPriceRequired');
       return false;
     case !data.color:
-      setError('Color field is required!');
+      setError('productValidationColorRequired');
       return false;
     case !data.shortInfo:
-      setError('Short Information field is required!');
+      setError('productValidationShortInfoRequired');
       return false;
     case !data.description:
-      setError('Description field is required!');
+      setError('productValidationDescriptionRequired');
       return false;
     default:
       setError('');
@@ -45,10 +45,10 @@ export const isProductDataValid = (data: IProductData, setError: SetErrorType) =
 export const isCategoryDataValid = (data: IProductCategory, setError: SetErrorType) => {
   switch(true) {
     case !data.main.title:
-      setError('Main Category Name field is required!');
+      setError('categoryValidationMainCategoryRequired');
       return false;
     case data.subCategories.length === 0:
-      setError('Category should have at least one sub-category!');
+      setError('categoryValidationSubCategoryRequired');
       return false;
     default:
       setError('');

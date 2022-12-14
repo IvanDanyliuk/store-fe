@@ -597,7 +597,7 @@ const CreateProductForm: React.FC = () => {
                   productData.promotion.length > 0 ? productData.promotion.map((item: string) => (
                     <PromotionItem key={uuid()}>
                       <PromotionText>{item}</PromotionText>
-                      <DeletePromotionBtn onClick={() => handlePromotionDelete(item)}>
+                      <DeletePromotionBtn data-testid='deletePromotionBtn' onClick={() => handlePromotionDelete(item)}>
                         <FontAwesomeIcon icon={faTrash} />
                       </DeletePromotionBtn>
                     </PromotionItem>
