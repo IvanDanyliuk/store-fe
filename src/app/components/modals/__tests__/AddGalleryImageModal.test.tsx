@@ -25,7 +25,6 @@ describe('Testsfor the AddGalleryImageModal component', () => {
     });
     const submitBtn = screen.getByRole('button', { name: 'gallerySubmitBtn' });
     fireEvent.click(submitBtn);
-    screen.debug(undefined, 300000)
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

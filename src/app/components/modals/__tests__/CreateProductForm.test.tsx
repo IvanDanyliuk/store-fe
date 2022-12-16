@@ -59,7 +59,6 @@ describe('Tests for the CreateProductForm component: updation case', () => {
     userEvent.type(textFields[4], 'TOP');
     fireEvent.click(addPromotionBtn);
     fireEvent.click(submitFormBtn);
-    screen.debug(undefined, 300000)
   });
 
   test('should submit a form after passing the incorrect data', () => {

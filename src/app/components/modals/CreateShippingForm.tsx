@@ -254,7 +254,7 @@ const CreateShippingForm: React.FC = () => {
           <FormTitle>
             {dataToUpdate ? t('shippingTitleUpdate') : t('shippingTitleCreate')}
           </FormTitle>
-          <CloseBtn onClick={handleOpenModal}>
+          <CloseBtn data-testid='closeDialogBtn' onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
@@ -295,6 +295,7 @@ const CreateShippingForm: React.FC = () => {
                 <City key={uuid()}>
                   <CityName>{city}</CityName>
                   <DeleteBtn 
+                    data-testid='deleteCityBtn'
                     type='button' 
                     onClick={() => handleDeleteCity(city)}
                     >

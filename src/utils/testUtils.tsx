@@ -438,6 +438,26 @@ export const renderWithProvidersForUpdation = (
           }
         ],
         error: null
+      },
+      shipping: {
+        status: 'succeeded',
+        shipping: {
+          _id: 'shipping_id_1',
+          company: 'Test Company',
+          country: 'Test Country',
+          cities: ['Test City 1', 'Test City 2', 'Test City 3'],
+          price: 100
+        },
+        shippings: [
+          {
+            _id: 'shipping_id_1',
+            company: 'Test Company',
+            country: 'Test Country',
+            cities: ['Test City 1', 'Test City 2', 'Test City 3'],
+            price: 100
+          }
+        ],
+        error: null
       }
     },
     store = configureStore({
