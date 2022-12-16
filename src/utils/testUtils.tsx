@@ -458,6 +458,43 @@ export const renderWithProvidersForUpdation = (
           }
         ],
         error: null
+      },
+      vacancies: {
+        status: 'succeeded',
+        vacancy: {
+          _id: 'vacancy_id_1',
+          title: 'Test Title',
+          character: 'Test Character',
+          employment: 'Test Employment',
+          experience: 'Test Experience',
+          responsibilities: 'Test Responsibilities',
+          mustHaves: 'Test Must Haves',
+          contactPerson: 'Test Contact Person',
+          contactPhone: '777 777 77 77',
+          contactEmail: 'test@test.com',
+          salary: '1000',
+          createdAt: new Date().toDateString(),
+        },
+        vacancies: {
+          data: [
+            {
+              _id: 'vacancy_id_1',
+              title: 'Test Title',
+              character: 'Test Character',
+              employment: 'Test Employment',
+              experience: 'Test Experience',
+              responsibilities: 'Test Responsibilities',
+              mustHaves: 'Test Must Haves',
+              contactPerson: 'Test Contact Person',
+              contactPhone: '777 777 77 77',
+              contactEmail: 'test@test.com',
+              salary: '1000',
+              createdAt: new Date().toDateString(),
+            }
+          ],
+          pages: 1
+        },
+        error: null
       }
     },
     store = configureStore({

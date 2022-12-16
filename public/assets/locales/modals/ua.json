@@ -112,6 +112,11 @@
   "vacanciesSubmitBtn": "Підтвердити",
   "vacanciesLoading": "Завантаження...",
   "vacanciesMessage": "Немає відкритих вакансій",
+  "vacanciesValidationTitleRequired": "Поле 'Назва' є обов'язковим!",
+  "vacanciesValidationResponsibilitiesRequired": "Поле 'Обов'язки' є обов'язковим!",
+  "vacanciesValidationContactPersonRequired": "Поле 'Контактна особа' є обов'язковим!",
+  "vacanciesValidationContactPhoneRequired": "Поле 'Контактний телефон' є обов'язковим!",
+  "vacanciesValidationContactEmailRequired": "Поле 'Контактна адреса ел. пошти' є обов'язковим!",
   "galleryBtn": "Додати",
   "gallerySubmitBtn": "Підтвердити"
 }

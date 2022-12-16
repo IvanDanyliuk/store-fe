@@ -59,19 +59,19 @@ export const isCategoryDataValid = (data: IProductCategory, setError: SetErrorTy
 export const isVacancyDataValid = (data: IVacancy, setError: SetErrorType) => {
   switch(true) {
     case !data.title:
-      setError('Title field is required!');
+      setError('vacanciesValidationTitleRequired');
       return false;
     case !data.responsibilities:
-      setError('Responsibilities field is required!');
+      setError('vacanciesValidationResponsibilitiesRequired');
       return false;
     case !data.contactPerson:
-      setError('Contact Person field is required!');
+      setError('vacanciesValidationContactPersonRequired');
       return false;
     case !data.contactPhone:
-      setError('Contact Phone field is required!');
+      setError('vacanciesValidationContactPhoneRequired');
       return false;
     case !data.contactEmail:
-      setError('Contact Email field is required!');
+      setError('vacanciesValidationContactEmailRequired');
       return false;
     default:
       setError('');

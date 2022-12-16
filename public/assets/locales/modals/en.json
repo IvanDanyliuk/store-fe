@@ -112,6 +112,11 @@
   "vacanciesSubmitBtn": "Submit",
   "vacanciesLoading": "Loading...",
   "vacanciesMessage": "There are no available vacancies",
+  "vacanciesValidationTitleRequired": "Title field is required!",
+  "vacanciesValidationResponsibilitiesRequired": "Responsibilities field is required!",
+  "vacanciesValidationContactPersonRequired": "Contact Person field is required!",
+  "vacanciesValidationContactPhoneRequired": "Contact Phone field is required!",
+  "vacanciesValidationContactEmailRequired": "Contact Email field is required!",
   "galleryBtn": "Add new",
   "gallerySubmitBtn": "Submit"
 }

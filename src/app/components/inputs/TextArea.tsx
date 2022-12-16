@@ -72,18 +72,16 @@ const TextArea: React.FC<ITextArea> = (
 
   return (
     <Container>
-      {
-        label && (
-          <Label>{label}</Label>
-        )
-      }
-      <Field 
-        name={name} 
-        value={value}
-        rows={rows}
-        onChange={onChange} 
-        onBlur={() => validateFieldValue(value)} 
-      />
+      <Label>
+        {label && label}
+        <Field 
+          name={name} 
+          value={value}
+          rows={rows}
+          onChange={onChange} 
+          onBlur={() => validateFieldValue(value)} 
+        />
+      </Label>
       <ErrorMessage>{error}</ErrorMessage>
     </Container>
   );

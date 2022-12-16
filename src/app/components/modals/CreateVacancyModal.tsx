@@ -218,7 +218,7 @@ const CreateVacancyForm: React.FC = () => {
           <FormTitle>
             {dataToUpdate ? t('vacanciesTitleUpdate') : t('vacanciesTitleCreate')}
           </FormTitle>
-          <CloseBtn onClick={handleOpenModal}>
+          <CloseBtn data-testid='closeModalBtn' onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
