@@ -153,6 +153,28 @@ export const renderWithProviders = (
           }
         ],
         error: null
+      },
+      reviews: {
+        status: 'succeeded',
+        reviews: [
+          {
+            _id: 'review_id_1',
+            productId: 'product_id_1',
+            productImageUrl: 'https://www.storage.com/products/product_1.png',
+            userFirstName: 'Test User First Name',
+            userLastName: 'Test User Last Name',
+            userEmail: 'test@test.com',
+            userAvatarUrl: 'https://www.storage.com/users/user_1.png',
+            advantages: 'Test Advantages',
+            disadvantages: 'Test Disadvantages',
+            comment: 'Test Comment',
+            rate: 5,
+            likes: [],
+            dislikes: [],
+            date: new Date()
+          }
+        ],
+        error: null
       }
     },
     store = configureStore({

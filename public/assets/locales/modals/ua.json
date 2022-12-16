@@ -6,6 +6,7 @@
   "commentDisadvantages": "Недоліки",
   "commentTextComment": "Коментар",
   "commentBtnSubmit": "Підтвердити",
+  "commentValidationCommentRequired": "Поле 'Коментар' є обов'язковим!",
   "cartTitle": "Кошик",
   "cartTotalOrderAmount": "Загальна сума замовлення:",
   "cartContinue": "Продовжити покупки",

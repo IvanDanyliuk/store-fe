@@ -147,7 +147,7 @@ export const isSignupDataValid = (data: IUser, setError: SetErrorType) => {
 
 export const isCommentDataValid = (data: IComment, setError: SetErrorType) => {
   if(!data.comment) {
-    setError('Comment field is required');
+    setError('commentValidationCommentRequired');
     return false;
   } else {
     setError('');

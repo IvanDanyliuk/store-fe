@@ -6,6 +6,7 @@
   "commentDisadvantages": "Disadvantages",
   "commentTextComment": "Comment",
   "commentBtnSubmit": "Submit",
+  "commentValidationCommentRequired": "Comment field is required!",
   "cartTitle": "Cart",
   "cartTotalOrderAmount": "Total Order:",
   "cartContinue": "Continue shopping",

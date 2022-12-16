@@ -167,7 +167,7 @@ const EditReviewModal: React.FC<IEditReviewModalProps> = ({ review }) => {
           <FormTitle>
             {t('editReviewTitle')}
           </FormTitle>
-          <CloseBtn onClick={handleOpenModal}>
+          <CloseBtn data-testid='closeBtn' onClick={handleOpenModal}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>
