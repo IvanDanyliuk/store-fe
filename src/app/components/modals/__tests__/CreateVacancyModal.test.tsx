@@ -37,7 +37,6 @@ describe('Tests for the CreateVacancyModal component: creation cases', () => {
 describe('Tests for the CreateVacancyModal component: updating cases', () => {
   beforeEach(() => {
     renderWithProvidersForUpdation(<CreateVacancyModal />);
-    
   });
 
   test('should clear an error after passing wrong data while closing the component', () => {
