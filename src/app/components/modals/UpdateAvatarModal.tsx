@@ -152,7 +152,7 @@ const UpdateAvatarModal: React.FC = () => {
           </CloseBtn>
         </FormHeader>
         <Form onSubmit={handleFormSubmit}>
-          <Input type='file' onChange={handleImageChange} />
+          <Input data-testid='fileInput' type='file' onChange={handleImageChange} />
           <Button 
             type={ButtonType.Submit} 
             color={ButtonColor.Success}
