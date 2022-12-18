@@ -29,7 +29,7 @@ const PaymentSystemIcon: React.FC<IPaymentSystemIconProps> = ({ cardNumber }) =>
   return (
     <Container>
       <FontAwesomeIcon 
-        icon={paymentSystemType ? setIcon(paymentSystemType.type) : faMoneyCheckDollar} 
+        data-testid='cardIcon' icon={paymentSystemType ? setIcon(paymentSystemType.type) : faMoneyCheckDollar} 
       />
     </Container>
   );
