@@ -546,3 +546,54 @@ export const renderWithProvidersForUpdation = (
 
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
+
+export const renderWithProvidersPasswordError = (
+  ui: React.ReactElement,
+  {
+    preloadedState = {
+      user: {
+        status: 'failed',
+        language: 'en',
+        user: {
+          _id: 'user_1',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'j.doe@gmail.com',
+          phone: '7777777',
+          password: '123456',
+          city: 'London',
+          avatarUrl: 'https://www.storage.com/user_1_image.png',
+          wishList: [],
+          orders: [],
+          isAdmin: true,
+        },
+        error: 'error'
+      },
+    },
+    store = configureStore({
+      reducer: combineReducers({
+        user: userReducer,
+        product: productReducer,
+        category: categoryReducer,
+        shipping: shippingReducer,
+        cart: cartReducer,
+        order: orderReducer,
+        reviews: reviewsReducer,
+        vacancies: vacanciesReducer,
+        gallery: galleryReducer,
+      }),
+      preloadedState
+    }),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) => {
+  const Wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => {
+    return <MemoryRouter>
+      <Provider store={store}>
+        {children}
+      </Provider>
+    </MemoryRouter>
+  };
+
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+};

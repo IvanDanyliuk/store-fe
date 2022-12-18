@@ -152,7 +152,7 @@ const UpdatePasswordModal: React.FC = () => {
         style={styles}
       >
         <FormHeader>
-          <CloseBtn onClick={clear}>
+          <CloseBtn data-testid='closeBtn' onClick={clear}>
             <FontAwesomeIcon icon={faXmark} />
           </CloseBtn>
         </FormHeader>

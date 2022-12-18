@@ -76,6 +76,6 @@ describe('Tests for the OrderDetails component', () => {
 
   test('should close the dialog after clicking the Delete button', () => {
     fireEvent.click(screen.getByRole('button', { name: 'orderDetailsDeleteBtn' }));
-    expect(screen.queryByRole('dialog')).toBeInTheDocument();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });
