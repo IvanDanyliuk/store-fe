@@ -220,7 +220,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   
   return (
     <Card>
-      <HeartIcon data-ispicked={isProductInWishList} onClick={handleAddToWishList}>
+      <HeartIcon data-testid='addToWishListBtn' data-ispicked={isProductInWishList} onClick={handleAddToWishList}>
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
       <ProductLink to={`/products/${category ? category : 'top-products'}/${product._id}`}>
@@ -255,7 +255,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
           </Price>
           <BtnContainer>
             <RoundedButton type={ButtonType.Button} color={ButtonColor.Success} onClick={handleAddToCart}>
-              <FontAwesomeIcon icon={faCartShopping} />
+              <FontAwesomeIcon data-testid='addToCartBtn' icon={faCartShopping} />
             </RoundedButton>
           </BtnContainer>
         </CardFooter>

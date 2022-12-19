@@ -39,7 +39,29 @@ export const renderWithProviders = (
           password: '123456',
           city: 'London',
           avatarUrl: 'https://www.storage.com/user_1_image.png',
-          wishList: [],
+          wishList: [{
+            _id: 'product_id_1',
+            brand: 'Test Brand',
+            category: {
+              main: {
+                title: 'Main Category Name',
+                url: 'main-category-title'
+              },
+              subCategory: {
+                title: 'Sub-category name',
+                url: 'sub-category-name'
+              }
+            },
+            color: '#ffffff',
+            description: 'Test Descrinption',
+            image: 'https://www.storage.com/categories/test_product.png',
+            isInStock: true,
+            price: 1000,
+            promotion: ['TOP'],
+            rating: 5,
+            shortInfo: 'Test short information',
+            title: 'Test Title'
+          }],
           orders: [],
           isAdmin: true,
         },
