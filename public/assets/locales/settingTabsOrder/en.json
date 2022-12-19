@@ -3,5 +3,6 @@
   "searchBtn": "Search",
   "tableOrderId": "Order ID",
   "tableOrderDate": "Date",
-  "tableOrderAmount": "Amount"
+  "tableOrderAmount": "Amount",
+  "noOrdersMessage": "Your order list is empty"
 }

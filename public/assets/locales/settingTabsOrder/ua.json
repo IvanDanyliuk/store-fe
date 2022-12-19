@@ -3,5 +3,6 @@
   "searchBtn": "Знайти",
   "tableOrderId": "ID замовлення",
   "tableOrderDate": "Дата",
-  "tableOrderAmount": "Сума"
+  "tableOrderAmount": "Сума",
+  "noOrdersMessage": "Список Ваших замовлень порожній"
 }

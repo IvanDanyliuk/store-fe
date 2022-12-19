@@ -9,7 +9,7 @@ import { IAuthData, IPasswordToUpdate, IUser, IUserToUpdate } from '../features/
 import { IVacancy, IVacancyToUpdate } from '../features/vacancies/types';
 
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
 // API.interceptors.request.use((req) => {
 //   // if() {

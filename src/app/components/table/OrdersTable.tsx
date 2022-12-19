@@ -99,7 +99,7 @@ const OrdersTable: React.FC<IOrdersTableProps> = ({ orders }) => {
     return (
       <WarningMessageBody>
         <Message>
-          {t('')}
+          {t('noOrdersMessage')}
         </Message>
       </WarningMessageBody>
     );
