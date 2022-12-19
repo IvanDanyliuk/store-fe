@@ -97,7 +97,7 @@ describe('Tests for the Table component: shipping data', () => {
 
 
 describe('Tests for the Table component: no data cases', () => {
-  test('should render the loader while the passed data is empty', () => {
+  test('should render the loader while the status value is loading', () => {
     render(
       <Table 
         data={categoriesListMock} 
