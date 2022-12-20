@@ -1,42 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { reviewErrorMock, reviewMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
 import EditReviewModal from '../EditReviewModal';
-
-
-const reviewMock = {
-  _id: 'review_id_1',
-  productId: 'product_id_1',
-  productImageUrl: 'https://www.storage.com/products/product_1.png',
-  userFirstName: 'Test User First Name',
-  userLastName: 'Test User Last Name',
-  userEmail: 'test@test.com',
-  userAvatarUrl: 'https://www.storage.com/users/user_1.png',
-  advantages: 'Test Advantages',
-  disadvantages: 'Test Disadvantages',
-  comment: 'Test Comment',
-  rate: 5,
-  likes: [],
-  dislikes: [],
-  date: new Date()
-};
-
-const reviewErrorMock = {
-  _id: 'review_id_1',
-  productId: 'product_id_1',
-  productImageUrl: 'https://www.storage.com/products/product_1.png',
-  userFirstName: 'Test User First Name',
-  userLastName: 'Test User Last Name',
-  userEmail: 'test@test.com',
-  userAvatarUrl: 'https://www.storage.com/users/user_1.png',
-  advantages: 'Test Advantages',
-  disadvantages: 'Test Disadvantages',
-  comment: '',
-  rate: 5,
-  likes: [],
-  dislikes: [],
-  date: new Date()
-};
 
 
 describe('Tests for the EditReviewModal component', () => {
@@ -59,6 +25,7 @@ describe('Tests for the EditReviewModal component', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });
+
 
 describe('Tests for the EditReviewModal component', () => {
   beforeEach(() => {

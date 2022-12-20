@@ -1,24 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vacanciesListMock } from '../../../../utils/testDataMocks';
 import { IVacancy } from '../../../features/vacancies/types';
 import VacanciesTable from '../VacanciesTable';
 
-
-const vacanciesListMock: IVacancy[] = [
-  {
-    _id: 'vacancy_id_1',
-    title: 'Test Title',
-    character: 'Test Character',
-    employment: 'Test Employment',
-    experience: 'Test Experience',
-    responsibilities: 'Test Responsibilities',
-    mustHaves: 'Test Must Haves',
-    contactPerson: 'Test Contact Person',
-    contactPhone: '777 777 77 77',
-    contactEmail: 'test@test.com',
-    salary: '1000',
-    createdAt: new Date().toDateString(),
-  }
-];
 
 const emptyVacanciesListMock: IVacancy[] = [];
 

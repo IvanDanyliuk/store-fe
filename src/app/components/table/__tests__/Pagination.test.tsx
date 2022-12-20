@@ -1,32 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { IProductCategory } from '../../../features/category/types';
-import { IProduct } from '../../../features/product/types';
+import { productsMock } from '../../../../utils/testDataMocks';
 import Pagination from '../Pagination';
 
-
-const productsMock: IProduct[] = [{
-  _id: 'product_id_1',
-  brand: 'Test Brand',
-  category: {
-    main: {
-      title: 'Main Category Name',
-      url: 'main-category-title'
-    },
-    subCategory: {
-      title: 'Sub-category name',
-      url: 'sub-category-name'
-    }
-  },
-  color: '#ffffff',
-  description: 'Test Descrinption',
-  image: 'https://www.storage.com/categories/test_product.png',
-  isInStock: true,
-  price: 1000,
-  promotion: ['TOP'],
-  rating: 5,
-  shortInfo: 'Test short information',
-  title: 'Test Title'
-}];
 
 const setPageHandler = jest.fn();
 

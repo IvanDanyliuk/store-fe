@@ -1,31 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { productsMock } from '../../../../utils/testDataMocks';
 import { IProduct } from '../../../features/product/types';
 import ProductTable from '../ProductTable';
 
-
-const productListMock: IProduct[] = [{
-  _id: 'product_id_1',
-  brand: 'Test Brand',
-  category: {
-    main: {
-      title: 'Main Category Name',
-      url: 'main-category-title'
-    },
-    subCategory: {
-      title: 'Sub-category name',
-      url: 'sub-category-name'
-    }
-  },
-  color: '#ffffff',
-  description: 'Test Descrinption',
-  image: 'https://www.storage.com/categories/test_product.png',
-  isInStock: true,
-  price: 1000,
-  promotion: ['TOP'],
-  rating: 5,
-  shortInfo: 'Test short information',
-  title: 'Test Title'
-}];
 
 const emptyProductListMock: IProduct[] = [];
 
@@ -36,7 +13,7 @@ describe('Tests for the ProductTable component', () => {
   test('should render a loader while the status value is loading', () => {
     render(
       <ProductTable 
-        products={productListMock} 
+        products={productsMock} 
         status='loading' 
         onEdit={editHandler} 
         onDelete={deleteHandler} 
@@ -60,19 +37,19 @@ describe('Tests for the ProductTable component', () => {
   test('should render the product list message while the status value is succeeded', () => {
     render(
       <ProductTable 
-        products={productListMock} 
+        products={productsMock} 
         status='succeeded' 
         onEdit={editHandler} 
         onDelete={deleteHandler} 
       />
     );
-    expect(screen.getByText(productListMock[0].title)).toBeInTheDocument();
+    expect(screen.getByText(productsMock[0].title)).toBeInTheDocument();
   });
 
   test('should call the editHandler function after clicking on the Edit button', () => {
     render(
       <ProductTable 
-        products={productListMock} 
+        products={productsMock} 
         status='succeeded' 
         onEdit={editHandler} 
         onDelete={deleteHandler} 
@@ -85,7 +62,7 @@ describe('Tests for the ProductTable component', () => {
   test('should call the editHandler function after clicking on the Edit button', () => {
     render(
       <ProductTable 
-        products={productListMock} 
+        products={productsMock} 
         status='succeeded' 
         onEdit={editHandler} 
         onDelete={deleteHandler} 

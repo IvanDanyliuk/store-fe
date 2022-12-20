@@ -1,35 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TableTypes } from '../../../../types/types';
+import { categoriesListMock, shippingListMock } from '../../../../utils/testDataMocks';
 import { IProductCategory } from '../../../features/category/types';
 import { IShipping } from '../../../features/shipping/types';
 import Table from '../Table';
 
-
-const categoriesListMock: IProductCategory[] = [
-  {
-    main: {
-      title: 'Main Category Name',
-      url: 'main-category-title'
-    },
-    subCategories: [
-      {
-        title: 'Sub-category name',
-        image: 'https://www.storage.com/categories/category_1.png',
-        url: 'sub-category-name'
-      },
-    ],
-  },
-];
-
-const shippingListMock: IShipping[] = [
-  {
-    _id: 'shipping_id_1',
-    company: 'Test Company',
-    country: 'Test Country',
-    cities: ['Test City 1', 'Test City 2', 'Test City 3'],
-    price: 100
-  }
-];
 
 const emptyCategoriesListMock: IProductCategory[] = [];
 const emptyShippingListMock: IShipping[] = [];
