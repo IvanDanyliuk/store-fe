@@ -1,4 +1,5 @@
 import { IProductCategory } from "../app/features/category/types";
+import { IProduct } from "../app/features/product/types";
 import { IShipping } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
@@ -50,7 +51,7 @@ export const productsMock = [{
   title: 'Test Title'
 }];
 
-export const productFromWishListMock = {
+export const productFromWishListMock: IProduct = {
   _id: 'product_id_1',
     brand: 'Test Brand',
     category: {
