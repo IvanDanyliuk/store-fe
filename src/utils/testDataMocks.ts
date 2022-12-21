@@ -1,4 +1,4 @@
-import { IProductCategory } from "../app/features/category/types";
+import { ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
 import { IProduct } from "../app/features/product/types";
 import { IShipping } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
@@ -11,6 +11,7 @@ import { IVacancy } from "../app/features/vacancies/types";
 //Categories
 export const categoriesListMock: IProductCategory[] = [
   {
+    _id: 'product_category_id_1',
     main: {
       title: 'Main Category Name',
       url: 'main-category-title'
@@ -24,6 +25,38 @@ export const categoriesListMock: IProductCategory[] = [
     ],
   },
 ];
+
+export const newCategoryMock: IProductCategory = {
+  main: {
+    title: 'Main Category Name',
+    url: 'main-category-title'
+  },
+  subCategories: [
+    {
+      title: 'Sub-category name',
+      image: 'https://www.storage.com/categories/category_1.png',
+      url: 'sub-category-name'
+    },
+  ],
+};
+
+export const categoryToUpdate: ICategoryToUpdate = {
+  id: 'product_category_id_1',
+  updatedCategory: {
+    _id: 'product_category_id_1',
+    main: {
+      title: 'Updated Main Category Name',
+      url: 'updated-main-category-title'
+    },
+    subCategories: [
+      {
+        title: 'Sub-category name',
+        image: 'https://www.storage.com/categories/category_1.png',
+        url: 'sub-category-name'
+      },
+    ],
+  }
+};
 
 
 //Products
