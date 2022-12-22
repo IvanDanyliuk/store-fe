@@ -1,4 +1,5 @@
 import { ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
+import { IGalleryImage } from "../app/features/gallery/types";
 import { IProduct } from "../app/features/product/types";
 import { IShipping } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
@@ -465,12 +466,29 @@ export const categoryStateUpdating = {
 };
 
 
-//Gallery: error case
-export const galleryStateError = {
-  status: 'failed',
-  imageUrls: [],
-  error: 'Gallery error'
+//Gallery: successfull case
+export const galleryUrlsSuccess: IGalleryImage[] = [
+  {
+    _id: 'gallery_image_id_1',
+    url: 'https://www.storage.com/gallery/image_1.png'
+  },
+  {
+    _id: 'gallery_image_id_2',
+    url: 'https://www.storage.com/gallery/image_2.png'
+  },
+  {
+    _id: 'gallery_image_id_3',
+    url: 'https://www.storage.com/gallery/image_3.png'
+  },
+];
+
+export const galleryImage: IGalleryImage = {
+  _id: 'gallery_image_id_1',
+  url: 'https://www.storage.com/gallery/image_1.png'
 };
+
+//Gallery: error case
+export const galleryUrlsError = [];
 
 
 //Product: successfull case
