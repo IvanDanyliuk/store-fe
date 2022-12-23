@@ -1,7 +1,7 @@
 import { ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
 import { IGalleryImage } from "../app/features/gallery/types";
 import { IOrder, IOrderToUpdate } from "../app/features/order/types";
-import { IProduct } from "../app/features/product/types";
+import { IProduct, IProductToUpdate } from "../app/features/product/types";
 import { IShipping } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
@@ -643,6 +643,88 @@ export const productStateUpdating = {
     }
   ],
   error: null
+};
+
+export const productResponseMock = {
+  data: [
+    {
+      _id: 'product_id_1',
+      brand: 'Test Brand',
+      category: {
+        main: {
+          title: 'Main Category Name',
+          url: 'main-category-title'
+        },
+        subCategory: {
+          title: 'Sub-category name',
+          url: 'sub-category-name'
+        }
+      },
+      color: '#ffffff',
+      description: 'Test Descrinption',
+      image: 'https://www.storage.com/categories/test_product.png',
+      isInStock: true,
+      price: 1000,
+      promotion: ['TOP'],
+      rating: 5,
+      shortInfo: 'Test short information',
+      title: 'Test Title'
+    }
+  ],
+  pages: 1
+};
+
+export const productItem: IProduct = {
+  _id: 'product_id_1',
+  brand: 'Test Brand',
+  category: {
+    main: {
+      title: 'Main Category Name',
+      url: 'main-category-title'
+    },
+    subCategory: {
+      title: 'Sub-category name',
+      url: 'sub-category-name'
+    }
+  },
+  color: '#ffffff',
+  description: 'Test Descrinption',
+  image: 'https://www.storage.com/categories/test_product.png',
+  isInStock: true,
+  price: 1000,
+  promotion: ['TOP'],
+  rating: 5,
+  shortInfo: 'Test short information',
+  title: 'Test Title'
+};
+
+export const brandsResponseMock = ['Apple', 'Samsung', 'Sony'];
+
+export const productToUpdate: IProductToUpdate = {
+  id: 'product_id_1',
+  updatedProduct: {
+    _id: 'product_id_1',
+    brand: 'Test Brand',
+    category: {
+      main: {
+        title: 'Main Category Name',
+        url: 'main-category-title'
+      },
+      subCategory: {
+        title: 'Sub-category name',
+        url: 'sub-category-name'
+      }
+    },
+    color: '#ffffff',
+    description: 'Test Descrinption',
+    image: 'https://www.storage.com/categories/test_product.png',
+    isInStock: true,
+    price: 1000,
+    promotion: ['TOP'],
+    rating: 5,
+    shortInfo: 'Test short information',
+    title: 'Updated Test Title'
+  }
 };
 
 
