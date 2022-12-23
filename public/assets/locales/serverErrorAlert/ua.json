@@ -24,6 +24,7 @@
   "alertCreateOrderMessage": "Не вдалося створити замовлення. Спробуйте ще",
   "alertUpdateOrderMessage": "Не вдалося змінити замовлення. Спробуйте ще",
   "alertDeleteOrderMessage": "Не вдалося видалити замовлення",
+  "alertOrderPaymentMessage": "Замовлення не було оплачено.",
   "alertGetProductsMessage": "Не вдалося завантажити товари",
   "alertGetTopProductsMessage": "Не вдалося завантажити популярні товари",
   "alertGetProductMessage": "Не вдалося завантажити товар",

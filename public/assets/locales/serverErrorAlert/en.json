@@ -24,6 +24,7 @@
   "alertCreateOrderMessage": "Cannot create an order. Try again.",
   "alertUpdateOrderMessage": "Cannot update an order. Try again.",
   "alertDeleteOrderMessage": "Cannot delete an order.",
+  "alertOrderPaymentMessage": "The order has not been paid.",
   "alertGetProductsMessage": "Cannot get products.",
   "alertGetTopProductsMessage": "Cannot get top products.",
   "alertGetProductMessage": "Cannot get a product.",

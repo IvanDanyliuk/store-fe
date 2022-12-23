@@ -106,6 +106,17 @@ const ordersSlice = createSlice({
         state.status = 'failed';
         state.error = 'alertDeleteOrderMessage';
       })
+      .addCase(payOrder.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(payOrder.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.clientSecret = action.payload;
+      })
+      .addCase(payOrder.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'alertOrderPaymentMessage';
+      })
   }
 });
 
@@ -113,6 +124,7 @@ export const {
   clearOrder, 
   setOrderToUpdate, 
   clearOrderToUpdate, 
+  clearClientSecret, 
   increaseOrderProductQuantity, 
   decreaseOrderProductQuantity, 
   removeProductFromOrder, 

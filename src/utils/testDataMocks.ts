@@ -1,5 +1,6 @@
 import { ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
 import { IGalleryImage } from "../app/features/gallery/types";
+import { IOrder, IOrderToUpdate } from "../app/features/order/types";
 import { IProduct } from "../app/features/product/types";
 import { IShipping } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
@@ -826,6 +827,173 @@ export const orderStateSuccess = {
     pages: 1
   },
   error: null
+};
+
+export const ordersMock = {
+  data: [
+    {
+      _id: 'order_id_1',
+      products: [
+        {
+          _id: 'order_id_1',
+          product: {
+            _id: 'product_id_1',
+            brand: 'Test Brand',
+            category: {
+              main: {
+                title: 'Main Category Name',
+                url: 'main-category-title'
+              },
+              subCategory: {
+                title: 'Sub-category name',
+                url: 'sub-category-name'
+              }
+            },
+            color: '#ffffff',
+            description: 'Test Descrinption',
+            image: 'https://www.storage.com/categories/test_product.png',
+            isInStock: true,
+            price: 1000,
+            promotion: ['TOP'],
+            rating: 5,
+            shortInfo: 'Test short information',
+            title: 'Test Title'
+          },
+          quantity: 1
+        }
+      ],
+      amount: 1000,
+      customer: {
+        firstName: 'John',
+        lastName: 'Doe',
+        phone: '777 777 77 77',
+        email: 'test@test.com'
+      },
+      recepient: {
+        firstName: 'John',
+        lastName: 'Doe',
+        phone: '777 777 77 77',
+        email: 'test@test.com'
+      },
+      isPaid: false,
+      isShipped: false,
+      paymentMethod: 'card',
+      creditCardNumber: '',
+      shippingCity: 'London',
+      shippingCompany: 'DHL',
+      createdAt: new Date().toDateString(),
+    }
+  ],
+  pages: 1
+};
+
+export const orderItemMock: IOrder = {
+  _id: 'order_id_1',
+  products: [
+    {
+      _id: 'order_id_1',
+      product: {
+        _id: 'product_id_1',
+        brand: 'Test Brand',
+        category: {
+          main: {
+            title: 'Main Category Name',
+            url: 'main-category-title'
+          },
+          subCategory: {
+            title: 'Sub-category name',
+            url: 'sub-category-name'
+          }
+        },
+        color: '#ffffff',
+        description: 'Test Descrinption',
+        image: 'https://www.storage.com/categories/test_product.png',
+        isInStock: true,
+        price: 1000,
+        promotion: ['TOP'],
+        rating: 5,
+        shortInfo: 'Test short information',
+        title: 'Test Title'
+      },
+      quantity: 1
+    }
+  ],
+  amount: 1000,
+  customer: {
+    firstName: 'John',
+    lastName: 'Doe',
+    phone: '777 777 77 77',
+    email: 'test@test.com'
+  },
+  recepient: {
+    firstName: 'John',
+    lastName: 'Doe',
+    phone: '777 777 77 77',
+    email: 'test@test.com'
+  },
+  isPaid: false,
+  isShipped: false,
+  paymentMethod: 'card',
+  creditCardNumber: '',
+  shippingCity: 'London',
+  shippingCompany: 'DHL',
+  createdAt: new Date().toDateString(),
+};
+
+export const orderToUpdate: IOrderToUpdate = {
+  id: 'order_id_1',
+  updatedOrder: {
+    _id: 'order_id_1',
+    products: [
+      {
+        _id: 'order_id_1',
+        product: {
+          _id: 'product_id_1',
+          brand: 'Test Brand',
+          category: {
+            main: {
+              title: 'Main Category Name',
+              url: 'main-category-title'
+            },
+            subCategory: {
+              title: 'Sub-category name',
+              url: 'sub-category-name'
+            }
+          },
+          color: '#ffffff',
+          description: 'Test Descrinption',
+          image: 'https://www.storage.com/categories/test_product.png',
+          isInStock: true,
+          price: 1000,
+          promotion: ['TOP'],
+          rating: 5,
+          shortInfo: 'Test short information',
+          title: 'Test Title'
+        },
+        quantity: 7
+      }
+    ],
+    amount: 7000,
+    customer: {
+      firstName: 'John',
+      lastName: 'Doe',
+      phone: '777 777 77 77',
+      email: 'test@test.com'
+    },
+    recepient: {
+      firstName: 'John',
+      lastName: 'Doe',
+      phone: '777 777 77 77',
+      email: 'test@test.com'
+    },
+    isPaid: false,
+    isShipped: false,
+    paymentMethod: 'card',
+    creditCardNumber: '',
+    shippingCity: 'London',
+    shippingCompany: 'DHL',
+    createdAt: new Date().toDateString(),
+  }
 };
 
 //Order: error case
