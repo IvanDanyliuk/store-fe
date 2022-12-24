@@ -2,6 +2,7 @@ import { ICategoryToUpdate, IProductCategory } from "../app/features/category/ty
 import { IGalleryImage } from "../app/features/gallery/types";
 import { IOrder, IOrderToUpdate } from "../app/features/order/types";
 import { IProduct, IProductToUpdate } from "../app/features/product/types";
+import { IReview, IReviewToUpdate } from "../app/features/reviews/types";
 import { IShipping } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
@@ -785,6 +786,62 @@ export const reviewsStateSuccess = {
     }
   ],
   error: null
+};
+
+export const reviewsMock: IReview[] = [
+  {
+    _id: 'review_id_1',
+    productId: 'product_id_1',
+    productImageUrl: 'https://www.storage.com/products/product_1.png',
+    userFirstName: 'Test User First Name',
+    userLastName: 'Test User Last Name',
+    userEmail: 'test@test.com',
+    userAvatarUrl: 'https://www.storage.com/users/user_1.png',
+    advantages: 'Test Advantages',
+    disadvantages: 'Test Disadvantages',
+    comment: 'Test Comment',
+    rate: 5,
+    likes: [],
+    dislikes: [],
+    date: new Date()
+  }
+];
+
+export const reviewItemMock: IReview = {
+  _id: 'review_id_1',
+  productId: 'product_id_1',
+  productImageUrl: 'https://www.storage.com/products/product_1.png',
+  userFirstName: 'Test User First Name',
+  userLastName: 'Test User Last Name',
+  userEmail: 'test@test.com',
+  userAvatarUrl: 'https://www.storage.com/users/user_1.png',
+  advantages: 'Test Advantages',
+  disadvantages: 'Test Disadvantages',
+  comment: 'Test Comment',
+  rate: 5,
+  likes: [],
+  dislikes: [],
+  date: new Date()
+};
+
+export const reviewItemToUpdate: IReviewToUpdate = {
+  id: 'review_id_1',
+  updatedReview: {
+    _id: 'review_id_1',
+    productId: 'product_id_1',
+    productImageUrl: 'https://www.storage.com/products/product_1.png',
+    userFirstName: 'Test User First Name',
+    userLastName: 'Test User Last Name',
+    userEmail: 'test@test.com',
+    userAvatarUrl: 'https://www.storage.com/users/user_1.png',
+    advantages: 'Test Advantages',
+    disadvantages: 'Test Disadvantages',
+    comment: 'Updated Test Comment',
+    rate: 5,
+    likes: [],
+    dislikes: [],
+    date: new Date()
+  }
 };
 
 //Reviews: error case
