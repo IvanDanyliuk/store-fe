@@ -20,9 +20,6 @@ const shippingSlice = createSlice({
     clearShipping: (state) => {
       state.shipping = null;
     },
-    setShippingError: (state, action) => {
-      state.error = action.payload;
-    },
     clearShippingError: (state) => {
       state.status = 'idle';
       state.error = null;

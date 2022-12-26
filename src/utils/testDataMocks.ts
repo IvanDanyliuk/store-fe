@@ -1,9 +1,9 @@
 import { ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
-import { IGalleryImage } from "../app/features/gallery/types";
+import { IGalleryImage, IGalleryState } from "../app/features/gallery/types";
 import { IOrder, IOrderToUpdate } from "../app/features/order/types";
 import { IProduct, IProductToUpdate } from "../app/features/product/types";
 import { IReview, IReviewToUpdate } from "../app/features/reviews/types";
-import { IShipping } from "../app/features/shipping/types";
+import { IShipping, IShippingToUpdate } from "../app/features/shipping/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
 
@@ -490,6 +490,12 @@ export const galleryImage: IGalleryImage = {
 };
 
 //Gallery: error case
+export const galleryStateError: IGalleryState = {
+ status: 'failed',
+ imageUrls: [],
+ error: 'error'
+};
+
 export const galleryUrlsError = [];
 
 
@@ -1176,7 +1182,36 @@ export const shippingStateUpdating = {
     }
   ],
   error: null
-}
+};
+
+export const shippingsMock: IShipping[] = [
+  {
+    _id: 'shipping_id_1',
+    company: 'Test Company',
+    country: 'Test Country',
+    cities: ['Test City 1', 'Test City 2', 'Test City 3'],
+    price: 100
+  }
+];
+
+export const shippingItemMock: IShipping = {
+  _id: 'shipping_id_2',
+  company: 'Test Company',
+  country: 'Test Country',
+  cities: ['Test City 1', 'Test City 2', 'Test City 3'],
+  price: 100
+};
+
+export const shippingToUpdateMock: IShippingToUpdate = {
+  id: 'shipping_id_1',
+  updatedShipping: {
+    _id: 'shipping_id_1',
+    company: 'Updated Test Company',
+    country: 'Test Country',
+    cities: ['Test City 1', 'Test City 2', 'Test City 3'],
+    price: 100
+  }
+};
 
 
 //Vacancies: error case
