@@ -4,11 +4,41 @@ import { IOrder, IOrderToUpdate } from "../app/features/order/types";
 import { IProduct, IProductToUpdate } from "../app/features/product/types";
 import { IReview, IReviewToUpdate } from "../app/features/reviews/types";
 import { IShipping, IShippingToUpdate } from "../app/features/shipping/types";
+import { IUser, IUserToUpdate } from "../app/features/user/types";
 import { IVacancy } from "../app/features/vacancies/types";
 
 
 //User
+export const userMock: IUser = {
+  _id: 'user_id_1',
+  firstName: 'John',
+  lastName: 'Doe',
+  avatarUrl: 'https://www.storage.com/users/user_1.png',
+  city: 'London',
+  email: 'test@test.com',
+  password: 'testpassword',
+  phone: '7777777777',
+  isAdmin: true,
+  orders: [],
+  wishList: []
+};
 
+export const userToUpdateMock: IUserToUpdate = {
+  id: 'user_id_1',
+  userData: {
+    _id: 'user_id_1',
+    firstName: 'Johnny',
+    lastName: 'Doe',
+    avatarUrl: 'https://www.storage.com/users/user_1.png',
+    city: 'London',
+    email: 'test@test.com',
+    password: 'updatedtestpassword',
+    phone: '7777777777',
+    isAdmin: true,
+    orders: [],
+    wishList: []
+  }
+};
 
 
 //Categories
