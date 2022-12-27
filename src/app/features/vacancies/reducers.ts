@@ -84,7 +84,7 @@ const vacanciesSlice = createSlice({
       })
       .addCase(deleteVacancy.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'aletDeleteVacancyMessage';
+        state.error = 'alertDeleteVacancyMessage';
       })
   }
 });

@@ -8,7 +8,7 @@
   "alertGetVacancyMessage": "Не вдалося завантажити вакансію",
   "alertCreateVacancyMessage": "Не вдалося створити вакансія. Спробуйте ще",
   "alertUpdateVacancyMessage": "Не вдалося змінити вакансію. Спробуйте ще",
-  "aletDeleteVacancyMessage": "Не вдалося видалити вакансію",
+  "alertDeleteVacancyMessage": "Не вдалося видалити вакансію",
   "alertGetCategoriesMessage": "Не вдалося завантажити категорії",
   "alertCreateCategoryMessage": "Щось пішло не так! Не вдалося створити катеорію",
   "alertUpdateCategoryMessage": "Не вдалося змінити категорію. Спробуйте ще",

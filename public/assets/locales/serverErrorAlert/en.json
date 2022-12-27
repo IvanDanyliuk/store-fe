@@ -8,7 +8,7 @@
   "alertGetVacancyMessage": "Cannot get the current vacancy.",
   "alertCreateVacancyMessage": "Cannot create a vacancy. Try again.",
   "alertUpdateVacancyMessage": "Cannot update a vacancy. Try again.",
-  "aletDeleteVacancyMessage": "Cannot delete a vacancy.",
+  "alertDeleteVacancyMessage": "Cannot delete a vacancy.",
   "alertGetCategoriesMessage": "Cannot load categories.",
   "alertCreateCategoryMessage": "Something went wrong! Category creation failed.",
   "alertUpdateCategoryMessage": "Cannot update category. Try again.",

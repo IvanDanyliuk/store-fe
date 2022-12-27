@@ -5,7 +5,7 @@ import { IProduct, IProductToUpdate } from "../app/features/product/types";
 import { IReview, IReviewToUpdate } from "../app/features/reviews/types";
 import { IShipping, IShippingToUpdate } from "../app/features/shipping/types";
 import { IUser, IUserToUpdate } from "../app/features/user/types";
-import { IVacancy } from "../app/features/vacancies/types";
+import { IVacancy, IVacancyToUpdate } from "../app/features/vacancies/types";
 
 
 //User
@@ -379,6 +379,57 @@ export const vacanciesListMock: IVacancy[] = [
     createdAt: new Date().toDateString(),
   }
 ];
+
+export const vacancyResponseMock = {
+  data: [{
+    _id: 'vacancy_id_1',
+    title: 'Test Title',
+    character: 'Test Character',
+    employment: 'Test Employment',
+    experience: 'Test Experience',
+    responsibilities: 'Test Responsibilities',
+    mustHaves: 'Test Must Haves',
+    contactPerson: 'Test Contact Person',
+    contactPhone: '777 777 77 77',
+    contactEmail: 'test@test.com',
+    salary: '1000',
+    createdAt: new Date().toDateString(),
+  }], 
+  pages: 1
+};
+
+export const vacancyItemMock: IVacancy ={
+  _id: 'vacancy_id_2',
+  title: 'Test Title',
+  character: 'Test Character',
+  employment: 'Test Employment',
+  experience: 'Test Experience',
+  responsibilities: 'Test Responsibilities',
+  mustHaves: 'Test Must Haves',
+  contactPerson: 'Test Contact Person',
+  contactPhone: '777 777 77 77',
+  contactEmail: 'test@test.com',
+  salary: '1000',
+  createdAt: new Date().toDateString(),
+};
+
+export const vacancyToUpdateMock: IVacancyToUpdate = {
+  id: 'vacancy_id_1',
+  updatedVacancy: {
+    _id: 'vacancy_id_1',
+    title: 'Updated Test Title',
+    character: 'Test Character',
+    employment: 'Test Employment',
+    experience: 'Test Experience',
+    responsibilities: 'Test Responsibilities',
+    mustHaves: 'Test Must Haves',
+    contactPerson: 'Test Contact Person',
+    contactPhone: '777 777 77 77',
+    contactEmail: 'test@test.com',
+    salary: '1000',
+    createdAt: new Date().toDateString(),
+  }
+}
 
 
 //Preloaded State Mocks
