@@ -33,6 +33,7 @@ import {
   userStateError, 
   userStateSuccess, 
   vacanciesStateError, 
+  vacanciesStateSuccess, 
   vacanciesStateUpdating 
 } from './testDataMocks';
 
@@ -52,7 +53,8 @@ export const renderWithProviders = (
       product: productStateSuccess,
       cart: cartStateSuccess,
       reviews: reviewsStateSuccess,
-      order: orderStateSuccess
+      order: orderStateSuccess,
+      vacancies: vacanciesStateSuccess
     },
     store = configureStore({
       reducer: combineReducers({

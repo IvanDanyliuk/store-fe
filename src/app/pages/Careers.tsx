@@ -85,7 +85,9 @@ const Careers: React.FC = () => {
 
   useEffect(() => {
     dispatch(getVacancies({ page, itemsPerPage: VACANCIES_PER_PAGE }));
-  }, [dispatch, page])
+  }, [dispatch, page]);
+
+  console.log(status)
 
   return (
     <Container>

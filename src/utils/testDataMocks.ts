@@ -5,7 +5,7 @@ import { IProduct, IProductToUpdate } from "../app/features/product/types";
 import { IReview, IReviewToUpdate } from "../app/features/reviews/types";
 import { IShipping, IShippingToUpdate } from "../app/features/shipping/types";
 import { IUser, IUserToUpdate } from "../app/features/user/types";
-import { IVacancy, IVacancyToUpdate } from "../app/features/vacancies/types";
+import { IVacanciesState, IVacancy, IVacancyToUpdate } from "../app/features/vacancies/types";
 
 
 //User
@@ -1294,6 +1294,32 @@ export const shippingToUpdateMock: IShippingToUpdate = {
   }
 };
 
+
+//Vacancies: success case
+export const vacanciesStateSuccess: IVacanciesState = {
+  status: 'succeeded',
+  vacancy: null,
+  vacancies: {
+    data: [
+      {
+        _id: 'vacancy_id_1',
+        title: 'Test Title',
+        character: 'remote-office',
+        employment: 'full-time',
+        experience: 'Test Experience',
+        responsibilities: 'Test Responsibilities',
+        mustHaves: 'Test Must Haves',
+        contactPerson: 'Test Contact Person',
+        contactPhone: '7777777777',
+        contactEmail: 'test@test.com',
+        salary: '1000',
+        createdAt: new Date().toDateString(),
+      },
+    ],
+    pages: 1,
+  },
+  error: null
+};
 
 //Vacancies: error case
 export const vacanciesStateError = {
