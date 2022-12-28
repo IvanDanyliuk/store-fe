@@ -21,6 +21,7 @@ import {
   categoryStateSuccess, 
   categoryStateUpdating, 
   galleryStateError, 
+  galleryStateSuccess, 
   orderStateError, 
   orderStateSuccess, 
   productStateError, 
@@ -56,7 +57,8 @@ export const renderWithProviders = (
       reviews: reviewsStateSuccess,
       order: orderStateSuccess,
       shipping: shippingStateSuccess,
-      vacancies: vacanciesStateSuccess
+      vacancies: vacanciesStateSuccess,
+      gallery: galleryStateSuccess
     },
     store = configureStore({
       reducer: combineReducers({

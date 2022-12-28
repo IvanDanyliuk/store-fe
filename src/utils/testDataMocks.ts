@@ -549,6 +549,26 @@ export const categoryStateUpdating = {
 };
 
 
+//Gallery: state success
+export const galleryStateSuccess: IGalleryState = {
+  status: 'succeeded',
+  imageUrls: [
+    {
+      _id: 'gallery_image_id_1',
+      url: 'https://www.storage.com/gallery/image_1.png'
+    },
+    {
+      _id: 'gallery_image_id_2',
+      url: 'https://www.storage.com/gallery/image_2.png'
+    },
+    {
+      _id: 'gallery_image_id_3',
+      url: 'https://www.storage.com/gallery/image_3.png'
+    },
+  ],
+  error: null
+};
+
 //Gallery: successfull case
 export const galleryUrlsSuccess: IGalleryImage[] = [
   {

@@ -128,6 +128,8 @@ const Home: React.FC = () => {
     dispatch(getGalleryImages());
   }, []);
 
+  console.log(galleryLoadingStatus)
+
   return (
     <Content>
       {
@@ -141,7 +143,7 @@ const Home: React.FC = () => {
           >
             {galleryImages.map(image => (
               <div key={uuid()}>
-                <img src={image.url} alt={image._id} />
+                <img data-testid='galleryImage' src={image.url} alt={image._id} />
               </div>
             ))}
           </Carousel>
