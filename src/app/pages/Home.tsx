@@ -128,8 +128,6 @@ const Home: React.FC = () => {
     dispatch(getGalleryImages());
   }, []);
 
-  console.log(galleryLoadingStatus)
-
   return (
     <Content>
       {
