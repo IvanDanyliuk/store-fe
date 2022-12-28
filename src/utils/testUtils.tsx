@@ -29,6 +29,7 @@ import {
   reviewsStateError, 
   reviewsStateSuccess, 
   shippingStateError, 
+  shippingStateSuccess, 
   shippingStateUpdating, 
   userStateError, 
   userStateSuccess, 
@@ -54,6 +55,7 @@ export const renderWithProviders = (
       cart: cartStateSuccess,
       reviews: reviewsStateSuccess,
       order: orderStateSuccess,
+      shipping: shippingStateSuccess,
       vacancies: vacanciesStateSuccess
     },
     store = configureStore({

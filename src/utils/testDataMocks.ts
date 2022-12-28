@@ -3,7 +3,7 @@ import { IGalleryImage, IGalleryState } from "../app/features/gallery/types";
 import { IOrder, IOrderToUpdate } from "../app/features/order/types";
 import { IProduct, IProductToUpdate } from "../app/features/product/types";
 import { IReview, IReviewToUpdate } from "../app/features/reviews/types";
-import { IShipping, IShippingToUpdate } from "../app/features/shipping/types";
+import { IShipping, IShippingState, IShippingToUpdate } from "../app/features/shipping/types";
 import { IUser, IUserToUpdate } from "../app/features/user/types";
 import { IVacanciesState, IVacancy, IVacancyToUpdate } from "../app/features/vacancies/types";
 
@@ -1235,8 +1235,24 @@ export const orderStateError = {
 };
 
 
+//Shipping: success case
+export const shippingStateSuccess: IShippingState = {
+  status: 'succeeded',
+  shipping: null,
+  shippings: [
+    {
+      _id: 'shipping_id_1',
+      company: 'Test Company',
+      country: 'Test Country',
+      cities: ['Test City 1', 'Test City 2', 'Test City 3'],
+      price: 100
+    }
+  ],
+  error: null
+};
+
 //Shipping: error case
-export const shippingStateError = {
+export const shippingStateError: IShippingState = {
   status: 'failed',
   shipping: null,
   shippings: [],
