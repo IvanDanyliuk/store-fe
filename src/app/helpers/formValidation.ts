@@ -93,16 +93,16 @@ export const isSigninDataValid = (data: IAuthData, setError: SetErrorType) => {
 
   switch(true) {
     case !data.email:
-      setError('Email field is required!');
+      setError('authValidationEmailRequired');
       return false;
     case !data.password:
-      setError('Password field is required!');
+      setError('authValidationPasswordRequired');
       return false;
     case !isEmailFormatValid:
-      setError('Invalid email!');
+      setError('authValidationIcorrectEmail');
       return false;
     case !isPasswordFormatValid:
-      setError('Your password has to be 6 characters in length!');
+      setError('authValidationIncorrectPassword');
       return false;
     default:
       setError('');

@@ -1,4 +1,8 @@
 {
+  "authValidationEmailRequired": "Поле 'Ел. пошта' є обов'язковим!",
+  "authValidationPasswordRequired": "Поле 'Пароль' є обов'язковим!",
+  "authValidationIcorrectEmail": "Некоректна адреса ел. пошта!",
+  "authValidationIncorrectPassword": "Пароль має містити щонайменше 6 символів!",
   "paymentMessage": "Функція оплати буде скоро доступна!",
   "commentBtnComment": "Коментувати",
   "commentLeaveComment": "Залиште свій коментар",

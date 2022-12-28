@@ -67,7 +67,7 @@ const ChangeModeBtn = styled.button`
 
 
 const Auth: React.FC = () => {
-  const { t } = useTranslation(['auth']);
+  const { t } = useTranslation(['auth', 'modals']);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 

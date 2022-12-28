@@ -1,4 +1,8 @@
 {
+  "authValidationEmailRequired": "Email field is required!",
+  "authValidationPasswordRequired": "Password field is required!",
+  "authValidationIcorrectEmail": "Invalid email!",
+  "authValidationIncorrectPassword": "Your password has to be 6 characters in length!",
   "paymentMessage": "The payment feature will be available soon!",
   "commentBtnComment": "Comment",
   "commentLeaveComment": "Leave a comment",
