@@ -6,7 +6,7 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { AppDispatch } from '../features/store';
-import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus, selectVacancyError } from '../features/vacancies/selectors';
+import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
 import PageListPagination from '../components/ui/PageListPagination';
 import { VACANCIES_PER_PAGE } from '../services/constants';
