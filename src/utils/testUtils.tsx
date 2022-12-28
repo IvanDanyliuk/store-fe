@@ -24,6 +24,7 @@ import {
   galleryStateSuccess, 
   orderStateError, 
   orderStateSuccess, 
+  orderStateUpdating, 
   productStateError, 
   productStateSuccess, 
   productStateUpdating, 
@@ -137,6 +138,7 @@ export const renderWithProvidersForUpdation = (
       category: categoryStateUpdating,
       product: productStateUpdating,
       cart: cartStateSuccess,
+      order: orderStateUpdating,
       shipping: shippingStateUpdating,
       vacancies: vacanciesStateUpdating
     },
