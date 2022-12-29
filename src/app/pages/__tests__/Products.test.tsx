@@ -6,11 +6,11 @@ import Products from '../Products';
 
 
 jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useParams: () => ({
-      category: 'main-category-title',
-    }),
-  }));
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    category: 'main-category-title',
+  }),
+}));
 
 describe('Tests for the Products page', () => {
   beforeEach(() => {
