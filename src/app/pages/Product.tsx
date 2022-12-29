@@ -564,7 +564,7 @@ const Product: React.FC = () => {
           </ReviewTopSection>
           <ReviewList>
             {reviews.map((review: any) => (
-              <ReviewBody key={uuid()}>
+              <ReviewBody key={uuid()} data-testid='reviewItem'>
                 <ReviewHeader>
                   <UserInfo>
                     <Avatar src={review.userAvatarUrl} />
@@ -599,7 +599,7 @@ const Product: React.FC = () => {
                             color={ButtonColor.Danger}
                             onClick={() => handleReviewDelete(review._id)}
                           >
-                            <FontAwesomeIcon icon={faTrash}/>
+                            <FontAwesomeIcon data-testid='deleteReview' icon={faTrash}/>
                           </RoundedButton>
                           <RoundedButton
                             type={ButtonType.Button}
@@ -614,14 +614,14 @@ const Product: React.FC = () => {
                   </BtnGroup>
                   <BtnGroup>
                     <LikeBtn onClick={() => likeReview(review)}>
-                      <FontAwesomeIcon icon={faThumbsUp} />
-                      <ReactionsNum>
+                      <FontAwesomeIcon data-testid='likeBtn' icon={faThumbsUp} />
+                      <ReactionsNum data-testid='likeCounter'>
                         {review.likes.length}
                       </ReactionsNum>
                     </LikeBtn>
                     <DislikeBtn onClick={() => dislikeReview(review)}>
-                      <FontAwesomeIcon icon={faThumbsDown} />
-                      <ReactionsNum>
+                      <FontAwesomeIcon data-testid='dislikeBtn' icon={faThumbsDown} />
+                      <ReactionsNum data-testid='dislikesCounter'>
                         {review.dislikes.length}
                       </ReactionsNum>
                     </DislikeBtn>
