@@ -206,6 +206,7 @@ const Products: React.FC = () => {
           </FilterGroupLabel>
           <PriceFilters>
             <PriceField 
+              data-testid='minPrice'
               type='number' 
               name='minPrice' 
               value={priceData.minPrice}
@@ -213,6 +214,7 @@ const Products: React.FC = () => {
               onChange={handlePriceDataChange} 
             />
             <PriceField 
+              data-testid='maxPrice'
               type='number' 
               name='maxPrice' 
               value={priceData.maxPrice}
