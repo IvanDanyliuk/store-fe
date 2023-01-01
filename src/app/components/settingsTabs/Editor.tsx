@@ -130,12 +130,10 @@ const Editor: React.FC = () => {
   }
 
   const handleProductEdit = (id: string) => {
-    //Done
     dispatch(setProductToUpdate(id));
   };
 
   const handleProductDelete = (id: string) => {
-    //Done
     dispatch(deleteProduct(id));
   };
 
