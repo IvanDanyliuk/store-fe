@@ -1,4 +1,4 @@
-import { ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
+import { ICategoryState, ICategoryToUpdate, IProductCategory } from "../app/features/category/types";
 import { IGalleryImage, IGalleryState } from "../app/features/gallery/types";
 import { IOrder, IOrderToUpdate } from "../app/features/order/types";
 import { IProduct, IProductToUpdate } from "../app/features/product/types";
@@ -485,7 +485,7 @@ export const userStateError = {
 
 
 //Category: successfull case
-export const categoryStateSuccess = {
+export const categoryStateSuccess: ICategoryState = {
   status: 'succeeded',
   category: null,
   categories: [

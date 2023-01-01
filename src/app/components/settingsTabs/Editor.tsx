@@ -130,10 +130,12 @@ const Editor: React.FC = () => {
   }
 
   const handleProductEdit = (id: string) => {
+    //Done
     dispatch(setProductToUpdate(id));
   };
 
   const handleProductDelete = (id: string) => {
+    //Done
     dispatch(deleteProduct(id));
   };
 
@@ -261,7 +263,7 @@ const Editor: React.FC = () => {
                     color={ButtonColor.Danger}
                     onClick={() => handleGalleryImageDelete(image._id!)}
                   >
-                    <FontAwesomeIcon icon={faTrash} />
+                    <FontAwesomeIcon data-testid='deleteGalleryImageBtn' icon={faTrash} />
                   </RoundedButton>
                 </GalleryImageItem>
               ))}
