@@ -150,7 +150,7 @@ const Reviews: React.FC = () => {
                   color={ButtonColor.Danger}
                   onClick={() => handleReviewDelete(review._id!)}
                 >
-                  <FontAwesomeIcon icon={faTrash} />
+                  <FontAwesomeIcon data-testid='deleteReviewBtn' icon={faTrash} />
                 </RoundedButton>
               </ReviewActions>
             </ReviewItem>
