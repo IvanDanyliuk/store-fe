@@ -74,6 +74,7 @@ const NavLink = styled(Link)`
   `}
 `;
 
+
 const Footer: React.FC = () => {
   const { t } = useTranslation(['footer']);
 

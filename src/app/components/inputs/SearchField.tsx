@@ -11,11 +11,7 @@ import SearchResults from '../modals/SearchResults';
 import { clearSearchData } from '../../features/product/reducers';
 
 
-const Container = styled.div`
-  ${tw`
-    
-  `}
-`;
+const Container = styled.div``;
 
 const SearchForm = styled.form`
   ${tw`

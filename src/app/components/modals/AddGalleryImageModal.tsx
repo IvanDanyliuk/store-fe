@@ -20,6 +20,7 @@ import { selectGalleryImages } from '../../features/gallery/selectors';
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
+
 const FormHeader = styled.div`
   ${tw`
     mb-4
@@ -54,6 +55,7 @@ const Input = styled.input`
     rounded
   `}
 `;
+
 
 const AddGalleryImageModal: React.FC = () => {
   const { t } = useTranslation(['modals']);

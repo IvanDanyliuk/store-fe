@@ -103,8 +103,12 @@ const Careers: React.FC = () => {
                 vacancies.map(vacancy => (
                   <VacancyItem>
                     <VacancyLink to={`/careers/${vacancy._id}`}>
-                      <VacancyTitle>{vacancy.title}</VacancyTitle>
-                      <VacancyDate>{moment(vacancy.createdAt).format('DD MM YYYY')}</VacancyDate>
+                      <VacancyTitle>
+                        {vacancy.title}
+                      </VacancyTitle>
+                      <VacancyDate>
+                        {moment(vacancy.createdAt).format('DD MM YYYY')}
+                      </VacancyDate>
                     </VacancyLink>
                   </VacancyItem>
                 ))

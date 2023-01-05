@@ -12,6 +12,7 @@ const Container = styled.div`
   `}
 `;
 
+
 const Categories: React.FC = () => {
   const { category } = useParams();
 

@@ -135,7 +135,9 @@ const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelet
             tableType === TableTypes.Categories ? (
                 slice.map((category: IProductCategory) => 'main' in category && (
                   <TableRow key={uuid()}>
-                    <TableCell name='categoryName'>{category.main.title}</TableCell>
+                    <TableCell name='categoryName'>
+                      {category.main.title}
+                    </TableCell>
                     <TableCell name='categoryActions'>
                       <Button 
                         color={ButtonColor.Success} 
@@ -156,7 +158,9 @@ const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelet
                 )
               )) : slice.map((shippingOption: IShipping) => 'company' in shippingOption && (
                 <TableRow key={uuid()}>
-                  <TableCell name='shippingName'>{shippingOption.company}</TableCell>
+                  <TableCell name='shippingName'>
+                    {shippingOption.company}
+                  </TableCell>
                   <TableCell name='shippingActions'>
                     <Button 
                       color={ButtonColor.Success} 

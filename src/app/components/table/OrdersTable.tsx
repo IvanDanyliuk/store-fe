@@ -127,9 +127,15 @@ const OrdersTable: React.FC<IOrdersTableProps> = ({ orders }) => {
           {
             orders.map(order => (
               <TableRow key={uuid()}>
-                <TableCell name='orderId'>{order._id}</TableCell>
-                <TableCell name='orderDate'>{moment(order.createdAt).format('DD MM YYYY')}</TableCell>
-                <TableCell name='orderAmount'>{order.amount}</TableCell>
+                <TableCell name='orderId'>
+                  {order._id}
+                </TableCell>
+                <TableCell name='orderDate'>
+                  {moment(order.createdAt).format('DD MM YYYY')}
+                </TableCell>
+                <TableCell name='orderAmount'>
+                  {order.amount}
+                </TableCell>
                 <TableCell name='orderImage'>
                   <ProductImages>
                     {order.products.slice(0, 3).map(product => (

@@ -24,6 +24,7 @@ import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR, SUCCESS_COLOR } from '../.
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
+
 const FormHeader = styled.div`
   ${tw`
     mb-4

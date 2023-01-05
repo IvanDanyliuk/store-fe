@@ -111,6 +111,7 @@ const EmptyCartMessage = styled.li`
   `}
 `;
 
+
 const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
   const { t } = useTranslation(['modals']);
   const dispatch = useDispatch<AppDispatch>();
@@ -152,9 +153,19 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
             </ItemInfo>
             <ItemActions>
               <ProductNumber>
-                <SetNumberBtn data-testid='increaseBtn' onClick={() => decreaseProductQuantity(item._id!)}>-</SetNumberBtn>
+                <SetNumberBtn 
+                  data-testid='increaseBtn' 
+                  onClick={() => decreaseProductQuantity(item._id!)}
+                >
+                  -
+                </SetNumberBtn>
                 <Number>{item.quantity}</Number>
-                <SetNumberBtn data-testid='decreaseBtn' onClick={() => increaseProductQuantity(item._id!)}>+</SetNumberBtn>
+                <SetNumberBtn 
+                  data-testid='decreaseBtn' 
+                  onClick={() => increaseProductQuantity(item._id!)}
+                >
+                  +
+                </SetNumberBtn>
               </ProductNumber>
               <RoundedButton 
                 type={ButtonType.Button} 

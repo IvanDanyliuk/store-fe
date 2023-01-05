@@ -114,9 +114,15 @@ const Vacancy: React.FC = () => {
         )
       }
       <SectionContent>
-        <ContactItem>{t('contactPerson')}: {vacancy?.contactPerson}</ContactItem>
-        <ContactItem>{t('contactEmail')}: {vacancy?.contactPhone}</ContactItem>
-        <ContactItem>{t('contactPhone')}: {vacancy?.contactPhone}</ContactItem>
+        <ContactItem>
+          {t('contactPerson')}: {vacancy?.contactPerson}
+        </ContactItem>
+        <ContactItem>
+          {t('contactEmail')}: {vacancy?.contactPhone}
+        </ContactItem>
+        <ContactItem>
+          {t('contactPhone')}: {vacancy?.contactPhone}
+        </ContactItem>
       </SectionContent>
     </Container>
   );

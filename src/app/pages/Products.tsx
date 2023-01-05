@@ -74,11 +74,7 @@ const Checkbox = styled.input`
   `}
 `;
 
-const Label = styled.label`
-  ${tw`
-  
-  `}
-`;
+const Label = styled.label``;
 
 const PriceFilters = styled.div`
   ${tw`

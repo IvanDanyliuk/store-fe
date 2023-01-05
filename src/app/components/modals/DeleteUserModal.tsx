@@ -19,6 +19,7 @@ import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/cons
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
+
 const FormHeader = styled.div`
   ${tw`
     mb-4
@@ -54,6 +55,7 @@ const Actions = styled.div`
     justify-center
   `}
 `;
+
 
 const DeleteUserModal: React.FC = () => {
   const { t } = useTranslation(['modals']);

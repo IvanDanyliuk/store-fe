@@ -117,9 +117,15 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
           {
             products.map((product: IProduct) => (
               <TableRow key={uuid()}>
-                <TableCell name='productName'>{product.title}</TableCell>
-                <TableCell name='productPrice'>{product.price}</TableCell>
-                <TableCell name='productRating'>{product.rating}</TableCell>
+                <TableCell name='productName'>
+                  {product.title}
+                </TableCell>
+                <TableCell name='productPrice'>
+                  {product.price}
+                </TableCell>
+                <TableCell name='productRating'>
+                  {product.rating}
+                </TableCell>
                 <TableCell name='productImage'>
                   <ProductListImage url={product.image} altText={product.title} />
                 </TableCell>

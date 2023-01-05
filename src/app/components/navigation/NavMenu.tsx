@@ -67,6 +67,7 @@ const SocialMediaLink = styled.a`
   `}
 `;
 
+
 const NavMenu: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const categories = useSelector(selectCategories);

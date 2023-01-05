@@ -26,6 +26,7 @@ const Content = styled.main`
   `}
 `;
 
+
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <Container>

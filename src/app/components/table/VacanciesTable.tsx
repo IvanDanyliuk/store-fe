@@ -113,8 +113,12 @@ const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, status, onE
           {
             vacancies.map((vacancy: IVacancy) => (
               <TableRow key={uuid()}>
-                <TableCell name='vacancyName'>{vacancy.title}</TableCell>
-                <TableCell name='vacancyDate'>{moment(vacancy.createdAt).format('DD MM YYYY')}</TableCell>
+                <TableCell name='vacancyName'>
+                  {vacancy.title}
+                </TableCell>
+                <TableCell name='vacancyDate'>
+                  {moment(vacancy.createdAt).format('DD MM YYYY')}
+                </TableCell>
                 <TableCell name='vacancyActions'>
                   <Button 
                     color={ButtonColor.Success} 

@@ -23,6 +23,7 @@ import {
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
+
 const Container = styled.div`
   min-height: 95%;
   ${tw`
@@ -138,6 +139,7 @@ const FooterActions = styled.div`
     items-center
   `}
 `;
+
 
 const Cart: React.FC = () => {
   const { t } = useTranslation(['modals']);

@@ -97,11 +97,7 @@ const GalleryImageItem = styled.li`
   }
 `;
 
-const Image = styled.img`
-  ${tw`
-    
-  `}
-`;
+const Image = styled.img``;
 
 
 const Editor: React.FC = () => {
@@ -261,7 +257,10 @@ const Editor: React.FC = () => {
                     color={ButtonColor.Danger}
                     onClick={() => handleGalleryImageDelete(image._id!)}
                   >
-                    <FontAwesomeIcon data-testid='deleteGalleryImageBtn' icon={faTrash} />
+                    <FontAwesomeIcon 
+                      data-testid='deleteGalleryImageBtn' 
+                      icon={faTrash} 
+                    />
                   </RoundedButton>
                 </GalleryImageItem>
               ))}

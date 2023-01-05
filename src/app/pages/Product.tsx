@@ -599,7 +599,10 @@ const Product: React.FC = () => {
                             color={ButtonColor.Danger}
                             onClick={() => handleReviewDelete(review._id)}
                           >
-                            <FontAwesomeIcon data-testid='deleteReview' icon={faTrash}/>
+                            <FontAwesomeIcon 
+                              data-testid='deleteReview' 
+                              icon={faTrash} 
+                            />
                           </RoundedButton>
                           <RoundedButton
                             type={ButtonType.Button}
@@ -614,13 +617,19 @@ const Product: React.FC = () => {
                   </BtnGroup>
                   <BtnGroup>
                     <LikeBtn onClick={() => likeReview(review)}>
-                      <FontAwesomeIcon data-testid='likeBtn' icon={faThumbsUp} />
+                      <FontAwesomeIcon 
+                        data-testid='likeBtn' 
+                        icon={faThumbsUp} 
+                      />
                       <ReactionsNum data-testid='likeCounter'>
                         {review.likes.length}
                       </ReactionsNum>
                     </LikeBtn>
                     <DislikeBtn onClick={() => dislikeReview(review)}>
-                      <FontAwesomeIcon data-testid='dislikeBtn' icon={faThumbsDown} />
+                      <FontAwesomeIcon 
+                        data-testid='dislikeBtn' 
+                        icon={faThumbsDown} 
+                      />
                       <ReactionsNum data-testid='dislikesCounter'>
                         {review.dislikes.length}
                       </ReactionsNum>

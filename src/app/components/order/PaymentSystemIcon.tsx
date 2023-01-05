@@ -15,6 +15,7 @@ const Container = styled.div`
   `}
 `;
 
+
 const PaymentSystemIcon: React.FC<IPaymentSystemIconProps> = ({ cardNumber }) => {
   const numberToValidate = cardNumber.replace(/\s+/g, '');
   const paymentSystemType = creditCardType(numberToValidate)[0];
@@ -29,7 +30,11 @@ const PaymentSystemIcon: React.FC<IPaymentSystemIconProps> = ({ cardNumber }) =>
   return (
     <Container>
       <FontAwesomeIcon 
-        data-testid='cardIcon' icon={paymentSystemType ? setIcon(paymentSystemType.type) : faMoneyCheckDollar} 
+        data-testid='cardIcon' 
+        icon={paymentSystemType ? 
+          setIcon(paymentSystemType.type) : 
+          faMoneyCheckDollar
+        } 
       />
     </Container>
   );

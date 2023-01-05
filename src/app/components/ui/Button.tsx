@@ -26,7 +26,11 @@ const ButtonBody = styled.button`
 
 const Button: React.FC<IButtonProps> = ({ color, type, onClick, children }) => {
   return (
-    <ButtonBody color={color} type={type} onClick={onClick}>
+    <ButtonBody 
+      color={color} 
+      type={type} 
+      onClick={onClick}
+    >
       {children}
     </ButtonBody>
   );

@@ -19,6 +19,7 @@ const ErrorMessage = styled.div`
 
 const FormErrorMessage: React.FC<IFormErrorMessage> = ({ error }) => {
   const { t } = useTranslation(['modals']);
+  
   return (
     <Container>
       {

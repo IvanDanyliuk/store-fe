@@ -26,11 +26,7 @@ const SubTitle = styled.h3`
   `}
 `;
 
-const Text = styled.p`
-  ${tw`
-
-  `}
-`;
+const Text = styled.p``;
 
 const Logo = styled.h1`
   color: ${PRIMARY_COLOR};
@@ -72,11 +68,7 @@ const IndicatorNum = styled.span`
   `}
 `;
 
-const IndicatorText = styled.span`
-  ${tw`
-  
-  `}
-`;
+const IndicatorText = styled.span``;
 
 
 const About: React.FC = () => {

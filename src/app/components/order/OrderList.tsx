@@ -65,11 +65,7 @@ const Actions = styled.div`
   `}
 `;
 
-const Message = styled.div`
-  ${tw`
-  
-  `}
-`;
+const Message = styled.div``;
 
 
 const OrderList: React.FC<IOrderListProps> = ({ orders }) => {

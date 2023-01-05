@@ -96,6 +96,7 @@ const LogoutBtn = styled.button`
   `}
 `;
 
+
 const Header: React.FC = () => {
   const { t } = useTranslation(['header']);
   const navigate = useNavigate();
