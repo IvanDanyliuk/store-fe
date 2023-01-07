@@ -15,6 +15,7 @@ import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
 import { deleteUser } from '../../features/user/asyncActions';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
+import { logout } from '../../features/user/reducers';
 
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
@@ -74,7 +75,7 @@ const DeleteUserModal: React.FC = () => {
   const handleUserDelete = () => {
     dispatch(deleteUser(user?._id!));
     setIsOpen(!isOpen);
-    localStorage.clear();
+    dispatch(logout());
     navigate('/');
   };
 
