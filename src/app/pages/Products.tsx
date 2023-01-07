@@ -129,6 +129,10 @@ const Products: React.FC = () => {
     const isSomeBrandChecked = checkedBrandIds.some(brand => brand === true);
     if(priceData.minPrice > 0 || priceData.maxPrice > 0 || isSomeBrandChecked) {
       setCheckedBrandIds(checkedBrandIds.map(item => item === true && false));
+      setPriceData({
+        minPrice: 0, 
+        maxPrice: 0
+      });
       dispatch(getProducts({
         page: 1,
         productsPerPage, 
