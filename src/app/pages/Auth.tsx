@@ -173,7 +173,6 @@ const Auth: React.FC = () => {
         try {
           await dispatch(signup(userData));
           clearForm();
-          // navigate('/');
         } catch (error) {
           console.log('Something went wrong...');
         }
