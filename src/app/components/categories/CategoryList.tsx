@@ -8,10 +8,12 @@ import { ISubCategoriesProps } from '../../../types/types';
 import { getCategories } from '../../features/category/asyncActions';
 import { selectCategories } from '../../features/category/selectors';
 import { AppDispatch } from '../../features/store';
+import { SECONDARY_COLOR } from '../../services/constants';
 
 
 const List = styled.ul`
   ${tw`
+    mt-3
     w-full
     flex
     flex-col
@@ -58,6 +60,13 @@ const Title = styled.h4`
   `}
 `;
 
+const BackLink = styled(Link)`
+  color: ${SECONDARY_COLOR};
+  ${tw`
+    
+  `}
+`;
+
 
 const CategoryList: React.FC<ISubCategoriesProps> = ({ category }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -68,27 +77,30 @@ const CategoryList: React.FC<ISubCategoriesProps> = ({ category }) => {
   }, [dispatch]);
 
   return (
-    <List>
-      {
-        category ? categories
-        .find(item => item.main.url === category)
-        ?.subCategories.map(item => (
-          <CategoryItem key={uuid()}>
-            <CategoryLink to={`/products/${item.url}`}>
-              <Image src={item.image} alt={item.title} />
-              <Title>{item.title}</Title>
-            </CategoryLink>
-          </CategoryItem>
-        )) : categories.map(category => (
-          <CategoryItem key={uuid()}>
-            <CategoryLink to={`/categories/${category.main.url}`}>
-              <Image src={''} alt={category.main.title} />
-              <Title>{category.main.title}</Title>
-            </CategoryLink>
-          </CategoryItem>
-        ))
-      }
-    </List>  
+    <>
+      <BackLink to={'/categories'}>{category && 'back to categories'}</BackLink>
+      <List>
+        {
+          category ? categories
+          .find(item => item.main.url === category)
+          ?.subCategories.map(item => (
+            <CategoryItem key={uuid()}>
+              <CategoryLink to={`/products/${item.url}`}>
+                <Image src={item.image} alt={item.title} />
+                <Title>{item.title}</Title>
+              </CategoryLink>
+            </CategoryItem>
+          )) : categories.map(category => (
+            <CategoryItem key={uuid()}>
+              <CategoryLink to={`/categories/${category.main.url}`}>
+                <Image src={''} alt={category.main.title} />
+                <Title>{category.main.title}</Title>
+              </CategoryLink>
+            </CategoryItem>
+          ))
+        }
+      </List>
+    </>  
   );
 };
 
