@@ -9,6 +9,7 @@ import { getCategories } from '../../features/category/asyncActions';
 import { selectCategories } from '../../features/category/selectors';
 import { AppDispatch } from '../../features/store';
 import { SECONDARY_COLOR } from '../../services/constants';
+import { SCREENS } from '../../services/screens';
 
 
 const List = styled.ul`
@@ -23,11 +24,14 @@ const List = styled.ul`
 `;
 
 const CategoryItem = styled.li`
+  width: 24%;
+  margin: .5%;
+  @media (max-width: ${SCREENS.md}) {
+    width: 100%;
+    margin: 1%;
+  }
   ${tw`
-    m-1
     p-3
-    w-full
-    md:w-1/6
     border
     border-gray-300
     rounded-lg
@@ -53,8 +57,8 @@ const Image = styled.img`
 
 const Title = styled.h4`
   ${tw`
-    mt-1
-    text-sm
+    mt-4
+    text-base
     text-center
     font-semibold
   `}
@@ -62,9 +66,6 @@ const Title = styled.h4`
 
 const BackLink = styled(Link)`
   color: ${SECONDARY_COLOR};
-  ${tw`
-    
-  `}
 `;
 
 
@@ -93,7 +94,7 @@ const CategoryList: React.FC<ISubCategoriesProps> = ({ category }) => {
           )) : categories.map(category => (
             <CategoryItem key={uuid()}>
               <CategoryLink to={`/categories/${category.main.url}`}>
-                <Image src={''} alt={category.main.title} />
+                <Image src={category.subCategories[0].image} alt={category.main.title} />
                 <Title>{category.main.title}</Title>
               </CategoryLink>
             </CategoryItem>
