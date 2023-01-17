@@ -86,7 +86,7 @@ const GalleryImageItem = styled.li`
     p-3
     relative
     w-full
-    w-1/3
+    md:w-1/3
   `}
   button {
     ${tw`
