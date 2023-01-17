@@ -39,6 +39,7 @@ const FiltersContainer = styled.div`
     md:w-1/6
   `}
   button {
+    margin-right: 20px;
     margin-bottom: 20px;
   }
 `;
