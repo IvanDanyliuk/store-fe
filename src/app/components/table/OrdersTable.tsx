@@ -69,13 +69,12 @@ const TableCell = styled.td<ICellProps>`
   ${tw`
     pt-2
     pb-2
+    text-sm
   `}
 `;
 
 const ProductImages = styled.div`
   ${tw`
-    w-1/2
-    md:w-4/12
     flex
     items-center
   `}

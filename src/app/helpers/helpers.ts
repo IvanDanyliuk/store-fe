@@ -63,7 +63,7 @@ export const setCellWidth = (name: string, isMobile: boolean) => {
     case 'orderImage':
       return isMobile ? '100px' : '25%';
     case 'orderActions':
-      return isMobile ? '300px' : '10%';
+      return isMobile ? '50px' : '10%';
     default:
       return '0%';
   }
