@@ -8,7 +8,7 @@ import CategoryList from '../components/categories/CategoryList';
 const Container = styled.div`
   ${tw`
     w-full
-    p-3
+    p-2
   `}
 `;
 

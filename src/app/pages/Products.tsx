@@ -18,7 +18,6 @@ import Loader from '../components/ui/Loader';
 
 const Container = styled.div`
   ${tw`
-    p-3
     w-full
     flex
     flex-col
@@ -35,7 +34,7 @@ const Content = styled.div`
 
 const FiltersContainer = styled.div`
   ${tw`
-    pr-3
+    p-3
     w-full
     md:w-1/6
   `}

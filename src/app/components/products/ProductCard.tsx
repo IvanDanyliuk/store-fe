@@ -27,6 +27,7 @@ const Card = styled.li`
   margin: .5%;
   @media (max-width: ${SCREENS.md}) {
     width: 100%;
+    margin: 1% 0;
   }
   ${tw`
     relative
