@@ -8,7 +8,7 @@ import ProductCard from './ProductCard';
 
 const Container = styled.ul`
   ${tw`
-    p-2
+    // p-2
     flex
     flex-col
     md:flex-row

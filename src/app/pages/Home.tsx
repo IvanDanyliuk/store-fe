@@ -28,10 +28,13 @@ const Content = styled.div`
 `;
 
 const PageSection = styled.section`
-
   ${tw`
     pt-6
     pb-3
+    pl-2
+    pr-2
+    md:pl-0
+    md:pr-0
     flex
     flex-col
     items-center
