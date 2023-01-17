@@ -28,10 +28,12 @@ const FilterSection = styled.div`
     pt-5
     pb-5
     w-full
-    h-auto
     flex
-    items-stretch
   `}
+  input {
+    margin-bottom: 0;
+  }
+
   button {
     margin-top: 28px;
     margin-left: 10px;
