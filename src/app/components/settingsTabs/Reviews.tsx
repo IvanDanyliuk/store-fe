@@ -88,6 +88,7 @@ const Text = styled.p`
 const TextTitle = styled.span`
   ${tw`
     inline-block
+    w-20
     md:w-36
     font-semibold
   `}
