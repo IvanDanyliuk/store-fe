@@ -110,8 +110,10 @@ const Actions = styled.div`
   button {
     margin-right: 20px;
     @media (max-width: ${SCREENS.md}) {
-      margin: 0;
+      margin-right: 0;
+      margin-top: 20px;
       width: 47%;
+      height: 50px;
     }
   }
   ${tw`
@@ -119,6 +121,8 @@ const Actions = styled.div`
     flex
     justify-between
     md:justify-start
+    flex-wrap
+    md:flex-nowrap
   `}
 `;
 
