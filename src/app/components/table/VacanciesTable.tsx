@@ -70,6 +70,8 @@ const TableCell = styled.td<ICellProps>`
   ${tw`
     pt-2
     pb-2
+    text-sm
+    md:text-base
   `}
 `;
 
