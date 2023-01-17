@@ -55,6 +55,8 @@ const ReviewInfo = styled.div`
 
 const ReviewActions = styled.div`
   ${tw`
+    mt-2
+    md:mt-0
     w-full
     md:w-1/12
     flex
@@ -78,14 +80,15 @@ const CommentData = styled.div`
 
 const Text = styled.p`
   ${tw`
-    text-sm
+    text-xs
+    md:text-base
   `}
 `;
 
 const TextTitle = styled.span`
   ${tw`
     inline-block
-    w-36
+    md:w-36
     font-semibold
   `}
 `;
