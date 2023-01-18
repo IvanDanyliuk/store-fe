@@ -123,5 +123,12 @@
   "vacanciesValidationContactPhoneRequired": "Contact Phone field is required!",
   "vacanciesValidationContactEmailRequired": "Contact Email field is required!",
   "galleryBtn": "Add new",
-  "gallerySubmitBtn": "Submit"
+  "gallerySubmitBtn": "Submit",
+  "deleteItemBtn": "Delete",
+  "deleteItemYes": "Yes",
+  "deleteItemNo": "No",
+  "preDeleteProductAnswer": "This product will be deleted. Are you sure?",
+  "preDeleteCategoryAnswer": "This category will be deleted. Are you sure?",
+  "preDeleteShippingAnswer": "This shipping will be deleted. Are you sure?",
+  "preDeleteVacancyAnswer": "This vacancy will be deleted. Are you sure?"
 }

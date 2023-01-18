@@ -123,5 +123,12 @@
   "vacanciesValidationContactPhoneRequired": "Поле 'Контактний телефон' є обов'язковим!",
   "vacanciesValidationContactEmailRequired": "Поле 'Контактна адреса ел. пошти' є обов'язковим!",
   "galleryBtn": "Додати",
-  "gallerySubmitBtn": "Підтвердити"
+  "gallerySubmitBtn": "Підтвердити",
+  "deleteItemBtn": "Видалити",
+  "deleteItemYes": "Так",
+  "deleteItemNo": "Ні",
+  "preDeleteProductAnswer": "Цей товар буде видалено. Ви впевнені?",
+  "preDeleteCategoryAnswer": "Цю категорію буде видалено. Ви впевнені?",
+  "preDeleteShippingAnswer": "Цей спосіб доставки буде видалено. Ви впевнені?",
+  "preDeleteVacancyAnswer": "Цю вакансію буде видалено. Ви впевнені?"
 }

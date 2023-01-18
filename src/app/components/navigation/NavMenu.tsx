@@ -22,6 +22,7 @@ import Copyright from '../ui/Copyright';
 import { AppDispatch } from '../../features/store';
 import { selectCategories } from '../../features/category/selectors';
 import { getCategories } from '../../features/category/asyncActions';
+import { IProductCategory } from '../../features/category/types';
 
 
 const Navigation = styled(Menu)`
@@ -81,7 +82,7 @@ const NavMenu: React.FC = () => {
     <Navigation styles={styles} >
       {isMobile && <SearchField />}
       <NavList>
-        {categories.map(link => (
+        {categories.map((link: IProductCategory) => (
           <NavItem key={uuid()}>
             <NavLink to={`/categories/${link.main.url}`}>
               {link.main.title}
