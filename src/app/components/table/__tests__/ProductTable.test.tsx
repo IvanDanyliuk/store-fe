@@ -59,7 +59,7 @@ describe('Tests for the ProductTable component', () => {
     expect(editHandler).toHaveBeenCalled();
   });
 
-  test('should call the editHandler function after clicking on the Edit button', () => {
+  test('should call the deleteHandler function after clicking on the Delete button', () => {
     render(
       <ProductTable 
         products={productsMock} 
@@ -68,7 +68,8 @@ describe('Tests for the ProductTable component', () => {
         onDelete={deleteHandler} 
       />
     );
-    fireEvent.click(screen.getByRole('button', { name: 'deleteBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
     expect(deleteHandler).toHaveBeenCalled();
   });
 });
