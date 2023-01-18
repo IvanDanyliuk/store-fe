@@ -226,3 +226,8 @@ export interface ISearchResultsProps {
   onClose: () => void;
   products: IProduct[];
 }
+
+export interface IDeleteItemModal {
+  deleteHandler: () => void;
+  message: string;
+}

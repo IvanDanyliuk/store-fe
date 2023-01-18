@@ -211,7 +211,7 @@ const CreateCategoryForm: React.FC = () => {
 
   const handleAddSubCategory = (e: SyntheticEvent) => {
     e.preventDefault();
-    if(subCategory.title && subCategory.url) {
+    if(subCategory.title) {
       setSubCategories([...subCategories, subCategory]);
     }
     setSubCategory({

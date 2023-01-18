@@ -12,6 +12,7 @@ import { IProductCategory } from '../../features/category/types';
 import Pagination from './Pagination';
 import { IShipping } from '../../features/shipping/types';
 import Loader from '../ui/Loader';
+import DeleteItemModal from '../modals/DeleteItemModal';
 
 
 const Container = styled.div`
@@ -148,13 +149,10 @@ const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelet
                       >
                         {t('tableEditBtn')}
                       </Button>
-                      <Button 
-                        color={ButtonColor.Danger} 
-                        type={ButtonType.Button}
-                        onClick={() => onDelete(category._id!)}
-                      >
-                        {t('tableDeleteBtn')}
-                      </Button>
+                      <DeleteItemModal 
+                        deleteHandler={() => onDelete(category._id!)} 
+                        message={'preDeleteCategoryAnswer'} 
+                      />
                     </TableCell>
                   </TableRow>
                 )
@@ -171,13 +169,10 @@ const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelet
                     >
                       {t('tableEditBtn')}
                     </Button>
-                    <Button 
-                      color={ButtonColor.Danger} 
-                      type={ButtonType.Button}
-                      onClick={() => onDelete(shippingOption._id!)}
-                    >
-                      {t('tableDeleteBtn')}
-                    </Button>
+                    <DeleteItemModal 
+                      deleteHandler={() => onDelete(shippingOption._id!)} 
+                      message={'preDeleteShippingAnswer'} 
+                    />
                   </TableCell>
                 </TableRow>
               )

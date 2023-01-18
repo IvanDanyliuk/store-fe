@@ -10,6 +10,7 @@ import { ButtonColor, ButtonType, ICellProps, IProductsTableProps } from '../../
 import { IProduct } from '../../features/product/types';
 import ProductListImage from '../ui/ProductListImage';
 import Loader from '../ui/Loader';
+import DeleteItemModal from '../modals/DeleteItemModal';
 
 
 const Container = styled.div`
@@ -139,13 +140,10 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
                   >
                     {t('editBtn')}
                   </Button>
-                  <Button 
-                    color={ButtonColor.Danger} 
-                    type={ButtonType.Button}
-                    onClick={() => onDelete(product._id)}
-                  >
-                    {t('deleteBtn')}
-                  </Button>
+                  <DeleteItemModal 
+                    deleteHandler={() => onDelete(product._id)} 
+                    message={'preDeleteProductAnswer'} 
+                  />
                 </TableCell>
               </TableRow>
             )) 

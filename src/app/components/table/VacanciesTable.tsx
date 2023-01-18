@@ -10,6 +10,7 @@ import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, ICellProps, IVacanciesTableProps } from '../../../types/types';
 import { IVacancy } from '../../features/vacancies/types';
 import Loader from '../ui/Loader';
+import DeleteItemModal from '../modals/DeleteItemModal';
 
 
 const Container = styled.div`
@@ -129,13 +130,10 @@ const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, status, onE
                   >
                     {t('editBtn')}
                   </Button>
-                  <Button 
-                    color={ButtonColor.Danger} 
-                    type={ButtonType.Button}
-                    onClick={() => onDelete(vacancy._id!)}
-                  >
-                    {t('deleteBtn')}
-                  </Button>
+                  <DeleteItemModal 
+                    deleteHandler={() => onDelete(vacancy._id!)} 
+                    message={'preDeleteVacancyAnswer'} 
+                  />
                 </TableCell>
               </TableRow>
             )) 
