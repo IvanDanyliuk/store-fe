@@ -36,7 +36,8 @@ describe('Tests for the Table component: categories data', () => {
   });
 
   test('should call the deleteHandler function after clicking on the Delete button', () => {
-    fireEvent.click(screen.getByRole('button', { name: 'tableDeleteBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
     expect(deleteHandler).toHaveBeenCalled();
   });
 });
@@ -65,7 +66,8 @@ describe('Tests for the Table component: shipping data', () => {
   });
 
   test('should call the deleteHandler function after clicking on the Delete button', () => {
-    fireEvent.click(screen.getByRole('button', { name: 'tableDeleteBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
     expect(deleteHandler).toHaveBeenCalled();
   });
 });
