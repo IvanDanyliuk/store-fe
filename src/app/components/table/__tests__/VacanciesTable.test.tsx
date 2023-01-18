@@ -32,7 +32,8 @@ describe('Tests for the VacanciesTable: successfull cases', () => {
   });
 
   test('should call the deleteHandler function after clicking on the Delete button', () => {
-    fireEvent.click(screen.getByRole('button', { name: 'deleteBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemBtn' }));
+    fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
     expect(deleteHandler).toHaveBeenCalled();
   });
 });
