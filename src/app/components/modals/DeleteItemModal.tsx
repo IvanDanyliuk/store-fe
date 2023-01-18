@@ -106,14 +106,14 @@ const DeleteItemModal: React.FC<IDeleteItemModal> = ({ deleteHandler, message })
             color={ButtonColor.Danger} 
             onClick={deleteHandler}
           >
-            {t('deleteUserYes')}
+            {t('deleteItemYes')}
           </Button>
           <Button 
             type={ButtonType.Button} 
             color={ButtonColor.Secondary} 
             onClick={handleOpenModal}
           >
-            {t('deleteUserNo')}
+            {t('deleteItemNo')}
           </Button>
         </Actions>
       </Modal>

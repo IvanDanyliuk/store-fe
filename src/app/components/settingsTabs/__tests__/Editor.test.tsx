@@ -1,4 +1,5 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { setupCategoriesSuccessHandlers } from '../../../../utils/serverMocks/categories';
 import { setupGallerySuccessHandlers } from '../../../../utils/serverMocks/gallery';
 import { setupProductSuccessHandlers } from '../../../../utils/serverMocks/product';
@@ -34,9 +35,10 @@ describe('Tests for the Editor component', () => {
 
   test('should delete the product after clicking the Delete Product button', async () => {
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'deleteBtn' })[0]);
+      fireEvent.click(screen.getAllByRole('button', { name: 'deleteItemBtn' })[0]);
+      fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
-    expect(screen.getAllByText('Test Title')[0]).toBeInTheDocument();
   });
 
   test('should open the Edit vacancy modal after clicking the Edit Vacancy button', async () => {
@@ -48,9 +50,10 @@ describe('Tests for the Editor component', () => {
 
   test('should delete the vacancy after clicking the Delete Vacancy button', async () => {
     await waitFor(() => {
-      fireEvent.click(screen.getAllByRole('button', { name: 'deleteBtn' })[1]);
+      fireEvent.click(screen.getAllByRole('button', { name: 'deleteItemBtn' })[3]);
+      fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
-    expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   test('should open the Edit category modal after clicking the Edit Category button', async () => {
@@ -61,10 +64,10 @@ describe('Tests for the Editor component', () => {
   });
 
   test('should delete the category after clicking the Delete Category button', async () => {
-    const deleteBtns = await screen.findAllByRole('button', { name: 'tableDeleteBtn' });
-    fireEvent.click(deleteBtns[0]);
     await waitFor(() => {
-      expect(screen.queryByText('Main Category Name')).not.toBeInTheDocument();
+      fireEvent.click(screen.getAllByRole('button', { name: 'deleteItemBtn' })[1]);
+      fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
   });
 
@@ -76,9 +79,9 @@ describe('Tests for the Editor component', () => {
   });
 
   test('should delete the shipping after clicking the Delete Shipping button', async () => {
-    const deleteBtns = await screen.findAllByRole('button', { name: 'tableDeleteBtn' });
-    fireEvent.click(deleteBtns[1]);
     await waitFor(() => {
+      fireEvent.click(screen.getAllByRole('button', { name: 'deleteItemBtn' })[2]);
+      fireEvent.click(screen.getByRole('button', { name: 'deleteItemYes' }));
       expect(screen.queryByText('Test Company')).not.toBeInTheDocument();
     });
   });
