@@ -1,3 +1,5 @@
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -19,6 +21,12 @@ const PaginationBody = styled.div`
   `}
 `;
 
+const PageStepButton = styled.button`
+  ${tw`
+    p-3
+  `}
+`;
+
 const PageButton = styled.button<IPaginationBtn>`
   font-weight: ${({ isActive }) => isActive ? '700' : '300'};
   color: ${({ isActive }) => isActive ? PAGINATION_ACTIVE_LINK_COLOR : PAGINATION_LINK_COLOR};
@@ -29,6 +37,8 @@ const PageButton = styled.button<IPaginationBtn>`
 
 
 const Pagination: React.FC<IPaginationProps> = ({ range, slice, setPage, page }) => {
+
+
   useEffect(() => {
     if(slice.length < 1 && page !== 1) {
       setPage(page - 1);
@@ -37,6 +47,12 @@ const Pagination: React.FC<IPaginationProps> = ({ range, slice, setPage, page })
 
   return (
     <PaginationBody>
+      <PageStepButton
+        disabled={page === 1}
+        onClick={() => setPage(page - 1)}
+      >
+        <FontAwesomeIcon icon={faAngleLeft} />
+      </PageStepButton>
       {
         range.map((item: number) => (
           <PageButton 
@@ -48,6 +64,12 @@ const Pagination: React.FC<IPaginationProps> = ({ range, slice, setPage, page })
           </PageButton>
         ))
       }
+      <PageStepButton
+        disabled={range.length === page}
+        onClick={() => setPage(page + 1)}
+      >
+        <FontAwesomeIcon icon={faAngleRight} />
+      </PageStepButton>
     </PaginationBody>
   );
 };
