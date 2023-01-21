@@ -88,13 +88,6 @@ export interface IOrdersTableProps {
   orders: IOrder[];
 }
 
-export interface IPaginationProps {
-  range: any;
-  slice: any;
-  setPage: any;
-  page: any;
-}
-
 export enum OperationType {
   Edit = 'edit',
   Delete = 'delete'
@@ -210,9 +203,8 @@ export interface IFormErrorMessage {
   error: string;
 }
 
-export interface IPageListPaginationProps {
+export interface IPaginationProps {
   pageCount: number;
-  currentPage: number;
   setPage: (e: any) => void;
 }
 

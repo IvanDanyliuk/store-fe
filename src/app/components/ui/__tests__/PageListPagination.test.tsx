@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import PageListPagination from '../PageListPagination';
+import PageListPagination from '../Pagination';
 
 
 const clickHandler = jest.fn();

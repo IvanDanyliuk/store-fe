@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import ReactPagination from 'react-paginate';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import Button from '../ui/Button';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
@@ -15,7 +12,7 @@ import { IProductCategory } from '../../features/category/types';
 import { IShipping } from '../../features/shipping/types';
 import Loader from '../ui/Loader';
 import DeleteItemModal from '../modals/DeleteItemModal';
-import { PAGINATION_ACTIVE_LINK_COLOR } from '../../services/constants';
+import Pagination from '../ui/Pagination';
 
 
 const Container = styled.div`
@@ -85,25 +82,6 @@ const TableCell = styled.td<ICellProps>`
 const WarningMessageBody = styled.div``;
 
 const Message = styled.p``;
-
-const Pagination = styled(ReactPagination)`
-  &.pagination-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    font-size: 1.1rem;
-  }
-
-  li a {
-    padding: 10px;
-    color: #000000;
-  }
-
-  li.selected a {
-    font-weight: 700;
-    color: ${PAGINATION_ACTIVE_LINK_COLOR};
-  }
-`;
 
 
 const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelete }) => {
@@ -217,14 +195,8 @@ const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelet
         </TableBody>
       </TableContainer>
       <Pagination 
-        breakLabel='...'
-        nextLabel={<FontAwesomeIcon icon={faAngleRight} />}
-        className='pagination-container'
-        onPageChange={(e) => setPage(e.selected + 1)}
-        pageRangeDisplayed={5}
         pageCount={Math.ceil(data.length / rowsPerPage)}
-        previousLabel={<FontAwesomeIcon icon={faAngleLeft} />}
-        renderOnZeroPageCount={() => null}
+        setPage={setPage}
       />
     </Container>
   );
