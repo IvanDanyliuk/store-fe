@@ -16,7 +16,7 @@ describe('Tests for the PageListPagination component', () => {
   });
 
   test('the pageCount value should be equal to the number of navigation buttons', () => {
-    expect(screen.getAllByRole('button')).toHaveLength(10);
+    expect(screen.getAllByRole('button')).toHaveLength(12);
   });
 
   test('should call the clickHandler function when clicking on the page number button', () => {
