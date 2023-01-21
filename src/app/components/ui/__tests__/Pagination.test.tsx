@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import PageListPagination from '../PageListPagination';
+import Pagination from '../Pagination';
 
 
 const clickHandler = jest.fn();
@@ -7,8 +7,7 @@ const clickHandler = jest.fn();
 describe('Tests for the PageListPagination component', () => {
   beforeEach(() => {
     render(
-      <PageListPagination 
-        currentPage={1} 
+      <Pagination 
         pageCount={10} 
         setPage={clickHandler} 
       />
@@ -16,7 +15,7 @@ describe('Tests for the PageListPagination component', () => {
   });
 
   test('the pageCount value should be equal to the number of navigation buttons', () => {
-    expect(screen.getAllByRole('button')).toHaveLength(10);
+    expect(screen.getAllByRole('button')).toHaveLength(11);
   });
 
   test('should call the clickHandler function when clicking on the page number button', () => {

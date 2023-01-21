@@ -8,7 +8,7 @@ import moment from 'moment';
 import { AppDispatch } from '../features/store';
 import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
-import PageListPagination from '../components/ui/PageListPagination';
+import Pagination from '../components/ui/Pagination';
 import { VACANCIES_PER_PAGE } from '../services/constants';
 import Loader from '../components/ui/Loader';
 
@@ -119,8 +119,7 @@ const Careers: React.FC = () => {
           )
         }
       </Content>
-      <PageListPagination 
-        currentPage={page} 
+      <Pagination 
         pageCount={pageCount} 
         setPage={setPage} 
       />

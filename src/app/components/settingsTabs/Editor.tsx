@@ -5,9 +5,8 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import ReactPagination from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ButtonColor, ButtonType, TableTypes } from '../../../types/types';
 import { getProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectPagesCount, selectProducts, selectProductStatus } from '../../features/product/selectors';
@@ -30,13 +29,13 @@ import { selectVacancies, selectVacancyPagesCount, selectVacancyStatus } from '.
 import VacanciesTable from '../table/VacanciesTable';
 import { deleteVacancy, getVacancies } from '../../features/vacancies/asyncActions';
 import { setVacancyToUpdate } from '../../features/vacancies/reducers';
-import { PRODUCTS_PER_TABLE, VACANCIES_PER_TABLE, PAGINATION_ACTIVE_LINK_COLOR } from '../../services/constants';
+import { PRODUCTS_PER_TABLE, VACANCIES_PER_TABLE } from '../../services/constants';
 import AddGalleryImageModal from '../modals/AddGalleryImageModal';
 import { selectGalleryImages, selectGalleryStatus } from '../../features/gallery/selectors';
 import { deleteGalleryImage, getGalleryImages } from '../../features/gallery/asyncActions';
 import RoundedButton from '../ui/RoundedButton';
-
 import Loader from '../ui/Loader';
+import Pagination from '../ui/Pagination';
 
 
 const Container = styled.div`
@@ -99,25 +98,6 @@ const GalleryImageItem = styled.li`
 `;
 
 const Image = styled.img``;
-
-const Pagination = styled(ReactPagination)`
-  &.pagination-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    font-size: 1.1rem;
-  }
-
-  li a {
-    padding: 10px;
-    color: #000000;
-  }
-
-  li.selected a {
-    font-weight: 700;
-    color: ${PAGINATION_ACTIVE_LINK_COLOR};
-  }
-`;
 
 
 const Editor: React.FC = () => {
@@ -213,14 +193,8 @@ const Editor: React.FC = () => {
           onDelete={handleProductDelete}
         />
         <Pagination 
-          breakLabel='...'
-          nextLabel={<FontAwesomeIcon icon={faAngleRight} />}
-          className='pagination-container'
-          onPageChange={(e) => setProductsPage(e.selected + 1)}
-          pageRangeDisplayed={5}
           pageCount={productsPageCount}
-          previousLabel={<FontAwesomeIcon icon={faAngleLeft} />}
-          renderOnZeroPageCount={() => null}
+          setPage={setProductsPage}
         />
       </Section>
       <Section>
@@ -261,14 +235,8 @@ const Editor: React.FC = () => {
           onDelete={handleVacancyDelete}
         />
         <Pagination 
-          breakLabel='...'
-          nextLabel={<FontAwesomeIcon icon={faAngleRight} />}
-          className='pagination-container'
-          onPageChange={(e) => setVacanciesPage(e.selected + 1)}
-          pageRangeDisplayed={5}
           pageCount={vacanciesPageCount}
-          previousLabel={<FontAwesomeIcon icon={faAngleLeft} />}
-          renderOnZeroPageCount={() => null}
+          setPage={setVacanciesPage}
         />
       </Section>
       <Section>
