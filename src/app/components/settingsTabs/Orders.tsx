@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import ReactPagination from 'react-paginate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { getOrders, getUserOrders } from '../../features/order/asyncActions';
 import { selectOrderPages, selectOrders, selectOrderStatus } from '../../features/order/selectors';
@@ -14,8 +16,6 @@ import Button from '../ui/Button';
 import OrdersTable from '../table/OrdersTable';
 import { ORDERS_PER_TABLE, PAGINATION_ACTIVE_LINK_COLOR } from '../../services/constants';
 import Loader from '../ui/Loader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 
 const Container = styled.div`
