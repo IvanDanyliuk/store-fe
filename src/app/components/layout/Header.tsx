@@ -37,8 +37,8 @@ const Content = styled.div`
     flex
     justify-between
     items-center
-    md:pl-0
-    md:pr-0
+    // md:pl-0
+    // md:pr-0
   `}
 `;
 

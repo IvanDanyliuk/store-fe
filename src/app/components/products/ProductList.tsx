@@ -12,6 +12,7 @@ const Container = styled.ul`
     flex-col
     md:flex-row
     md:flex-wrap
+    justify-between
   `}
 `;
 

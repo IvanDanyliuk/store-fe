@@ -14,6 +14,8 @@ const Container = styled.header`
     min-w-full
     flex
     justify-center
+    pl-4
+    pr-4
   `}
 `;
 
@@ -22,12 +24,10 @@ const Content = styled.div`
     container
     pt-10
     pb-4
-    pl-4
-    pr-4
     w-full
     flex
     flex-col
-    items-center
+    justify-between
     md:items-start
     md:flex-row
     md:pl-0
@@ -39,7 +39,6 @@ const FooterSection = styled.div`
   ${tw`
     mt-6
     md:mt-0
-    md:ml-28
     text-center
     md:text-left
   `}
@@ -49,6 +48,7 @@ const FooterHeading = styled.h6`
   ${tw`
     font-bold
     text-lg
+    md:text-base
     text-white
   `}
 `;

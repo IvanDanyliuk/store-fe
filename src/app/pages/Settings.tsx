@@ -18,6 +18,7 @@ import {
 
 const Container = styled.div`
   ${tw`
+    p-2
     w-full
     md:flex
   `}
@@ -25,7 +26,6 @@ const Container = styled.div`
 
 const PageNavigation = styled.div`
   ${tw`
-    p-3
     w-full
     md:w-1/6
   `}
@@ -62,6 +62,8 @@ const Avatar = styled.img`
 const UserName = styled.div`
   ${tw`
     font-semibold
+    text-sm
+    lg:text-base
   `}
 `;
 
@@ -98,10 +100,9 @@ const Link = styled(NavLink)`
 
 const LinkTitle = styled.div`
   ${tw`
-    pt-2
-    pb-2
-    pl-3
-    pr-3
+    p-2
+    md:p-1
+    lg:p-3
   `}
 `;
 
@@ -111,12 +112,15 @@ const LinkText = styled.span`
     hidden
     md:inline
     font-semibold
+    md:text-sm
+    lg:text-base
   `}
 `;
 
 const PageContent = styled.div`
   ${tw`
-    p-3
+    pl-3
+    pt-3
     w-full
     md:w-5/6
   `}

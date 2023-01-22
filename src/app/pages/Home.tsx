@@ -6,10 +6,10 @@ import '../../../node_modules/react-responsive-carousel/lib/styles/carousel.min.
 import { Carousel } from 'react-responsive-carousel'; 
 import { useTranslation } from 'react-i18next';
 import { v4 as uuid } from 'uuid';
-import background from '../assets/img/liquid-cheese.svg'
-import ProductList from '../components/products/ProductList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import background from '../assets/img/liquid-cheese.svg'
+import ProductList from '../components/products/ProductList';
 import { AppDispatch } from '../features/store';
 import { getTopProducts } from '../features/product/asyncActions';
 import { selectProducts, selectProductStatus } from '../features/product/selectors';
@@ -33,8 +33,6 @@ const PageSection = styled.section`
     pb-3
     pl-2
     pr-2
-    md:pl-0
-    md:pr-0
     flex
     flex-col
     items-center
@@ -57,6 +55,8 @@ const SubscriptionContainer = styled.div`
     pb-16
     pl-3
     pr-3
+    md:pl-7
+    md:pr-7
     w-full
     flex
     justify-end
@@ -65,8 +65,8 @@ const SubscriptionContainer = styled.div`
 
 const SubscriptionInfo = styled.div`
   ${tw`
-    md:mr-6
-    md:w-1/2
+    lg:mr-6
+    lg:w-1/2
   `}
 `;
 

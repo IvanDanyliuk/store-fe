@@ -45,8 +45,9 @@ const ReviewItem = styled.li`
 
 const ReviewInfo = styled.div`
   ${tw`
+    pr-2
     w-full
-    md:w-11/12
+    md:w-10/12
     flex
     justify-between
     items-center
@@ -58,7 +59,7 @@ const ReviewActions = styled.div`
     mt-2
     md:mt-0
     w-full
-    md:w-1/12
+    md:w-2/12
     flex
     justify-end
     md:justify-between

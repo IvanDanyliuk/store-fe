@@ -25,10 +25,15 @@ import {
 const Card = styled.li`
   width: 24%;
   margin: .5%;
-  @media (max-width: ${SCREENS.md}) {
+  @media (max-width: ${SCREENS.lg}) {
+    width: 49%;
+    margin: 1% 0;
+  }
+  @media (max-width: ${SCREENS.sm}) {
     width: 100%;
     margin: 1% 0;
   }
+  
   ${tw`
     relative
     p-3
