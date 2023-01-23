@@ -162,7 +162,7 @@ const Cart: React.FC = () => {
 
   const styles = {
     content: {
-      width: isMobile ? '90%' : '900px',
+      width: isMobile ? '90%' : '750px',
       height: '90%',
       top: '50%',
       left: '50%',

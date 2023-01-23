@@ -382,7 +382,7 @@ const CreateProductForm: React.FC = () => {
 
   const styles = {
     content: {
-      width: isMobile ? '90%' : '70%',
+      width: isMobile ? '90%' : '750px',
       height: isMobile ? '100%' : 'auto',
       top: '50%',
       left: '50%',
