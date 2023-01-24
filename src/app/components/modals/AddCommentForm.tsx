@@ -1,15 +1,15 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import Modal from 'react-modal';
 import StarRating from 'react-star-rate';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
-import { SCREENS } from '../../services/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { SCREENS } from '../../services/screens';
 import { isCommentDataValid } from '../../helpers/formValidation';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import FormErrorMessage from '../ui/FormErrorMessage';
 import { createReview } from '../../features/reviews/asyncActions';

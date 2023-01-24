@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import tw from 'twin.macro';
 import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
-import { SCREENS } from '../../services/screens';
-import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { SCREENS } from '../../services/screens';
 import { IAcceptPaymentModalProps } from '../../../types/types';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 

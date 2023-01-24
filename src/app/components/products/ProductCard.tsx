@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
@@ -7,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ButtonColor, ButtonType, IProductCardProps } from '../../../types/types';
 import RoundedButton from '../ui/RoundedButton';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { addToCart } from '../../features/cart/reducers';
 import { selectCartData } from '../../features/cart/selectors';

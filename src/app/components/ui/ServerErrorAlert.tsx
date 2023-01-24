@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +14,6 @@ import { AppDispatch } from '../../features/store';
 import { selectError, selectUserStatus } from '../../features/user/selectors';
 import { selectVacancyError, selectVacancyStatus } from '../../features/vacancies/selectors';
 import { clearShippingError } from '../../features/shipping/reducers';
-import { useNavigate } from 'react-router-dom';
 import { clearError as clearCategoriesError } from '../../features/category/reducers';
 import { clearError as clearUserError } from '../../features/user/reducers';
 import { clearGalleryError } from '../../features/gallery/reducers';

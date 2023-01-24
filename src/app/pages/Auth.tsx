@@ -1,15 +1,15 @@
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import tw from 'twin.macro';
-import { storage } from '../../firebase';
 import { useTranslation } from 'react-i18next';
+import { storage } from '../../firebase';
 import { ButtonColor, ButtonType } from '../../types/types';
 import Button from '../components/ui/Button';
 import { AppDispatch } from '../features/store';
 import { signin, signup } from '../features/user/asyncActions';
-import { useNavigate } from 'react-router-dom';
 import Input from '../components/inputs/Input';
 import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
 import FormErrorMessage from '../components/ui/FormErrorMessage';

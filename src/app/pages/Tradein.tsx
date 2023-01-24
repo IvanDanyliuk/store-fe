@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMediaQuery } from 'react-responsive';
-import { SCREENS } from '../services/screens';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowRight, faHandshake, faLocationDot, faTags } from '@fortawesome/free-solid-svg-icons';
+import { SCREENS } from '../services/screens';
 import { PRIMARY_COLOR } from '../services/constants';
 
 

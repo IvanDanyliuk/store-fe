@@ -1,9 +1,9 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { findProducts } from '../../features/product/asyncActions';
 import { selectSearchData } from '../../features/product/selectors';
