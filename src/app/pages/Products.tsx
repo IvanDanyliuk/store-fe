@@ -137,7 +137,9 @@ const Products: React.FC = () => {
       dispatch(getProducts({
         page: 1,
         productsPerPage, 
-        category
+        filterData: {
+          category
+        }
       }));
     }
   };
@@ -148,10 +150,10 @@ const Products: React.FC = () => {
       const selectedBrands = brands.filter((brand: string, i) => checkedBrandIds[i] && brand);
       dispatch(getProducts({ 
         page: 1, 
-        productsPerPage, 
-        category, 
+        productsPerPage,
         filterData: {
           ...priceData,
+          category,
           brands: selectedBrands,
         } 
       }));
@@ -171,7 +173,7 @@ const Products: React.FC = () => {
   }, [brands]);
 
   useEffect(() => {
-    dispatch(getProducts({ page, productsPerPage, category })); 
+    dispatch(getProducts({ page, productsPerPage, filterData: { category } })); 
   }, [dispatch, category, page]);
 
   return (
