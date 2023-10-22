@@ -8,11 +8,10 @@ import ProductCard from './ProductCard';
 
 const Container = styled.ul`
   ${tw`
-    flex
-    flex-col
-    md:flex-row
-    md:flex-wrap
-    justify-between
+    grid
+    grid-cols-1
+    md:grid-cols-4
+    gap-5
   `}
 `;
 

@@ -13,7 +13,6 @@ import { addToCart } from '../../features/cart/reducers';
 import { selectCartData } from '../../features/cart/selectors';
 import { selectUser } from '../../features/user/selectors';
 import { updateUser } from '../../features/user/asyncActions';
-import { SCREENS } from '../../services/screens';
 import { 
   ERROR_TEXT_COLOR, 
   PRODUCT_RATING_STAR_COLOR, 
@@ -23,17 +22,6 @@ import {
 
 
 const Card = styled.li`
-  width: 24%;
-  margin: .5%;
-  @media (max-width: ${SCREENS.lg}) {
-    width: 49%;
-    margin: 1% 0;
-  }
-  @media (max-width: ${SCREENS.sm}) {
-    width: 100%;
-    margin: 1% 0;
-  }
-  
   ${tw`
     relative
     p-3
@@ -41,6 +29,7 @@ const Card = styled.li`
     border-solid
     border-gray-300
     rounded-md
+    shadow-md
   `}
 `;
 
