@@ -9,7 +9,7 @@ export const getProducts = createAsyncThunk(
   async (productRequestData: IProductRequestData, { rejectWithValue }) => {
     const { page, productsPerPage, filterData } = productRequestData;
     try {
-      const { data } = await api.getProducts(page, productsPerPage, filterData!);
+      const { data } = await api.getProducts(page, productsPerPage, filterData);
       return data;
     } catch (error) {
       return rejectWithValue(error);
