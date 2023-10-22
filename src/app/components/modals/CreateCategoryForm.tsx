@@ -71,11 +71,9 @@ const Inputs = styled.fieldset`
 
 const SubCategoriesList = styled.ul`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     pt-2
-    pl-3
-    pr-3
+    px-3
     border
   `}
 `;

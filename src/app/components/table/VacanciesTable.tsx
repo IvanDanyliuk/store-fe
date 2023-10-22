@@ -37,8 +37,6 @@ const TableHead = styled.thead`
   `}
 `;
 
-const TableBody = styled.tbody``;
-
 const TableRow = styled.tr`
   ${tw`
     w-full
@@ -112,7 +110,7 @@ const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, status, onE
             <TableHeaderCell name='vacancyActions'></TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <tbody>
           {
             vacancies.map((vacancy: IVacancy) => (
               <TableRow key={uuid()}>
@@ -138,7 +136,7 @@ const VacanciesTable: React.FC<IVacanciesTableProps> = ({ vacancies, status, onE
               </TableRow>
             )) 
           }
-        </TableBody>
+        </tbody>
       </TableContainer>
     </Container>
   );

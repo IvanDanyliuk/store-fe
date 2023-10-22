@@ -29,14 +29,10 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const CommentBtn = styled.button`
   ${tw`
-    pt-3
-    pb-3
-    pl-8
-    pr-8
-    md:pt-1
-    md:pb-1
-    md:pl-4
-    md:pr-4
+    py-3
+    px-8
+    md:py-1
+    md:px-4
     rounded
     text-sm
     font-bold

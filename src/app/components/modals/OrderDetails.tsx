@@ -131,8 +131,7 @@ const TableHeaderCell = styled.th<ICellProps>`
     width: ${({ name }) => setOrderCellWidth(name, true)};
   }
   ${tw`
-    pt-3
-    pb-3
+    py-3
     text-left
   `}
 `;
@@ -148,8 +147,7 @@ const TableCell = styled.td<ICellProps>`
     `}
   }
   ${tw`
-    pt-2
-    pb-2
+    py-2
   `}
 `;
 

@@ -50,8 +50,7 @@ const Section = styled.section`
   ${tw`
     relative
     w-full
-    mt-6
-    mb-6
+    my-6
   `}
 `;
 
@@ -96,8 +95,6 @@ const GalleryImageItem = styled.li`
     `}
   }
 `;
-
-const Image = styled.img``;
 
 
 const Editor: React.FC = () => {
@@ -249,7 +246,7 @@ const Editor: React.FC = () => {
             <GalleryImagesList>
               {galleryImages.map(image => (
                 <GalleryImageItem key={uuid()}>
-                  <Image src={image.url} />
+                  <img src={image.url} alt={image._id} />
                   <RoundedButton
                     type={ButtonType.Button}
                     color={ButtonColor.Danger}

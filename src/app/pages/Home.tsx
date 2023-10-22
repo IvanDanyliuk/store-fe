@@ -31,8 +31,7 @@ const PageSection = styled.section`
   ${tw`
     pt-6
     pb-3
-    pl-2
-    pr-2
+    px-2
     flex
     flex-col
     items-center
@@ -53,8 +52,7 @@ const SubscriptionContainer = styled.div`
   ${tw`
     pt-20
     pb-16
-    pl-3
-    pr-3
+    px-3
     md:pl-7
     md:pr-7
     w-full
@@ -79,14 +77,11 @@ const SubscriptionTitle = styled.h5`
 
 const SubscriptionText = styled.p`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     text-xl
     md:text-2xl
   `}
 `;
-
-const SubscriptionForm = styled.form``;
 
 const Input = styled.input`
   ${tw`
@@ -169,12 +164,12 @@ const Home: React.FC = () => {
             <SubscriptionText>
               {t('subscriptionText')}
             </SubscriptionText>
-            <SubscriptionForm>
+            <form>
               <Input type='email' />
               <SubmitBtn>
                 <FontAwesomeIcon icon={faCheck} />
               </SubmitBtn>
-            </SubscriptionForm>
+            </form>
           </SubscriptionInfo>
         </SubscriptionContainer>
       </PageSection>

@@ -14,8 +14,7 @@ const Container = styled.header`
     min-w-full
     flex
     justify-center
-    pl-4
-    pr-4
+    px-4
   `}
 `;
 
@@ -30,8 +29,7 @@ const Content = styled.div`
     justify-between
     md:items-start
     md:flex-row
-    md:pl-0
-    md:pr-0
+    md:px-0
   `}
 `;
 
@@ -61,8 +59,7 @@ const LinkList = styled.ul`
 
 const NavItem = styled.li`
   ${tw`
-    mt-3
-    mb-3
+    my-3
   `}
 `;
 

@@ -34,8 +34,7 @@ const ReviewList = styled.ul`
 const ReviewItem = styled.li`
   border-bottom: 1px solid ${REVIEW_ITEM_BACKGROUND};
   ${tw`
-    pt-3
-    pb-3
+    py-3
     w-full
     flex
     flex-col

@@ -33,10 +33,8 @@ const SearchResultsList = styled.ul`
 
 const SearchItem = styled.li`
   ${tw`
-    pt-2
-    pb-2
-    pl-3
-    pr-3
+    px-3
+    py-2
     border-b
   `}
 `;

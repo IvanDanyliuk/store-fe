@@ -35,7 +35,7 @@ const Container = styled.div`
 const CartBtn = styled.button`
   ${tw`
     relative
-    p-1
+    p-3
     text-gray-700
     hover:text-white
     transition

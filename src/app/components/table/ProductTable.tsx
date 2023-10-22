@@ -37,8 +37,6 @@ const TableHead = styled.thead`
   `}
 `;
 
-const TableBody = styled.tbody``;
-
 const TableRow = styled.tr`
   ${tw`
     w-full
@@ -52,8 +50,7 @@ const TableHeaderCell = styled.th<ICellProps>`
     width: ${({ name }) => setCellWidth(name, true)};
   }
   ${tw`
-    pt-3
-    pb-3
+    py-3
     text-left
   `}
 `;
@@ -69,16 +66,11 @@ const TableCell = styled.td<ICellProps>`
     `}
   }
   ${tw`
-    pt-2
-    pb-2
+    py-2
     text-sm
     md:text-base
   `}
 `;
-
-const WarningMessageBody = styled.div``;
-
-const Message = styled.p``;
 
 
 const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit, onDelete }) => {
@@ -90,11 +82,11 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
 
   if(products.length === 0) {
     return (
-      <WarningMessageBody>
-        <Message>
+      <div>
+        <p>
           {t('productsNoDataMessage')}
-        </Message>
-      </WarningMessageBody>
+        </p>
+      </div>
     );
   }
 
@@ -116,7 +108,7 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
             <TableHeaderCell name='productActions'></TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <tbody>
           {
             products.map((product: IProduct) => (
               <TableRow key={uuid()}>
@@ -148,7 +140,7 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
               </TableRow>
             )) 
           }
-        </TableBody>
+        </tbody>
       </TableContainer>
     </Container>
   );

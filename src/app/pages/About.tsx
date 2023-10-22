@@ -68,8 +68,6 @@ const IndicatorNum = styled.span`
   `}
 `;
 
-const IndicatorText = styled.span``;
-
 
 const About: React.FC = () => {
   const { t } = useTranslation(['about']);
@@ -99,33 +97,33 @@ const About: React.FC = () => {
           <IndicatorNum>
             {t('indicatorNumOne')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextOne')}
-          </IndicatorText>
+          </span>
         </Indicator>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumTwo')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextTwo')}
-          </IndicatorText>
+          </span>
         </Indicator>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumThree')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextThree')}
-          </IndicatorText>
+          </span>
         </Indicator>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumFour')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextFour')}
-          </IndicatorText>
+          </span>
         </Indicator>
       </KeyIndicators>
       <SubTitle>

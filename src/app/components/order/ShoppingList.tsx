@@ -28,8 +28,7 @@ const List = styled.ul`
 
 const ShoppingListItem = styled.li`
   ${tw`
-    pt-2
-    pb-2
+    py-2
     flex
     flex-col
     md:flex-row

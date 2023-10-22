@@ -65,8 +65,6 @@ const Actions = styled.div`
   `}
 `;
 
-const Message = styled.div``;
-
 
 const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
   const { t } = useTranslation(['order']);
@@ -94,7 +92,7 @@ const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
           </Actions>
         </ListItem>
       )) : (
-        <Message>{t('noOrdersMessage')}</Message>
+        <div>{t('noOrdersMessage')}</div>
       )}
     </List>
   );

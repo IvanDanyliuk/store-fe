@@ -135,8 +135,6 @@ const LanguageSelect = styled.select`
   `}
 `;
 
-const LanguageOption = styled.option``;
-
 
 const Profile: React.FC = () => {
   const { t } = useTranslation(['settingTabsProfile']);
@@ -198,8 +196,8 @@ const Profile: React.FC = () => {
           value={language}
           onChange={handleLanguageChange}
         >
-          <LanguageOption value={'en'}>EN</LanguageOption>
-          <LanguageOption value={'ua'}>UA</LanguageOption>
+          <option value={'en'}>EN</option>
+          <option value={'ua'}>UA</option>
         </LanguageSelect>
       </SubSection>
     </Section>

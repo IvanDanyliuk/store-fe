@@ -21,8 +21,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
@@ -47,8 +46,6 @@ const SectionContentItem = styled.li`
     mb-1
   `}
 `;
-
-const Text = styled.span``;
 
 const Message = styled.div`
   ${tw`
@@ -91,24 +88,24 @@ const DeliveryAndPayment: React.FC = () => {
       </SectionTitle>
       <SectionContent>
         <SectionContentItem>
-          <Text>
+          <span>
             {t('paymentCash')}
-          </Text>
+          </span>
         </SectionContentItem>
         <SectionContentItem>
-          <Text>
+          <span>
             {t('paymentVisaMasterCard')}
-          </Text>
+          </span>
         </SectionContentItem>
         <SectionContentItem>
-          <Text>
+          <span>
             {t('paymentLegalEntities')}
-          </Text>
+          </span>
         </SectionContentItem>
         <SectionContentItem>
-          <Text>
+          <span>
             {t('paymentCredit')}
-          </Text>
+          </span>
         </SectionContentItem>
       </SectionContent>
     </Container>

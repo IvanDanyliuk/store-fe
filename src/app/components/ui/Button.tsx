@@ -9,10 +9,8 @@ const ButtonBody = styled.button`
   min-width: 90px;
   background: ${({ color }) => setButtonColor(color!)};
   ${tw`
-    pt-1
-    pb-1
-    pl-3
-    pr-3
+    px-3
+    py-1
     rounded
     text-white
     text-sm

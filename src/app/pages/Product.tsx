@@ -26,13 +26,6 @@ import { SUCCESS_COLOR, DANGER_COLOR, PRODUCT_RATING_STAR_COLOR } from '../servi
 import Loader from '../components/ui/Loader';
 
 
-const ProductBody = styled.div`
-  ${tw`
-    pt-3
-    pb-3
-  `}
-`;
-
 const Breadcrumbs = styled.div`
   ${tw`
     flex
@@ -41,24 +34,20 @@ const Breadcrumbs = styled.div`
 
 const BreadCrumb = styled(Link)`
   ${tw`
-    ml-3
-    mr-3
+    mx-3
   `}
 `;
 
 const BreadcrumbDivider = styled.span`
   ${tw`
-    ml-2
-    mr-2
+    mx-2
   `}
 `;
 
 const Title = styled.h3`
   ${tw`
-    mt-3
-    mb-3
-    ml-3
-    mr-3
+    mx-3
+    my-3
     text-2xl
     font-bold
   `}
@@ -76,17 +65,13 @@ const Info = styled.div`
 
 const Gallery = styled.div`
   ${tw`
-    pt-3
-    pb-3
-    pl-12
-    pr-12
+    px-12
+    py-3
     md:p-3
     md:w-2/6
     w-full
   `}
 `;
-
-const Image = styled.img``;
 
 const GeneralInfo = styled.div`
   ${tw`
@@ -98,8 +83,7 @@ const GeneralInfo = styled.div`
 
 const ShortInfo = styled.div`
   ${tw`
-    mt-3
-    mb-3
+    my-3
   `}
 `;
 
@@ -114,10 +98,8 @@ const Stock = styled.div`
   background: ${SUCCESS_COLOR};
   ${tw`
     mr-3
-    pt-2
-    pb-2
-    pl-3
-    pr-3
+    px-3
+    py-2
     text-white
     text-base
     font-bold
@@ -148,8 +130,6 @@ const AdditionalSection = styled.div`
   `}
 `;
 
-const ColorSection = styled.div``;
-
 const InfoTitle = styled.p`
   ${tw`
     font-bold
@@ -169,8 +149,7 @@ const Color = styled.div<IColor>`
 
 const SellingSection = styled.div`
   ${tw`
-    pt-3
-    pb-3
+    py-3
     flex
     flex-col
     md:flex-row
@@ -225,8 +204,6 @@ const OrderInfoList = styled.ul`
   `}
 `;
 
-const OrderListItem = styled.li``;
-
 const ReviewTopSection = styled.div`
   ${tw`
     flex
@@ -243,8 +220,7 @@ const ReviewList = styled.ul`
 const ReviewBody = styled.li`
   ${tw`
     mb-2
-    pt-3
-    pb-3
+    py-3
     border-b
   `}
 `;
@@ -295,8 +271,6 @@ const Comment = styled.p`
     text-sm
   `}
 `;
-
-const CommentSection = styled.div``;
 
 const CommentTitle = styled.span`
   ${tw`
@@ -473,7 +447,7 @@ const Product: React.FC = () => {
   }
 
   return (
-    <ProductBody>
+    <div>
       <Breadcrumbs>
         <BreadCrumb to={`/categories/${product?.category.main.url}`}>
           {product?.category.main.title}
@@ -488,7 +462,7 @@ const Product: React.FC = () => {
       </Title>
       <Info>
         <Gallery>
-          <Image src={product?.image} alt={product?.title} />
+          <img src={product?.image} alt={product?.title} />
         </Gallery>
         <GeneralInfo>
           <TopSection>
@@ -506,10 +480,10 @@ const Product: React.FC = () => {
           <ShortInfo>
             {product?.shortInfo}
           </ShortInfo>
-          <ColorSection>
+          <div>
             <InfoTitle>{t('color')}:</InfoTitle>
             <Color color={product?.color}></Color>
-          </ColorSection>
+          </div>
           <SellingSection>
             <Price>
               <Currency>$</Currency>
@@ -535,19 +509,19 @@ const Product: React.FC = () => {
             <OrderInfoContainer>
               <InfoTitle>{t('shipping')}:</InfoTitle>
               <OrderInfoList>
-                <OrderListItem>DHL</OrderListItem>
-                <OrderListItem>FedEx</OrderListItem>
-                <OrderListItem>Nova Poshta</OrderListItem>
-                <OrderListItem>Self-Delivery</OrderListItem>
+                <li>DHL</li>
+                <li>FedEx</li>
+                <li>Nova Poshta</li>
+                <li>Self-Delivery</li>
               </OrderInfoList>
             </OrderInfoContainer>
             <OrderInfoContainer>
               <InfoTitle>{t('payment')}:</InfoTitle>
               <OrderInfoList>
-                <OrderListItem>Visa / MasterCard</OrderListItem>
-                <OrderListItem>PayPal</OrderListItem>
-                <OrderListItem>Payoneer</OrderListItem>
-                <OrderListItem>Portmone</OrderListItem>
+                <li>Visa / MasterCard</li>
+                <li>PayPal</li>
+                <li>Payoneer</li>
+                <li>Portmone</li>
               </OrderInfoList>
             </OrderInfoContainer>
           </OrderInfo>
@@ -577,17 +551,17 @@ const Product: React.FC = () => {
                   </PostDate>
                 </ReviewHeader>
                 <Comment>
-                  <CommentSection>
+                  <div>
                     <CommentTitle>{t('reviewAdvantages')}: </CommentTitle>
                     {review.advantages}
-                  </CommentSection>
-                  <CommentSection>
+                  </div>
+                  <div>
                     <CommentTitle>{t('reviewDisadvantages')}: </CommentTitle>
                     {review.disadvantages}
-                  </CommentSection>
-                  <CommentSection>
+                  </div>
+                  <div>
                     {review.comment}
-                  </CommentSection>
+                  </div>
                 </Comment>
                 <ReviewFooter>
                   <BtnGroup>
@@ -641,7 +615,7 @@ const Product: React.FC = () => {
           </ReviewList>
         </AdditionalSection>
       </AdditionalInfo>
-    </ProductBody>
+    </div>
   );
 };
 

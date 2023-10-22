@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
   ${tw`
-    pl-3
-    pr-3
+    px-3
     w-full
     flex
     flex-col
@@ -16,8 +15,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
@@ -30,12 +28,9 @@ const PageTopText = styled.p`
   `}
 `;
 
-const PageBottomText = styled.p``;
-
 const RefundPolicyList = styled.ul`
   ${tw`
-    mt-3
-    mb-3
+    my-3
   `}
 `;
 
@@ -51,8 +46,6 @@ const ListItemTitle = styled.div`
   `}
 `;
 
-const ListItemText = styled.p``;
-
 
 const Refund: React.FC = () => {
   const { t } = useTranslation(['refund']);
@@ -63,41 +56,41 @@ const Refund: React.FC = () => {
       <PageTopText>
         {t('pageTopText')}
       </PageTopText>
-      <PageBottomText>
+      <p>
         {t('pageBottomText')}
-      </PageBottomText>
+      </p>
       <RefundPolicyList>
         <ListItem>
           <ListItemTitle>
             {t('returnProductTitle1')}
           </ListItemTitle>
-          <ListItemText>
+          <p>
             {t('returnProductText1')}
-          </ListItemText>
+          </p>
         </ListItem>
         <ListItem>
           <ListItemTitle>
             {t('returnProductTitle2')}
           </ListItemTitle>
-          <ListItemText>
+          <p>
             {t('returnProductText2')}
-          </ListItemText>
+          </p>
         </ListItem>
         <ListItem>
           <ListItemTitle>
             {t('returnProductTitle3')}
           </ListItemTitle>
-          <ListItemText>
+          <p>
             {t('returnProductText3')}
-          </ListItemText>
+          </p>
         </ListItem>
         <ListItem>
           <ListItemTitle>
             {t('returnProductTitle4')}
           </ListItemTitle>
-          <ListItemText>
+          <p>
             {t('returnProductText4')}
-          </ListItemText>
+          </p>
         </ListItem>
       </RefundPolicyList>
     </Container>

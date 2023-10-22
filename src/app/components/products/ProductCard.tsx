@@ -48,10 +48,6 @@ const Image = styled.img`
   max-width: 100%;
 `;
 
-const ProductLink = styled(Link)``;
-
-const InfoSection = styled.div``;
-
 const Promotions = styled.div`
   ${tw`
     flex
@@ -63,10 +59,8 @@ const PromotionChip = styled.div`
   background: ${ERROR_TEXT_COLOR};
   ${tw`
     mr-2
-    pt-1
-    pb-1
-    pl-3
-    pr-3
+    px-3
+    py-1
     text-xs
     text-white
     font-black
@@ -76,8 +70,7 @@ const PromotionChip = styled.div`
 
 const Title = styled.div`
   ${tw`
-    pt-2
-    pb-2
+    py-2
     text-base
     font-medium
   `}
@@ -222,14 +215,14 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       >
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
-      <ProductLink 
+      <Link 
         to={`/products/${category ? category : 'top-products'}/${product._id}`}
       >
         <ImageSection>
           <Image src={product.image} alt={product.title} />
         </ImageSection>
-      </ProductLink>
-      <InfoSection>
+      </Link>
+      <div>
         <Promotions>
           {product.promotion.map((item: any) => (
             <PromotionChip key={uuid()}>
@@ -267,7 +260,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
             </RoundedButton>
           </BtnContainer>
         </CardFooter>
-      </InfoSection>
+      </div>
     </Card>
   );
 };

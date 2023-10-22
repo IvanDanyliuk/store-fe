@@ -9,8 +9,7 @@ import { PRIMARY_COLOR } from '../services/constants';
 
 const Container = styled.div`
   ${tw`
-    pl-3
-    pr-3
+    px-3
   `}
 `;
 
@@ -60,8 +59,6 @@ const Address = styled.span`
   `}
 `;
 
-const Phone = styled.p``;
-
 
 const Contacts: React.FC = () => {
   const { t } = useTranslation(['contacts']);
@@ -82,9 +79,9 @@ const Contacts: React.FC = () => {
               {t('ukraineAddress')}
             </Address>
           </CountryAddress>
-          <Phone>
+          <p>
             {t('ukrainePhone')}
-          </Phone>
+          </p>
         </Country>
         <Country>
           <CountryName>
@@ -96,9 +93,9 @@ const Contacts: React.FC = () => {
               {t('polandAddress')}
             </Address>
           </CountryAddress>
-          <Phone>
+          <p>
             {t('polandPhone')}
-          </Phone>
+          </p>
         </Country>
         <Country>
           <CountryName>
@@ -110,9 +107,9 @@ const Contacts: React.FC = () => {
               {t('germanyAddress')}
             </Address>
           </CountryAddress>
-          <Phone>
+          <p>
             {t('germanyPhone')}
-          </Phone>
+          </p>
         </Country>
         <Country>
           <CountryName>
@@ -124,9 +121,9 @@ const Contacts: React.FC = () => {
               {t('lithuaniaAddress')}
             </Address>
           </CountryAddress>
-          <Phone>
+          <p>
             {t('lithuaniaPhone')}
-          </Phone>
+          </p>
         </Country>
         <Country>
           <CountryName>
@@ -138,9 +135,9 @@ const Contacts: React.FC = () => {
               {t('latviaAddress')}
             </Address>
           </CountryAddress>
-          <Phone>
+          <p>
             {t('latviaPhone')}
-          </Phone>
+          </p>
         </Country>
         <Country>
           <CountryName>
@@ -152,9 +149,9 @@ const Contacts: React.FC = () => {
               {t('estoniaAddress')}
             </Address>
           </CountryAddress>
-          <Phone>
+          <p>
             {t('estoniaPhone')}
-          </Phone>
+          </p>
         </Country>
       </Countries>
     </Container>

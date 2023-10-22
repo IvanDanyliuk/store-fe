@@ -35,7 +35,6 @@ const Content = styled.div`
 
 const FiltersContainer = styled.div`
   ${tw`
-    // p-3
     w-full
     md:w-1/6
   `}
@@ -59,8 +58,6 @@ const FilterGroupLabel = styled.div`
   `}
 `;
 
-const BrandList = styled.ul``;
-
 const BrandItem = styled.li`
   ${tw`
     flex
@@ -74,8 +71,6 @@ const Checkbox = styled.input`
     h-5
   `}
 `;
-
-const Label = styled.label``;
 
 const PriceFilters = styled.div`
   ${tw`
@@ -183,7 +178,7 @@ const Products: React.FC = () => {
           <FilterGroupLabel>
             {t('brands')}
           </FilterGroupLabel>
-          <BrandList>
+          <ul>
             {
               brands.map((brand: string, i) => (
                 <BrandItem key={uuid()}>
@@ -195,13 +190,13 @@ const Products: React.FC = () => {
                     checked={checkedBrandIds[i]} 
                     onChange={() => handleCheckingBrandChange(i)}
                   />
-                  <Label htmlFor={brand}>
+                  <label htmlFor={brand}>
                     {brand}
-                  </Label>
+                  </label>
                 </BrandItem>
               ))
             }
-          </BrandList>
+          </ul>
         </FilterGroup>
         <FilterGroup>
           <FilterGroupLabel>

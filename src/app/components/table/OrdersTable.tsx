@@ -35,8 +35,6 @@ const TableHead = styled.thead`
   `}
 `;
 
-const TableBody = styled.tbody``;
-
 const TableRow = styled.tr`
   ${tw`
     w-full
@@ -122,7 +120,7 @@ const OrdersTable: React.FC<IOrdersTableProps> = ({ orders }) => {
             <TableHeaderCell name='orderActions'></TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <tbody>
           {
             orders.map(order => (
               <TableRow key={uuid()}>
@@ -155,7 +153,7 @@ const OrdersTable: React.FC<IOrdersTableProps> = ({ orders }) => {
               </TableRow>
             )) 
           }
-        </TableBody>
+        </tbody>
       </TableContainer>
     </Container>
   );

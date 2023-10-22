@@ -40,8 +40,7 @@ const NavList = styled.ul`
 
 const NavItem = styled.li`
   ${tw`
-    mt-3
-    mb-3
+    my-3
   `}
 `;
 

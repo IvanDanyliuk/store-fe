@@ -6,8 +6,7 @@ import tw from 'twin.macro';
 
 const Container = styled.div`
   ${tw`
-    pl-3
-    pr-3
+    px-3
     w-full
     flex
     flex-col
@@ -16,8 +15,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}

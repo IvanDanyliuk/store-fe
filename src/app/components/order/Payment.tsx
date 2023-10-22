@@ -17,8 +17,7 @@ const Container = styled.form`
 
 const Card = styled.div`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     p-8
     w-full
     md:w-96

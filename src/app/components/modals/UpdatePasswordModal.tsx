@@ -48,8 +48,7 @@ const Form = styled.form`
 
 const ErrorMessage = styled.p`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     text-center
     text-red-500
   `}

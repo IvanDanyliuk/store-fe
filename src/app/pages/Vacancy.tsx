@@ -21,8 +21,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
@@ -31,10 +30,8 @@ const Title = styled.h3`
 const Employment = styled.span`
   width: fit-content;
   ${tw`
-    pl-3
-    pr-3
-    pt-2
-    pb-2
+    px-3
+    py-2
     text-sm
     bg-gray-600
     text-white
@@ -56,14 +53,9 @@ const SectionContent = styled.p`
   `}
 `;
 
-const Text = styled.p``;
-
-const ContactItem = styled.div``;
-
 const Salary = styled.div`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     font-semibold
   `}
 `;
@@ -95,18 +87,18 @@ const Vacancy: React.FC = () => {
       </SectionTitle>
       <SectionContent>
         {vacancy?.mustHaves.split('\n').map(skill => (
-          <Text key={uuid()}>
+          <p key={uuid()}>
             {skill}
-          </Text>
+          </p>
         ))}
       </SectionContent>
       <SectionTitle>
         {t('responsibilities')}
       </SectionTitle>
       <SectionContent>{vacancy?.responsibilities.split('\n').map(responsibility => (
-        <Text key={uuid()}>
+        <p key={uuid()}>
           {responsibility}
-        </Text>
+        </p>
       ))}</SectionContent>
       {
         vacancy?.salary && (
@@ -114,15 +106,15 @@ const Vacancy: React.FC = () => {
         )
       }
       <SectionContent>
-        <ContactItem>
+        <div>
           {t('contactPerson')}: {vacancy?.contactPerson}
-        </ContactItem>
-        <ContactItem>
+        </div>
+        <div>
           {t('contactEmail')}: {vacancy?.contactPhone}
-        </ContactItem>
-        <ContactItem>
+        </div>
+        <div>
           {t('contactPhone')}: {vacancy?.contactPhone}
-        </ContactItem>
+        </div>
       </SectionContent>
     </Container>
   );

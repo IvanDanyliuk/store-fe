@@ -24,16 +24,11 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
 `;
-
-const Content = styled.div``;
-
-const VacanciesList = styled.ul``;
 
 const VacancyItem = styled.li`
   ${tw`
@@ -92,13 +87,13 @@ const Careers: React.FC = () => {
       <Title>
         {t('title')}      
       </Title>
-      <Content>
+      <div>
         {
           status === 'loading' ? (
             <Loader />
           ) : 
           vacancies.length > 0 ? (
-            <VacanciesList>
+            <ul>
               {
                 vacancies.map(vacancy => (
                   <VacancyItem>
@@ -113,12 +108,12 @@ const Careers: React.FC = () => {
                   </VacancyItem>
                 ))
               }
-            </VacanciesList>
+            </ul>
           ) : (
             <Message>{t('vacanciesErrorMessage')}</Message>
           )
         }
-      </Content>
+      </div>
       <Pagination 
         pageCount={pageCount} 
         setPage={setPage} 

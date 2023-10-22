@@ -25,8 +25,7 @@ const Container = styled.div`
 const FilterSection = styled.div`
   ${tw`
     relative
-    pt-5
-    pb-5
+    py-5
     w-full
     flex
   `}
@@ -40,8 +39,6 @@ const FilterSection = styled.div`
     margin-bottom: 4px;
   }
 `;
-
-const Content = styled.div``;
 
 
 const Orders: React.FC = () => {
@@ -97,7 +94,7 @@ const Orders: React.FC = () => {
           </Button>
         </FilterSection>
       )}
-      <Content>
+      <div>
         {
           orderLoadingStatus === 'succeeded' ? (
             <OrdersTable orders={orders} />
@@ -109,7 +106,7 @@ const Orders: React.FC = () => {
           pageCount={pageCount}
           setPage={setPage}
         />
-      </Content>
+      </div>
     </Container>
   );
 };

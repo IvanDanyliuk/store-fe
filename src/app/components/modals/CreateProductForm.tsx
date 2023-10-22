@@ -79,8 +79,7 @@ const Inputs = styled.div`
 
 const Promotions = styled.div`
   ${tw`
-    pl-2
-    pr-2
+    px-2
     w-full
     md:w-1/3
   `}
@@ -88,8 +87,7 @@ const Promotions = styled.div`
 
 const FormItem = styled.fieldset`
   ${tw`
-    pl-2
-    pr-2
+    px-2
     w-full
     md:w-1/2
     flex
@@ -111,11 +109,9 @@ const PromotionInputContainer = styled.div`
 
 const PromotionList = styled.ul`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     pt-2
-    pl-3
-    pr-3
+    px-3
   `}
 `;
 

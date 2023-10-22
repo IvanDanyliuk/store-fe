@@ -55,8 +55,7 @@ const TableHeaderCell = styled.th<ICellProps>`
     width: ${({ name }) => setCellWidth(name, true)};
   }
   ${tw`
-    pt-3
-    pb-3
+    py-3
     text-left
   `}
 `;
@@ -72,16 +71,11 @@ const TableCell = styled.td<ICellProps>`
     `}
   }
   ${tw`
-    pt-2
-    pb-2
+    py-2
     text-sm
     md:text-base
   `}
 `;
-
-const WarningMessageBody = styled.div``;
-
-const Message = styled.p``;
 
 
 const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelete }) => {
@@ -104,15 +98,15 @@ const Table: React.FC<ITableProps> = ({ tableType, data, status, onEdit, onDelet
 
   if(data.length === 0) {
     return (
-      <WarningMessageBody>
-        <Message>
+      <div>
+        <p>
           {
             tableType === TableTypes.Categories ? 
               t('tableNoCategoriesMessage') : 
               t('tableNoShippingMessage')
           }
-        </Message>
-      </WarningMessageBody>
+        </p>
+      </div>
     );
   }
 
