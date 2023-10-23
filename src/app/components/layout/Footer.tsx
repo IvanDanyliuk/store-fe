@@ -21,24 +21,21 @@ const Container = styled.header`
 const Content = styled.div`
   ${tw`
     container
-    pt-10
-    pb-4
+    py-16
     w-full
     flex
     flex-col
     justify-between
     md:items-start
     md:flex-row
-    md:px-0
+    gap-6
   `}
 `;
 
 const FooterSection = styled.div`
   ${tw`
-    mt-6
-    md:mt-0
-    text-center
-    md:text-left
+    w-full
+    md:w-1/4
   `}
 `;
 
@@ -66,6 +63,7 @@ const NavItem = styled.li`
 const NavLink = styled(Link)`
   ${tw`
     text-white
+    text-sm
     transition
     ease-in-out
   `}
@@ -78,7 +76,9 @@ const Footer: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Logo />
+        <FooterSection>
+          <Logo />
+        </FooterSection>
         <FooterSection>
           <FooterHeading>ESTORE</FooterHeading>
           <LinkList>

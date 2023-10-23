@@ -21,7 +21,7 @@ const Container = styled.div`
 const Content = styled.main`
   flex: 1;
   ${tw`
-    py-3
+    py-6
     container
     flex
   `}

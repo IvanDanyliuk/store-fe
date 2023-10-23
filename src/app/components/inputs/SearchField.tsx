@@ -27,7 +27,7 @@ const SearchInput = styled.input`
     w-full
     h-8
     px-3
-    rounded-l-xl
+    rounded-l-full
     focus:outline-none
   `}
 `;
@@ -35,8 +35,8 @@ const SearchInput = styled.input`
 const SearchBtn = styled.button`
   ${tw`
     h-8
-    px-2
-    rounded-r-xl
+    px-3
+    rounded-r-full
     bg-white
     text-gray-400
     hover:text-gray-600

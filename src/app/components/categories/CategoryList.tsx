@@ -9,32 +9,26 @@ import { getCategories } from '../../features/category/asyncActions';
 import { selectCategories } from '../../features/category/selectors';
 import { AppDispatch } from '../../features/store';
 import { SECONDARY_COLOR } from '../../services/constants';
-import { SCREENS } from '../../services/screens';
 
 
 const List = styled.ul`
   ${tw`
     mt-3
     w-full
-    flex
-    flex-col
-    md:flex-row
-    flex-wrap
+    grid
+    grid-cols-1
+    md:grid-cols-4
+    gap-6
   `}
 `;
 
 const CategoryItem = styled.li`
-  width: 24%;
-  margin: .5%;
-  @media (max-width: ${SCREENS.md}) {
-    width: 100%;
-    margin: 1% 0;
-  }
   ${tw`
     p-3
     border
     border-gray-300
     rounded-lg
+    shadow-md
   `}
 `;
 

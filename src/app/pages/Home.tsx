@@ -29,8 +29,7 @@ const Content = styled.div`
 
 const PageSection = styled.section`
   ${tw`
-    pt-6
-    pb-3
+    py-10
     px-2
     flex
     flex-col
@@ -40,7 +39,7 @@ const PageSection = styled.section`
 
 const PageTitle = styled.h3`
   ${tw`
-    mb-5
+    mb-10
     text-2xl
     font-bold
   `}
@@ -50,8 +49,7 @@ const SubscriptionContainer = styled.div`
   background-image: url(${background});
   background-size: cover;
   ${tw`
-    pt-20
-    pb-16
+    py-16
     px-3
     md:pl-7
     md:pr-7
@@ -83,16 +81,22 @@ const SubscriptionText = styled.p`
   `}
 `;
 
+const SearchForm= styled.form`
+  ${tw`
+    flex
+  `}
+`;
+
 const Input = styled.input`
   ${tw`
     pl-5
     pr-3
-    w-5/6
+    w-11/12
     md:w-96
     h-12
     md:h-10
     text-gray-600
-    rounded-l-3xl
+    rounded-l-full
     focus:outline-none
   `}
 `;
@@ -100,13 +104,13 @@ const Input = styled.input`
 const SubmitBtn = styled.button`
   color: ${SUCCESS_COLOR};
   ${tw`
-    w-1/6
+    w-1/12
     h-12
     md:h-10
     text-lg
     bg-white
     hover:bg-gray-100
-    rounded-r-3xl
+    rounded-r-full
     transition
     ease-in
   `}
@@ -164,12 +168,12 @@ const Home: React.FC = () => {
             <SubscriptionText>
               {t('subscriptionText')}
             </SubscriptionText>
-            <form>
+            <SearchForm>
               <Input type='email' />
               <SubmitBtn>
                 <FontAwesomeIcon icon={faCheck} />
               </SubmitBtn>
-            </form>
+            </SearchForm>
           </SubscriptionInfo>
         </SubscriptionContainer>
       </PageSection>
