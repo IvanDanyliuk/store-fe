@@ -3,7 +3,7 @@ import { renderWithProvidersForUpdation } from '../../../utils/testUtils';
 import { setupProductSuccessHandlers } from '../../../utils/serverMocks/product';
 import { setupReviewsSuccessHandlers } from '../../../utils/serverMocks/reviews';
 import { reviewsMock } from '../../../utils/testDataMocks';
-import Product from '../Product';
+import { Product } from '../';
 
 
 describe('Tests for the Product page', () => {

@@ -3,16 +3,14 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import Button from '../ui/Button';
+import { Button, Loader, Pagination } from '../ui';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import useTable from '../../hooks/useTable';
 import { ButtonColor, ButtonType, ICellProps, ITableProps, TableTypes } from '../../../types/types';
 import { IProductCategory } from '../../features/category/types';
 import { IShipping } from '../../features/shipping/types';
-import Loader from '../ui/Loader';
-import DeleteItemModal from '../modals/DeleteItemModal';
-import Pagination from '../ui/Pagination';
+import { DeleteItemModal } from '../modals';
 
 
 const Container = styled.div`

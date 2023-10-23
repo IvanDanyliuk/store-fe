@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import Button from '../ui/Button';
+import { Button, Loader, ProductListImage } from '../ui';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, ICellProps, IProductsTableProps } from '../../../types/types';
 import { IProduct } from '../../features/product/types';
-import ProductListImage from '../ui/ProductListImage';
-import Loader from '../ui/Loader';
-import DeleteItemModal from '../modals/DeleteItemModal';
+import { DeleteItemModal } from '../modals';
 
 
 const Container = styled.div`

@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ButtonColor, ButtonType, IProductCardProps } from '../../../types/types';
-import RoundedButton from '../ui/RoundedButton';
+import { RoundedButton } from '../ui';
 import { AppDispatch } from '../../features/store';
 import { addToCart } from '../../features/cart/reducers';
 import { selectCartData } from '../../features/cart/selectors';

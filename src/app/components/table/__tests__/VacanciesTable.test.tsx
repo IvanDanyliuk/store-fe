@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vacanciesListMock } from '../../../../utils/testDataMocks';
 import { IVacancy } from '../../../features/vacancies/types';
-import VacanciesTable from '../VacanciesTable';
+import { VacanciesTable } from '../';
 
 
 const emptyVacanciesListMock: IVacancy[] = [];

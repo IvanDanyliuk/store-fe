@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { IProductListProps } from '../../../types/types';
-import ProductCard from './ProductCard';
+import { ProductCard } from './';
 
 
 const Container = styled.ul`

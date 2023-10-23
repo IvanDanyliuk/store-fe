@@ -8,22 +8,20 @@ import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faStar, faThumbsDown, faThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons';
-import AddCommentForm from '../components/modals/AddCommentForm';
+import { AddCommentForm } from '../components/modals';
 import { AppDispatch } from '../features/store';
 import { selectProduct, selectProductStatus } from '../features/product/selectors';
 import { getProduct } from '../features/product/asyncActions';
 import { clearProduct } from '../features/product/reducers';
 import { selectUser } from '../features/user/selectors';
-import RoundedButton from '../components/ui/RoundedButton';
+import { Button, Loader, RoundedButton } from '../components/ui';
 import { ButtonColor, ButtonType, IColor } from '../../types/types';
 import { addToCart } from '../features/cart/reducers';
 import { selectCartData } from '../features/cart/selectors';
-import Button from '../components/ui/Button';
 import { deleteReview, getProductReviews, updateReview } from '../features/reviews/asyncActions';
 import { selectReviews } from '../features/reviews/selectors';
 import { IReview } from '../features/reviews/types';
 import { SUCCESS_COLOR, DANGER_COLOR, PRODUCT_RATING_STAR_COLOR } from '../services/constants';
-import Loader from '../components/ui/Loader';
 
 
 const Breadcrumbs = styled.div`

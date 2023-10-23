@@ -7,14 +7,14 @@ import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import SearchField from '../inputs/SearchField';
+import { SearchField } from '../inputs';
 import NavMenu from '../navigation/NavMenu';
 import { SCREENS } from '../../services/screens';
-import Logo from '../ui/Logo';
+import { Logo } from '../ui';
 import { selectUser } from '../../features/user/selectors';
 import { AppDispatch } from '../../features/store';
 import { logout } from '../../features/user/reducers';
-import Cart from '../modals/Cart';
+import { Cart } from '../modals';
 import { PRIMARY_COLOR } from '../../services/constants';
 
 

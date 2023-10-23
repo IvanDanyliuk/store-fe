@@ -1,5 +1,5 @@
 import { fireEvent, screen, render } from '@testing-library/react';
-import DeleteItemModal from '../DeleteItemModal';
+import { DeleteItemModal } from '../';
 
 
 const deleteHandlerMock = jest.fn();

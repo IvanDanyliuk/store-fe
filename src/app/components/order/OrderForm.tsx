@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
-import Input from '../inputs/Input';
+import { Input } from '../inputs';
 import { IOrderFormProps } from '../../../types/types';
 
 

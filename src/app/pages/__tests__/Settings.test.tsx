@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../utils/testUtils';
-import Settings from '../Settings';
+import { Settings } from '../';
 
 
 describe('Tests for the Settings page', () => {

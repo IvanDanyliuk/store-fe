@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ProductListImage from '../ProductListImage';
+import { ProductListImage } from '../';
 
 
 describe('Tests for the ProductListImage component', () => {

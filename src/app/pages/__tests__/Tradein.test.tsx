@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Tradein from '../Tradein';
+import { Tradein } from '../';
 
 
 describe('Tests for the Tradein page', () => {

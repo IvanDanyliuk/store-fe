@@ -8,7 +8,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import Button from '../ui/Button';
+import { Button } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';

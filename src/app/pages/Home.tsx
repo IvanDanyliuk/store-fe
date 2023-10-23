@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import background from '../assets/img/liquid-cheese.svg'
-import ProductList from '../components/products/ProductList';
+import { ProductList } from '../components/products';
 import { AppDispatch } from '../features/store';
 import { getTopProducts } from '../features/product/asyncActions';
 import { selectProducts, selectProductStatus } from '../features/product/selectors';
@@ -17,7 +17,7 @@ import { PRODUCTS_PER_PAGE } from '../services/constants';
 import { SUCCESS_COLOR } from '../services/constants';
 import { selectGalleryImages, selectGalleryStatus } from '../features/gallery/selectors';
 import { getGalleryImages } from '../features/gallery/asyncActions';
-import Loader from '../components/ui/Loader';
+import { Loader } from '../components/ui';
 
 
 const Content = styled.div`

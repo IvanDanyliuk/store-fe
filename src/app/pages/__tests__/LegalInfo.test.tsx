@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import LegalInfo from '../LegalInfo';
+import { LegalInfo } from '../';
 
 
 describe('Tests for the LegalInfo page', () => {

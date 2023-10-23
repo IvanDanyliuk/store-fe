@@ -11,12 +11,10 @@ import { deleteReview } from '../../features/reviews/asyncActions';
 import { AppDispatch } from '../../features/store';
 import { getUserReviews } from '../../features/reviews/asyncActions';
 import { selectUser } from '../../features/user/selectors';
-import ProductListImage from '../ui/ProductListImage';
-import RoundedButton from '../ui/RoundedButton';
-import EditReviewModal from '../modals/EditReviewModal';
+import { EditReviewModal } from '../modals';
 import { selectReviews, selectReviewsStatus } from '../../features/reviews/selectors';
 import { REVIEW_ITEM_BACKGROUND } from '../../services/constants';
-import Loader from '../ui/Loader';
+import { Loader, ProductListImage, RoundedButton } from '../ui';
 
 
 const Container = styled.div`

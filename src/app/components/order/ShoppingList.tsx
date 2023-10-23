@@ -9,8 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonColor, ButtonType, IShoppingListProps } from '../../../types/types';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../features/cart/reducers';
 import { AppDispatch } from '../../features/store';
-import RoundedButton from '../ui/RoundedButton';
-import ProductListImage from '../ui/ProductListImage';
+import { ProductListImage, RoundedButton } from '../ui';
 import { selectOrder } from '../../features/order/selectors';
 import { 
   decreaseOrderProductQuantity, 
@@ -20,8 +19,8 @@ import {
 
 
 const List = styled.ul`
-  flex: 1;
   ${tw`
+    flex-1
     overflow-y-scroll
   `}
 `;
@@ -102,6 +101,7 @@ const EmptyCartMessage = styled.li`
   ${tw`
     h-full
     flex
+    
     justify-center
     items-center
     text-2xl

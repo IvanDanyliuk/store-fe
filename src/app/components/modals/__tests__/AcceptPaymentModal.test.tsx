@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AcceptPaymentModal from '../AcceptPaymentModal';
+import { AcceptPaymentModal } from '../';
 
 
 const closeModalHandler = jest.fn();

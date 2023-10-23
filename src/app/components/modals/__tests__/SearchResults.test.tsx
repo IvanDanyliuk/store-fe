@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { productsMock } from '../../../../utils/testDataMocks';
-import SearchResults from '../SearchResults';
+import { SearchResults } from '../';
 
 
 const closeHandler = jest.fn();

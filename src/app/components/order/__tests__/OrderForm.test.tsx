@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { orderCustomerDataMock } from '../../../../utils/testDataMocks';
-import OrderForm from '../OrderForm';
+import { OrderForm } from '../';
 
 
 const changeHandler = jest.fn();

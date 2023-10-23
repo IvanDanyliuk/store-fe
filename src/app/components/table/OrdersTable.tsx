@@ -7,8 +7,8 @@ import moment from 'moment';
 import { SCREENS } from '../../helpers/screens';
 import { getOtherProductsQuantity, setCellWidth } from '../../helpers/helpers';
 import { ICellProps, IOrdersTableProps } from '../../../types/types';
-import OrderDetails from '../modals/OrderDetails';
-import ProductListImage from '../ui/ProductListImage';
+import { OrderDetails } from '../modals';
+import { ProductListImage } from '../ui';
 
 
 const Container = styled.div`

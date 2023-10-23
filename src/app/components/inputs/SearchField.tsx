@@ -25,8 +25,8 @@ const SearchInput = styled.input`
   font-size: 12px;
   ${tw`
     w-full
-    h-8
-    px-3
+    h-10
+    px-6
     rounded-l-full
     focus:outline-none
   `}
@@ -34,8 +34,8 @@ const SearchInput = styled.input`
 
 const SearchBtn = styled.button`
   ${tw`
-    h-8
-    px-3
+    h-10
+    px-6
     rounded-r-full
     bg-white
     text-gray-400

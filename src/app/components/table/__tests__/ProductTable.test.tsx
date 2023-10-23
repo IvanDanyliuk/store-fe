@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { productsMock } from '../../../../utils/testDataMocks';
 import { IProduct } from '../../../features/product/types';
-import ProductTable from '../ProductTable';
+import { ProductTable } from '../';
 
 
 const emptyProductListMock: IProduct[] = [];

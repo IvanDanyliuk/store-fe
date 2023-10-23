@@ -1,0 +1,17 @@
+export { default as About } from './About';
+export { default as Auth } from './Auth';
+export { default as Careers } from './Careers';
+export { default as Categories } from './Categories';
+export { default as Contacts } from './Contacts';
+export { default as DeliveryAndPayment } from './DeliveryAndPayment';
+export { default as Home } from './Home';
+export { default as LegalInfo } from './LegalInfo';
+export { default as NotFound } from './NotFound';
+export { default as Order } from './Order';
+export { default as Partnership } from './Partnership';
+export { default as Product } from './Product';
+export { default as Products } from './Products';
+export { default as Refund } from './Refund';
+export { default as Settings } from './Settings';
+export { default as Tradein } from './Tradein';
+export { default as Vacancy } from './Vacancy';

@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders, renderWithProvidersForUpdation } from '../../../../utils/testUtils';
-import CreateShippingForm from '../CreateShippingForm';
+import { CreateShippingForm } from '../';
 
 
 describe('Tests for the CreateShippingForm components: creation cases', () => {

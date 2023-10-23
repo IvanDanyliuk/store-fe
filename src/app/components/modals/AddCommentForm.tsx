@@ -11,12 +11,11 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SCREENS } from '../../services/screens';
 import { isCommentDataValid } from '../../helpers/formValidation';
 import { AppDispatch } from '../../features/store';
-import FormErrorMessage from '../ui/FormErrorMessage';
+import { FormErrorMessage } from '../ui';
 import { createReview } from '../../features/reviews/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
 import { selectUser } from '../../features/user/selectors';
-import Input from '../inputs/Input';
-import TextArea from '../inputs/TextArea';
+import { Input, TextArea } from '../inputs';
 import { 
   SUCCESS_COLOR, 
   BASIC_BACKGROUND_WHITE, 

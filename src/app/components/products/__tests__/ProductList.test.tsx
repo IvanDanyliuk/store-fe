@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { productsMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
 import { IProduct } from '../../../features/product/types';
-import ProductList from '../ProductList';
+import { ProductList } from '../';
 
 
 const categoryMock = 'main-category-title';

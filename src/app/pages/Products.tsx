@@ -6,14 +6,12 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../types/types';
-import ProductList from '../components/products/ProductList';
-import Pagination from '../components/ui/Pagination';
-import Button from '../components/ui/Button';
+import { ProductList } from '../components/products';
+import { Button, Loader, Pagination } from '../components/ui';
 import { getBrands, getProducts } from '../features/product/asyncActions';
 import { selectBrands, selectPagesCount, selectProducts, selectProductStatus } from '../features/product/selectors';
 import { AppDispatch } from '../features/store';
 import { PRODUCTS_PER_PAGE } from '../services/constants';
-import Loader from '../components/ui/Loader';
 
 
 const Container = styled.div`

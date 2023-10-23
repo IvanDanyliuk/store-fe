@@ -4,13 +4,12 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
-import Button from '../ui/Button';
+import { Button, Loader } from '../ui';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, ICellProps, IVacanciesTableProps } from '../../../types/types';
 import { IVacancy } from '../../features/vacancies/types';
-import Loader from '../ui/Loader';
-import DeleteItemModal from '../modals/DeleteItemModal';
+import { DeleteItemModal } from '../modals';
 
 
 const Container = styled.div`

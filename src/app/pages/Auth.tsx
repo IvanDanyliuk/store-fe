@@ -7,12 +7,11 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { storage } from '../../firebase';
 import { ButtonColor, ButtonType } from '../../types/types';
-import Button from '../components/ui/Button';
+import { Button , FormErrorMessage} from '../components/ui';
 import { AppDispatch } from '../features/store';
 import { signin, signup } from '../features/user/asyncActions';
-import Input from '../components/inputs/Input';
+import { Input } from '../components/inputs';
 import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
-import FormErrorMessage from '../components/ui/FormErrorMessage';
 import { selectUser } from '../features/user/selectors';
 
 

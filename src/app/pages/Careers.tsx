@@ -8,9 +8,8 @@ import moment from 'moment';
 import { AppDispatch } from '../features/store';
 import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
-import Pagination from '../components/ui/Pagination';
 import { VACANCIES_PER_PAGE } from '../services/constants';
-import Loader from '../components/ui/Loader';
+import { Loader, Pagination } from '../components/ui';
 
 
 const Container = styled.div`

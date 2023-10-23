@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { orderMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import OrderDetails from '../OrderDetails';
+import { OrderDetails } from '../';
 
 
 const mockedUsedNavigate = jest.fn();

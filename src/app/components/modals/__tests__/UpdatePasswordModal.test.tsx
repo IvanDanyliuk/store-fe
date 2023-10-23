@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders, renderWithProvidersPasswordError } from '../../../../utils/testUtils';
-import UpdatePasswordModal from '../UpdatePasswordModal';
+import { UpdatePasswordModal } from '../';
 
 
 describe('Tests for the UpdatePasswordModal component', () => {

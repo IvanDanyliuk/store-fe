@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { reviewErrorMock, reviewMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import EditReviewModal from '../EditReviewModal';
+import { EditReviewModal } from '../';
 
 
 describe('Tests for the EditReviewModal component', () => {

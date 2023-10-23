@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
 import { ISearchResultsProps } from '../../../types/types';
 import { SCREENS } from '../../services/screens';
-import ProductListImage from '../ui/ProductListImage';
+import { ProductListImage } from '../ui';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
 

@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import Cart from '../Cart';
+import { Cart } from '../';
 
 
 describe('Tests for the Cart component', () => {

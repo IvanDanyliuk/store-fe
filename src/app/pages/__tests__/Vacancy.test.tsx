@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { setupVacanciesSuccessHandlers } from '../../../utils/serverMocks/vacancies';
 import { renderWithProviders } from '../../../utils/testUtils';
-import Vacancy from '../Vacancy';
+import { Vacancy } from '../';
 
 
 jest.mock('react-router-dom', () => ({

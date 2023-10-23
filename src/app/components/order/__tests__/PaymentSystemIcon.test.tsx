@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import PaymentSystemIcon from '../PaymentSystemIcon';
+import { PaymentSystemIcon } from '../';
 
 
 describe('Tests for the PaymentSystemIcon component', () => {

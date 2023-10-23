@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
-import Button from '../ui/Button';
+import { Button } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { selectCartData } from '../../features/cart/selectors';
 import { ICartItem } from '../../features/cart/types';
-import ShoppingList from '../order/ShoppingList';
+import { ShoppingList } from '../order';
 import { 
   CART_SIZE_ICON_COLOR, 
   BASIC_BACKGROUND_WHITE, 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { footerLinks } from '../../data';
-import Logo from '../ui/Logo';
+import { Logo } from '../ui';
 import { FOOTER_BACKGROUND_COLOR } from '../../services/constants';
 
 

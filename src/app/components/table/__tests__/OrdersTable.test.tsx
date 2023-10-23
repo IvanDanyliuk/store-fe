@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { ordersListMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
 import { IOrder } from '../../../features/order/types';
-import OrdersTable from '../OrdersTable';
+import { OrdersTable } from '../';
 
 
 const emptyOrderListMock: IOrder[] = [];

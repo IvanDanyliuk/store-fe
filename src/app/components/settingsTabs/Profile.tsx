@@ -9,10 +9,7 @@ import { setLanguage } from '../../features/user/reducers';
 import { selectLanguage, selectUser, selectUserStatus } from '../../features/user/selectors';
 import { formatObjectKey } from '../../helpers/helpers';
 import { SCREENS } from '../../services/screens';
-import DeleteUserModal from '../modals/DeleteUserModal';
-import EditUserDataModal from '../modals/EditUserDataModal';
-import UpdateAvatarModal from '../modals/UpdateAvatarModal';
-import UpdatePasswordModal from '../modals/UpdatePasswordModal';
+import { DeleteUserModal, EditUserDataModal, UpdateAvatarModal, UpdatePasswordModal } from '../modals';
 import i18 from '../../services/languageConfig';
 import Loader from '../ui/Loader';
 
