@@ -135,10 +135,11 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
     }
   };
 
-  const hadnleDeleteFromCart = (id: string) => {
+  const handleDeleteFromCart = (id: string) => {
     if(order) {
       dispatch(removeProductFromOrder(id));
     } else {
+      console.log('REMOVE FROM CART', id)
       dispatch(removeFromCart(id));
     }
   };
@@ -159,14 +160,14 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
                   <ProductNumber>
                     <SetNumberBtn 
                       data-testid='increaseBtn' 
-                      onClick={() => decreaseProductQuantity(item._id!)}
+                      onClick={() => decreaseProductQuantity(item.id!)}
                     >
                       -
                     </SetNumberBtn>
                     <Number>{item.quantity}</Number>
                     <SetNumberBtn 
                       data-testid='decreaseBtn' 
-                      onClick={() => increaseProductQuantity(item._id!)}
+                      onClick={() => increaseProductQuantity(item.id!)}
                     >
                       +
                     </SetNumberBtn>
@@ -174,7 +175,7 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
                   <RoundedButton 
                     type={ButtonType.Button} 
                     color={ButtonColor.Danger} 
-                    onClick={() => hadnleDeleteFromCart(item._id!)}
+                    onClick={() => handleDeleteFromCart(item.id!)}
                   >
                     <FontAwesomeIcon icon={faTrash} />
                   </RoundedButton>
