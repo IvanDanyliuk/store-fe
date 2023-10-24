@@ -25,8 +25,8 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 
 const Container = styled.div`
-  min-height: 95%;
   ${tw`
+    h-full
     flex
     flex-col
   `}
@@ -92,7 +92,6 @@ const CartFooter = styled.div`
   ${tw`
     mt-3
     w-full
-    h-24
   `}
 `;
 
