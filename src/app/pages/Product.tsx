@@ -27,6 +27,8 @@ import { SUCCESS_COLOR, DANGER_COLOR, PRODUCT_RATING_STAR_COLOR } from '../servi
 const Breadcrumbs = styled.div`
   ${tw`
     flex
+    text-sm
+    md:text-base
   `}
 `;
 
@@ -36,17 +38,12 @@ const BreadCrumb = styled(Link)`
   `}
 `;
 
-const BreadcrumbDivider = styled.span`
-  ${tw`
-    mx-2
-  `}
-`;
-
 const Title = styled.h3`
   ${tw`
     mx-3
     my-3
-    text-2xl
+    text-xl
+    md:text-2xl
     font-bold
   `}
 `;
@@ -68,6 +65,8 @@ const Gallery = styled.div`
     md:p-3
     md:w-2/6
     w-full
+    flex
+    justify-center
   `}
 `;
 
@@ -82,6 +81,8 @@ const GeneralInfo = styled.div`
 const ShortInfo = styled.div`
   ${tw`
     my-3
+    text-sm
+    md:text-base
   `}
 `;
 
@@ -118,6 +119,9 @@ const AdditionalInfo = styled.div`
     flex
     flex-col
     md:flex-row
+    gap-16
+    text-sm
+    md:text-base
   `}
 `;
 
@@ -187,6 +191,8 @@ const OrderInfo = styled.div`
   ${tw`
     mt-6
     flex
+    text-sm
+    md:text-base
   `}
 `;
 
@@ -225,6 +231,7 @@ const ReviewBody = styled.li`
 
 const ReviewHeader = styled.div`
   ${tw`
+    mb-3
     flex
     justify-between
     items-center
@@ -241,8 +248,10 @@ const UserInfo = styled.div`
 const Avatar = styled.img`
   ${tw`
     mr-2
-    w-8
-    h-8
+    w-6
+    h-6
+    md:w-8
+    md:h-8
     object-cover
     rounded-2xl
   `}
@@ -250,6 +259,8 @@ const Avatar = styled.img`
 
 const UserName = styled.div`
   ${tw`
+    text-xs
+    md:text-sm
     font-bold
     text-gray-600
   `}
@@ -262,16 +273,21 @@ const PostDate = styled.div`
   `}
 `;
 
-const Comment = styled.p`
+const Comment = styled.div`
   ${tw`
     mt-1
     mb-2
-    text-sm
+    flex
+    flex-col
+    gap-2
+    text-xs
+    md:text-sm
   `}
 `;
 
 const CommentTitle = styled.span`
   ${tw`
+    mb-3
     font-semibold
   `}
 `;
@@ -450,7 +466,7 @@ const Product: React.FC = () => {
         <BreadCrumb to={`/categories/${product?.category.main.url}`}>
           {product?.category.main.title}
         </BreadCrumb>
-        <BreadcrumbDivider>/</BreadcrumbDivider>
+        <span>/</span>
         <BreadCrumb to={`/products/${product?.category.subCategory.url}`}>
           {product?.category.subCategory.title}
         </BreadCrumb>

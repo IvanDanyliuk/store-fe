@@ -33,7 +33,8 @@ const CommentBtn = styled.button`
     md:py-1
     md:px-4
     rounded
-    text-sm
+    text-xs
+    md:text-sm
     font-bold
     bg-gray-300
   `}
