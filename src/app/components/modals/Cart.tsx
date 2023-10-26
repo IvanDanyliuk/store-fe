@@ -155,8 +155,11 @@ const Cart: React.FC = () => {
   };
 
   const makeOrder = () => {
-    navigate('/order');
-    setIsOpen(false);
+    if(cart.length > 0) {
+      setIsOpen(false);
+      navigate('/order');
+    }
+    
   };
 
   const styles = {
@@ -173,13 +176,15 @@ const Cart: React.FC = () => {
     },
     overlay: {
       background: MODAL_OVERLAY_COLOR,
-      zIndex: '500',
+      zIndex: '1000',
     }
   };
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
+
+  console.log('CART OPEN STATE', isOpen)
 
   return (
     <>
@@ -229,6 +234,7 @@ const Cart: React.FC = () => {
               <Button 
                 type={ButtonType.Button} 
                 color={ButtonColor.Success} 
+                disabled={cart.length < 1}
                 onClick={makeOrder}
               >
                 {t('cartCheckoutBtn')}
