@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -69,20 +69,29 @@ const SocialMediaLink = styled.a`
 
 const NavMenu: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [isOpen, setIsOpen] = useState(false);
   const categories = useSelector(selectCategories);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
+
+  const handleMenuOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
   return (
-    <Navigation styles={styles} >
+    <Navigation styles={styles} isOpen={isOpen} onOpen={handleMenuOpen} onClose={handleMenuClose}>
       {isMobile && <SearchField />}
       <NavList>
         {categories.map((link: IProductCategory) => (
           <NavItem key={uuid()}>
-            <NavLink to={`/categories/${link.main.url}`}>
+            <NavLink to={`/categories/${link.main.url}`} onClick={handleMenuClose}>
               {link.main.title}
             </NavLink>
           </NavItem>
@@ -90,16 +99,16 @@ const NavMenu: React.FC = () => {
         <Divider direction='horizontal' length={100} mTop={25} mBottom={25} />
         <SocialMediaLinks>
           <SocialMediaLink href='#'>
-            <FontAwesomeIcon icon={faFacebookF} />
+            <FontAwesomeIcon icon={faFacebookF} onClick={handleMenuClose} />
           </SocialMediaLink>
           <SocialMediaLink href='#'>
-            <FontAwesomeIcon icon={faInstagram} />
+            <FontAwesomeIcon icon={faInstagram} onClick={handleMenuClose} />
           </SocialMediaLink>
           <SocialMediaLink href='#'>
-            <FontAwesomeIcon icon={faTwitter} />
+            <FontAwesomeIcon icon={faTwitter} onClick={handleMenuClose} />
           </SocialMediaLink>
           <SocialMediaLink href='#'>
-            <FontAwesomeIcon icon={faTelegram} />
+            <FontAwesomeIcon icon={faTelegram} onClick={handleMenuClose} />
           </SocialMediaLink>
         </SocialMediaLinks>
         <Divider direction='horizontal' length={100} mTop={25} mBottom={15} />
@@ -107,7 +116,7 @@ const NavMenu: React.FC = () => {
       <NavList>
         {pageLinks.map(link => (
           <NavItem key={link.title}>
-            <NavLink to={link.to}>
+            <NavLink to={link.to} onClick={handleMenuClose}>
               {link.title}
             </NavLink>
           </NavItem>
