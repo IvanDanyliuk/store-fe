@@ -149,6 +149,7 @@ const Cart: React.FC = () => {
   const totalOrderAmount = cart.reduce((acc: number, cur: ICartItem) => acc + (+cur.product.price * cur.quantity), 0);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartSubmitted, setIsCartSubmitted] = useState(false);
   
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
@@ -157,9 +158,8 @@ const Cart: React.FC = () => {
   const makeOrder = () => {
     if(cart.length > 0) {
       setIsOpen(false);
-      navigate('/order');
+      setIsCartSubmitted(true);
     }
-    
   };
 
   const styles = {
@@ -184,7 +184,12 @@ const Cart: React.FC = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  console.log('CART OPEN STATE', isOpen)
+  useEffect(() => {
+    if(isCartSubmitted) {
+      navigate('/order');
+      setIsCartSubmitted(false);
+    }
+  }, [isCartSubmitted]);
 
   return (
     <>
