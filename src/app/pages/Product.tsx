@@ -55,6 +55,7 @@ const Info = styled.div`
     flex
     flex-col
     md:flex-row
+    gap-6
   `}
 `;
 
@@ -67,6 +68,7 @@ const Gallery = styled.div`
     w-full
     flex
     justify-center
+    items-center
   `}
 `;
 
