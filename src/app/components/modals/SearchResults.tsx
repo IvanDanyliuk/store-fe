@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import { useMediaQuery } from 'react-responsive';
 import { ISearchResultsProps } from '../../../types/types';
 import { SCREENS } from '../../services/screens';
-import ProductListImage from '../ui/ProductListImage';
+import { ProductListImage } from '../ui';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
 
@@ -33,10 +33,8 @@ const SearchResultsList = styled.ul`
 
 const SearchItem = styled.li`
   ${tw`
-    pt-2
-    pb-2
-    pl-3
-    pr-3
+    px-3
+    py-2
     border-b
   `}
 `;

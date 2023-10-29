@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders, renderWithProvidersForUpdation } from '../../../../utils/testUtils';
-import CreateProductForm from '../CreateProductForm';
+import { CreateProductForm } from '../';
 
 
 describe('Tests for the CreateProductForm component: creation case', () => {

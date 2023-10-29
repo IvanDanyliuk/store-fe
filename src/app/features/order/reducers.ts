@@ -31,13 +31,13 @@ const ordersSlice = createSlice({
       state.order = null;
     },
     removeProductFromOrder: (state, action) => {
-      state.order = { ...state.order!, products: state.order!.products.filter(item => item._id !== action.payload) };
+      state.order = { ...state.order!, products: state.order!.products.filter(item => item.id !== action.payload) };
     },
     increaseOrderProductQuantity: (state, action) => {
-      state.order = { ...state.order!, products: state.order!.products.map((item: ICartItem) => item._id === action.payload ? { ...item, quantity: limitIncreasing(item.quantity) } : item) };
+      state.order = { ...state.order!, products: state.order!.products.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: limitIncreasing(item.quantity) } : item) };
     }, 
     decreaseOrderProductQuantity: (state, action) => {
-      state.order = { ...state.order!, products: state.order!.products.map((item: ICartItem) => item._id === action.payload ? { ...item, quantity: limitDecreasing(item.quantity) } : item)};
+      state.order = { ...state.order!, products: state.order!.products.map((item: ICartItem) => item.id === action.payload ? { ...item, quantity: limitDecreasing(item.quantity) } : item)};
     },
     clearOrder: (state) => {
       state.status = 'idle';

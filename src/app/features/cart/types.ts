@@ -2,7 +2,7 @@ import { IProduct } from "../product/types";
 
 
 export interface ICartItem {
-  _id?: string;
+  id?: string;
   quantity: number; 
   product: IProduct;
 }

@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import Button from '../ui/Button';
+import { Button, Loader, ProductListImage } from '../ui';
 import { SCREENS } from '../../helpers/screens';
 import { setCellWidth } from '../../helpers/helpers';
 import { ButtonColor, ButtonType, ICellProps, IProductsTableProps } from '../../../types/types';
 import { IProduct } from '../../features/product/types';
-import ProductListImage from '../ui/ProductListImage';
-import Loader from '../ui/Loader';
-import DeleteItemModal from '../modals/DeleteItemModal';
+import { DeleteItemModal } from '../modals';
 
 
 const Container = styled.div`
@@ -37,8 +35,6 @@ const TableHead = styled.thead`
   `}
 `;
 
-const TableBody = styled.tbody``;
-
 const TableRow = styled.tr`
   ${tw`
     w-full
@@ -52,8 +48,7 @@ const TableHeaderCell = styled.th<ICellProps>`
     width: ${({ name }) => setCellWidth(name, true)};
   }
   ${tw`
-    pt-3
-    pb-3
+    py-3
     text-left
   `}
 `;
@@ -69,16 +64,11 @@ const TableCell = styled.td<ICellProps>`
     `}
   }
   ${tw`
-    pt-2
-    pb-2
+    py-2
     text-sm
     md:text-base
   `}
 `;
-
-const WarningMessageBody = styled.div``;
-
-const Message = styled.p``;
 
 
 const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit, onDelete }) => {
@@ -90,11 +80,11 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
 
   if(products.length === 0) {
     return (
-      <WarningMessageBody>
-        <Message>
+      <div>
+        <p>
           {t('productsNoDataMessage')}
-        </Message>
-      </WarningMessageBody>
+        </p>
+      </div>
     );
   }
 
@@ -116,7 +106,7 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
             <TableHeaderCell name='productActions'></TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <tbody>
           {
             products.map((product: IProduct) => (
               <TableRow key={uuid()}>
@@ -148,7 +138,7 @@ const ProductTable: React.FC<IProductsTableProps> = ({ products, status, onEdit,
               </TableRow>
             )) 
           }
-        </TableBody>
+        </tbody>
       </TableContainer>
     </Container>
   );

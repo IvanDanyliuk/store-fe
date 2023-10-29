@@ -9,10 +9,7 @@ import { setLanguage } from '../../features/user/reducers';
 import { selectLanguage, selectUser, selectUserStatus } from '../../features/user/selectors';
 import { formatObjectKey } from '../../helpers/helpers';
 import { SCREENS } from '../../services/screens';
-import DeleteUserModal from '../modals/DeleteUserModal';
-import EditUserDataModal from '../modals/EditUserDataModal';
-import UpdateAvatarModal from '../modals/UpdateAvatarModal';
-import UpdatePasswordModal from '../modals/UpdatePasswordModal';
+import { DeleteUserModal, EditUserDataModal, UpdateAvatarModal, UpdatePasswordModal } from '../modals';
 import i18 from '../../services/languageConfig';
 import Loader from '../ui/Loader';
 
@@ -135,8 +132,6 @@ const LanguageSelect = styled.select`
   `}
 `;
 
-const LanguageOption = styled.option``;
-
 
 const Profile: React.FC = () => {
   const { t } = useTranslation(['settingTabsProfile']);
@@ -198,8 +193,8 @@ const Profile: React.FC = () => {
           value={language}
           onChange={handleLanguageChange}
         >
-          <LanguageOption value={'en'}>EN</LanguageOption>
-          <LanguageOption value={'ua'}>UA</LanguageOption>
+          <option value={'en'}>EN</option>
+          <option value={'ua'}>UA</option>
         </LanguageSelect>
       </SubSection>
     </Section>

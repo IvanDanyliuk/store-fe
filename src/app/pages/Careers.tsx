@@ -8,9 +8,8 @@ import moment from 'moment';
 import { AppDispatch } from '../features/store';
 import { selectVacancyPagesCount, selectVacancies, selectVacancyStatus } from '../features/vacancies/selectors';
 import { getVacancies } from '../features/vacancies/asyncActions';
-import Pagination from '../components/ui/Pagination';
 import { VACANCIES_PER_PAGE } from '../services/constants';
-import Loader from '../components/ui/Loader';
+import { Loader, Pagination } from '../components/ui';
 
 
 const Container = styled.div`
@@ -24,16 +23,11 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
 `;
-
-const Content = styled.div``;
-
-const VacanciesList = styled.ul``;
 
 const VacancyItem = styled.li`
   ${tw`
@@ -92,13 +86,13 @@ const Careers: React.FC = () => {
       <Title>
         {t('title')}      
       </Title>
-      <Content>
+      <div>
         {
           status === 'loading' ? (
             <Loader />
           ) : 
           vacancies.length > 0 ? (
-            <VacanciesList>
+            <ul>
               {
                 vacancies.map(vacancy => (
                   <VacancyItem>
@@ -113,12 +107,12 @@ const Careers: React.FC = () => {
                   </VacancyItem>
                 ))
               }
-            </VacanciesList>
+            </ul>
           ) : (
             <Message>{t('vacanciesErrorMessage')}</Message>
           )
         }
-      </Content>
+      </div>
       <Pagination 
         pageCount={pageCount} 
         setPage={setPage} 

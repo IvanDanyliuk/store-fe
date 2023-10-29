@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { cartDataMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders, renderWithProvidersForUpdation } from '../../../../utils/testUtils';
 import { ICartItem } from '../../../features/cart/types';
-import ShoppingList from '../ShoppingList';
+import { ShoppingList } from '../';
 
 
 const emptyCartDataMock: ICartItem[] = [];

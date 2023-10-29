@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithProviders, renderWithProvidersErrorCase } from '../../../utils/testUtils';
-import DeliveryAndPayment from '../DeliveryAndPayment';
+import { DeliveryAndPayment } from '../';
 
 
 describe('Tests for the DeliveryAndPayment page', () => {

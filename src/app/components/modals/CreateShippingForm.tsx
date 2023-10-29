@@ -9,16 +9,15 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SCREENS } from '../../services/screens';
-import Button from '../ui/Button';
+import { Button, FormErrorMessage } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
 import { IShipping } from '../../features/shipping/types';
 import { selectShipping } from '../../features/shipping/selectors';
 import { createShipping, updateShipping } from '../../features/shipping/asyncActions';
 import { clearShipping } from '../../features/shipping/reducers';
-import Input from '../inputs/Input';
+import { Input } from '../inputs';
 import { isShippingDataValid } from '../../helpers/formValidation';
-import FormErrorMessage from '../ui/FormErrorMessage';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR, SUCCESS_COLOR } from '../../services/constants';
 
 
@@ -65,11 +64,9 @@ const Inputs = styled.fieldset`
 
 const CitiesList = styled.ul`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     pt-2
-    pl-3
-    pr-3
+    px-3
     border
   `}
 `;

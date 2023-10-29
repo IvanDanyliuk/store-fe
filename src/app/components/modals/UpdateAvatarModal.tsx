@@ -12,7 +12,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
-import Button from '../ui/Button';
+import { Button } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { updateUser } from '../../features/user/asyncActions';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';

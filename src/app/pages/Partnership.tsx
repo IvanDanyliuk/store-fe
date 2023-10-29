@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
   ${tw`
-    pl-3
-    pr-3
+    px-3
     w-full
     flex
     flex-col
@@ -16,8 +15,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
@@ -36,8 +34,6 @@ const RequirementsTitle = styled.p`
     font-semibold
   `}
 `;
-
-const RequirementsList = styled.ul``;
 
 const RequirementItem = styled.li`
   ${tw`
@@ -67,7 +63,7 @@ const Partnership: React.FC = () => {
       <RequirementsTitle>
         {t('listTitle')}
       </RequirementsTitle>
-      <RequirementsList>
+      <ul>
         <RequirementItem>
           {t('listItem1')}
         </RequirementItem>
@@ -89,7 +85,7 @@ const Partnership: React.FC = () => {
         <RequirementItem>
           {t('listItem7')}
         </RequirementItem>
-      </RequirementsList>
+      </ul>
       <RequirementsTitle>
         {t('contactTitle')}: 
         <ContactInfo>partnership@estore.com</ContactInfo>

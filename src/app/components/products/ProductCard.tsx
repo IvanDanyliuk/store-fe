@@ -7,13 +7,12 @@ import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ButtonColor, ButtonType, IProductCardProps } from '../../../types/types';
-import RoundedButton from '../ui/RoundedButton';
+import { RoundedButton } from '../ui';
 import { AppDispatch } from '../../features/store';
 import { addToCart } from '../../features/cart/reducers';
 import { selectCartData } from '../../features/cart/selectors';
 import { selectUser } from '../../features/user/selectors';
 import { updateUser } from '../../features/user/asyncActions';
-import { SCREENS } from '../../services/screens';
 import { 
   ERROR_TEXT_COLOR, 
   PRODUCT_RATING_STAR_COLOR, 
@@ -23,17 +22,6 @@ import {
 
 
 const Card = styled.li`
-  width: 24%;
-  margin: .5%;
-  @media (max-width: ${SCREENS.lg}) {
-    width: 49%;
-    margin: 1% 0;
-  }
-  @media (max-width: ${SCREENS.sm}) {
-    width: 100%;
-    margin: 1% 0;
-  }
-  
   ${tw`
     relative
     p-3
@@ -41,6 +29,7 @@ const Card = styled.li`
     border-solid
     border-gray-300
     rounded-md
+    shadow-md
   `}
 `;
 
@@ -59,10 +48,6 @@ const Image = styled.img`
   max-width: 100%;
 `;
 
-const ProductLink = styled(Link)``;
-
-const InfoSection = styled.div``;
-
 const Promotions = styled.div`
   ${tw`
     flex
@@ -74,10 +59,8 @@ const PromotionChip = styled.div`
   background: ${ERROR_TEXT_COLOR};
   ${tw`
     mr-2
-    pt-1
-    pb-1
-    pl-3
-    pr-3
+    px-3
+    py-1
     text-xs
     text-white
     font-black
@@ -87,8 +70,7 @@ const PromotionChip = styled.div`
 
 const Title = styled.div`
   ${tw`
-    pt-2
-    pb-2
+    py-2
     text-base
     font-medium
   `}
@@ -233,14 +215,14 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       >
         <FontAwesomeIcon icon={faHeart} />
       </HeartIcon>
-      <ProductLink 
+      <Link 
         to={`/products/${category ? category : 'top-products'}/${product._id}`}
       >
         <ImageSection>
           <Image src={product.image} alt={product.title} />
         </ImageSection>
-      </ProductLink>
-      <InfoSection>
+      </Link>
+      <div>
         <Promotions>
           {product.promotion.map((item: any) => (
             <PromotionChip key={uuid()}>
@@ -278,7 +260,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
             </RoundedButton>
           </BtnContainer>
         </CardFooter>
-      </InfoSection>
+      </div>
     </Card>
   );
 };

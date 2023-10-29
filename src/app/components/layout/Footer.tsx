@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { footerLinks } from '../../data';
-import Logo from '../ui/Logo';
+import { Logo } from '../ui';
 import { FOOTER_BACKGROUND_COLOR } from '../../services/constants';
 
 
@@ -14,33 +14,28 @@ const Container = styled.header`
     min-w-full
     flex
     justify-center
-    pl-4
-    pr-4
+    px-4
   `}
 `;
 
 const Content = styled.div`
   ${tw`
     container
-    pt-10
-    pb-4
+    py-16
     w-full
     flex
     flex-col
     justify-between
     md:items-start
     md:flex-row
-    md:pl-0
-    md:pr-0
+    gap-6
   `}
 `;
 
 const FooterSection = styled.div`
   ${tw`
-    mt-6
-    md:mt-0
-    text-center
-    md:text-left
+    w-full
+    md:w-1/4
   `}
 `;
 
@@ -61,14 +56,14 @@ const LinkList = styled.ul`
 
 const NavItem = styled.li`
   ${tw`
-    mt-3
-    mb-3
+    my-3
   `}
 `;
 
 const NavLink = styled(Link)`
   ${tw`
     text-white
+    text-sm
     transition
     ease-in-out
   `}
@@ -81,7 +76,9 @@ const Footer: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Logo />
+        <FooterSection>
+          <Logo />
+        </FooterSection>
         <FooterSection>
           <FooterHeading>ESTORE</FooterHeading>
           <LinkList>

@@ -8,12 +8,10 @@ import { getOrders, getUserOrders } from '../../features/order/asyncActions';
 import { selectOrderPages, selectOrders, selectOrderStatus } from '../../features/order/selectors';
 import { AppDispatch } from '../../features/store';
 import { selectUser } from '../../features/user/selectors';
-import Input from '../inputs/Input';
-import Button from '../ui/Button';
-import OrdersTable from '../table/OrdersTable';
+import { Input } from '../inputs';
+import { Button, Loader, Pagination } from '../ui';
+import { OrdersTable } from '../table';
 import { ORDERS_PER_TABLE } from '../../services/constants';
-import Loader from '../ui/Loader';
-import Pagination from '../ui/Pagination';
 
 
 const Container = styled.div`
@@ -25,8 +23,7 @@ const Container = styled.div`
 const FilterSection = styled.div`
   ${tw`
     relative
-    pt-5
-    pb-5
+    py-5
     w-full
     flex
   `}
@@ -40,8 +37,6 @@ const FilterSection = styled.div`
     margin-bottom: 4px;
   }
 `;
-
-const Content = styled.div``;
 
 
 const Orders: React.FC = () => {
@@ -97,7 +92,7 @@ const Orders: React.FC = () => {
           </Button>
         </FilterSection>
       )}
-      <Content>
+      <div>
         {
           orderLoadingStatus === 'succeeded' ? (
             <OrdersTable orders={orders} />
@@ -109,7 +104,7 @@ const Orders: React.FC = () => {
           pageCount={pageCount}
           setPage={setPage}
         />
-      </Content>
+      </div>
     </Container>
   );
 };

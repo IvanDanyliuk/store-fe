@@ -13,17 +13,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SCREENS } from '../../services/screens';
 import { selectCategories } from '../../features/category/selectors';
-import Button from '../ui/Button';
+import { Button, FormErrorMessage } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
 import { createProduct, updateProduct } from '../../features/product/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
 import { isProductDataValid } from '../../helpers/formValidation';
-import Input from '../inputs/Input';
-import Checkbox from '../inputs/Checkbox';
-import TextArea from '../inputs/TextArea';
+import {Checkbox, Input, TextArea} from '../inputs';
 import { clearProduct } from '../../features/product/reducers';
-import FormErrorMessage from '../ui/FormErrorMessage';
 import { IProductData } from '../../features/product/types';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
@@ -79,8 +76,7 @@ const Inputs = styled.div`
 
 const Promotions = styled.div`
   ${tw`
-    pl-2
-    pr-2
+    px-2
     w-full
     md:w-1/3
   `}
@@ -88,8 +84,7 @@ const Promotions = styled.div`
 
 const FormItem = styled.fieldset`
   ${tw`
-    pl-2
-    pr-2
+    px-2
     w-full
     md:w-1/2
     flex
@@ -111,11 +106,9 @@ const PromotionInputContainer = styled.div`
 
 const PromotionList = styled.ul`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     pt-2
-    pl-3
-    pr-3
+    px-3
   `}
 `;
 

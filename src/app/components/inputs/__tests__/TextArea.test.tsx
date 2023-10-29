@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import TextArea from '../TextArea';
+import { TextArea } from '../';
 
 
 describe('Tests for the TextArea component', () => {

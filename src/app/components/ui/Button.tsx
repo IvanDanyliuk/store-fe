@@ -7,12 +7,10 @@ import { setButtonColor } from '../../helpers/helpers';
 
 const ButtonBody = styled.button`
   min-width: 90px;
-  background: ${({ color }) => setButtonColor(color!)};
+  background: ${({ color, disabled }) => disabled ? '#999999' : setButtonColor(color!)};
   ${tw`
-    pt-1
-    pb-1
-    pl-3
-    pr-3
+    px-3
+    py-1
     rounded
     text-white
     text-sm
@@ -24,11 +22,12 @@ const ButtonBody = styled.button`
   `}
 `;
 
-const Button: React.FC<IButtonProps> = ({ color, type, onClick, children }) => {
+const Button: React.FC<IButtonProps> = ({ color, type, disabled, onClick, children }) => {
   return (
     <ButtonBody 
       color={color} 
       type={type} 
+      disabled={disabled}
       onClick={onClick}
     >
       {children}

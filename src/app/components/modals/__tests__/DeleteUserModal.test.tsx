@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import DeleteUserModal from '../DeleteUserModal';
+import { DeleteUserModal } from '../';
 
 
 describe('Tests for the DeleteUserModal component', () => {

@@ -65,10 +65,10 @@ export interface IProductToUpdate {
 export interface IProductRequestData {
   page: number;
   productsPerPage: number;
-  category?: string | undefined;
   filterData?: {
-    brands: string[];
-    minPrice: number;
-    maxPrice: number;
+    category?: string,
+    brands?: string[];
+    minPrice?: number;
+    maxPrice?: number;
   }
 }

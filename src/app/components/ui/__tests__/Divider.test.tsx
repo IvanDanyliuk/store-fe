@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Divider from '../Divider';
+import { Divider } from '../';
 
 
 describe('Tests for the Divider component', () => {

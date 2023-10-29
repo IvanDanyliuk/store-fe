@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import UpdateAvatarModal from '../UpdateAvatarModal';
+import { UpdateAvatarModal } from '../';
 
 
 describe('Tests for the UpdateAvatarModal component', () => {

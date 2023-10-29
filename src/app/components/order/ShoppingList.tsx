@@ -9,8 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonColor, ButtonType, IShoppingListProps } from '../../../types/types';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../features/cart/reducers';
 import { AppDispatch } from '../../features/store';
-import RoundedButton from '../ui/RoundedButton';
-import ProductListImage from '../ui/ProductListImage';
+import { ProductListImage, RoundedButton } from '../ui';
 import { selectOrder } from '../../features/order/selectors';
 import { 
   decreaseOrderProductQuantity, 
@@ -20,16 +19,18 @@ import {
 
 
 const List = styled.ul`
-  flex: 1;
   ${tw`
+    max-h-full
+    flex
+    flex-col
+    flex-1
     overflow-y-scroll
   `}
 `;
 
 const ShoppingListItem = styled.li`
   ${tw`
-    pt-2
-    pb-2
+    py-2
     flex
     flex-col
     md:flex-row
@@ -99,7 +100,8 @@ const Number = styled.span`
   `}
 `;
 
-const EmptyCartMessage = styled.li`
+const EmptyCartMessage = styled.div`
+flex: 1;
   ${tw`
     h-full
     flex
@@ -133,56 +135,61 @@ const ShoppingList: React.FC<IShoppingListProps> = ({ cart }) => {
     }
   };
 
-  const hadnleDeleteFromCart = (id: string) => {
+  const handleDeleteFromCart = (id: string) => {
     if(order) {
       dispatch(removeProductFromOrder(id));
     } else {
+      console.log('REMOVE FROM CART', id)
       dispatch(removeFromCart(id));
     }
   };
 
   return (
-    <List>
+    <>
       {
-        cart.length > 0 ? cart.map(item => (
-          <ShoppingListItem key={uuid()}>
-            <ItemInfo>
-              <ProductListImage url={item.product.image} altText={item.product.title} />
-              <ProductTitle>{item.product.title}</ProductTitle>
-              <ProductPrice>{item.product.price}</ProductPrice>
-            </ItemInfo>
-            <ItemActions>
-              <ProductNumber>
-                <SetNumberBtn 
-                  data-testid='increaseBtn' 
-                  onClick={() => decreaseProductQuantity(item._id!)}
-                >
-                  -
-                </SetNumberBtn>
-                <Number>{item.quantity}</Number>
-                <SetNumberBtn 
-                  data-testid='decreaseBtn' 
-                  onClick={() => increaseProductQuantity(item._id!)}
-                >
-                  +
-                </SetNumberBtn>
-              </ProductNumber>
-              <RoundedButton 
-                type={ButtonType.Button} 
-                color={ButtonColor.Danger} 
-                onClick={() => hadnleDeleteFromCart(item._id!)}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </RoundedButton>
-            </ItemActions>
-          </ShoppingListItem>
-        )) : (
+        cart.length > 0 ? (
+          <List>
+            {cart.map(item => (
+              <ShoppingListItem key={uuid()}>
+                <ItemInfo>
+                  <ProductListImage url={item.product.image} altText={item.product.title} />
+                  <ProductTitle>{item.product.title}</ProductTitle>
+                  <ProductPrice>{item.product.price}</ProductPrice>
+                </ItemInfo>
+                <ItemActions>
+                  <ProductNumber>
+                    <SetNumberBtn 
+                      data-testid='increaseBtn' 
+                      onClick={() => decreaseProductQuantity(item.id!)}
+                    >
+                      -
+                    </SetNumberBtn>
+                    <Number>{item.quantity}</Number>
+                    <SetNumberBtn 
+                      data-testid='decreaseBtn' 
+                      onClick={() => increaseProductQuantity(item.id!)}
+                    >
+                      +
+                    </SetNumberBtn>
+                  </ProductNumber>
+                  <RoundedButton 
+                    type={ButtonType.Button} 
+                    color={ButtonColor.Danger} 
+                    onClick={() => handleDeleteFromCart(item.id!)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </RoundedButton>
+                </ItemActions>
+              </ShoppingListItem>
+            ))}
+          </List>
+        ) : (
           <EmptyCartMessage>
             {t('cartEmptyMessage')}
           </EmptyCartMessage>
         )
       }
-    </List>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { ButtonColor, ButtonType } from '../../../../types/types';
-import RoundedButton from '../RoundedButton';
+import { RoundedButton } from '../';
 
 
 const clickHandler = jest.fn();

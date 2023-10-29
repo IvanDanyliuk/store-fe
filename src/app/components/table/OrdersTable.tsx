@@ -7,8 +7,8 @@ import moment from 'moment';
 import { SCREENS } from '../../helpers/screens';
 import { getOtherProductsQuantity, setCellWidth } from '../../helpers/helpers';
 import { ICellProps, IOrdersTableProps } from '../../../types/types';
-import OrderDetails from '../modals/OrderDetails';
-import ProductListImage from '../ui/ProductListImage';
+import { OrderDetails } from '../modals';
+import { ProductListImage } from '../ui';
 
 
 const Container = styled.div`
@@ -34,8 +34,6 @@ const TableHead = styled.thead`
     border-b
   `}
 `;
-
-const TableBody = styled.tbody``;
 
 const TableRow = styled.tr`
   ${tw`
@@ -122,7 +120,7 @@ const OrdersTable: React.FC<IOrdersTableProps> = ({ orders }) => {
             <TableHeaderCell name='orderActions'></TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <tbody>
           {
             orders.map(order => (
               <TableRow key={uuid()}>
@@ -155,7 +153,7 @@ const OrdersTable: React.FC<IOrdersTableProps> = ({ orders }) => {
               </TableRow>
             )) 
           }
-        </TableBody>
+        </tbody>
       </TableContainer>
     </Container>
   );

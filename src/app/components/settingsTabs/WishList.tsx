@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { selectWishList } from '../../features/user/selectors';
-import ProductList from '../products/ProductList';
+import { ProductList } from '../products';
 
 
 const Container = styled.div`

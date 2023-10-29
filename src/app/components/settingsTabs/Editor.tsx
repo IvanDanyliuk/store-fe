@@ -11,31 +11,23 @@ import { ButtonColor, ButtonType, TableTypes } from '../../../types/types';
 import { getProducts, deleteProduct } from '../../features/product/asyncActions';
 import { selectPagesCount, selectProducts, selectProductStatus } from '../../features/product/selectors';
 import { AppDispatch } from '../../features/store';
-import Table from '../table/Table';
-import CreateCategoryForm from '../modals/CreateCategoryForm';
 import { selectCategories, selectCategoryStatus } from '../../features/category/selectors';
 import { getCategories, deleteCategory } from '../../features/category/asyncActions';
 import { clearCategory, getCategory } from '../../features/category/reducers';
-import CreateProductForm from '../modals/CreateProductForm';
 import {clearProduct, setProductToUpdate } from '../../features/product/reducers';
 import { selectUser } from '../../features/user/selectors';
 import { selectShippings, selectShippingStatus } from '../../features/shipping/selectors';
 import { deleteShipping, getShippings } from '../../features/shipping/asyncActions';
-import CreateShippingForm from '../modals/CreateShippingForm';
 import { getShipping } from '../../features/shipping/reducers';
-import ProductTable from '../table/ProductTable';
-import CreateVacancyForm from '../modals/CreateVacancyModal';
+import { ProductTable, Table, VacanciesTable } from '../table';
 import { selectVacancies, selectVacancyPagesCount, selectVacancyStatus } from '../../features/vacancies/selectors';
-import VacanciesTable from '../table/VacanciesTable';
 import { deleteVacancy, getVacancies } from '../../features/vacancies/asyncActions';
 import { setVacancyToUpdate } from '../../features/vacancies/reducers';
 import { PRODUCTS_PER_TABLE, VACANCIES_PER_TABLE } from '../../services/constants';
-import AddGalleryImageModal from '../modals/AddGalleryImageModal';
+import { AddGalleryImageModal, CreateVacancyModal, CreateShippingForm, CreateProductForm, CreateCategoryForm } from '../modals';
 import { selectGalleryImages, selectGalleryStatus } from '../../features/gallery/selectors';
 import { deleteGalleryImage, getGalleryImages } from '../../features/gallery/asyncActions';
-import RoundedButton from '../ui/RoundedButton';
-import Loader from '../ui/Loader';
-import Pagination from '../ui/Pagination';
+import { Loader, Pagination, RoundedButton } from '../ui';
 
 
 const Container = styled.div`
@@ -50,8 +42,7 @@ const Section = styled.section`
   ${tw`
     relative
     w-full
-    mt-6
-    mb-6
+    my-6
   `}
 `;
 
@@ -96,8 +87,6 @@ const GalleryImageItem = styled.li`
     `}
   }
 `;
-
-const Image = styled.img``;
 
 
 const Editor: React.FC = () => {
@@ -226,7 +215,7 @@ const Editor: React.FC = () => {
       <Section>
         <SectionHeader>
           <SubTitle>{t('vacancies')}</SubTitle>
-          <CreateVacancyForm />
+          <CreateVacancyModal />
         </SectionHeader>
         <VacanciesTable 
           vacancies={vacancies}
@@ -249,7 +238,7 @@ const Editor: React.FC = () => {
             <GalleryImagesList>
               {galleryImages.map(image => (
                 <GalleryImageItem key={uuid()}>
-                  <Image src={image.url} />
+                  <img src={image.url} alt={image._id} />
                   <RoundedButton
                     type={ButtonType.Button}
                     color={ButtonColor.Danger}

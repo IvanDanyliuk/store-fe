@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Contacts from '../Contacts';
+import { Contacts } from '../';
 
 
 describe('Tests for the Contacts page', () => {

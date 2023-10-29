@@ -11,13 +11,10 @@ import { SCREENS } from '../../services/screens';
 import { isCommentDataValid } from '../../helpers/formValidation';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../features/store';
-import FormErrorMessage from '../ui/FormErrorMessage';
-import RoundedButton from '../ui/RoundedButton';
+import { Button, FormErrorMessage, RoundedButton } from '../ui';
 import { ButtonColor, ButtonType, IEditReviewModalProps } from '../../../types/types';
-import Button from '../ui/Button';
 import { updateReview } from '../../features/reviews/asyncActions';
-import Input from '../inputs/Input';
-import TextArea from '../inputs/TextArea';
+import { Input, TextArea } from '../inputs';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
 

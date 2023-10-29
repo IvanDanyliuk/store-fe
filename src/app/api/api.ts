@@ -11,14 +11,7 @@ import { IVacancy, IVacancyToUpdate } from '../features/vacancies/types';
 
 const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
-// API.interceptors.request.use((req) => {
-//   // if() {
-
-//   // }
-//   return req;
-// });
-
-export const getProducts = (page: number, productsPerPage: number, category?: string | undefined, filterData?: any) => API.get('/products', { params: { page, productsPerPage, category, filterData } });
+export const getProducts = (page: number, productsPerPage: number, filterData?: any) => API.get('/products', { params: { page, productsPerPage, filterData } });
 export const getTopProducts = (productsNumber: number) => API.get('/products/top-rated', { params: { productsNumber } });
 export const getProduct = (id: string) => API.get(`/products/${id}`);
 export const getBrands = (category: string) => API.get('/products/brands', { params: { category } });

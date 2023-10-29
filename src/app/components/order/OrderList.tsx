@@ -4,8 +4,8 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
-import OrderDetails from '../modals/OrderDetails';
-import ProductListImage from '../ui/ProductListImage';
+import { OrderDetails } from '../modals';
+import { ProductListImage } from '../ui';
 import { getOtherProductsQuantity } from '../../helpers/helpers';
 import { IOrderListProps } from '../../../types/types';
 
@@ -65,8 +65,6 @@ const Actions = styled.div`
   `}
 `;
 
-const Message = styled.div``;
-
 
 const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
   const { t } = useTranslation(['order']);
@@ -94,7 +92,7 @@ const OrderList: React.FC<IOrderListProps> = ({ orders }) => {
           </Actions>
         </ListItem>
       )) : (
-        <Message>{t('noOrdersMessage')}</Message>
+        <div>{t('noOrdersMessage')}</div>
       )}
     </List>
   );

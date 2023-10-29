@@ -2,7 +2,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { setupOrderErrorHandlers, setupOrderSuccessHandlers } from '../../../utils/serverMocks/order';
 import { renderWithProviders, renderWithProvidersErrorCase, renderWithProvidersForUpdation } from '../../../utils/testUtils';
-import Order from '../Order';
+import { Order}  from '../';
 
 
 const mockedUsedNavigate = jest.fn();

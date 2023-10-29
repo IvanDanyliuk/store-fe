@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Partnership from '../Partnership';
+import { Partnership } from '../';
 
 
 describe('Tests for the Partnership page', () => {

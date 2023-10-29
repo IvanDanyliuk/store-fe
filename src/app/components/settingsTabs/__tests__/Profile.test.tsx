@@ -2,7 +2,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { setupUserSuccessHandlers } from '../../../../utils/serverMocks/user';
 import { userMock } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import Profile from '../Profile';
+import { Profile } from '../';
 
 
 describe('Tests for the Profile component', () => {

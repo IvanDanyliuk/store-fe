@@ -2,7 +2,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { setupProductSuccessHandlers } from '../../../utils/serverMocks/product';
 import { renderWithProviders } from '../../../utils/testUtils';
-import Products from '../Products';
+import { Products } from '../';
 
 
 jest.mock('react-router-dom', () => ({

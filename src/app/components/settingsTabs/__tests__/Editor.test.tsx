@@ -1,5 +1,4 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { setupCategoriesSuccessHandlers } from '../../../../utils/serverMocks/categories';
 import { setupGallerySuccessHandlers } from '../../../../utils/serverMocks/gallery';
 import { setupProductSuccessHandlers } from '../../../../utils/serverMocks/product';
@@ -8,7 +7,7 @@ import { setupUserSuccessHandlers } from '../../../../utils/serverMocks/user';
 import { setupVacanciesSuccessHandlers } from '../../../../utils/serverMocks/vacancies';
 import { galleryUrlsSuccess } from '../../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import Editor from '../Editor';
+import { Editor } from '../';
 
 
 describe('Tests for the Editor component', () => {

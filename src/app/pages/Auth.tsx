@@ -7,19 +7,17 @@ import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { storage } from '../../firebase';
 import { ButtonColor, ButtonType } from '../../types/types';
-import Button from '../components/ui/Button';
+import { Button , FormErrorMessage} from '../components/ui';
 import { AppDispatch } from '../features/store';
 import { signin, signup } from '../features/user/asyncActions';
-import Input from '../components/inputs/Input';
+import { Input } from '../components/inputs';
 import { isSigninDataValid, isSignupDataValid } from '../helpers/formValidation';
-import FormErrorMessage from '../components/ui/FormErrorMessage';
 import { selectUser } from '../features/user/selectors';
 
 
 const Container = styled.div`
   ${tw`
-    pt-6
-    pb-6
+    py-6
     w-full
     flex
     justify-center
@@ -44,8 +42,6 @@ const Title = styled.h3`
     border-b
   `}
 `;
-
-const AuthForm = styled.form``;
 
 const Actions = styled.div`
   ${tw`
@@ -194,7 +190,7 @@ const Auth: React.FC = () => {
           {isSignIn ? t('signIn') : t('signUp')}
         </Title>
         <FormErrorMessage error={error} />
-        <AuthForm onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit}>
           {
             !isSignIn && (
               <>
@@ -273,7 +269,7 @@ const Auth: React.FC = () => {
               {!isSignIn ? t('accountExists') : t('noAccount')}
             </ChangeModeBtn>
           </Actions>
-        </AuthForm>
+        </form>
       </AuthContainer>
     </Container>
   );

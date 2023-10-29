@@ -11,12 +11,11 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SCREENS } from '../../services/screens';
 import { isCommentDataValid } from '../../helpers/formValidation';
 import { AppDispatch } from '../../features/store';
-import FormErrorMessage from '../ui/FormErrorMessage';
+import { FormErrorMessage } from '../ui';
 import { createReview } from '../../features/reviews/asyncActions';
 import { selectProduct } from '../../features/product/selectors';
 import { selectUser } from '../../features/user/selectors';
-import Input from '../inputs/Input';
-import TextArea from '../inputs/TextArea';
+import { Input, TextArea } from '../inputs';
 import { 
   SUCCESS_COLOR, 
   BASIC_BACKGROUND_WHITE, 
@@ -29,16 +28,13 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const CommentBtn = styled.button`
   ${tw`
-    pt-3
-    pb-3
-    pl-8
-    pr-8
-    md:pt-1
-    md:pb-1
-    md:pl-4
-    md:pr-4
+    py-3
+    px-8
+    md:py-1
+    md:px-4
     rounded
-    text-sm
+    text-xs
+    md:text-sm
     font-bold
     bg-gray-300
   `}

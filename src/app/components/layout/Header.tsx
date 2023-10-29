@@ -7,14 +7,14 @@ import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import SearchField from '../inputs/SearchField';
+import { SearchField } from '../inputs';
 import NavMenu from '../navigation/NavMenu';
 import { SCREENS } from '../../services/screens';
-import Logo from '../ui/Logo';
+import { Logo } from '../ui';
 import { selectUser } from '../../features/user/selectors';
 import { AppDispatch } from '../../features/store';
 import { logout } from '../../features/user/reducers';
-import Cart from '../modals/Cart';
+import { Cart } from '../modals';
 import { PRIMARY_COLOR } from '../../services/constants';
 
 
@@ -30,15 +30,12 @@ const Container = styled.header`
 const Content = styled.div`
   ${tw`
     container
-    pl-4
-    pr-4
+    px-4
     w-full
     h-20
     flex
     justify-between
     items-center
-    // md:pl-0
-    // md:pr-0
   `}
 `;
 
@@ -57,13 +54,13 @@ const UserActions = styled.div`
     relative
     flex
     items-center
+    gap-5
   `}
 `;
 
 const ProfileBtn = styled(Link)`
   ${tw`
     p-3
-    mr-5
     text-gray-700
     hover:text-white
     transition
@@ -74,7 +71,6 @@ const ProfileBtn = styled(Link)`
 
 const LoginBtn = styled(Link)`
   ${tw`
-    mr-3
     text-sm
     hover:text-white
     transition
@@ -85,7 +81,6 @@ const LoginBtn = styled(Link)`
 
 const LogoutBtn = styled.button`
   ${tw`
-    mr-3
     text-sm
     hover:text-white
     font-medium

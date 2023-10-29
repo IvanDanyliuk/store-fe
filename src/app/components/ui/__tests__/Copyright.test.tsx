@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Copyright from '../Copyright';
+import { Copyright } from '../';
 
 
 describe('Tests for the Copyright component', () => {

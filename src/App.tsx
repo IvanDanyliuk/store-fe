@@ -1,28 +1,11 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './app/components/layout/Layout';
-import Editor from './app/components/settingsTabs/Editor';
-import Orders from './app/components/settingsTabs/Orders';
-import Profile from './app/components/settingsTabs/Profile';
-import Reviews from './app/components/settingsTabs/Reviews';
-import WishList from './app/components/settingsTabs/WishList';
-import About from './app/pages/About';
-import Auth from './app/pages/Auth';
-import Careers from './app/pages/Careers';
-import Categories from './app/pages/Categories';
-import Contacts from './app/pages/Contacts';
-import DeliveryAndPayment from './app/pages/DeliveryAndPayment';
-import Home from './app/pages/Home';
-import LegalInfo from './app/pages/LegalInfo';
-import NotFound from './app/pages/NotFound';
-import Order from './app/pages/Order';
-import Partnership from './app/pages/Partnership';
-import Product from './app/pages/Product';
-import Products from './app/pages/Products';
-import Refund from './app/pages/Refund';
-import Settings from './app/pages/Settings';
-import Tradein from './app/pages/Tradein';
-import Vacancy from './app/pages/Vacancy';
+import { Editor, Orders, Profile, Reviews, WishList } from './app/components/settingsTabs';
+import { 
+  About, Auth, Careers, Categories, Contacts, DeliveryAndPayment, Home, LegalInfo, NotFound, 
+  Order, Partnership, Product, Products, Refund, Settings, Tradein, Vacancy 
+} from './app/pages';
 import i18n from './app/services/languageConfig';
 
 

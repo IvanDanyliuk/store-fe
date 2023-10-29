@@ -2,11 +2,11 @@ import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { useTranslation } from 'react-i18next';
-import Button from '../ui/Button';
+import { Button } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { formatCardNumber } from '../../helpers/helpers';
-import PaymentSystemIcon from './PaymentSystemIcon';
-import AcceptPaymentModal from '../modals/AcceptPaymentModal';
+import { PaymentSystemIcon } from './';
+import { AcceptPaymentModal } from '../modals';
 
 
 const Container = styled.form`
@@ -17,8 +17,7 @@ const Container = styled.form`
 
 const Card = styled.div`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     p-8
     w-full
     md:w-96

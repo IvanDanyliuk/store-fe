@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { ILayout } from '../../../types/types';
-import ServerErrorAlert from '../ui/ServerErrorAlert';
+import { ServerErrorAlert } from '../ui';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -21,6 +21,7 @@ const Container = styled.div`
 const Content = styled.main`
   flex: 1;
   ${tw`
+    py-6
     container
     flex
   `}

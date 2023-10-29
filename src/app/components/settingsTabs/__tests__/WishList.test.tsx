@@ -3,7 +3,7 @@ import { setupProductSuccessHandlers } from '../../../../utils/serverMocks/produ
 import { setupUserSuccessHandlers } from '../../../../utils/serverMocks/user';
 import { renderWithProviders } from '../../../../utils/testUtils';
 import { productStateSuccess } from '../../../../utils/testDataMocks'
-import WishList from '../WishList';
+import { WishList } from '../';
 
 
 describe('Tests for the WishList component', () => {

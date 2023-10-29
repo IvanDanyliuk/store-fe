@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { productFromWishListMock, productNotFromWishListMock } from '../../../../utils/testDataMocks'
 import { renderWithProviders } from '../../../../utils/testUtils';
-import ProductCard from '../ProductCard';
+import { ProductCard } from '../';
 
 
 const localStorageMock = {

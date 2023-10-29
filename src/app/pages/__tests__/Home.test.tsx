@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { setupGallerySuccessHandlers } from '../../../utils/serverMocks/gallery';
 import { galleryStateSuccess } from '../../../utils/testDataMocks';
 import { renderWithProviders } from '../../../utils/testUtils';
-import Home from '../Home';
+import { Home } from '../';
 
 
 describe('Tests for the Home page', () => {

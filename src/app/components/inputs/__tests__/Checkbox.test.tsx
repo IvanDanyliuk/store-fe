@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Checkbox from '../Checkbox';
+import { Checkbox } from '../';
 
 
 const clickHandler = jest.fn();

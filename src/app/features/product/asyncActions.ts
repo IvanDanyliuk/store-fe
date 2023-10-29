@@ -7,9 +7,9 @@ import { IProductToUpdate } from './types';
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (productRequestData: IProductRequestData, { rejectWithValue }) => {
-    const { page, productsPerPage, category, filterData } = productRequestData;
+    const { page, productsPerPage, filterData } = productRequestData;
     try {
-      const { data } = await api.getProducts(page, productsPerPage, category!, filterData!);
+      const { data } = await api.getProducts(page, productsPerPage, filterData);
       return data;
     } catch (error) {
       return rejectWithValue(error);

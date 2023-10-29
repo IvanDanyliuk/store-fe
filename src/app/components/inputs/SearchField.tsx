@@ -11,14 +11,10 @@ import SearchResults from '../modals/SearchResults';
 import { clearSearchData } from '../../features/product/reducers';
 
 
-const Container = styled.div``;
-
 const SearchForm = styled.form`
   ${tw`
-    mt-2
-    mb-2
-    md:mt-0
-    md:mb-0
+    my-2
+    md:my-2
     w-full
     md:w-96
     flex
@@ -29,20 +25,18 @@ const SearchInput = styled.input`
   font-size: 12px;
   ${tw`
     w-full
-    h-8
-    pl-3
-    pr-3
-    rounded-l-xl
+    h-10
+    px-6
+    rounded-l-full
     focus:outline-none
   `}
 `;
 
 const SearchBtn = styled.button`
   ${tw`
-    h-8
-    pl-2
-    pr-2
-    rounded-r-xl
+    h-10
+    px-6
+    rounded-r-full
     bg-white
     text-gray-400
     hover:text-gray-600
@@ -79,7 +73,7 @@ const SearchField: React.FC = () => {
   };
 
   return (
-    <Container>
+    <div>
       <SearchForm>
         <SearchInput 
           type='text' 
@@ -99,7 +93,7 @@ const SearchField: React.FC = () => {
           />
         )
       }
-    </Container>
+    </div>
   );
 };
 

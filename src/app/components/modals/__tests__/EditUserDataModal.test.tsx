@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import EditUserDataModal from '../EditUserDataModal';
+import { EditUserDataModal } from '../';
 
 
 describe('Tests for the EditUserDataModal component', () => {

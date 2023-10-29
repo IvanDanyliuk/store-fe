@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithProvidersErrorCase } from '../../../../utils/testUtils';
-import ServerErrorAlert from '../ServerErrorAlert';
+import { ServerErrorAlert } from '../';
 
 
 describe('Tests for the ServerErrorAlert component', () => {

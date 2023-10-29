@@ -52,6 +52,7 @@ export interface IButtonProps {
   onClick?: (arg?: any) => void;
   color: ButtonColor;
   type: ButtonType;
+  disabled?: boolean;
   children: ReactNode | string;
 }
 

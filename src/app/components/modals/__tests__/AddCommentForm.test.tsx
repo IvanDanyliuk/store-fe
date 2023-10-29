@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../utils/testUtils';
-import AddCommentForm from '../AddCommentForm';
+import { AddCommentForm } from '../';
 
 
 const fillForm = (advantages: string, disadvantages: string, comment: string) => {

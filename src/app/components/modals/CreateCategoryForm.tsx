@@ -12,15 +12,14 @@ import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { storage } from '../../../firebase';
 import { SCREENS } from '../../services/screens';
 import { setCategoryUrl } from '../../helpers/helpers';
-import Button from '../ui/Button';
+import { Button, FormErrorMessage } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { AppDispatch } from '../../features/store';
 import { selectCategory } from '../../features/category/selectors';
 import { createCategory, updateCategory } from '../../features/category/asyncActions';
 import { clearCategory } from '../../features/category/reducers';
 import { isCategoryDataValid } from '../../helpers/formValidation';
-import FormErrorMessage from '../ui/FormErrorMessage';
-import Input from '../inputs/Input';
+import { Input } from '../inputs';
 import { 
   BASIC_BACKGROUND_WHITE, 
   MODAL_OVERLAY_COLOR, 
@@ -71,11 +70,9 @@ const Inputs = styled.fieldset`
 
 const SubCategoriesList = styled.ul`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     pt-2
-    pl-3
-    pr-3
+    px-3
     border
   `}
 `;

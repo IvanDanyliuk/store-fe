@@ -25,8 +25,7 @@ const CloseBtn = styled.button`
 
 const Message = styled.div`
   ${tw`
-    pt-6
-    pb-6
+    py-6
     text-lg
     text-center
     font-semibold

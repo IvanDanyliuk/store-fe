@@ -5,10 +5,8 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType, ICustomer } from '../../types/types';
-import OrderForm from '../components/order/OrderForm';
-import Payment from '../components/order/Payment';
-import ShoppingList from '../components/order/ShoppingList';
-import Button from '../components/ui/Button';
+import { OrderForm, Payment, ShoppingList } from '../components/order';
+import { Button } from '../components/ui';
 import { selectCartData } from '../features/cart/selectors';
 import { ICartItem } from '../features/cart/types';
 import { getShippings } from '../features/shipping/asyncActions';
@@ -43,8 +41,7 @@ const OrderDetails = styled.div`
 
 const Title = styled.h3`
   ${tw`
-    mt-6
-    mb-6
+    my-6
     text-xl
     font-semibold
   `}
@@ -75,8 +72,6 @@ const SubTitleNum = styled.span`
   `}
 `;
 
-const SubTitleText = styled.span``;
-
 const AcceptOrderSection = styled.div`
   ${tw`
     relative
@@ -99,10 +94,6 @@ const DetailsSection = styled.div`
     flex-col
   `}
 `;
-
-const SelectionContainer = styled.div``;
-
-const RadioBody = styled.div``;
 
 const RadioTitle = styled.span`
   ${tw`
@@ -137,8 +128,6 @@ const Select = styled.select`
     rounded
   `}
 `;
-
-const Option = styled.option``;
 
 const AcceptOrderTitle = styled.div`
   ${tw`
@@ -355,7 +344,7 @@ const Order: React.FC = () => {
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>1</SubTitleNum>
-            <SubTitleText>{t('contactData')}</SubTitleText>
+            <span>{t('contactData')}</span>
           </SubTitle>
           <OrderForm 
             data={customer} 
@@ -365,16 +354,16 @@ const Order: React.FC = () => {
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>2</SubTitleNum>
-            <SubTitleText>{t('shipping')}</SubTitleText>
+            <span>{t('shipping')}</span>
           </SubTitle>
-          <SelectionContainer>
+          <div>
             {
               shippings.map(item => (
                 <RadioContainer 
                   key={uuid()} 
                   data-isChecked={currentShippingCompany === item.company}
                 >
-                  <RadioBody>
+                  <div>
                     <Radio 
                       type='radio' 
                       name='shipping' 
@@ -385,7 +374,7 @@ const Order: React.FC = () => {
                     <RadioTitle>
                       {item.company === 'Self pickup' ? t('selfPickup') : item.company}
                     </RadioTitle>
-                  </RadioBody>
+                  </div>
                   <Select 
                     disabled={currentShippingCompany !== item.company}
                     value={currentShippingCity}
@@ -393,35 +382,35 @@ const Order: React.FC = () => {
                   >
                     {
                       item.cities.map(city => (
-                        <Option 
+                        <option 
                           key={uuid()} 
                           value={city}
                         >
                           {city}
-                        </Option>
+                        </option>
                       ))
                     }
                   </Select>
                 </RadioContainer>
               ))
             }
-          </SelectionContainer>
+          </div>
         </DetailsSection>
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>3</SubTitleNum>
-            <SubTitleText>{t('orderDetails')}</SubTitleText>
+            <span>{t('orderDetails')}</span>
           </SubTitle>
           <ShoppingList cart={order ? order.products : cart} />
         </DetailsSection>
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>4</SubTitleNum>
-            <SubTitleText>{t('paymentMethod')}</SubTitleText>
+            <span>{t('paymentMethod')}</span>
           </SubTitle>
-          <SelectionContainer>
+          <div>
             <RadioContainer data-isChecked={currentPaymentMethod === 'when-receiving'}>
-              <RadioBody>
+              <div>
                 <Radio 
                   type='radio' 
                   name='payment' 
@@ -430,10 +419,10 @@ const Order: React.FC = () => {
                   onChange={handleCurrentPaymentMethodChange}
                 />
                 <RadioTitle>{t('receivingOrder')}</RadioTitle>
-              </RadioBody>
+              </div>
             </RadioContainer>
             <RadioContainer data-isChecked={currentPaymentMethod === 'pay-now'}>
-              <RadioBody>
+              <div>
                 <Radio 
                   type='radio' 
                   name='payment' 
@@ -442,15 +431,15 @@ const Order: React.FC = () => {
                   onChange={handleCurrentPaymentMethodChange}
                 />
                 <RadioTitle>{t('payByCard')}</RadioTitle>
-              </RadioBody>
+              </div>
               <Payment />
             </RadioContainer>
-          </SelectionContainer>
+          </div>
         </DetailsSection>
         <DetailsSection>
           <SubTitle>
             <SubTitleNum>5</SubTitleNum>
-            <SubTitleText>{t('recContactData')}</SubTitleText>
+            <span>{t('recContactData')}</span>
           </SubTitle>
           <OrderForm 
             data={recepient} 

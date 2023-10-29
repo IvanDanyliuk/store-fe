@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
 import { renderWithProviders, renderWithProvidersErrorCase } from '../../../utils/testUtils';
-import Careers from '../Careers';
+import { Careers } from '../';
 
 
 describe('Tests for the Careers page', () => {

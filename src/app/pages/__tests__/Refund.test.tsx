@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Refund from '../Refund';
+import { Refund } from '../';
 
 
 describe('Tests for the Redund page', () => {

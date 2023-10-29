@@ -11,10 +11,10 @@ import { SCREENS } from '../../services/screens';
 import { AppDispatch } from '../../features/store';
 import { updatePassword } from '../../features/user/asyncActions';
 import { selectError, selectUser } from '../../features/user/selectors';
-import Button from '../ui/Button';
+import { Button } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { clearError } from '../../features/user/reducers';
-import Input from '../inputs/Input';
+import { Input } from '../inputs';
 import { BASIC_BACKGROUND_WHITE, MODAL_OVERLAY_COLOR } from '../../services/constants';
 
 
@@ -48,8 +48,7 @@ const Form = styled.form`
 
 const ErrorMessage = styled.p`
   ${tw`
-    mt-3
-    mb-3
+    my-3
     text-center
     text-red-500
   `}

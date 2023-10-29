@@ -6,14 +6,12 @@ import tw from 'twin.macro';
 import { v4 as uuid } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import { ButtonColor, ButtonType } from '../../types/types';
-import ProductList from '../components/products/ProductList';
-import Pagination from '../components/ui/Pagination';
-import Button from '../components/ui/Button';
+import { ProductList } from '../components/products';
+import { Button, Loader, Pagination } from '../components/ui';
 import { getBrands, getProducts } from '../features/product/asyncActions';
 import { selectBrands, selectPagesCount, selectProducts, selectProductStatus } from '../features/product/selectors';
 import { AppDispatch } from '../features/store';
 import { PRODUCTS_PER_PAGE } from '../services/constants';
-import Loader from '../components/ui/Loader';
 
 
 const Container = styled.div`
@@ -35,7 +33,6 @@ const Content = styled.div`
 
 const FiltersContainer = styled.div`
   ${tw`
-    // p-3
     w-full
     md:w-1/6
   `}
@@ -59,8 +56,6 @@ const FilterGroupLabel = styled.div`
   `}
 `;
 
-const BrandList = styled.ul``;
-
 const BrandItem = styled.li`
   ${tw`
     flex
@@ -74,8 +69,6 @@ const Checkbox = styled.input`
     h-5
   `}
 `;
-
-const Label = styled.label``;
 
 const PriceFilters = styled.div`
   ${tw`
@@ -137,7 +130,9 @@ const Products: React.FC = () => {
       dispatch(getProducts({
         page: 1,
         productsPerPage, 
-        category
+        filterData: {
+          category
+        }
       }));
     }
   };
@@ -148,10 +143,10 @@ const Products: React.FC = () => {
       const selectedBrands = brands.filter((brand: string, i) => checkedBrandIds[i] && brand);
       dispatch(getProducts({ 
         page: 1, 
-        productsPerPage, 
-        category, 
+        productsPerPage,
         filterData: {
           ...priceData,
+          category,
           brands: selectedBrands,
         } 
       }));
@@ -171,7 +166,7 @@ const Products: React.FC = () => {
   }, [brands]);
 
   useEffect(() => {
-    dispatch(getProducts({ page, productsPerPage, category })); 
+    dispatch(getProducts({ page, productsPerPage, filterData: { category } })); 
   }, [dispatch, category, page]);
 
   return (
@@ -181,7 +176,7 @@ const Products: React.FC = () => {
           <FilterGroupLabel>
             {t('brands')}
           </FilterGroupLabel>
-          <BrandList>
+          <ul>
             {
               brands.map((brand: string, i) => (
                 <BrandItem key={uuid()}>
@@ -193,13 +188,13 @@ const Products: React.FC = () => {
                     checked={checkedBrandIds[i]} 
                     onChange={() => handleCheckingBrandChange(i)}
                   />
-                  <Label htmlFor={brand}>
+                  <label htmlFor={brand}>
                     {brand}
-                  </Label>
+                  </label>
                 </BrandItem>
               ))
             }
-          </BrandList>
+          </ul>
         </FilterGroup>
         <FilterGroup>
           <FilterGroupLabel>

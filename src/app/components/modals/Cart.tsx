@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../services/screens';
-import Button from '../ui/Button';
+import { Button } from '../ui';
 import { ButtonColor, ButtonType } from '../../../types/types';
 import { selectCartData } from '../../features/cart/selectors';
 import { ICartItem } from '../../features/cart/types';
-import ShoppingList from '../order/ShoppingList';
+import { ShoppingList } from '../order';
 import { 
   CART_SIZE_ICON_COLOR, 
   BASIC_BACKGROUND_WHITE, 
@@ -25,8 +25,8 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 
 const Container = styled.div`
-  min-height: 95%;
   ${tw`
+    h-full
     flex
     flex-col
   `}
@@ -35,7 +35,7 @@ const Container = styled.div`
 const CartBtn = styled.button`
   ${tw`
     relative
-    p-1
+    p-3
     text-gray-700
     hover:text-white
     transition
@@ -92,7 +92,6 @@ const CartFooter = styled.div`
   ${tw`
     mt-3
     w-full
-    h-24
   `}
 `;
 
@@ -150,14 +149,17 @@ const Cart: React.FC = () => {
   const totalOrderAmount = cart.reduce((acc: number, cur: ICartItem) => acc + (+cur.product.price * cur.quantity), 0);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartSubmitted, setIsCartSubmitted] = useState(false);
   
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
 
   const makeOrder = () => {
-    navigate('/order');
-    setIsOpen(false);
+    if(cart.length > 0) {
+      setIsOpen(false);
+      setIsCartSubmitted(true);
+    }
   };
 
   const styles = {
@@ -174,13 +176,20 @@ const Cart: React.FC = () => {
     },
     overlay: {
       background: MODAL_OVERLAY_COLOR,
-      zIndex: '500',
+      zIndex: '1000',
     }
   };
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    if(isCartSubmitted) {
+      navigate('/order');
+      setIsCartSubmitted(false);
+    }
+  }, [isCartSubmitted]);
 
   return (
     <>
@@ -230,6 +239,7 @@ const Cart: React.FC = () => {
               <Button 
                 type={ButtonType.Button} 
                 color={ButtonColor.Success} 
+                disabled={cart.length < 1}
                 onClick={makeOrder}
               >
                 {t('cartCheckoutBtn')}

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import FormErrorMessage from '../FormErrorMessage';
+import { FormErrorMessage } from '../';
 
 
 describe('Tests for the FormErrorMessage component', () => {

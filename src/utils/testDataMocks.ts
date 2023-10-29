@@ -1086,7 +1086,7 @@ export const orderItemMock: IOrder = {
   _id: 'order_id_1',
   products: [
     {
-      _id: 'order_id_1',
+      id: 'order_id_1',
       product: {
         _id: 'product_id_1',
         brand: 'Test Brand',
@@ -1141,7 +1141,7 @@ export const orderToUpdate: IOrderToUpdate = {
     _id: 'order_id_1',
     products: [
       {
-        _id: 'order_id_1',
+        id: 'order_id_1',
         product: {
           _id: 'product_id_1',
           brand: 'Test Brand',

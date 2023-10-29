@@ -26,8 +26,6 @@ const SubTitle = styled.h3`
   `}
 `;
 
-const Text = styled.p``;
-
 const Logo = styled.h1`
   color: ${PRIMARY_COLOR};
   ${tw`
@@ -68,8 +66,6 @@ const IndicatorNum = styled.span`
   `}
 `;
 
-const IndicatorText = styled.span``;
-
 
 const About: React.FC = () => {
   const { t } = useTranslation(['about']);
@@ -82,58 +78,58 @@ const About: React.FC = () => {
       <SubTitle>
         {t('subtitleOne')}
       </SubTitle>
-      <Text>
+      <p>
         {t('sectionTextOne')}
-      </Text>
+      </p>
       <Logo>
         {t('logo')}
       </Logo>
       <SubTitle>
         {t('subtitleTwo')}
       </SubTitle>
-      <Text>
+      <p>
         {t('sectionTextTwo')}
-      </Text>
+      </p>
       <KeyIndicators>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumOne')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextOne')}
-          </IndicatorText>
+          </span>
         </Indicator>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumTwo')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextTwo')}
-          </IndicatorText>
+          </span>
         </Indicator>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumThree')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextThree')}
-          </IndicatorText>
+          </span>
         </Indicator>
         <Indicator>
           <IndicatorNum>
             {t('indicatorNumFour')}
           </IndicatorNum>
-          <IndicatorText>
+          <span>
             {t('indicatorTextFour')}
-          </IndicatorText>
+          </span>
         </Indicator>
       </KeyIndicators>
       <SubTitle>
         {t('subtitleThree')}
       </SubTitle>
-      <Text>
+      <p>
         {t('sectionTextThree')}
-      </Text>
+      </p>
     </Container>
   );
 };
