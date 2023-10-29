@@ -26,8 +26,6 @@ const SubTitle = styled.h3`
   `}
 `;
 
-const Text = styled.p``;
-
 const Logo = styled.h1`
   color: ${PRIMARY_COLOR};
   ${tw`
@@ -80,18 +78,18 @@ const About: React.FC = () => {
       <SubTitle>
         {t('subtitleOne')}
       </SubTitle>
-      <Text>
+      <p>
         {t('sectionTextOne')}
-      </Text>
+      </p>
       <Logo>
         {t('logo')}
       </Logo>
       <SubTitle>
         {t('subtitleTwo')}
       </SubTitle>
-      <Text>
+      <p>
         {t('sectionTextTwo')}
-      </Text>
+      </p>
       <KeyIndicators>
         <Indicator>
           <IndicatorNum>
@@ -129,9 +127,9 @@ const About: React.FC = () => {
       <SubTitle>
         {t('subtitleThree')}
       </SubTitle>
-      <Text>
+      <p>
         {t('sectionTextThree')}
-      </Text>
+      </p>
     </Container>
   );
 };
