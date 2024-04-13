@@ -120,7 +120,7 @@ const LinkText = styled.span`
 const PageContent = styled.div`
   ${tw`
     pl-3
-    pt-3
+    pt-1
     w-full
     md:w-5/6
   `}
@@ -128,6 +128,7 @@ const PageContent = styled.div`
 
 const PageTitle = styled.h3`
   ${tw`
+    mb-3
     text-2xl
     font-semibold
   `}
